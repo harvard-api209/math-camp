@@ -8,7 +8,7 @@
     <title>Math Camp 2026 | Code, data, and judgment</title>
     <link rel="icon" href="data:,">
     <link rel="preload" href="assets/fonts/DepartureMono-Regular.woff2" as="font" type="font/woff2" crossorigin>
-    <link rel="stylesheet" href="styles.css?v=book-20260717b">
+    <link rel="stylesheet" href="styles.css?v=book-20260717f">
     <script>document.documentElement.classList.add("js");</script>
   </head>
   <body class="home-page">
@@ -98,78 +98,113 @@
         </div>
       </section>
 
-      <section class="book-index" id="schedule" aria-labelledby="schedule-title">
-        <div class="index-margin"><span>CALENDAR</span><strong>06 MEETINGS</strong></div>
-        <div class="index-main">
+      <section class="home-chapter" id="schedule" aria-labelledby="schedule-title">
+        <div class="home-prose">
           <p class="section-kicker">AUGUST 2026</p>
           <h2 id="schedule-title">Twelve hours across three weeks.</h2>
-          <div class="calendar-list">
-            <a href="lessons/lesson-1/"><time datetime="2026-08-13T13:00">THU 13 / 1-4 PM</time><strong>Lesson 1 + Lab 1</strong><span>Ask, inspect, orient.</span></a>
-            <a href="lessons/lesson-2/"><time datetime="2026-08-19T15:00">WED 19 / 3-5 PM</time><strong>Lesson 2</strong><span>Build and document data.</span></a>
-            <a href="labs/lab-2/"><time datetime="2026-08-20T16:00">THU 20 / 4-5 PM</time><strong>Lab 2</strong><span>Update sprint.</span></a>
-            <a href="lessons/lesson-3/"><time datetime="2026-08-24T13:00">MON 24 / 1-4 PM</time><strong>Lesson 3 + Lab 3</strong><span>Compare and model.</span></a>
-            <a href="lessons/lesson-4/"><time datetime="2026-08-25T15:00">TUE 25 / 3-5 PM</time><strong>Lesson 4</strong><span>Audit and communicate.</span></a>
-            <a href="labs/lab-4/"><time datetime="2026-08-26T16:00">WED 26 / 4-5 PM</time><strong>Lab 4</strong><span>Mini hackathon.</span></a>
-          </div>
-        </div>
-      </section>
-
-      <section class="contents-panel" id="lessons" aria-labelledby="lessons-title">
-        <div class="contents-heading"><span>READING PATH</span><h2 id="lessons-title">Four lessons.</h2></div>
-        <div class="contents-list lesson-index">
-          <a href="lessons/lesson-1/"><span>01</span><strong>Meet the evidence</strong><small>R objects, rows, variables, missingness, and the first agent conversation.</small></a>
-          <a href="lessons/lesson-2/"><span>02</span><strong>Build the dataset</strong><small>Types, filters, groups, joins, provenance, and an API update.</small></a>
-          <a href="lessons/lesson-3/"><span>03</span><strong>Compare patterns</strong><small>Plots, transformations, regression, residuals, and claim boundaries.</small></a>
-          <a href="lessons/lesson-4/"><span>04</span><strong>Audit the handoff</strong><small>Quarto, checks, agent review, transparent communication, and reuse.</small></a>
-        </div>
-        <div class="contents-stats">
-          <div><span>DEFAULT FILE</span><strong>4,991 ROWS</strong></div>
-          <div><span>UNIT</span><strong>COUNTRY-YEAR</strong></div>
-          <div><span>PERIOD</span><strong>2000-2022</strong></div>
-          <div><span>SOURCE</span><strong>WORLD BANK WDI</strong></div>
-        </div>
-      </section>
-
-      <section class="book-index question-section" id="questions" aria-labelledby="questions-title">
-        <div class="index-margin"><span>CHOOSE ONE</span><strong>04 TRACKS</strong></div>
-        <div class="index-main">
-          <p class="section-kicker">POLICY QUESTIONS</p>
-          <h2 id="questions-title">One file. Four ways into development.</h2>
-          <p class="index-lead">Each working group follows one question during the labs. These are associational questions. A pattern is not automatically a policy effect.</p>
-          <ol class="question-list">
-            <li><span>HEALTH</span><strong>How is national income associated with under-five mortality, and does the pattern differ by income group?</strong><small>GDP per capita, under-five mortality, income classification</small></li>
-            <li><span>GENDER</span><strong>Where is girls' secondary enrollment associated with lower adolescent fertility, and where does the relationship depart from the overall pattern?</strong><small>Female secondary enrollment, adolescent fertility</small></li>
-            <li><span>ACCESS</span><strong>Does electricity access travel with internet access, and which countries closed the combined access gap fastest?</strong><small>Electricity access, internet use, region</small></li>
-            <li><span>CLIMATE</span><strong>Can renewable electricity expand while carbon intensity falls and income continues to grow?</strong><small>Renewable electricity, carbon intensity, GDP per capita growth</small></li>
+          <p class="chapter-intro">The schedule alternates between guided lessons and coding labs. A lesson introduces one stage of the investigation; its lab gives you time to try that stage with classmates, compare decisions, and ask for help. The work accumulates, so each meeting begins where the previous one ended.</p>
+          <ol class="editorial-list schedule-sequence">
+            <li>
+              <a href="lessons/lesson-1/">
+                <span class="entry-number">01</span>
+                <span class="entry-copy"><strong>Meet the evidence + Lab 1</strong><time datetime="2026-08-13T13:00">Thursday, August 13 · 1:00–4:00 p.m.</time><small>Orient to R and coding agents, inspect the shared file, and build an evidence inventory.</small></span>
+              </a>
+            </li>
+            <li>
+              <a href="lessons/lesson-2/">
+                <span class="entry-number">02</span>
+                <span class="entry-copy"><strong>Build the dataset</strong><time datetime="2026-08-19T15:00">Wednesday, August 19 · 3:00–5:00 p.m.</time><small>Select variables, transform rows, document decisions, and prepare an update request.</small></span>
+              </a>
+            </li>
+            <li>
+              <a href="labs/lab-2/">
+                <span class="entry-number">03</span>
+                <span class="entry-copy"><strong>Lab 2 · Update sprint</strong><time datetime="2026-08-20T16:00">Thursday, August 20 · 4:00–5:00 p.m.</time><small>Ask an agent to extend a bounded part of the data, then verify provenance and coverage.</small></span>
+              </a>
+            </li>
+            <li>
+              <a href="lessons/lesson-3/">
+                <span class="entry-number">04</span>
+                <span class="entry-copy"><strong>Compare patterns + Lab 3</strong><time datetime="2026-08-24T13:00">Monday, August 24 · 1:00–4:00 p.m.</time><small>Use plots and a simple model to describe a relationship without exceeding the evidence.</small></span>
+              </a>
+            </li>
+            <li>
+              <a href="lessons/lesson-4/">
+                <span class="entry-number">05</span>
+                <span class="entry-copy"><strong>Audit the handoff</strong><time datetime="2026-08-25T15:00">Tuesday, August 25 · 3:00–5:00 p.m.</time><small>Check the analysis, communicate uncertainty, and prepare the project for another reader.</small></span>
+              </a>
+            </li>
+            <li>
+              <a href="labs/lab-4/">
+                <span class="entry-number">06</span>
+                <span class="entry-copy"><strong>Lab 4 · Mini hackathon</strong><time datetime="2026-08-26T16:00">Wednesday, August 26 · 4:00–5:00 p.m.</time><small>Run a final audit, repair one weakness, and leave with a small personal artifact.</small></span>
+              </a>
+            </li>
           </ol>
         </div>
       </section>
 
-      <section class="book-index protocol-section" id="protocol" aria-labelledby="protocol-title">
-        <div class="index-margin"><span>EVERY LAB</span><strong>04 PASSES</strong></div>
-        <div class="index-main">
-          <p class="section-kicker">THE WORKING PROTOCOL</p>
-          <h2 id="protocol-title">The agent proposes. Evidence decides.</h2>
-          <div class="protocol-grid">
-            <div><span>FRAME</span><strong>State the question.</strong><p>Name the unit, variables, population, and expected pattern before opening the agent.</p></div>
-            <div><span>HUMAN PASS</span><strong>Read or modify R.</strong><p>Run a small working example and predict what should change.</p></div>
-            <div><span>AGENT PASS</span><strong>Request one bounded task.</strong><p>Give Codex or Claude Code a goal, context, constraints, and a completion check.</p></div>
-            <div><span>VERIFY</span><strong>Inspect the evidence.</strong><p>Check rows, keys, ranges, missingness, figures, and claim language.</p></div>
-          </div>
+      <section class="home-chapter" id="lessons" aria-labelledby="lessons-title">
+        <div class="home-prose">
+          <p class="section-kicker">READING PATH</p>
+          <h2 id="lessons-title">Four lessons, one investigation.</h2>
+          <p class="chapter-intro">The lessons are chapters rather than isolated demonstrations. Each one answers a question that the next lesson needs: What is in the file? How should we construct an analysis table? What pattern can we describe? Can another person inspect and rerun what we did?</p>
+          <ol class="editorial-list lesson-sequence">
+            <li><a href="lessons/lesson-1/"><span class="entry-number">01</span><span class="entry-copy"><strong>Meet the evidence.</strong><small>Learn what R, RStudio, Quarto, Codex, and Claude Code do; then inspect rows, variables, types, keys, coverage, and missingness.</small></span></a></li>
+            <li><a href="lessons/lesson-2/"><span class="entry-number">02</span><span class="entry-copy"><strong>Build the dataset.</strong><small>Choose variables, filter and group observations, join documentation, preserve provenance, and supervise a small data update.</small></span></a></li>
+            <li><a href="lessons/lesson-3/"><span class="entry-number">03</span><span class="entry-copy"><strong>Compare patterns.</strong><small>Read distributions, make a purposeful plot, fit a simple regression, examine residuals, and state the boundary of an associational claim.</small></span></a></li>
+            <li><a href="lessons/lesson-4/"><span class="entry-number">04</span><span class="entry-copy"><strong>Audit the handoff.</strong><small>Ask an agent to review the project, reproduce the important checks, improve the communication, and leave a transparent record.</small></span></a></li>
+          </ol>
+          <aside class="reading-note" aria-label="Shared dataset note">
+            <p><strong>The common starting point.</strong> Every path can use the same World Bank World Development Indicators teaching file: 4,991 country-year rows covering 2000–2022. Keeping the file, unit, period, and documentation together reduces setup problems and gives the room a common object to discuss. Students who want a higher ceiling may update or extend it, but no one needs to find a different dataset before learning the workflow.</p>
+          </aside>
         </div>
       </section>
 
-      <section class="resource-band" id="resources" aria-labelledby="resources-title">
-        <div><p class="section-kicker">KEEP NEARBY</p><h2 id="resources-title">Reference sections.</h2></div>
-        <nav aria-label="Course resources">
-          <a href="setup/"><span>SETUP</span><strong>Install and test the environment</strong></a>
-          <a href="datasets/"><span>DATA</span><strong>Download and understand the WDI file</strong></a>
-          <a href="ai-guide/"><span>AI GUIDE</span><strong>Prompt, inspect, test, and disclose</strong></a>
-          <a href="glossary/"><span>GLOSSARY</span><strong>Translate course language</strong></a>
-          <a href="materials/math-camp-field-notebook.html"><span>NOTEBOOK</span><strong>See the optional personal artifact</strong></a>
-          <a href="materials/math-camp-field-notebook.qmd"><span>SOURCE</span><strong>Open the editable Quarto notebook</strong></a>
-          <a href="slides/"><span>SLIDES</span><strong>Open the four lesson decks</strong></a>
-        </nav>
+      <section class="home-chapter" id="questions" aria-labelledby="questions-title">
+        <div class="home-prose">
+          <p class="section-kicker">POLICY QUESTIONS</p>
+          <h2 id="questions-title">One file. Four ways into development.</h2>
+          <p class="chapter-intro">A shared dataset does not require a single substantive interest. The four questions below let students choose a development problem while the class keeps the same unit of observation, documentation, and core R workflow. That common structure makes it possible to compare reasoning across groups without turning the lab into four unrelated courses.</p>
+          <p>These are deliberately descriptive and associational exercises. Their purpose is to practice turning a broad concern into variables, comparisons, checks, and honest claim language. A visible pattern can motivate a better question; it does not by itself establish a policy effect.</p>
+          <ol class="editorial-list policy-sequence">
+            <li><span class="entry-number">01</span><span class="entry-copy"><small>HEALTH · INCOME AND SURVIVAL</small><strong>How is national income associated with under-five mortality, and does the pattern differ by income group?</strong><p>Use GDP per capita, under-five mortality, and income classifications to examine scale, transformation, and between-group comparisons.</p></span></li>
+            <li><span class="entry-number">02</span><span class="entry-copy"><small>GENDER · SCHOOLING AND FERTILITY</small><strong>Where is girls’ secondary enrollment associated with lower adolescent fertility, and where does the relationship depart from the overall pattern?</strong><p>Use female secondary enrollment and adolescent fertility to think about missing coverage, regional context, and observations that do not follow the overall pattern.</p></span></li>
+            <li><span class="entry-number">03</span><span class="entry-copy"><small>ACCESS · ELECTRICITY AND CONNECTION</small><strong>Does electricity access travel with internet access, and which countries closed the combined access gap fastest?</strong><p>Use electricity access, internet use, year, and region to distinguish levels from changes and to compare trajectories over time.</p></span></li>
+            <li><span class="entry-number">04</span><span class="entry-copy"><small>CLIMATE · ENERGY AND GROWTH</small><strong>Can renewable electricity expand while carbon intensity falls and income continues to grow?</strong><p>Use renewable electricity, carbon intensity, and GDP per capita growth to practice multi-variable reasoning without collapsing a complex transition into one score.</p></span></li>
+          </ol>
+        </div>
+      </section>
+
+      <section class="home-chapter" id="protocol" aria-labelledby="protocol-title">
+        <div class="home-prose">
+          <p class="section-kicker">THE WORKING PROTOCOL</p>
+          <h2 id="protocol-title">The agent proposes. Evidence decides.</h2>
+          <p class="chapter-intro">The labs repeat one short sequence so that using an AI agent becomes a visible analytical practice rather than a hidden shortcut. The order matters. Students first form an expectation, then make a small attempt, then ask for bounded assistance, and finally test the result against the data and documentation.</p>
+          <ol class="editorial-list protocol-sequence">
+            <li><span class="entry-number">01</span><span class="entry-copy"><small>FRAME</small><strong>State the question before opening the agent.</strong><p>Name the population, unit of observation, variables, comparison, time period, and the pattern you expect. This gives you something concrete to evaluate when code or advice arrives.</p></span></li>
+            <li><span class="entry-number">02</span><span class="entry-copy"><small>HUMAN PASS</small><strong>Read or modify a small piece of R.</strong><p>Run the smallest working example you can understand. Predict what should change when an input changes, and keep the output that records what actually happened.</p></span></li>
+            <li><span class="entry-number">03</span><span class="entry-copy"><small>AGENT PASS</small><strong>Request one bounded, reviewable task.</strong><p>Give Codex or Claude Code a goal, relevant project context, constraints, and a completion check. Ask it to separate facts found in files from inferences it makes.</p></span></li>
+            <li><span class="entry-number">04</span><span class="entry-copy"><small>VERIFY</small><strong>Make the result earn your trust.</strong><p>Inspect rows, keys, types, ranges, missingness, figures, model output, and claim language. Classify important agent statements as confirmed, contradicted, or unresolved.</p></span></li>
+          </ol>
+        </div>
+      </section>
+
+      <section class="home-chapter" id="resources" aria-labelledby="resources-title">
+        <div class="home-prose">
+          <p class="section-kicker">REFERENCE</p>
+          <h2 id="resources-title">Keep the working guides nearby.</h2>
+          <p class="chapter-intro">The lessons explain the investigation in sequence. The references answer questions that recur across lessons: how to repair the setup, where a variable came from, what an AI term means, or how to find the editable source behind a rendered page. Use them as field guides rather than as additional assignments.</p>
+          <nav class="editorial-list reference-sequence" aria-label="Course references">
+            <a href="setup/"><span class="entry-number">01</span><span class="entry-copy"><strong>Setup guide.</strong><small>Install R, RStudio, Quarto, and a coding agent; then run a small smoke test. Return here when a machine or project path behaves differently from the classroom example.</small></span></a>
+            <a href="datasets/"><span class="entry-number">02</span><span class="entry-copy"><strong>Dataset guide.</strong><small>Download the shared WDI files, read the indicator dictionary, understand the country-year key, and trace the script that created the teaching data.</small></span></a>
+            <a href="ai-guide/"><span class="entry-number">03</span><span class="entry-copy"><strong>AI workflow guide.</strong><small>Write bounded requests, distinguish assistance from evidence, inspect proposed changes, verify results, protect private information, and disclose meaningful use.</small></span></a>
+            <a href="glossary/"><span class="entry-number">04</span><span class="entry-copy"><strong>Glossary.</strong><small>Translate the recurring language of data, R, statistics, reproducibility, and coding agents into short definitions connected to the camp exercises.</small></span></a>
+            <a href="materials/math-camp-field-notebook.html"><span class="entry-number">05</span><span class="entry-copy"><strong>Field notebook.</strong><small>See the optional personal artifact that can hold questions, code, verification notes, figures, and decisions without becoming a graded report.</small></span></a>
+            <a href="materials/math-camp-field-notebook.qmd"><span class="entry-number">06</span><span class="entry-copy"><strong>Editable notebook source.</strong><small>Open the Quarto source when you want to adapt the notebook, inspect how code and prose are combined, or render a personal copy.</small></span></a>
+            <a href="slides/"><span class="entry-number">07</span><span class="entry-copy"><strong>Lesson slides.</strong><small>Open the four teaching decks. Each deck lives separately from the book page so it can be revised or replaced without breaking the surrounding lesson.</small></span></a>
+          </nav>
+        </div>
       </section>
     </main>
 
@@ -179,6 +214,6 @@
       <a href="#top">RETURN TO TOP ↑</a>
     </footer>
 
-    <script src="script.js?v=book-20260717b"></script>
+    <script src="script.js?v=book-20260717f"></script>
   </body>
 </html>
