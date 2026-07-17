@@ -71,6 +71,6 @@ The `instructor/` page includes `noindex,nofollow`, but a public static site can
 
 - Editorial, book-like structure inspired by technical manuals
 - Self-hosted Departure Mono typeface
-- Warm paper background, cobalt blue, black rules, square geometry
+- Warm paper background, Harvard crimson, black rules, square geometry
 - Restrained scroll reveals and canvas animation with reduced-motion support
 - No dependency on a website framework

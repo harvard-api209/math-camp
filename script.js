@@ -1,6 +1,6 @@
 (() => {
   const reduceMotion = window.matchMedia("(prefers-reduced-motion: reduce)");
-  const ink = "#1638ff";
+  const ink = "#a51c30";
   const paper = "#f5f5f0";
 
   const menuButton = document.querySelector(".menu-button");

@@ -9,12 +9,12 @@
 :root {
   --paper: #f4f4ee;
   --paper-deep: #e9e9df;
-  --ink: #1737ef;
-  --ink-dark: #1128b7;
-  --ink-55: rgba(23, 55, 239, 0.55);
-  --ink-28: rgba(23, 55, 239, 0.28);
-  --ink-12: rgba(23, 55, 239, 0.12);
-  --ink-06: rgba(23, 55, 239, 0.06);
+  --ink: #a51c30;
+  --ink-dark: #7a1622;
+  --ink-55: rgba(165, 28, 48, 0.55);
+  --ink-28: rgba(165, 28, 48, 0.28);
+  --ink-12: rgba(165, 28, 48, 0.12);
+  --ink-06: rgba(165, 28, 48, 0.06);
   --type: "Departure Mono", "Courier New", monospace;
   --header-height: 50px;
   --page-gutter: clamp(20px, 3.2vw, 54px);

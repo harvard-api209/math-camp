@@ -1,8 +1,8 @@
 /*-- scss:defaults --*/
 $body-bg: #f2f0e7;
 $body-color: #151515;
-$link-color: #143cff;
-$selection-bg: #143cff;
+$link-color: #a51c30;
+$selection-bg: #a51c30;
 $selection-color: #ffffff;
 $presentation-heading-color: #151515;
 $presentation-heading-font: "Departure Mono", "Courier New", monospace;
@@ -51,7 +51,7 @@ $code-block-border-color: #151515;
   max-width: 38em;
 }
 
-.reveal strong { color: #143cff; }
+.reveal strong { color: #a51c30; }
 
 .reveal .kicker,
 .reveal .slide-number,
@@ -65,7 +65,7 @@ $code-block-border-color: #151515;
 .reveal .kicker {
   display: block;
   margin-bottom: 3.5rem;
-  color: #143cff;
+  color: #a51c30;
 }
 
 .reveal .columns {
@@ -76,7 +76,7 @@ $code-block-border-color: #151515;
   width: 78%;
   margin: 1.5rem 0;
   padding: 1rem 0 1rem 1.5rem;
-  border-left: 8px solid #143cff;
+  border-left: 8px solid #a51c30;
   box-shadow: none;
   background: transparent;
   font-style: normal;
@@ -103,10 +103,10 @@ $code-block-border-color: #151515;
 
 .reveal .progress {
   height: 5px;
-  color: #143cff;
+  color: #a51c30;
 }
 
-.reveal .controls { color: #143cff; }
+.reveal .controls { color: #a51c30; }
 
 .reveal .footer {
   font-family: "Departure Mono", "Courier New", monospace;
@@ -116,7 +116,7 @@ $code-block-border-color: #151515;
 }
 
 .reveal .inverse {
-  background: #143cff;
+  background: #a51c30;
   color: #ffffff;
 }
 
