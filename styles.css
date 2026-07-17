@@ -2769,13 +2769,7 @@ blockquote p {
 
 /* The contents belong to the edge of the browser, not to the paper. */
 .article-page .article-layout {
-  display: grid;
-  grid-template-columns:
-    minmax(210px, 18vw)
-    minmax(0, 820px)
-    minmax(132px, 1fr);
-  column-gap: clamp(32px, 4vw, 80px);
-  align-items: start;
+  display: block;
   width: 100%;
   max-width: none;
   margin: 0;
@@ -2783,11 +2777,11 @@ blockquote p {
 }
 
 .article-page .article-nav {
-  grid-column: 1;
-  position: sticky;
+  position: fixed;
   top: calc(var(--header-height) + 44px);
+  left: clamp(26px, 3vw, 60px);
   width: min(240px, calc(100% - 52px));
-  margin-left: clamp(26px, 3vw, 60px);
+  margin: 0;
   padding: 0;
   border: 0;
   counter-reset: reader-nav;
@@ -2822,8 +2816,8 @@ blockquote p {
 }
 
 .article-page .article {
-  grid-column: 2;
-  width: 100%;
+  width: min(820px, calc(100vw - 560px));
+  margin: 0 auto;
   color: var(--book-ink);
   background: var(--book-paper);
   border: 1px solid var(--book-rule);
@@ -3379,9 +3373,9 @@ blockquote p {
 }
 
 .home-page main {
-  width: min(940px, calc(100vw - 460px));
-  margin-left: clamp(270px, 24vw, 460px);
-  padding-top: 46px;
+  width: min(940px, calc(100vw - 560px));
+  margin: 46px auto 0;
+  padding-top: 0;
   color: var(--book-ink);
   background: var(--book-paper);
   border: 1px solid var(--book-rule);
@@ -3530,25 +3524,18 @@ blockquote p {
   line-height: 1.08;
 }
 
-@media (max-width: 1180px) {
-  .article-page .article-layout {
-    grid-template-columns: 180px minmax(0, 760px) minmax(110px, 1fr);
-    column-gap: 28px;
+@media (max-width: 1380px) {
+  .article-page .article-nav,
+  .home-page .home-outline {
+    display: none;
   }
 
-  .article-page .article-nav {
-    width: 150px;
-    margin-left: 22px;
+  .article-page .article {
+    width: min(820px, calc(100vw - 180px));
   }
 
   .home-page main {
-    width: calc(100vw - 360px);
-    margin-left: 218px;
-  }
-
-  .home-page .home-outline {
-    left: 22px;
-    width: 160px;
+    width: min(940px, calc(100vw - 180px));
   }
 }
 
