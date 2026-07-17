@@ -124,6 +124,89 @@ $code-block-border-color: #151515;
 .reveal .inverse h2,
 .reveal .inverse strong { color: #ffffff; }
 
+.reveal .activity {
+  margin-top: 1.4rem;
+  padding: 1rem 1.2rem;
+  border: 2px solid #a51c30;
+  background: rgba(165, 28, 48, 0.06);
+}
+
+.reveal .activity::before {
+  display: block;
+  margin-bottom: 0.45rem;
+  color: #a51c30;
+  font-family: "Departure Mono", "Courier New", monospace;
+  font-size: 0.42em;
+  letter-spacing: 0.09em;
+  content: "YOUR TURN";
+}
+
+.reveal .timer {
+  display: inline-block;
+  margin-top: 0.8rem;
+  padding: 0.3rem 0.55rem;
+  background: #151515;
+  color: #ffffff;
+  font-family: "Departure Mono", "Courier New", monospace;
+  font-size: 0.42em;
+  letter-spacing: 0.08em;
+}
+
+.reveal .choice-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 0.8rem;
+  margin-top: 1.2rem;
+}
+
+.reveal .choice-grid > div {
+  min-height: 96px;
+  padding: 0.8rem 1rem;
+  border: 1px solid #151515;
+  font-size: 0.75em;
+}
+
+.reveal .tool-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 1rem;
+  margin-top: 1.3rem;
+}
+
+.reveal .tool-grid > div {
+  min-height: 140px;
+  padding: 1rem;
+  border-top: 7px solid #a51c30;
+  background: #e6e3d9;
+}
+
+.reveal .tool-grid h3 {
+  margin-top: 0;
+  color: #a51c30;
+}
+
+.reveal .big-number {
+  color: #a51c30;
+  font-family: "Departure Mono", "Courier New", monospace;
+  font-size: 4.6em;
+  line-height: 0.9;
+}
+
+.reveal .claim-line {
+  margin-top: 1.6rem;
+  padding: 1rem 0;
+  border-top: 1px solid #151515;
+  border-bottom: 1px solid #151515;
+  font-size: 1.08em;
+}
+
+.reveal .notes {
+  display: none;
+}
+
 @media (max-width: 800px) {
   .reveal .slides section { padding: 34px; }
+
+  .reveal .choice-grid,
+  .reveal .tool-grid { grid-template-columns: 1fr; }
 }

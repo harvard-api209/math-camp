@@ -14,52 +14,463 @@ format:
     footer: "API 209 · MATH CAMP 2026 · LESSON 4"
 ---
 
-## Today {.inverse}
+## Before we begin
+
+<span class="kicker">ARRIVAL PROMPT</span>
+
+Your code works on your laptop. What would convince you that it is ready for another person?
+
+::: {.activity}
+Write the first thing the other person should do, not the first thing you should tell them.
+
+<span class="timer">2 MINUTES</span>
+:::
+
+::: {.notes}
+0:00-0:03. Use answers to distinguish a verbal tour from a documented, runnable handoff.
+:::
+
+## Audit the handoff {.inverse}
 
 <span class="kicker">TUE AUG 25 · 3-5 PM</span>
 
-Package the question, data, code, evidence, limitations, and AI assistance so another person can inspect the work.
+Package the question, data, code, evidence, limitations, and AI assistance so another person can run and inspect the work.
 
-## Minimum handoff
+## Today
 
-- One descriptive or associational question
-- Source, years, unit, and indicator definitions
-- One R script or Quarto notebook
-- One figure or table with a careful statement
-- One limitation
-- One AI-use note
+1. Define reproducibility for this camp.
+2. Expose hidden state with a clean run.
+3. Organize a readable project.
+4. Use Quarto as an optional field notebook.
+5. Write provenance, limitations, and an AI-use note.
+6. Conduct a four-part audit.
 
-## A clean render is a test
+## By 5 PM
+
+- Restart R and run the project from the top.
+- Explain why a clean render is a test.
+- Organize input, transformation, analysis, and output code.
+- Write a useful README and AI-use note.
+- Rank audit findings by consequence.
+- Prepare a project for a cold exchange.
+
+## A handoff is an experiment
+
+The question is not “Can the author make it work?”
+
+The question is:
+
+> Can another person recover the question, inputs, decisions, and result without relying on the author's memory?
+
+## Reproducibility for Math Camp
+
+Another person can:
+
+- obtain or identify the same inputs,
+- run the documented code in order,
+- recreate the main figure or table,
+- understand the variable definitions,
+- see the limitations and AI contributions.
+
+This is a practical standard, not a guarantee that every environment is identical.
+
+::: {.notes}
+0:03-0:11. Distinguish reproducibility from replication. Replication asks whether a result holds in new data or a new study.
+:::
+
+## Hidden state
+
+Code may work because:
+
+- an object was created in the console,
+- a package was loaded earlier,
+- the working directory was changed manually,
+- a file was edited outside the script,
+- chunks ran out of order,
+- an old output remained on disk.
+
+Hidden state is invisible help from your past self.
+
+## Intentional failure demo
+
+```{.r}
+summary(analysis_data)
+```
+
+The command works in the instructor's current session.
+
+::: {.activity}
+Predict what happens after restarting R and running only this line. What evidence is missing?
+:::
+
+::: {.notes}
+0:11-0:17. Demonstrate the failure live. Do not rescue it immediately. Ask the room to name the missing setup steps.
+:::
+
+## Clean run protocol
+
+1. Save source files.
+2. Restart R.
+3. Confirm the project root.
+4. Run or render from the first line.
+5. Stop at the first error.
+6. Repair the source, not the environment by hand.
+7. Repeat until output is rebuilt.
+
+## Project structure communicates
+
+```text
+project/
+├── README.md
+├── data/
+│   ├── raw/
+│   ├── derived/
+│   └── documentation/
+├── code/
+├── outputs/
+└── field-notebook.qmd
+```
+
+Names should help a new reader predict where evidence lives.
+
+## Order the script
+
+::: {.activity}
+Place these sections in a readable order:
+
+- create the figure,
+- load packages,
+- state the question,
+- read data,
+- define the analysis sample,
+- test the key,
+- interpret and qualify the result.
+
+Where should the source note appear?
+:::
+
+::: {.notes}
+0:17-0:24. Accept variations, but insist that dependencies and inputs precede transformations and outputs.
+:::
+
+## One entry point
+
+A reviewer should not need to guess which script runs first.
+
+```{.r}
+library(tidyverse)
+
+wdi <- read_csv(
+  "data/derived/math-camp-wdi-2000-2022.csv",
+  show_col_types = FALSE
+)
+
+source("code/01-build-analysis-data.R")
+source("code/02-compare-patterns.R")
+```
+
+For this small camp project, one well-ordered script is also acceptable.
+
+## What Quarto does here
+
+Quarto combines:
+
+- narrative,
+- executable code,
+- generated output,
+- citations and links,
+- a repeatable render step.
+
+The Math Camp website is native HTML, CSS, and JavaScript. Quarto is used for the slides and optional field notebook.
+
+## Minimum field notebook
 
 ```yaml
 ---
 title: "Math Camp field notebook"
-format: html
+format:
+  html:
+    toc: true
+    embed-resources: true
 execute:
   echo: true
   warning: false
 ---
 ```
 
-Restart R. Render from the source. Repair hidden state.
+## A readable notebook
 
-## Four-part audit
+1. Policy question.
+2. Data and definitions.
+3. First inspection.
+4. Analysis sample.
+5. Comparison.
+6. What this does not show.
+7. AI-use note.
+8. Verification record.
 
-| Pass | Core question |
-|---|---|
-| Reproducibility | Does it run clean? |
-| Provenance | Can I trace the data? |
-| Interpretation | Does the claim match the design? |
-| Communication | Can a new reader follow it? |
+::: {.notes}
+0:24-0:32. Open the provided notebook. Show that students may keep an R script instead. The notebook is optional and ungraded.
+:::
+
+## A clean render is a test
+
+Rendering checks whether:
+
+- objects are created in order,
+- paths resolve from the project,
+- required packages are loaded,
+- figures are generated from code,
+- narrative and output remain together.
+
+It does not prove the analysis is substantively correct.
+
+## Predict the render failure
+
+```{.r}
+mean(health$under5_mortality)
+```
+
+::: {.activity}
+Name two reasons this line might render an unhelpful result even if it does not throw an error.
+:::
+
+::: {.notes}
+0:32-0:38. Expected: missing values yield `NA` without `na.rm=TRUE`; the full table may mix years and aggregates; the object may not exist in a clean run.
+:::
+
+## README as an invitation
+
+A useful README answers:
+
+- What question does this project explore?
+- What software and packages are needed?
+- Where did the data come from?
+- Which file should I run?
+- What output should appear?
+- What is known not to work or not to mean?
+
+## Which README is useful?
+
+<div class="choice-grid">
+<div><strong>A</strong><br>“This is my Math Camp project. Run the code.”</div>
+<div><strong>B</strong><br>Question, source, software, run order, output map, limitations.</div>
+<div><strong>C</strong><br>A pasted transcript of every prompt and error.</div>
+<div><strong>D</strong><br>A polished policy conclusion with no technical instructions.</div>
+</div>
+
+::: {.activity}
+Choose the best starting point and name one useful element from another option.
+:::
+
+## Data provenance in the handoff
+
+Record:
+
+- publisher and API or download page,
+- retrieval date,
+- indicator codes and units,
+- coverage years,
+- transformation script,
+- frozen or updated file version,
+- known revisions or missingness.
+
+## Limitations are part of the result
+
+Useful limitations are specific:
+
+- coverage varies across countries and years,
+- aggregate units remain in the teaching file,
+- indicator definitions simplify complex policy conditions,
+- the comparison is descriptive or associational,
+- the simple model does not identify a causal effect.
+
+“More research is needed” is not enough.
+
+::: {.notes}
+0:38-0:47. Ask students to improve one generic limitation by naming the exact threat and likely direction of concern.
+:::
 
 ## AI-use note
 
-> I used [tool] to [contribution]. I provided [public context]. I verified it using [checks]. I revised or rejected [example]. I remain responsible for the analysis and interpretation.
+```text
+I used [Codex / Claude Code] to [specific contribution].
+I provided [public project context].
+I verified the contribution using [specific checks].
+I revised or rejected [important example].
+I remain responsible for the analysis and interpretation.
+```
 
-## Lab 4 {.inverse}
+## Weak disclosure
+
+> I used AI to help with the code.
+
+This does not reveal:
+
+- which tool,
+- which contribution,
+- which inputs,
+- which verification,
+- which human decision changed.
+
+## Rewrite the disclosure
+
+::: {.activity}
+Turn the weak disclosure into four precise sentences for one agent contribution you made during camp.
+
+Exchange with a partner. Underline the verification evidence.
+
+<span class="timer">6 MINUTES</span>
+:::
+
+::: {.notes}
+0:47-0:56. Debrief one example that distinguishes agent generation from human verification. Take a five-minute break.
+:::
+
+## The four-part audit
+
+<div class="tool-grid">
+<div><h3>REPRODUCIBILITY</h3><p>Does it run clean?</p></div>
+<div><h3>PROVENANCE</h3><p>Can I trace the data?</p></div>
+<div><h3>INTERPRETATION</h3><p>Does the claim fit the design?</p></div>
+<div><h3>COMMUNICATION</h3><p>Can a new reader follow it?</p></div>
+</div>
+
+## Audit 1: reproducibility
+
+- Is there one clear starting point?
+- Are packages and inputs declared?
+- Do relative paths work?
+- Does the key test run?
+- Are outputs recreated rather than copied?
+- Does a clean render succeed?
+
+## Audit 2: provenance
+
+- Is the publisher named?
+- Are indicator codes and units present?
+- Are years and retrieval date recorded?
+- Is the frozen or updated version clear?
+- Can transformations be followed in code?
+
+## Audit 3: interpretation
+
+- Is the analysis sample visible?
+- Are coefficients described in units?
+- Are missingness and unusual cases considered?
+- Does the claim avoid unsupported causality?
+- Is one consequential limitation stated?
+
+## Audit 4: communication
+
+- Does the question appear before the code?
+- Are objects and files named clearly?
+- Do figures have labels, units, and captions?
+- Can a beginner identify the main result?
+- Is AI use disclosed plainly?
+
+::: {.notes}
+1:01-1:13. Assign one audit to each section of the room. Ask each section to name the single most consequential failure in its category.
+:::
+
+## Rank findings by consequence
+
+| Priority | Meaning |
+|---|---|
+| Stop | Result cannot be reproduced or is materially misleading. |
+| High | Evidence or interpretation may change. |
+| Medium | Handoff is difficult or ambiguous. |
+| Low | Polish or convenience improvement. |
+
+Do not bury a broken key beneath formatting advice.
+
+## Agent audit contract
+
+```text
+Goal: Audit this project for handoff readiness.
+Context: Read the README, data documentation, source, and output.
+Review separately: reproducibility, provenance, interpretation,
+and communication.
+Constraints: Do not edit. Rank by consequence. Cite a file and
+evidence for every concern. State uncertainty.
+Done when: A human-verifiable prioritized checklist is produced.
+```
+
+## Human review comes first
+
+Why review before the agent?
+
+- You make your own model of the project.
+- You notice what a new reader actually experiences.
+- You can compare the agent's priorities with yours.
+- Disagreement becomes evidence for discussion.
+
+## Handoff rehearsal
+
+::: {.activity}
+Without explaining aloud, give a partner your project folder or screen.
+
+The partner has three minutes to identify:
+
+1. the question,
+2. the starting file,
+3. the data source,
+4. the expected output.
+
+<span class="timer">6 MINUTES TOTAL</span>
+:::
+
+::: {.notes}
+1:13-1:23. Switch roles after three minutes. Authors may only observe. Debrief the first blocker each partner encountered.
+:::
+
+## Minimum handoff
+
+- One descriptive or associational question.
+- One R script or Quarto notebook.
+- Source, years, unit, and indicator definitions.
+- One figure or table.
+- One supported statement.
+- One limitation.
+- One AI-use note.
+- One successful clean run or documented blocker.
+
+## Lab 4 tomorrow
 
 <span class="kicker">MINI HACKATHON · WED AUG 26 · 4-5 PM</span>
 
-Exchange. Run cold. Audit. Repair one high-value issue.
+You will:
 
-**Nothing is graded. A useful failure is a success.**
+1. exchange projects across policy tracks,
+2. run the handoff cold,
+3. compare human and agent audits,
+4. repair one high-value issue,
+5. give a 90-second show-and-tell.
+
+Nothing is graded or submitted.
+
+## Final confidence map
+
+::: {.activity}
+Fist to five:
+
+- I can open and inspect an R project.
+- I can supervise a bounded agent task.
+- I can verify a data or code claim.
+- I can qualify a statistical statement.
+- I can hand off a small analysis.
+
+Choose one score you want to raise during the lab.
+:::
+
+## Exit ticket {.inverse}
+
+<span class="kicker">KEEP THIS WORKFLOW</span>
+
+**Question → evidence → code → agent → verification → handoff**
+
+The goal is not perfect code. The goal is work another person can understand, inspect, and improve.
+
+::: {.notes}
+1:23-1:30. Close by reminding students the artifact is theirs and optional. The fall semester will deepen the statistical methods; this camp establishes the workflow.
+:::

@@ -25,10 +25,10 @@ Opening `index.html` directly also works for most pages, but a local server more
 ## Book architecture
 
 - `index.html`: public student homepage, schedule, lesson index, policy tracks, and resource guide
-- `lessons/lesson-1/` through `lesson-4/`: lesson chapters with embedded decks
-- `labs/lab-1/` through `lab-4/`: lab guides and mini hackathon
+- `lessons/lesson-1/` through `lesson-4/`: complete student chapters with preparation, concepts, class maps, agent contracts, and embedded decks
+- `labs/lab-1/` through `lab-4/`: timed 60-minute lab guides with goals, preparation, runnable code, verification, debriefs, and optional extensions
 - `setup/`, `datasets/`, `ai-guide/`, `glossary/`: student field guides
-- `instructor/`: unlisted teaching notes; `noindex` is not access control
+- `instructor/`: unlisted teaching notes and a detailed facilitation plan; `noindex` is not access control
 - `research/evidence-brief.md`: research base and design rationale
 - `data/`: frozen teaching data, documentation, and reproducible build script
 - `materials/math-camp-field-notebook.qmd`: optional personal notebook
@@ -43,6 +43,8 @@ quarto render slides/lesson-1/slides.qmd
 ```
 
 The lesson chapter embeds `slides/lesson-1/index.html`, so no lesson-page edit is required. Repeat with lesson 2, 3, or 4. Shared deck styling lives in `slides/slide-theme.scss`.
+
+The four facilitated decks contain 40, 36, 36, and 38 rendered slides, respectively. Each deck includes speaker notes, timed interaction prompts, prediction checks, short partner protocols, and a direct handoff to its lab. The source is intentionally more complete than a conventional presentation outline so the teaching team can shorten or reorder a live session without having to invent missing explanations.
 
 To render every deck:
 

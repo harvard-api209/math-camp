@@ -14,44 +14,277 @@ format:
     footer: "API 209 · MATH CAMP 2026 · LESSON 1"
 ---
 
-## Today {.inverse}
+## Before we begin
+
+<span class="kicker">ARRIVAL PROMPT · ANSWER FOR YOURSELF</span>
+
+When code gives you an answer, what makes you willing to believe it?
+
+::: {.activity}
+Write one condition on a sticky note or in your field notebook. No technical vocabulary is required.
+
+<span class="timer">2 MINUTES</span>
+:::
+
+::: {.notes}
+0:00-0:03. Leave this slide visible as students enter. Ask for two or three conditions and keep them for the verification discussion.
+:::
+
+## Welcome {.inverse}
 
 <span class="kicker">THU AUG 13 · 1-4 PM</span>
 
-We begin with a **policy question**, inspect the evidence, and learn what R and a coding agent each contribute.
+We begin with a **policy question**, meet the evidence, and learn what a coding agent changes about the work.
+
+## Today has three movements
+
+1. **Us:** starting points, norms, and why coding is a collective skill.
+2. **The tools:** R, RStudio, Quarto, Codex, and Claude Code.
+3. **The evidence:** rows, variables, keys, missingness, and the first inspection loop.
+
+::: {.notes}
+0:03-0:06. Explain that the first two hours are the lesson and the final hour is Lab 1. The session alternates explanation and action.
+:::
 
 ## By 4 PM
 
-- Open and run an R project
-- Describe one row and one variable
-- Inspect types, ranges, counts, and missingness
-- Ask an agent to explain bounded code
-- Verify one generated claim
+- Open and run an R project.
+- Describe one row, one variable, and one key.
+- Inspect types, ranges, counts, and missingness.
+- Explain what Codex and Claude Code are.
+- Give an agent one bounded task.
+- Verify one generated claim with evidence.
 
-## Four tools, four jobs
+## Many starting points, one room
 
-| Tool | Job |
-|---|---|
-| R | Compute |
-| RStudio | Organize |
-| Quarto | Combine code and narrative |
-| Codex / Claude Code | Propose, explain, review |
+<div class="choice-grid">
+<div><strong>NEW + CURIOUS</strong><br>No coding yet, ready to begin.</div>
+<div><strong>NEW + NERVOUS</strong><br>No coding yet, uncertain about the pace.</div>
+<div><strong>EXPERIENCED + CURIOUS</strong><br>Some coding, ready to explore new tools.</div>
+<div><strong>EXPERIENCED + CAUTIOUS</strong><br>Some coding, skeptical about AI workflows.</div>
+</div>
 
-**None of them decides whether the policy claim is valid.**
+::: {.activity}
+Which description is nearest to you today? There is no preferred quadrant.
+:::
 
-## Start with the file
+::: {.notes}
+0:06-0:10. Adapted from the experience-excitement archetype activity used in Math Camp 2024. Use a show of hands or ask students to move to four corners.
+:::
 
-```{.r}
-library(tidyverse)
+## Meet one coding neighbor
 
-wdi <- read_csv(
-  "data/derived/math-camp-wdi-2000-2022.csv"
-)
+::: {.activity}
+In pairs, share:
 
-glimpse(wdi)
-count(wdi, year)
-summarise(wdi, countries = n_distinct(iso3c))
-```
+1. Your name and a place you call home.
+2. One experience with data, code, or statistics.
+3. One thing you hope an AI tool can help you do.
+4. One thing you do not want an AI tool to decide for you.
+
+<span class="timer">4 MINUTES</span>
+:::
+
+## Classroom norms
+
+- Class is a collective enterprise.
+- Different levels of experience are expected.
+- Predict before running.
+- Ask what a line does before copying it.
+- Help a neighbor without taking over their keyboard.
+- Errors are evidence about our mental model.
+- Speed is not the same as understanding.
+
+::: {.notes}
+0:14-0:18. Ask students what norm would make it easier to admit confusion. Add one room-generated norm verbally.
+:::
+
+## Coding is a skill
+
+<div class="claim-line">It is more useful to practice a skill with people you know than to perform competence alone.</div>
+
+The goal of Math Camp is not to memorize commands. It is to build a repeatable way to ask, run, inspect, and repair.
+
+## Why the workflow changed
+
+In earlier courses, the main loop was:
+
+> Write code → run code → search the error → try again
+
+Now coding agents can read project files, propose edits, run commands, and explain failures. That changes the speed and shape of the loop.
+
+**It does not remove the need for statistical judgment.**
+
+::: {.notes}
+0:18-0:23. Connect to students' experience with RStudio or Posit Cloud. Say explicitly that the site itself is native HTML; Quarto will be used later for slides and an optional notebook.
+:::
+
+## From a studio to a supervised workshop
+
+::: columns
+::: {.column width="48%"}
+### IDE-centered
+
+- You type every line.
+- Help arrives after an error.
+- Context lives mostly in your head.
+- Progress is visible in the script.
+:::
+::: {.column width="48%"}
+### Agent-assisted
+
+- You define the task and constraints.
+- Help can inspect multiple files.
+- Context can be written into the project.
+- Progress must be checked in code and output.
+:::
+:::
+
+## What is AI?
+
+For this camp, **generative AI** means a model that predicts and produces new text or code from instructions and context.
+
+It can produce a plausible continuation of your request.
+
+It does not directly observe truth, understand your policy setting as a person does, or guarantee that generated code is correct.
+
+::: {.notes}
+0:23-0:28. Keep this conceptual and short. Distinguish fluency from knowledge. Return to the arrival prompt: plausible language is not a verification condition.
+:::
+
+## AI is not one thing
+
+<div class="tool-grid">
+<div><h3>MODEL</h3><p>The system that generates text or code.</p></div>
+<div><h3>CHAT INTERFACE</h3><p>A conversation window that sends prompts to a model.</p></div>
+<div><h3>CODING ASSISTANT</h3><p>Suggestions inside an editor or notebook.</p></div>
+<div><h3>CODING AGENT</h3><p>A tool that can inspect a project, propose file changes, and run checks.</p></div>
+</div>
+
+## Chatbot or coding agent?
+
+::: {.activity}
+Classify each action:
+
+1. Explains an error pasted into a conversation.
+2. Reads `data/README.md` and finds the build script.
+3. Changes three files and shows the diff.
+4. Answers a conceptual question about a regression coefficient.
+
+Which actions require project access?
+:::
+
+::: {.notes}
+0:28-0:33. Answers: 1 and 4 can be chat interactions; 2 and 3 are agentic project work. A coding agent can also perform 1 and 4.
+:::
+
+## Codex
+
+<span class="kicker">OUR BASELINE TOOL</span>
+
+Codex is OpenAI's coding agent. In this camp it can:
+
+- read the files you place in the project,
+- explain or edit R, Quarto, HTML, and documentation,
+- run terminal commands and tests,
+- show what changed,
+- continue a multi-step task using project context.
+
+**Codex proposes work. You authorize and verify it.**
+
+## Claude Code
+
+<span class="kicker">AN ALTERNATIVE TOOL</span>
+
+Claude Code is Anthropic's coding agent for terminal and development workflows. It can also:
+
+- inspect a repository,
+- explain and edit code,
+- run commands,
+- help debug or restructure a workflow,
+- review a project against a stated standard.
+
+The same verification obligations apply.
+
+::: {.notes}
+0:33-0:39. Treat “Codex” and “Claude Code” as product names, not models. Avoid a brand contest. Students can use either, but Codex is the common classroom baseline.
+:::
+
+## Codex and Claude Code
+
+| Question | Codex | Claude Code |
+|---|---|---|
+| Reads project context | Yes | Yes |
+| Proposes file edits | Yes | Yes |
+| Runs commands | Yes | Yes |
+| Can be confidently wrong | Yes | Yes |
+| Determines policy validity | No | No |
+| Owns the final result | No | No |
+
+## Match the tool to the need
+
+<div class="choice-grid">
+<div><strong>A</strong><br>Compute a grouped mean from a data frame.</div>
+<div><strong>B</strong><br>Keep code, console, files, and plots in one place.</div>
+<div><strong>C</strong><br>Render code and interpretation into a document.</div>
+<div><strong>D</strong><br>Inspect a project and propose a repair across files.</div>
+</div>
+
+::: {.activity}
+Match each need to R, RStudio, Quarto, or a coding agent.
+:::
+
+::: {.notes}
+0:39-0:43. A=R, B=RStudio, C=Quarto, D=coding agent. Ask why an agent cannot replace the other three.
+:::
+
+## Why use these tools?
+
+- Reduce time lost to syntax and environment friction.
+- Make invisible project assumptions easier to inspect.
+- Generate alternative explanations and checks quickly.
+- Help experienced students extend a task without leaving beginners behind.
+- Practice the workflow students will encounter in policy organizations.
+
+The purpose is **more attention for reasoning**, not less attention for learning.
+
+## Where agents fail
+
+- Invent a variable that does not exist.
+- Use an outdated package function.
+- silently drop rows with missing values.
+- produce a join that duplicates observations.
+- interpret association as causation.
+- cite a source that does not support the claim.
+- repair code without repairing the question.
+
+::: {.activity}
+Which failure would be hardest to notice if the code still runs?
+:::
+
+## Privacy boundary
+
+Never give a coding agent:
+
+- personal or identifiable student records,
+- credentials, passwords, or API secrets,
+- confidential research data,
+- unpublished sensitive material,
+- a file you are not authorized to share.
+
+This camp uses public World Bank data.
+
+::: {.notes}
+0:43-0:49. Ask students to name a data type that should stay out of an agent. Clarify that a paid education account does not make every input appropriate.
+:::
+
+## Responsibility stays human
+
+<div class="big-number">YOU</div>
+
+choose the question, approve the action, inspect the evidence, and own the interpretation.
+
+An agent does not absorb responsibility because it wrote the code.
 
 ## The recurring protocol
 
@@ -79,10 +312,230 @@ Run. Trace. Challenge.
 :::
 :::
 
-## Lab 1 {.inverse}
+::: {.notes}
+0:49-0:53. Connect each pass to an observable action. Students should be able to point to their human prediction, agent output, and verification result.
+:::
+
+## A useful prompt has four parts
+
+| Part | Question |
+|---|---|
+| **Goal** | What concrete outcome do I want? |
+| **Context** | Which files, audience, and definitions matter? |
+| **Constraints** | What must not happen? |
+| **Done when** | What evidence will show completion? |
+
+## Repair this prompt
+
+> Fix my R code.
+
+::: {.activity}
+With a partner, add a goal, context, constraint, and done-when check. Make the task small enough to verify in five minutes.
+
+<span class="timer">4 MINUTES</span>
+:::
+
+::: {.notes}
+0:53-0:59. Invite two pairs to read prompts. Ask the room which wording makes success observable. Then take a five-minute break.
+:::
+
+## Live agent demonstration {.inverse}
+
+<span class="kicker">INSTRUCTOR DEMO · WATCH THE DECISIONS</span>
+
+1. Ask the agent to read the data dictionary without editing.
+2. Inspect what it claims about the unit of observation.
+3. Ask it to propose an R inspection block.
+4. Review the proposed command before running it.
+5. Verify the row count and key in R.
+
+::: {.notes}
+1:04-1:14. Use the actual repository. Narrate why each file is shared and why edits are initially prohibited. Intentionally ask one underspecified follow-up, then improve it.
+:::
+
+## Four tools, four jobs
+
+| Tool | What it does | What it does not decide |
+|---|---|---|
+| R | Executes instructions and computes results. | Whether the question matters. |
+| RStudio | Organizes scripts, console, files, and plots. | Whether code is substantively correct. |
+| Quarto | Combines narrative, code, and output. | Whether a claim follows from evidence. |
+| Coding agent | Proposes, explains, edits, and checks. | Whether its output should be trusted. |
+
+## One dataset, four policy paths
+
+1. **Health:** income and under-five mortality.
+2. **Gender:** female secondary enrollment and adolescent fertility.
+3. **Access:** electricity and internet access.
+4. **Climate:** renewable electricity, carbon intensity, and growth.
+
+All four begin with the same question: **What exactly does one row represent?**
+
+## Meet the teaching file
+
+<div class="tool-grid">
+<div><h3>4,991</h3><p>country-year observations</p></div>
+<div><h3>217</h3><p>economies and aggregate units</p></div>
+<div><h3>23</h3><p>years from 2000 through 2022</p></div>
+<div><h3>9</h3><p>policy indicators</p></div>
+</div>
+
+::: {.notes}
+1:14-1:19. Explain that “economies” includes aggregates in World Bank metadata. Distinguish a frozen teaching snapshot from a permanently authoritative dataset.
+:::
+
+## Row, variable, key
+
+| Term | In this file |
+|---|---|
+| Row | One economy in one year |
+| Variable | A recorded attribute or policy indicator |
+| Key | `iso3c + year` |
+| Missing value | A value unavailable for that economy-year |
+
+If the key is not unique, later joins and summaries can silently lie.
+
+## The smallest R grammar
+
+```{.r}
+object <- function(input, argument = value)
+```
+
+```{.r}
+wdi <- read_csv("data/derived/math-camp-wdi-2000-2022.csv")
+```
+
+- `wdi` is the object.
+- `<-` assigns a value.
+- `read_csv()` is the function.
+- the file path is the input.
+
+## Read the file before analyzing it
+
+```{.r}
+library(tidyverse)
+
+wdi <- read_csv(
+  "data/derived/math-camp-wdi-2000-2022.csv",
+  show_col_types = FALSE
+)
+
+glimpse(wdi)
+count(wdi, year)
+summarise(wdi, economies = n_distinct(iso3c))
+```
+
+::: {.notes}
+1:19-1:29. Live-code this block. Pause after each line and ask what new fact it establishes. Do not rush package errors; use them to explain environment versus code.
+:::
+
+## Predict before run
+
+```{.r}
+wdi |>
+  filter(year == 2022) |>
+  summarise(
+    rows = n(),
+    observed_mortality = sum(!is.na(under5_mortality))
+  )
+```
+
+::: {.activity}
+Before running: Will `rows` and `observed_mortality` be equal? Why or why not?
+:::
+
+## Missing is not zero
+
+| Value | Meaning |
+|---|---|
+| `0` | The indicator was observed and its recorded value is zero. |
+| `NA` | No usable value is present in this file. |
+| Blank text | May become `NA`, empty text, or an import problem. |
+
+Replacing missing values with zero changes the substantive claim.
+
+## No-agent checkpoint
+
+::: {.activity}
+Without an agent:
+
+1. Change the year in the inspection code.
+2. Predict which count can change.
+3. Run the code.
+4. Explain the result to your partner.
+
+<span class="timer">6 MINUTES</span>
+:::
+
+::: {.notes}
+1:29-1:38. Circulate. Ask beginners to narrate each pipe step. Ask advanced students to add a uniqueness assertion. Debrief two different observations.
+:::
+
+## Agent explanation pass
+
+```text
+Goal: Explain the selected R inspection block to a new programmer.
+Context: Read the script and indicator dictionary in this project.
+Constraints: Do not edit files. Separate facts from inferences.
+Done when: I can state the unit, row count, year coverage,
+and purpose of each line, with a check I can run for every number.
+```
+
+## Verify the explanation
+
+- Did the agent identify a country-year as the unit?
+- Did it distinguish missing from zero?
+- Did it state the exact row count?
+- Can you reproduce that number in R?
+- What did it infer that the dictionary did not establish?
+
+An explanation becomes useful when it points back to evidence.
+
+## Choose a policy track
+
+::: {.activity}
+Move or signal toward the question you want to follow:
+
+1. Health
+2. Gender
+3. Access
+4. Climate
+
+Then tell one nearby person what you think the outcome variable is.
+
+<span class="timer">4 MINUTES</span>
+:::
+
+::: {.notes}
+1:38-1:44. Help students form temporary working groups. Do not require group submission. Check that students frame the questions as descriptive or associational.
+:::
+
+## Lab 1 begins next
 
 <span class="kicker">EVIDENCE INVENTORY · 3-4 PM</span>
 
-Choose a track. Name the unit, variables, years, missingness, and one limitation.
+You will produce a personal evidence inventory with:
 
-**Nothing is submitted. Keep your own script.**
+- the question,
+- unit of observation,
+- outcome and comparison variables,
+- year coverage,
+- missingness evidence,
+- one limitation,
+- one agent claim you verified.
+
+## Exit ticket
+
+::: {.activity}
+Complete three sentences:
+
+1. A coding agent is...
+2. One claim I can verify in R is...
+3. One decision an agent cannot make for me is...
+
+<span class="timer">3 MINUTES</span>
+:::
+
+::: {.notes}
+1:44-1:50. Collect verbal examples. Use the remaining transition time to open Lab 1 and make sure every student has the file and an individual script.
+:::
