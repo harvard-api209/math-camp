@@ -42,14 +42,43 @@
     article.prepend(articleHero);
   }
 
+  const nestedChapterIds = new Set([
+    "decisions",
+    "critique",
+    "cold-run",
+    "verify",
+    "compare",
+    "model",
+    "repair"
+  ]);
+
+  article?.querySelectorAll(".article-section[id]").forEach((section) => {
+    if (nestedChapterIds.has(section.id)) {
+      section.classList.add("article-subsection");
+    }
+  });
+
+  articlePage?.querySelectorAll(".article-nav a, .mobile-outline a").forEach((link) => {
+    const targetId = link.getAttribute("href")?.replace(/^#/, "");
+    if (nestedChapterIds.has(targetId)) {
+      link.remove();
+    }
+  });
+
   const articleSections = article
-    ? [...article.querySelectorAll(".article-section[id]")]
+    ? [...article.querySelectorAll(".article-section[id]:not([hidden]):not(.article-subsection)")]
     : [];
+  const homePage = document.querySelector(".home-page");
+  const homeSections = homePage
+    ? [...homePage.querySelectorAll("main > section[id]")]
+    : [];
+  const readingContainer = article ?? homePage?.querySelector("main");
+  const readingSections = articleSections.length ? articleSections : homeSections;
   let readingRail = null;
   let readingRailFill = null;
   let readingRailOutput = null;
 
-  if (articlePage && articleSections.length) {
+  if (readingContainer && readingSections.length) {
     readingRail = document.createElement("aside");
     readingRail.className = "reading-rail";
     readingRail.setAttribute("aria-label", "Reading progress");
@@ -70,12 +99,13 @@
     readingRailSections.className = "reading-rail-sections";
     readingRailSections.setAttribute("aria-label", "Sections in this chapter");
 
-    articleSections.forEach((section, index) => {
+    readingSections.forEach((section, index) => {
       const link = document.createElement("a");
-      const heading = section.querySelector("h2")?.textContent?.trim() ?? `Section ${index + 1}`;
+      const heading =
+        section.querySelector("h1, h2")?.textContent?.trim() ?? `Section ${index + 1}`;
       link.href = `#${section.id}`;
       link.setAttribute("aria-label", heading);
-      link.style.setProperty("--rail-position", `${index / Math.max(1, articleSections.length - 1)}`);
+      link.style.setProperty("--rail-position", `${index / Math.max(1, readingSections.length - 1)}`);
 
       const tick = document.createElement("span");
       tick.setAttribute("aria-hidden", "true");
@@ -88,14 +118,14 @@
     });
 
     readingRail.append(readingRailOutput, readingRailTrack, readingRailSections);
-    articlePage.append(readingRail);
+    document.body.append(readingRail);
 
     let progressFrame = 0;
     const updateReadingProgress = () => {
       progressFrame = 0;
-      const articleTop = article.offsetTop;
-      const articleLength = Math.max(1, article.offsetHeight - window.innerHeight);
-      const amount = Math.min(1, Math.max(0, (window.scrollY - articleTop) / articleLength));
+      const readingTop = readingContainer.offsetTop;
+      const readingLength = Math.max(1, readingContainer.offsetHeight - window.innerHeight);
+      const amount = Math.min(1, Math.max(0, (window.scrollY - readingTop) / readingLength));
 
       readingRailFill.style.transform = `scaleY(${amount})`;
       readingRailOutput.value = `${Math.round(amount * 100)}%`;
@@ -145,9 +175,15 @@
     revealItems.forEach((item) => revealObserver.observe(item));
   }
 
-  const sections = [...document.querySelectorAll(".chapter-section[id], .article-section[id]")];
+  const sections = [
+    ...document.querySelectorAll(
+      ".chapter-section[id], .article-section[id], .home-page main > section[id]"
+    )
+  ].filter((section) => !section.hidden && !section.classList.contains("article-subsection"));
   const outlineLinks = [
-    ...document.querySelectorAll(".chapter-outline a, .article-nav a, .reading-rail a")
+    ...document.querySelectorAll(
+      ".chapter-outline a, .article-nav a, .home-outline a, .reading-rail a"
+    )
   ];
   const outlineMeter = document.querySelector(".outline-meter span");
 

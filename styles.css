@@ -2743,3 +2743,915 @@ blockquote p {
     font-size: 18px;
   }
 }
+
+/* Editorial book pass --------------------------------------------------- */
+
+:root {
+  --book-paper: #fffefb;
+  --book-field: #f3f2ee;
+  --book-ink: #171714;
+  --book-muted: #716f69;
+  --book-rule: rgba(23, 23, 20, 0.16);
+}
+
+.article-page,
+.home-page {
+  color: var(--book-ink);
+  background: var(--book-field);
+}
+
+.article-page .site-header,
+.home-page .site-header {
+  background: rgba(243, 242, 238, 0.94);
+  border-bottom-color: var(--book-rule);
+  backdrop-filter: blur(14px);
+}
+
+/* The contents belong to the edge of the browser, not to the paper. */
+.article-page .article-layout {
+  display: grid;
+  grid-template-columns:
+    minmax(210px, 18vw)
+    minmax(0, 820px)
+    minmax(132px, 1fr);
+  column-gap: clamp(32px, 4vw, 80px);
+  align-items: start;
+  width: 100%;
+  max-width: none;
+  margin: 0;
+  padding: 46px 0 120px;
+}
+
+.article-page .article-nav {
+  grid-column: 1;
+  position: sticky;
+  top: calc(var(--header-height) + 44px);
+  width: min(240px, calc(100% - 52px));
+  margin-left: clamp(26px, 3vw, 60px);
+  padding: 0;
+  border: 0;
+  counter-reset: reader-nav;
+}
+
+.article-page .article-nav > span {
+  display: block;
+  margin-bottom: 18px;
+  color: var(--ink);
+  font-size: 9px;
+  letter-spacing: 0.1em;
+}
+
+.article-page .article-nav a {
+  grid-template-columns: 23px 1fr;
+  padding: 6px 0;
+  color: var(--book-ink);
+  font-size: 13px;
+  opacity: 0.62;
+}
+
+.article-page .article-nav a::before {
+  color: var(--book-muted);
+}
+
+.article-page .article-nav a:hover,
+.article-page .article-nav a:focus-visible,
+.article-page .article-nav a.is-active {
+  color: var(--ink);
+  opacity: 1;
+  transform: translateX(2px);
+}
+
+.article-page .article {
+  grid-column: 2;
+  width: 100%;
+  color: var(--book-ink);
+  background: var(--book-paper);
+  border: 1px solid var(--book-rule);
+  box-shadow: 0 18px 50px rgba(23, 23, 20, 0.055);
+}
+
+.article-page .article-margin {
+  display: none;
+}
+
+/* A centered chapter cover, following the reference article. */
+.article-page .article-cover {
+  display: block;
+  min-height: 640px;
+  padding: 96px clamp(62px, 9vw, 112px) 84px;
+  color: var(--book-ink);
+  text-align: center;
+  background: var(--book-paper);
+  border: 0;
+}
+
+.article-page .article-cover .article-hero-meta {
+  display: flex;
+  justify-content: center;
+  gap: 28px;
+  margin: 0 auto 92px;
+}
+
+.article-page .article-cover .article-hero-meta div {
+  display: inline-flex;
+  gap: 7px;
+  align-items: baseline;
+}
+
+.article-page .article-cover .article-hero-meta span,
+.article-page .article-cover .article-hero-meta strong {
+  color: var(--book-ink);
+  font-family: var(--type);
+  font-size: 9px;
+  font-weight: 400;
+  letter-spacing: 0.05em;
+}
+
+.article-page .article-cover .article-hero-meta span {
+  color: var(--book-muted);
+}
+
+.article-page .article-cover .article-hero-copy {
+  width: min(100%, 620px);
+  margin: 0 auto;
+}
+
+.article-page .article-cover .article-hero-copy > p:first-child {
+  display: block;
+  margin: 0 0 28px;
+  color: var(--ink);
+  font-family: var(--type);
+  font-size: 10px;
+  letter-spacing: 0.09em;
+}
+
+.article-page .article-cover h1 {
+  max-width: 720px;
+  margin: 0 auto;
+  color: var(--ink);
+  font-family: Georgia, "Times New Roman", serif;
+  font-size: clamp(58px, 6.2vw, 92px);
+  font-weight: 400;
+  letter-spacing: -0.055em;
+  line-height: 0.98;
+  text-align: center;
+}
+
+.article-page .article-cover .article-deck {
+  max-width: 590px;
+  margin: 32px auto 0;
+  color: var(--book-ink);
+  font-family: Georgia, "Times New Roman", serif;
+  font-size: 20px;
+  line-height: 1.55;
+  text-align: center;
+}
+
+.article-page .article-cover .article-actions {
+  display: flex;
+  justify-content: center;
+  gap: 28px;
+  margin-top: 48px;
+}
+
+.article-page .article-cover .article-actions a {
+  color: var(--book-ink);
+  border-bottom-color: var(--book-ink);
+}
+
+.article-page .article-cover .article-hero-side {
+  display: none;
+}
+
+/* The body reads as one essay. Spacing, rather than boxes, marks sections. */
+.article-page .article-section {
+  margin: 0;
+  padding: 82px clamp(58px, 8vw, 104px) 24px;
+  color: var(--book-ink);
+  border: 0;
+}
+
+.article-page .article-section + .article-section {
+  padding-top: 104px;
+  border: 0;
+}
+
+.article-page .article-section:last-child {
+  padding-bottom: 104px;
+}
+
+.article-page .article-section.article-subsection {
+  padding-top: 46px;
+}
+
+.article-page .article-section.article-subsection h2 {
+  margin-bottom: 22px;
+  color: var(--book-ink);
+  font-size: 24px;
+  font-weight: 600;
+  letter-spacing: -0.015em;
+  line-height: 1.22;
+}
+
+.article-page .article-section.article-subsection .section-kicker {
+  color: var(--book-muted);
+}
+
+.article-page .section-kicker {
+  margin-bottom: 16px;
+  color: var(--ink);
+  font-size: 9px;
+  letter-spacing: 0.1em;
+}
+
+.article-page .article-section h2 {
+  max-width: 650px;
+  margin: 0 0 32px;
+  color: var(--ink);
+  font-family: Georgia, "Times New Roman", serif;
+  font-size: clamp(34px, 4vw, 52px);
+  font-weight: 400;
+  letter-spacing: -0.035em;
+  line-height: 1.05;
+}
+
+.article-page .article-section h3 {
+  margin: 54px 0 18px;
+  color: var(--book-ink);
+  font-family: Georgia, "Times New Roman", serif;
+  font-size: 22px;
+  font-weight: 600;
+  line-height: 1.25;
+}
+
+.article-page .article-section > p,
+.article-page .article-prose,
+.article-page .glossary-list dd,
+.article-page .callout p,
+.article-page .instructor-note p {
+  color: var(--book-ink);
+  font-family: Georgia, "Times New Roman", serif;
+  font-size: 17px;
+  line-height: 1.72;
+  text-align: justify;
+  text-justify: inter-word;
+  hyphens: auto;
+}
+
+.article-page .article-section > p + p {
+  margin-top: 1.15em;
+}
+
+.article-page .article-lead {
+  color: var(--book-ink);
+  font-size: 20px;
+  line-height: 1.65;
+}
+
+.article-page .article-section strong {
+  color: var(--book-ink);
+}
+
+.article-page .article-section a {
+  color: var(--book-ink);
+  text-decoration-color: var(--ink);
+  text-underline-offset: 3px;
+}
+
+/* Lists are typography, not components. */
+.article-page .learning-list,
+.article-page .checklist,
+.article-page .source-list {
+  display: block;
+  margin: 30px 0 36px;
+  padding: 0 0 0 1.3rem;
+  border: 0;
+}
+
+.article-page .learning-list li,
+.article-page .checklist li,
+.article-page .source-list li {
+  display: list-item;
+  margin: 0 0 11px;
+  padding: 0 0 0 8px;
+  border: 0;
+  color: var(--book-ink);
+  font-family: Georgia, "Times New Roman", serif;
+  font-size: 16px;
+  line-height: 1.55;
+}
+
+.article-page .learning-list li::marker {
+  color: var(--ink);
+}
+
+.article-page .learning-list li > span,
+.article-page .checklist li > span {
+  display: none;
+}
+
+.article-page .learning-list strong,
+.article-page .checklist strong,
+.article-page .source-list strong {
+  font-family: Georgia, "Times New Roman", serif;
+  font-size: inherit;
+  font-weight: 400;
+  line-height: inherit;
+}
+
+.article-page .checklist {
+  list-style: "—  ";
+}
+
+.article-page .checklist li::marker {
+  color: var(--ink);
+}
+
+/* Callout markup is deliberately flattened into ordinary prose. */
+.article-page .callout,
+.article-page .instructor-note {
+  margin: 28px 0;
+  padding: 0;
+  color: var(--book-ink);
+  background: transparent;
+  border: 0;
+}
+
+.article-page .callout > span,
+.article-page .instructor-note > span {
+  display: inline;
+  margin-right: 0.35em;
+  color: var(--book-ink);
+  font-family: Georgia, "Times New Roman", serif;
+  font-size: 17px;
+  font-weight: 700;
+  letter-spacing: 0;
+  text-transform: none;
+}
+
+.article-page .callout > span::after,
+.article-page .instructor-note > span::after {
+  content: ".";
+}
+
+.article-page .callout > p,
+.article-page .instructor-note > p {
+  display: inline;
+  margin: 0;
+}
+
+/* Timings remain useful, but no longer form a boxed dashboard. */
+.article-page .session-plan {
+  display: block;
+  margin: 30px 0 44px;
+  padding: 0;
+  border: 0;
+}
+
+.article-page .session-plan div {
+  display: grid;
+  grid-template-columns: 62px 118px 1fr;
+  gap: 14px;
+  align-items: baseline;
+  padding: 7px 0;
+  border: 0;
+}
+
+.article-page .session-plan time {
+  color: var(--ink);
+  font-size: 9px;
+}
+
+.article-page .session-plan strong {
+  font-size: 15px;
+}
+
+.article-page .session-plan p {
+  margin: 0;
+  font-size: 15px;
+  line-height: 1.45;
+  text-align: left;
+}
+
+.article-page .protocol-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 24px 36px;
+  margin: 34px 0 44px;
+  border: 0;
+}
+
+.article-page .protocol-grid div {
+  padding: 0;
+  border: 0;
+}
+
+.article-page .protocol-grid span {
+  color: var(--ink);
+  font-size: 8px;
+}
+
+.article-page .protocol-grid strong {
+  display: block;
+  margin: 5px 0 3px;
+  font-size: 16px;
+}
+
+.article-page .protocol-grid p {
+  font-size: 15px;
+  line-height: 1.45;
+}
+
+/* Tables are reserved for real comparisons and kept visually quiet. */
+.article-page .table-scroll {
+  margin: 34px 0 44px;
+  border: 0;
+}
+
+.article-page .table-scroll table {
+  border-collapse: collapse;
+}
+
+.article-page .table-scroll th,
+.article-page .table-scroll td {
+  padding: 12px 10px;
+  color: var(--book-ink);
+  border: 0;
+  border-bottom: 1px solid var(--book-rule);
+}
+
+.article-page .table-scroll th {
+  color: var(--ink);
+  font-size: 9px;
+}
+
+.article-page .table-scroll td {
+  font-family: Georgia, "Times New Roman", serif;
+  font-size: 14px;
+  line-height: 1.45;
+}
+
+.article-page .glossary-list {
+  margin: 34px 0 46px;
+}
+
+.article-page .glossary-list div {
+  display: grid;
+  grid-template-columns: 130px 1fr;
+  gap: 24px;
+  padding: 12px 0;
+  border: 0;
+}
+
+.article-page .glossary-list dt {
+  color: var(--book-ink);
+  font-family: Georgia, "Times New Roman", serif;
+  font-size: 16px;
+  font-weight: 700;
+}
+
+.article-page .glossary-list dd {
+  margin: 0;
+  font-size: 16px;
+  line-height: 1.55;
+}
+
+/* Code and agent prompts are reading material, not banners. */
+.article-page .code-plate,
+.article-page .prompt-box {
+  margin: 34px 0 26px;
+  color: var(--book-ink);
+  background: #f4f3ef;
+  border: 0;
+}
+
+.article-page .code-plate-head,
+.article-page .prompt-box > span {
+  display: block;
+  padding: 14px 18px 0;
+  color: var(--book-ink);
+  font-family: var(--type);
+  font-size: 9px;
+  letter-spacing: 0.05em;
+  text-transform: none;
+}
+
+.article-page .code-plate-head span:first-child {
+  display: none;
+}
+
+.article-page .code-plate pre,
+.article-page .prompt-box pre {
+  margin: 0;
+  padding: 18px;
+  color: var(--book-ink);
+  background: transparent;
+  border: 0;
+  font-size: 13px;
+  line-height: 1.65;
+}
+
+.article-page .code-plate > p {
+  padding: 0 18px 18px;
+  color: var(--book-ink);
+  font-size: 15px;
+}
+
+.article-page .code-notes {
+  margin: 24px 0 44px;
+}
+
+.article-page .code-notes p {
+  margin: 0 0 14px;
+  color: var(--book-ink);
+  font-family: Georgia, "Times New Roman", serif;
+  font-size: 16px;
+  line-height: 1.6;
+  text-align: justify;
+  text-justify: inter-word;
+}
+
+.article-page .slide-frame {
+  margin-top: 32px;
+  border-color: var(--book-rule);
+}
+
+/* A larger reading rail at the far edge. */
+.reading-rail {
+  top: calc(var(--header-height) + 34px);
+  right: 22px;
+  bottom: 28px;
+  width: 128px;
+  color: var(--book-ink);
+}
+
+.reading-rail-percent {
+  right: 2px;
+  font-size: 10px;
+}
+
+.reading-rail-track {
+  top: 34px;
+  right: 4px;
+  width: 2px;
+  background: var(--book-rule);
+}
+
+.reading-rail-sections {
+  inset: 34px 0 0;
+}
+
+.reading-rail-sections a {
+  height: 18px;
+  transform: translateY(-9px);
+}
+
+.reading-rail-sections a > span {
+  width: 15px;
+  height: 1px;
+}
+
+.reading-rail-sections a > em {
+  right: 34px;
+  width: 170px;
+  padding: 5px 8px;
+  background: rgba(255, 254, 251, 0.98);
+  border-color: var(--book-rule);
+  font-size: 12px;
+}
+
+.reading-rail-sections a:hover > span,
+.reading-rail-sections a:focus-visible > span,
+.reading-rail-sections a.is-active > span {
+  width: 38px;
+}
+
+/* Homepage: the same book shell, with its own edge contents. */
+.home-page .home-outline {
+  position: fixed;
+  top: calc(var(--header-height) + 44px);
+  left: clamp(26px, 3vw, 60px);
+  z-index: 20;
+  width: min(220px, 17vw);
+  font-family: Georgia, "Times New Roman", serif;
+}
+
+.home-page .home-outline > span {
+  display: block;
+  margin-bottom: 18px;
+  color: var(--ink);
+  font-family: var(--type);
+  font-size: 9px;
+  letter-spacing: 0.1em;
+}
+
+.home-page .home-outline a {
+  display: grid;
+  grid-template-columns: 23px 1fr;
+  gap: 8px;
+  padding: 6px 0;
+  color: var(--book-ink);
+  font-size: 13px;
+  line-height: 1.3;
+  text-decoration: none;
+  opacity: 0.62;
+}
+
+.home-page .home-outline a::before {
+  color: var(--book-muted);
+  font-family: var(--type);
+  font-size: 8px;
+}
+
+.home-page .home-outline a:nth-of-type(1)::before { content: "01"; }
+.home-page .home-outline a:nth-of-type(2)::before { content: "02"; }
+.home-page .home-outline a:nth-of-type(3)::before { content: "03"; }
+.home-page .home-outline a:nth-of-type(4)::before { content: "04"; }
+.home-page .home-outline a:nth-of-type(5)::before { content: "05"; }
+.home-page .home-outline a:nth-of-type(6)::before { content: "06"; }
+.home-page .home-outline a:nth-of-type(7)::before { content: "07"; }
+
+.home-page .home-outline a:hover,
+.home-page .home-outline a:focus-visible,
+.home-page .home-outline a.is-active {
+  color: var(--ink);
+  opacity: 1;
+}
+
+.home-page main {
+  width: min(940px, calc(100vw - 460px));
+  margin-left: clamp(270px, 24vw, 460px);
+  padding-top: 46px;
+  color: var(--book-ink);
+  background: var(--book-paper);
+  border: 1px solid var(--book-rule);
+  box-shadow: 0 18px 50px rgba(23, 23, 20, 0.055);
+}
+
+.home-page main > section {
+  width: 100%;
+  margin: 0;
+  color: var(--book-ink);
+  background: var(--book-paper);
+  border: 0;
+  box-shadow: none;
+}
+
+.home-page .home-cover {
+  display: block;
+  min-height: 0;
+  padding: 88px clamp(54px, 7vw, 92px) 82px;
+}
+
+.home-page .cover-meta {
+  display: flex;
+  justify-content: center;
+  gap: 30px;
+  margin-bottom: 82px;
+  padding: 0;
+}
+
+.home-page .cover-meta div {
+  display: inline-flex;
+  gap: 7px;
+  align-items: baseline;
+}
+
+.home-page .cover-title {
+  max-width: 710px;
+  margin: 0 auto;
+  text-align: center;
+}
+
+.home-page .cover-title > p:first-child {
+  color: var(--ink);
+}
+
+.home-page .cover-title h1 {
+  color: var(--ink);
+  font-family: Georgia, "Times New Roman", serif;
+  font-size: clamp(58px, 6.4vw, 92px);
+  font-weight: 400;
+  letter-spacing: -0.055em;
+  line-height: 0.98;
+}
+
+.home-page .cover-deck {
+  max-width: 650px;
+  margin: 28px auto 0;
+  color: var(--book-ink);
+  font-family: Georgia, "Times New Roman", serif;
+  font-size: 20px;
+  line-height: 1.55;
+}
+
+.home-page .cover-intro {
+  max-width: 650px;
+  margin: 72px auto 0;
+  padding: 0;
+  border: 0;
+}
+
+.home-page .cover-intro p,
+.home-page .index-lead,
+.home-page .home-prose p,
+.home-page .protocol-grid p {
+  color: var(--book-ink);
+  font-family: Georgia, "Times New Roman", serif;
+  font-size: 17px;
+  line-height: 1.72;
+  text-align: justify;
+  text-justify: inter-word;
+  hyphens: auto;
+}
+
+.home-page .cover-intro p + p,
+.home-page .home-prose p + p {
+  margin-top: 1.1em;
+}
+
+.home-page .cover-figure {
+  width: min(100%, 720px);
+  margin: 72px auto 0;
+}
+
+.home-page .cover-footer {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 54px;
+}
+
+.home-page .book-index,
+.home-page .contents-panel,
+.home-page .resource-band {
+  padding: 72px clamp(54px, 7vw, 92px);
+  border: 0;
+}
+
+.home-page .home-chapter {
+  padding-top: 88px;
+  padding-bottom: 88px;
+}
+
+.home-page .book-index {
+  grid-template-columns: 110px 1fr;
+  column-gap: 40px;
+}
+
+.home-page .contents-panel {
+  display: block;
+}
+
+.home-page .contents-heading {
+  margin-bottom: 42px;
+}
+
+.home-page .contents-heading h2,
+.home-page .index-main h2,
+.home-page .resource-band h2 {
+  color: var(--ink);
+  font-family: Georgia, "Times New Roman", serif;
+  font-weight: 400;
+  letter-spacing: -0.035em;
+}
+
+.home-page .home-prose {
+  max-width: 650px;
+  margin: 0 auto 58px;
+}
+
+.home-page .home-prose h2 {
+  margin-bottom: 28px;
+  color: var(--ink);
+  font-family: Georgia, "Times New Roman", serif;
+  font-size: clamp(34px, 4vw, 50px);
+  font-weight: 400;
+  letter-spacing: -0.035em;
+  line-height: 1.08;
+}
+
+@media (max-width: 1180px) {
+  .article-page .article-layout {
+    grid-template-columns: 180px minmax(0, 760px) minmax(110px, 1fr);
+    column-gap: 28px;
+  }
+
+  .article-page .article-nav {
+    width: 150px;
+    margin-left: 22px;
+  }
+
+  .home-page main {
+    width: calc(100vw - 360px);
+    margin-left: 218px;
+  }
+
+  .home-page .home-outline {
+    left: 22px;
+    width: 160px;
+  }
+}
+
+@media (max-width: 980px) {
+  .article-page .article-layout,
+  .home-page main {
+    display: block;
+    width: min(100%, 820px);
+    margin: 0 auto;
+    padding: 24px 14px 88px;
+  }
+
+  .article-page .article-nav,
+  .home-page .home-outline,
+  .reading-rail {
+    display: none;
+  }
+
+  .article-page .article {
+    width: 100%;
+  }
+
+  .article-page .article-cover {
+    min-height: 0;
+    padding: 72px clamp(30px, 8vw, 70px) 76px;
+  }
+
+  .article-page .article-cover .article-hero-meta {
+    flex-wrap: wrap;
+    margin-bottom: 64px;
+  }
+
+  .article-page .article-section {
+    margin: 0;
+    padding-inline: clamp(28px, 8vw, 72px);
+  }
+
+  .home-page main > section {
+    margin: 0;
+  }
+}
+
+@media (max-width: 620px) {
+  .article-page .article-cover .article-hero-meta,
+  .home-page .cover-meta {
+    gap: 12px 20px;
+  }
+
+  .article-page .article-cover h1,
+  .home-page .cover-title h1 {
+    font-size: clamp(46px, 14vw, 66px);
+  }
+
+  .article-page .article-cover .article-deck,
+  .home-page .cover-deck {
+    font-size: 18px;
+  }
+
+  .article-page .article-section {
+    padding-block: 66px 12px;
+  }
+
+  .article-page .article-section + .article-section {
+    padding-top: 82px;
+  }
+
+  .article-page .article-section h2 {
+    font-size: 36px;
+  }
+
+  .article-page .article-section > p,
+  .article-page .article-prose,
+  .home-page .cover-intro p,
+  .home-page .home-prose p {
+    font-size: 16px;
+    line-height: 1.67;
+  }
+
+  .article-page .session-plan div {
+    grid-template-columns: 56px 1fr;
+  }
+
+  .article-page .session-plan p {
+    grid-column: 2;
+  }
+
+  .article-page .protocol-grid,
+  .article-page .glossary-list div {
+    grid-template-columns: 1fr;
+  }
+
+  .home-page .home-cover,
+  .home-page .book-index,
+  .home-page .contents-panel,
+  .home-page .resource-band {
+    padding-inline: 28px;
+  }
+
+  .home-page .book-index {
+    display: block;
+  }
+
+  .home-page .index-margin {
+    margin-bottom: 34px;
+  }
+}

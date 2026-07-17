@@ -8,10 +8,10 @@
     <title>Math Camp 2026 | Code, data, and judgment</title>
     <link rel="icon" href="data:,">
     <link rel="preload" href="assets/fonts/DepartureMono-Regular.woff2" as="font" type="font/woff2" crossorigin>
-    <link rel="stylesheet" href="styles.css?v=reader-20260717">
+    <link rel="stylesheet" href="styles.css?v=book-20260717">
     <script>document.documentElement.classList.add("js");</script>
   </head>
-  <body>
+  <body class="home-page">
     <div class="page-progress" aria-hidden="true"><span></span></div>
 
     <header class="site-header">
@@ -28,6 +28,17 @@
       <button class="menu-button" type="button" aria-expanded="false" aria-controls="mobile-outline">CONTENTS</button>
     </header>
 
+    <aside class="home-outline" aria-label="Book contents">
+      <span>CONTENTS</span>
+      <a href="#introduction">Start here</a>
+      <a href="#purpose">Why this camp</a>
+      <a href="#schedule">Schedule</a>
+      <a href="#lessons">Four lessons</a>
+      <a href="#questions">Policy questions</a>
+      <a href="#protocol">Working protocol</a>
+      <a href="#resources">Resources</a>
+    </aside>
+
     <nav class="mobile-outline" id="mobile-outline" aria-label="Mobile navigation">
       <div class="mobile-outline-head"><span>MATH CAMP 2026</span><button type="button" data-close-menu>CLOSE</button></div>
       <ol>
@@ -42,7 +53,7 @@
     </nav>
 
     <main id="top">
-      <section class="cover home-cover">
+      <section class="cover home-cover" id="introduction">
         <div class="cover-meta">
           <div><span>PROGRAM</span><strong>PA/ID</strong></div>
           <div><span>DATES</span><strong>AUG 13-26</strong></div>
@@ -74,6 +85,17 @@
         </figure>
 
         <div class="cover-footer"><span>R + RSTUDIO</span><span>QUARTO + REVEALJS</span><span>CODEX / CLAUDE CODE</span></div>
+      </section>
+
+      <section class="contents-panel home-chapter" id="purpose" aria-labelledby="purpose-title">
+        <div class="home-prose">
+          <p class="section-kicker">WHY THIS CAMP</p>
+          <h2 id="purpose-title">A policy question becomes a computational investigation.</h2>
+          <p>Math Camp is the opening chapter of API 209, not a compressed version of the fall statistics course. Its purpose is to give everyone a shared way to enter a data project: begin with a question, learn what the records can represent, make a small analytical move in R, and then decide whether an AI coding agent has actually helped. Students who have never programmed and students who already work comfortably with data will use the same evidence, but they will not need to take the same-sized steps.</p>
+          <p>The four lessons follow one investigation from first contact to handoff. We begin by reading the structure and documentation of a country-year dataset. We then build a traceable analysis table, use plots and a simple model to describe a relationship, and finally test whether another person can understand and rerun the work. Each lab turns the lesson into practice. Working groups are temporary spaces for comparison and debugging; there is no group submission and no grade.</p>
+          <p>R does the computation. RStudio provides the workspace in which we read, run, and revise code. Quarto can hold code, prose, figures, and slides in one reproducible document. Codex is the baseline coding agent, while Claude Code is a compatible alternative. These tools are connected, but they are not interchangeable. An agent can inspect several files and propose edits, yet it cannot decide whether the policy question is well framed or whether a numerical pattern deserves a causal interpretation. Those remain analytical judgments.</p>
+          <p>By the end of camp, each student may keep a small personal artifact: an R script, a short Quarto notebook, or another compact record of the investigation. The artifact is optional and ungraded. Its value is practical—it gives you code, questions, and verification habits that can travel into the semester.</p>
+        </div>
       </section>
 
       <section class="book-index" id="schedule" aria-labelledby="schedule-title">
@@ -137,7 +159,7 @@
         </div>
       </section>
 
-      <section class="resource-band" aria-labelledby="resources-title">
+      <section class="resource-band" id="resources" aria-labelledby="resources-title">
         <div><p class="section-kicker">KEEP NEARBY</p><h2 id="resources-title">Reference sections.</h2></div>
         <nav aria-label="Course resources">
           <a href="setup/"><span>SETUP</span><strong>Install and test the environment</strong></a>
@@ -157,6 +179,6 @@
       <a href="#top">RETURN TO TOP ↑</a>
     </footer>
 
-    <script src="script.js?v=reader-20260717"></script>
+    <script src="script.js?v=book-20260717"></script>
   </body>
 </html>

@@ -25,8 +25,8 @@ Opening `index.html` directly also works for most pages, but a local server more
 ## Book architecture
 
 - `index.html`: public student homepage, schedule, lesson index, policy tracks, and resource guide
-- `lessons/lesson-1/` through `lesson-4/`: complete student chapters with preparation, concepts, class maps, agent contracts, and embedded decks
-- `labs/lab-1/` through `lab-4/`: timed 60-minute lab guides with goals, preparation, runnable code, verification, debriefs, and optional extensions
+- `lessons/lesson-1/` through `lesson-4/`: long-form student chapters with policy context, explained code, agent contracts, and embedded decks
+- `labs/lab-1/` through `lab-4/`: focused 60-minute lab guides with runnable code, verification, debriefs, and optional extensions
 - `setup/`, `datasets/`, `ai-guide/`, `glossary/`: student field guides
 - `instructor/`: unlisted teaching notes and a detailed facilitation plan; `noindex` is not access control
 - `research/evidence-brief.md`: research base and design rationale
@@ -73,7 +73,7 @@ The `instructor/` page includes `noindex,nofollow`, but a public static site can
 
 - Editorial, book-like structure inspired by technical manuals
 - Self-hosted Departure Mono typeface
-- Warm paper background, black serif article prose, Harvard crimson section markers, black rules, and square geometry
-- Persistent chapter contents on desktop and a generated right-side reading rail with section progress
+- Warm paper background, justified black serif prose, Harvard crimson chapter headings, and minimal rules
+- Far-edge chapter contents on desktop and a larger right-side reading rail with section progress
 - Restrained scroll reveals and canvas animation with reduced-motion support
 - No dependency on a website framework
