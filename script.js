@@ -3,6 +3,16 @@
   const ink = "#a51c30";
   const paper = "#f5f5f0";
 
+  const mainContent = document.querySelector("main");
+  if (mainContent) {
+    mainContent.id ||= "main-content";
+    const skipLink = document.createElement("a");
+    skipLink.className = "skip-link";
+    skipLink.href = `#${mainContent.id}`;
+    skipLink.textContent = "Skip to content";
+    document.body.prepend(skipLink);
+  }
+
   const menuButton = document.querySelector(".menu-button");
   const mobileOutline = document.querySelector(".mobile-outline");
   const closeMenuButton = document.querySelector("[data-close-menu]");
@@ -22,6 +32,85 @@
   mobileOutline?.querySelectorAll("a").forEach((link) => {
     link.addEventListener("click", () => setMenu(false));
   });
+
+  const articlePage = document.querySelector(".article-page");
+  const article = articlePage?.querySelector(".article");
+  const articleHero = articlePage?.querySelector("main > .article-hero");
+
+  if (article && articleHero) {
+    articleHero.classList.add("article-cover");
+    article.prepend(articleHero);
+  }
+
+  const articleSections = article
+    ? [...article.querySelectorAll(".article-section[id]")]
+    : [];
+  let readingRail = null;
+  let readingRailFill = null;
+  let readingRailOutput = null;
+
+  if (articlePage && articleSections.length) {
+    readingRail = document.createElement("aside");
+    readingRail.className = "reading-rail";
+    readingRail.setAttribute("aria-label", "Reading progress");
+
+    readingRailOutput = document.createElement("output");
+    readingRailOutput.className = "reading-rail-percent";
+    readingRailOutput.setAttribute("aria-live", "off");
+    readingRailOutput.textContent = "0%";
+
+    const readingRailTrack = document.createElement("div");
+    readingRailTrack.className = "reading-rail-track";
+
+    readingRailFill = document.createElement("span");
+    readingRailFill.className = "reading-rail-fill";
+    readingRailTrack.append(readingRailFill);
+
+    const readingRailSections = document.createElement("nav");
+    readingRailSections.className = "reading-rail-sections";
+    readingRailSections.setAttribute("aria-label", "Sections in this chapter");
+
+    articleSections.forEach((section, index) => {
+      const link = document.createElement("a");
+      const heading = section.querySelector("h2")?.textContent?.trim() ?? `Section ${index + 1}`;
+      link.href = `#${section.id}`;
+      link.setAttribute("aria-label", heading);
+      link.style.setProperty("--rail-position", `${index / Math.max(1, articleSections.length - 1)}`);
+
+      const tick = document.createElement("span");
+      tick.setAttribute("aria-hidden", "true");
+
+      const label = document.createElement("em");
+      label.textContent = heading;
+
+      link.append(tick, label);
+      readingRailSections.append(link);
+    });
+
+    readingRail.append(readingRailOutput, readingRailTrack, readingRailSections);
+    articlePage.append(readingRail);
+
+    let progressFrame = 0;
+    const updateReadingProgress = () => {
+      progressFrame = 0;
+      const articleTop = article.offsetTop;
+      const articleLength = Math.max(1, article.offsetHeight - window.innerHeight);
+      const amount = Math.min(1, Math.max(0, (window.scrollY - articleTop) / articleLength));
+
+      readingRailFill.style.transform = `scaleY(${amount})`;
+      readingRailOutput.value = `${Math.round(amount * 100)}%`;
+      readingRailOutput.textContent = readingRailOutput.value;
+    };
+
+    const requestReadingProgress = () => {
+      if (progressFrame) return;
+      progressFrame = window.requestAnimationFrame(updateReadingProgress);
+    };
+
+    window.addEventListener("scroll", requestReadingProgress, { passive: true });
+    window.addEventListener("resize", requestReadingProgress);
+    updateReadingProgress();
+  }
 
   const revealItems = [...document.querySelectorAll(".reveal")];
   const hashTarget = window.location.hash ? document.querySelector(window.location.hash) : null;
@@ -57,7 +146,9 @@
   }
 
   const sections = [...document.querySelectorAll(".chapter-section[id], .article-section[id]")];
-  const outlineLinks = [...document.querySelectorAll(".chapter-outline a, .article-nav a")];
+  const outlineLinks = [
+    ...document.querySelectorAll(".chapter-outline a, .article-nav a, .reading-rail a")
+  ];
   const outlineMeter = document.querySelector(".outline-meter span");
 
   if ("IntersectionObserver" in window && sections.length) {
@@ -71,10 +162,13 @@
         const activeIndex = sections.indexOf(visible.target);
 
         outlineLinks.forEach((link) => {
-          link.classList.toggle(
-            "is-active",
-            link.getAttribute("href") === `#${visible.target.id}`
-          );
+          const isActive = link.getAttribute("href") === `#${visible.target.id}`;
+          link.classList.toggle("is-active", isActive);
+          if (isActive) {
+            link.setAttribute("aria-current", "location");
+          } else {
+            link.removeAttribute("aria-current");
+          }
         });
 
         if (outlineMeter && activeIndex >= 0) {
