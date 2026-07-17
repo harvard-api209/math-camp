@@ -1,0 +1,88 @@
+---
+title: "Meet the evidence"
+subtitle: "Coding Lesson 1 · Math Camp 2026"
+author: "API 209"
+format:
+  revealjs:
+    theme: ../slide-theme.scss
+    output-file: index.html
+    embed-resources: true
+    transition: none
+    background-transition: none
+    slide-number: c/t
+    progress: true
+    footer: "API 209 · MATH CAMP 2026 · LESSON 1"
+---
+
+## Today {.inverse}
+
+<span class="kicker">THU AUG 13 · 1-4 PM</span>
+
+We begin with a **policy question**, inspect the evidence, and learn what R and a coding agent each contribute.
+
+## By 4 PM
+
+- Open and run an R project
+- Describe one row and one variable
+- Inspect types, ranges, counts, and missingness
+- Ask an agent to explain bounded code
+- Verify one generated claim
+
+## Four tools, four jobs
+
+| Tool | Job |
+|---|---|
+| R | Compute |
+| RStudio | Organize |
+| Quarto | Combine code and narrative |
+| Codex / Claude Code | Propose, explain, review |
+
+**None of them decides whether the policy claim is valid.**
+
+## Start with the file
+
+```{.r}
+library(tidyverse)
+
+wdi <- read_csv(
+  "data/derived/math-camp-wdi-2000-2022.csv"
+)
+
+glimpse(wdi)
+count(wdi, year)
+summarise(wdi, countries = n_distinct(iso3c))
+```
+
+## The recurring protocol
+
+::: columns
+::: {.column width="33%"}
+### 01
+
+**Human pass**
+
+Frame. Inspect. Predict.
+:::
+::: {.column width="33%"}
+### 02
+
+**Agent pass**
+
+Delegate a bounded task.
+:::
+::: {.column width="33%"}
+### 03
+
+**Evidence pass**
+
+Run. Trace. Challenge.
+:::
+:::
+
+## Lab 1 {.inverse}
+
+<span class="kicker">EVIDENCE INVENTORY · 3-4 PM</span>
+
+Choose a track. Name the unit, variables, years, missingness, and one limitation.
+
+**Nothing is submitted. Keep your own script.**

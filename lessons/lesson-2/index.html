@@ -1,0 +1,52 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="Math Camp 2026 Coding Lesson 2: build the dataset.">
+  <title>Lesson 2: Build the dataset | Math Camp 2026</title>
+  <link rel="icon" href="data:,">
+  <link rel="stylesheet" href="../../styles.css">
+  <script>document.documentElement.classList.add("js");</script>
+</head>
+<body id="top">
+  <div class="page-progress" aria-hidden="true"><span></span></div>
+  <header class="site-header">
+    <a class="brand" href="../../"><span>API 209</span><strong>MATH CAMP 2026</strong></a>
+    <div class="header-chapter"><span>LESSON 2</span><strong>/ BUILD THE DATASET</strong></div>
+    <nav class="chapter-nav"><a href="../../">HOME</a><a href="../../labs/lab-2/">LAB 2</a><a href="../../slides/lesson-2/">SLIDES</a></nav>
+    <button class="menu-button" type="button" aria-expanded="false" aria-controls="mobile-outline">CONTENTS</button>
+  </header>
+  <nav class="mobile-outline" id="mobile-outline"><div class="mobile-outline-head"><span>LESSON 2</span><button type="button" data-close-menu>CLOSE</button></div><ol><li><a href="#outcomes">Outcomes</a></li><li><a href="#structure">Structure</a></li><li><a href="#workflow">Workflow</a></li><li><a href="#agent">Update pass</a></li><li><a href="#slides">Slides</a></li></ol></nav>
+  <main>
+    <section class="article-hero">
+      <div class="article-hero-meta"><div><span>LESSON</span><strong>WED AUG 19</strong></div><div><span>TIME</span><strong>3-5 PM</strong></div><div><span>LAB</span><strong>THU AUG 20, 4-5 PM</strong></div></div>
+      <div class="article-hero-copy"><p>CODING LESSON 2</p><h1>Build the dataset.</h1><p class="article-deck">Turn a public data source into a documented analysis file, then ask an agent to update it without erasing the trail.</p><div class="article-actions"><a href="../../labs/lab-2/">OPEN LAB 2 →</a><a href="../../slides/lesson-2/">OPEN SLIDES ↗</a></div></div>
+      <aside class="article-hero-side"><p>Raw stays raw<br>Keys stay unique<br>Changes stay visible</p></aside>
+    </section>
+    <div class="article-layout">
+      <aside class="article-nav"><span>IN THIS LESSON</span><a href="#outcomes">Outcomes</a><a href="#structure">Structure</a><a href="#workflow">Workflow</a><a href="#agent">Update pass</a><a href="#slides">Slides</a></aside>
+      <article class="article">
+        <section class="article-section reveal" id="outcomes"><p class="section-kicker">LEARNING OUTCOMES</p><h2>Make transformations traceable.</h2><p class="article-lead">By the end of the lesson, you should be able to reshape and join data while preserving a clean path from the downloaded source to the analysis table.</p><ol class="learning-list"><li><span>01</span><strong>Use <code>select()</code>, <code>filter()</code>, <code>mutate()</code>, and <code>summarise()</code>.</strong></li><li><span>02</span><strong>Explain why <code>iso3c + year</code> must be unique.</strong></li><li><span>03</span><strong>Separate raw, derived, and analysis-ready files.</strong></li><li><span>04</span><strong>Join tables and diagnose unmatched rows.</strong></li><li><span>05</span><strong>Review an agent-built update against the frozen 2022 file.</strong></li></ol></section>
+        <section class="article-section reveal" id="structure"><p class="section-kicker">PROJECT STRUCTURE</p><h2>A dataset is also a chain of decisions.</h2><div class="table-scroll"><table><thead><tr><th>Layer</th><th>Purpose</th><th>Rule</th></tr></thead><tbody><tr><td>Raw</td><td>Exact download or API response.</td><td>Never edit by hand.</td></tr><tr><td>Derived</td><td>Cleaned and joined tables.</td><td>Rebuild with code.</td></tr><tr><td>Analysis</td><td>Variables for one policy question.</td><td>Keep definitions explicit.</td></tr><tr><td>Output</td><td>Figures, tables, and reports.</td><td>Never treat as source data.</td></tr></tbody></table></div><div class="callout"><span>THE KEY TEST</span><p>If a country appears twice in the same year, a later join can silently duplicate rows. Test the key before and after every join.</p></div></section>
+        <section class="article-section reveal" id="workflow"><p class="section-kicker">LIVE CODING</p><h2>Build one analysis table in public.</h2><div class="session-plan"><div><time>00-20</time><strong>Select</strong><p>Keep the identifiers and variables needed for one question.</p></div><div><time>20-45</time><strong>Transform</strong><p>Filter years, name variables, and create a justified transformation.</p></div><div><time>45-70</time><strong>Join</strong><p>Add country metadata and inspect unmatched keys.</p></div><div><time>70-90</time><strong>Test</strong><p>Check uniqueness, ranges, missingness, and row counts.</p></div><div><time>90-120</time><strong>Document</strong><p>Write the source, indicator, year, unit, and limitations.</p></div></div><div class="code-plate"><div class="code-plate-head"><span>R</span><span>HEALTH TRACK</span></div><pre><code>health &lt;- wdi |&gt;
+  select(iso3c, country, year, income_level,
+         gdp_per_capita_ppp, under5_mortality) |&gt;
+  filter(year &gt;= 2000) |&gt;
+  mutate(log_income = log(gdp_per_capita_ppp))
+
+stopifnot(!anyDuplicated(health[c("iso3c", "year")]))</code></pre><p>The test is part of the analysis. If it fails, stop and diagnose instead of pushing forward.</p></div></section>
+        <section class="article-section reveal" id="agent"><p class="section-kicker">AGENT UPDATE PASS</p><h2>Update forward, never overwrite backward.</h2><div class="prompt-box"><span>STARTER PROMPT</span><pre>Goal: Extend the World Bank indicator data beyond 2022 using the official API.
+Context: Read data/build_wdi.R, data/README.md, and the indicator dictionary.
+Constraints: Do not overwrite the frozen 2000-2022 files. Use the latest available year for each indicator, preserve indicator codes, and record the retrieval date. Stop if a key is duplicated.
+Done when: A new dated file exists, the build is reproducible, and a comparison reports row counts, year coverage, missingness, and changed historical values.</pre></div><ul class="checklist"><li><span>□</span><strong>Did the agent use the official source and preserve the retrieval date?</strong></li><li><span>□</span><strong>Are historical revisions separated from newly added years?</strong></li><li><span>□</span><strong>Is each country-year still unique?</strong></li><li><span>□</span><strong>Can the entire file be rebuilt from the script?</strong></li></ul></section>
+        <section class="article-section reveal" id="slides"><p class="section-kicker">SLIDES</p><h2>Lesson deck.</h2><p>Replace or extend <code>slides/lesson-2/slides.qmd</code>, then render it. The URL and this embedded slot remain unchanged.</p><figure class="slide-frame"><iframe src="../../slides/lesson-2/index.html" title="Lesson 2 slides"></iframe><figcaption><span>LESSON 2 / REVEALJS</span><a href="../../slides/lesson-2/">OPEN FULL SCREEN ↗</a></figcaption></figure></section>
+      </article>
+      <aside class="article-margin"><dl><div><dt>INPUT</dt><dd>Frozen WDI file</dd></div><div><dt>OUTPUT</dt><dd>Analysis table</dd></div><div><dt>AGENT ROLE</dt><dd>Data engineer</dd></div></dl></aside>
+    </div>
+    <nav class="page-turn"><a href="../lesson-1/"><span>PREVIOUS</span><strong>Lesson 1: Meet the evidence</strong></a><a href="../../labs/lab-2/"><span>NEXT</span><strong>Lab 2: Update sprint</strong></a></nav>
+  </main>
+  <footer class="site-footer"><div><span>API 209</span><strong>MATH CAMP 2026</strong></div><p>Lesson 2 of 4.</p><a href="#top">RETURN TO TOP ↑</a></footer>
+  <script src="../../script.js"></script>
+</body>
+</html>

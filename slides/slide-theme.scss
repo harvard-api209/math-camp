@@ -1,0 +1,129 @@
+/*-- scss:defaults --*/
+$body-bg: #f2f0e7;
+$body-color: #151515;
+$link-color: #143cff;
+$selection-bg: #143cff;
+$selection-color: #ffffff;
+$presentation-heading-color: #151515;
+$presentation-heading-font: "Departure Mono", "Courier New", monospace;
+$presentation-heading-font-weight: 400;
+$presentation-font-size-root: 34px;
+$code-block-bg: #e6e3d9;
+$code-color: #151515;
+$code-block-border-color: #151515;
+
+/*-- scss:rules --*/
+@font-face {
+  font-family: "Departure Mono";
+  src: url("../../../../../../../assets/fonts/DepartureMono-Regular.woff2") format("woff2");
+  font-display: swap;
+}
+
+.reveal {
+  font-family: Arial, Helvetica, sans-serif;
+  letter-spacing: -0.018em;
+}
+
+.reveal .slides {
+  text-align: left;
+}
+
+.reveal .slides section {
+  box-sizing: border-box;
+  padding: 62px 72px;
+  border: 1px solid #151515;
+}
+
+.reveal h1,
+.reveal h2,
+.reveal h3 {
+  letter-spacing: -0.055em;
+  line-height: 0.96;
+  text-transform: none;
+}
+
+.reveal h1 { font-size: 2.35em; max-width: 14ch; }
+.reveal h2 { font-size: 1.8em; max-width: 18ch; }
+.reveal h3 { font-size: 1.05em; letter-spacing: -0.025em; }
+
+.reveal p,
+.reveal li {
+  max-width: 38em;
+}
+
+.reveal strong { color: #143cff; }
+
+.reveal .kicker,
+.reveal .slide-number,
+.reveal figcaption {
+  font-family: "Departure Mono", "Courier New", monospace;
+  font-size: 0.42em;
+  letter-spacing: 0.09em;
+  text-transform: uppercase;
+}
+
+.reveal .kicker {
+  display: block;
+  margin-bottom: 3.5rem;
+  color: #143cff;
+}
+
+.reveal .columns {
+  gap: 4rem;
+}
+
+.reveal blockquote {
+  width: 78%;
+  margin: 1.5rem 0;
+  padding: 1rem 0 1rem 1.5rem;
+  border-left: 8px solid #143cff;
+  box-shadow: none;
+  background: transparent;
+  font-style: normal;
+}
+
+.reveal pre {
+  width: 100%;
+  box-shadow: none;
+  border: 1px solid #151515;
+}
+
+.reveal code {
+  font-family: "Departure Mono", "Courier New", monospace;
+}
+
+.reveal table {
+  font-size: 0.64em;
+}
+
+.reveal table th,
+.reveal table td {
+  border-color: #151515;
+}
+
+.reveal .progress {
+  height: 5px;
+  color: #143cff;
+}
+
+.reveal .controls { color: #143cff; }
+
+.reveal .footer {
+  font-family: "Departure Mono", "Courier New", monospace;
+  font-size: 0.32em;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+}
+
+.reveal .inverse {
+  background: #143cff;
+  color: #ffffff;
+}
+
+.reveal .inverse h1,
+.reveal .inverse h2,
+.reveal .inverse strong { color: #ffffff; }
+
+@media (max-width: 800px) {
+  .reveal .slides section { padding: 34px; }
+}

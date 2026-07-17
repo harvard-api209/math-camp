@@ -1,0 +1,162 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="Math Camp 2026. Four coding lessons connecting international development data, R, Quarto, and coding agents.">
+    <meta name="theme-color" content="#f4f4ee">
+    <title>Math Camp 2026 | Code, data, and judgment</title>
+    <link rel="icon" href="data:,">
+    <link rel="preload" href="assets/fonts/DepartureMono-Regular.woff2" as="font" type="font/woff2" crossorigin>
+    <link rel="stylesheet" href="styles.css">
+    <script>document.documentElement.classList.add("js");</script>
+  </head>
+  <body>
+    <div class="page-progress" aria-hidden="true"><span></span></div>
+
+    <header class="site-header">
+      <a class="brand" href="#top" aria-label="Math Camp 2026 home">
+        <span>API 209</span>
+        <strong>MATH CAMP 2026</strong>
+      </a>
+      <div class="header-chapter"><span>STUDENT BOOK</span><strong>/ CODE, DATA, AND JUDGMENT</strong></div>
+      <nav class="chapter-nav" aria-label="Primary navigation">
+        <a href="#schedule">SCHEDULE</a>
+        <a href="#lessons">LESSONS</a>
+        <a href="setup/">SETUP</a>
+      </nav>
+      <button class="menu-button" type="button" aria-expanded="false" aria-controls="mobile-outline">CONTENTS</button>
+    </header>
+
+    <nav class="mobile-outline" id="mobile-outline" aria-label="Mobile navigation">
+      <div class="mobile-outline-head"><span>MATH CAMP 2026</span><button type="button" data-close-menu>CLOSE</button></div>
+      <ol>
+        <li><a href="#schedule">Schedule</a></li>
+        <li><a href="#lessons">Lessons</a></li>
+        <li><a href="#questions">Policy questions</a></li>
+        <li><a href="setup/">Setup guide</a></li>
+        <li><a href="datasets/">Dataset</a></li>
+        <li><a href="ai-guide/">AI workflow</a></li>
+        <li><a href="glossary/">Glossary</a></li>
+      </ol>
+    </nav>
+
+    <main id="top">
+      <section class="cover home-cover">
+        <div class="cover-meta">
+          <div><span>PROGRAM</span><strong>PA/ID</strong></div>
+          <div><span>DATES</span><strong>AUG 13-26</strong></div>
+          <div><span>CONTACT</span><strong>12 HOURS</strong></div>
+        </div>
+
+        <div class="cover-title">
+          <p>Four lessons | Four labs | One shared investigation</p>
+          <h1>Code, data, and judgment.</h1>
+          <p class="cover-deck">A practical introduction to R, Quarto, and coding agents for international development policy.</p>
+        </div>
+
+        <div class="cover-intro">
+          <p class="dropcap">Math Camp begins with questions, not commands. You will examine development data, make a claim precise, ask an agent for help, and decide what evidence is strong enough to trust.</p>
+          <p>Everyone receives a working dataset and code scaffold. Students new to programming can follow the main path. Experienced programmers can update the data, test alternate specifications, and challenge the agent.</p>
+        </div>
+
+        <figure class="technical-figure cover-figure" aria-labelledby="home-figure-caption">
+          <figcaption id="home-figure-caption"><span>FIG_001</span><span>[ ONE QUESTION, MANY OBSERVATIONS ]</span><span id="figure-clock">t = 0.00</span></figcaption>
+          <div class="plot-frame">
+            <canvas id="hero-plot" aria-label="Animated country-year scatterplot with a fitted trend"></canvas>
+            <span class="axis-label axis-label-y">OUTCOME</span>
+            <span class="axis-label axis-label-x">PREDICTOR</span>
+          </div>
+          <div class="figure-controls">
+            <p>The agent can draw a line. Your job is to decide what the points represent and what the line can support.</p>
+            <button id="plot-control" type="button" aria-pressed="false">PAUSE ANIMATION</button>
+          </div>
+        </figure>
+
+        <div class="cover-footer"><span>R + RSTUDIO</span><span>QUARTO + REVEALJS</span><span>CODEX / CLAUDE CODE</span></div>
+      </section>
+
+      <section class="book-index" id="schedule" aria-labelledby="schedule-title">
+        <div class="index-margin"><span>CALENDAR</span><strong>06 MEETINGS</strong></div>
+        <div class="index-main">
+          <p class="section-kicker">AUGUST 2026</p>
+          <h2 id="schedule-title">Twelve hours across three weeks.</h2>
+          <div class="calendar-list">
+            <a href="lessons/lesson-1/"><time datetime="2026-08-13T13:00">THU 13 / 1-4 PM</time><strong>Lesson 1 + Lab 1</strong><span>Ask, inspect, orient.</span></a>
+            <a href="lessons/lesson-2/"><time datetime="2026-08-19T15:00">WED 19 / 3-5 PM</time><strong>Lesson 2</strong><span>Build and document data.</span></a>
+            <a href="labs/lab-2/"><time datetime="2026-08-20T16:00">THU 20 / 4-5 PM</time><strong>Lab 2</strong><span>Update sprint.</span></a>
+            <a href="lessons/lesson-3/"><time datetime="2026-08-24T13:00">MON 24 / 1-4 PM</time><strong>Lesson 3 + Lab 3</strong><span>Compare and model.</span></a>
+            <a href="lessons/lesson-4/"><time datetime="2026-08-25T15:00">TUE 25 / 3-5 PM</time><strong>Lesson 4</strong><span>Audit and communicate.</span></a>
+            <a href="labs/lab-4/"><time datetime="2026-08-26T16:00">WED 26 / 4-5 PM</time><strong>Lab 4</strong><span>Mini hackathon.</span></a>
+          </div>
+        </div>
+      </section>
+
+      <section class="contents-panel" id="lessons" aria-labelledby="lessons-title">
+        <div class="contents-heading"><span>READING PATH</span><h2 id="lessons-title">Four lessons.</h2></div>
+        <div class="contents-list lesson-index">
+          <a href="lessons/lesson-1/"><span>01</span><strong>Meet the evidence</strong><small>R objects, rows, variables, missingness, and the first agent conversation.</small></a>
+          <a href="lessons/lesson-2/"><span>02</span><strong>Build the dataset</strong><small>Types, filters, groups, joins, provenance, and an API update.</small></a>
+          <a href="lessons/lesson-3/"><span>03</span><strong>Compare patterns</strong><small>Plots, transformations, regression, residuals, and claim boundaries.</small></a>
+          <a href="lessons/lesson-4/"><span>04</span><strong>Audit the handoff</strong><small>Quarto, checks, agent review, transparent communication, and reuse.</small></a>
+        </div>
+        <div class="contents-stats">
+          <div><span>DEFAULT FILE</span><strong>4,991 ROWS</strong></div>
+          <div><span>UNIT</span><strong>COUNTRY-YEAR</strong></div>
+          <div><span>PERIOD</span><strong>2000-2022</strong></div>
+          <div><span>SOURCE</span><strong>WORLD BANK WDI</strong></div>
+        </div>
+      </section>
+
+      <section class="book-index question-section" id="questions" aria-labelledby="questions-title">
+        <div class="index-margin"><span>CHOOSE ONE</span><strong>04 TRACKS</strong></div>
+        <div class="index-main">
+          <p class="section-kicker">POLICY QUESTIONS</p>
+          <h2 id="questions-title">One file. Four ways into development.</h2>
+          <p class="index-lead">Each working group follows one question during the labs. These are associational questions. A pattern is not automatically a policy effect.</p>
+          <ol class="question-list">
+            <li><span>HEALTH</span><strong>How is national income associated with under-five mortality, and does the pattern differ by income group?</strong><small>GDP per capita, under-five mortality, income classification</small></li>
+            <li><span>GENDER</span><strong>Where is girls' secondary enrollment associated with lower adolescent fertility, and where does the relationship depart from the overall pattern?</strong><small>Female secondary enrollment, adolescent fertility</small></li>
+            <li><span>ACCESS</span><strong>Does electricity access travel with internet access, and which countries closed the combined access gap fastest?</strong><small>Electricity access, internet use, region</small></li>
+            <li><span>CLIMATE</span><strong>Can renewable electricity expand while carbon intensity falls and income continues to grow?</strong><small>Renewable electricity, carbon intensity, GDP per capita growth</small></li>
+          </ol>
+        </div>
+      </section>
+
+      <section class="book-index protocol-section" id="protocol" aria-labelledby="protocol-title">
+        <div class="index-margin"><span>EVERY LAB</span><strong>04 PASSES</strong></div>
+        <div class="index-main">
+          <p class="section-kicker">THE WORKING PROTOCOL</p>
+          <h2 id="protocol-title">The agent proposes. Evidence decides.</h2>
+          <div class="protocol-grid">
+            <div><span>FRAME</span><strong>State the question.</strong><p>Name the unit, variables, population, and expected pattern before opening the agent.</p></div>
+            <div><span>HUMAN PASS</span><strong>Read or modify R.</strong><p>Run a small working example and predict what should change.</p></div>
+            <div><span>AGENT PASS</span><strong>Request one bounded task.</strong><p>Give Codex or Claude Code a goal, context, constraints, and a completion check.</p></div>
+            <div><span>VERIFY</span><strong>Inspect the evidence.</strong><p>Check rows, keys, ranges, missingness, figures, and claim language.</p></div>
+          </div>
+        </div>
+      </section>
+
+      <section class="resource-band" aria-labelledby="resources-title">
+        <div><p class="section-kicker">KEEP NEARBY</p><h2 id="resources-title">Reference sections.</h2></div>
+        <nav aria-label="Course resources">
+          <a href="setup/"><span>SETUP</span><strong>Install and test the environment</strong></a>
+          <a href="datasets/"><span>DATA</span><strong>Download and understand the WDI file</strong></a>
+          <a href="ai-guide/"><span>AI GUIDE</span><strong>Prompt, inspect, test, and disclose</strong></a>
+          <a href="glossary/"><span>GLOSSARY</span><strong>Translate course language</strong></a>
+          <a href="materials/math-camp-field-notebook.html"><span>NOTEBOOK</span><strong>See the optional personal artifact</strong></a>
+          <a href="materials/math-camp-field-notebook.qmd"><span>SOURCE</span><strong>Open the editable Quarto notebook</strong></a>
+          <a href="slides/"><span>SLIDES</span><strong>Open the four lesson decks</strong></a>
+        </nav>
+      </section>
+    </main>
+
+    <footer class="site-footer">
+      <div><span>API 209</span><strong>MATH CAMP 2026</strong></div>
+      <p>Advanced Quantitative Methods: Description and Prediction.</p>
+      <a href="#top">RETURN TO TOP ↑</a>
+    </footer>
+
+    <script src="script.js"></script>
+  </body>
+</html>

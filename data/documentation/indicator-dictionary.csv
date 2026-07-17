@@ -1,0 +1,10 @@
+variable,indicator_code,source,source_url
+gdp_per_capita_ppp,NY.GDP.PCAP.PP.KD,World Development Indicators,https://api.worldbank.org/v2/indicator/NY.GDP.PCAP.PP.KD?format=json
+under5_mortality,SH.DYN.MORT,World Development Indicators,https://api.worldbank.org/v2/indicator/SH.DYN.MORT?format=json
+female_secondary_enrollment,SE.SEC.ENRR.FE,World Development Indicators,https://api.worldbank.org/v2/indicator/SE.SEC.ENRR.FE?format=json
+adolescent_fertility,SP.ADO.TFRT,World Development Indicators,https://api.worldbank.org/v2/indicator/SP.ADO.TFRT?format=json
+electricity_access,EG.ELC.ACCS.ZS,World Development Indicators,https://api.worldbank.org/v2/indicator/EG.ELC.ACCS.ZS?format=json
+internet_use,IT.NET.USER.ZS,World Development Indicators,https://api.worldbank.org/v2/indicator/IT.NET.USER.ZS?format=json
+renewable_electricity,EG.ELC.RNEW.ZS,World Development Indicators,https://api.worldbank.org/v2/indicator/EG.ELC.RNEW.ZS?format=json
+carbon_intensity,EN.GHG.CO2.RT.GDP.PP.KD,World Development Indicators,https://api.worldbank.org/v2/indicator/EN.GHG.CO2.RT.GDP.PP.KD?format=json
+gdp_per_capita_growth,NY.GDP.PCAP.KD.ZG,World Development Indicators,https://api.worldbank.org/v2/indicator/NY.GDP.PCAP.KD.ZG?format=json

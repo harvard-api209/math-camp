@@ -1,0 +1,66 @@
+---
+title: "Build the dataset"
+subtitle: "Coding Lesson 2 · Math Camp 2026"
+author: "API 209"
+format:
+  revealjs:
+    theme: ../slide-theme.scss
+    output-file: index.html
+    embed-resources: true
+    transition: none
+    background-transition: none
+    slide-number: c/t
+    progress: true
+    footer: "API 209 · MATH CAMP 2026 · LESSON 2"
+---
+
+## Today {.inverse}
+
+<span class="kicker">WED AUG 19 · 3-5 PM</span>
+
+Turn a public source into a documented analysis file, then supervise an agent-assisted update.
+
+## A dataset is a chain of decisions
+
+| Layer | Rule |
+|---|---|
+| Raw | Never edit by hand |
+| Derived | Rebuild with code |
+| Analysis | Name each decision |
+| Output | Never treat as input |
+
+## The country-year key
+
+```{.r}
+stopifnot(
+  !anyDuplicated(
+    health[c("iso3c", "year")]
+  )
+)
+```
+
+If this fails, **stop**. A later join can otherwise multiply observations silently.
+
+## Build one table
+
+```{.r}
+health <- wdi |>
+  select(iso3c, country, year, income_level,
+         gdp_per_capita_ppp, under5_mortality) |>
+  filter(year >= 2000) |>
+  mutate(log_income = log(gdp_per_capita_ppp))
+```
+
+Every verb should answer a question you can say aloud.
+
+## Update contract
+
+> Extend one named indicator from the official API. Write a new dated file. Preserve the frozen baseline. Record the retrieval date. Test unique keys. Report historical revisions separately from new years.
+
+## Lab 2 {.inverse}
+
+<span class="kicker">THU AUG 20 · 4-5 PM</span>
+
+Let the agent build. Compare the result with the frozen file.
+
+**Find one useful failure.**

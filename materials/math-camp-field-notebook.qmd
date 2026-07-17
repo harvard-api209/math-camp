@@ -1,0 +1,98 @@
+---
+title: "Math Camp field notebook"
+subtitle: "Question, code, evidence, judgment"
+format:
+  html:
+    toc: true
+    code-fold: false
+    embed-resources: true
+execute:
+  echo: true
+  warning: false
+  message: false
+---
+
+## Policy question
+
+Write one descriptive or associational question. Name the population, outcome, comparison, and time period.
+
+## Data and definitions
+
+- **Source:** World Bank World Development Indicators
+- **Retrieval or snapshot date:**
+- **Unit of observation:** country-year
+- **Indicators and units:**
+- **Known limitations:**
+
+```{r}
+#| label: setup
+
+library(tidyverse)
+
+wdi <- read_csv(
+  "../data/derived/math-camp-wdi-2000-2022.csv",
+  show_col_types = FALSE
+)
+```
+
+## First inspection
+
+Before using an agent, predict what each check should reveal.
+
+```{r}
+#| label: inspect
+
+glimpse(wdi)
+count(wdi, year)
+summarise(wdi, economies = n_distinct(iso3c))
+```
+
+## Analysis sample
+
+Explain every filter and transformation in plain language.
+
+```{r}
+#| label: build-analysis-sample
+
+# Replace this example with the variables for your selected policy track.
+analysis_data <- wdi |>
+  select(iso3c, country, year, income_level,
+         gdp_per_capita_ppp, under5_mortality) |>
+  filter(year >= 2000) |>
+  mutate(log_income = log(gdp_per_capita_ppp))
+
+stopifnot(
+  !anyDuplicated(analysis_data[c("iso3c", "year")])
+)
+```
+
+## Comparison
+
+```{r}
+#| label: figure
+#| fig-cap: "Replace this caption with the population, variables, years, and units."
+
+ggplot(analysis_data, aes(log_income, under5_mortality)) +
+  geom_point(alpha = 0.4, na.rm = TRUE) +
+  labs(
+    x = "Log GDP per capita, PPP",
+    y = "Under-five deaths per 1,000 live births"
+  ) +
+  theme_minimal()
+```
+
+Write the strongest descriptive or associational statement supported by the output.
+
+## What this does not show
+
+Name at least one limitation related to measurement, missingness, comparison, or causal interpretation.
+
+## AI-use note
+
+I used **[Codex / Claude Code / other]** to **[explain, generate, debug, review, or update]**. I provided it with **[public project context]**. I verified its contribution by **[tests, source comparison, clean render, or manual review]**. I revised or rejected **[important example]**. I remain responsible for the analysis and interpretation.
+
+## Verification record
+
+| Agent claim or change | Check performed | Result |
+|---|---|---|
+|  |  | Confirmed / contradicted / unresolved |

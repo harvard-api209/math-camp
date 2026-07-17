@@ -1,0 +1,46 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="Math Camp 2026 Coding Lesson 3: compare patterns.">
+  <title>Lesson 3: Compare patterns | Math Camp 2026</title>
+  <link rel="icon" href="data:,">
+  <link rel="stylesheet" href="../../styles.css">
+  <script>document.documentElement.classList.add("js");</script>
+</head>
+<body id="top">
+  <div class="page-progress" aria-hidden="true"><span></span></div>
+  <header class="site-header"><a class="brand" href="../../"><span>API 209</span><strong>MATH CAMP 2026</strong></a><div class="header-chapter"><span>LESSON 3</span><strong>/ COMPARE PATTERNS</strong></div><nav class="chapter-nav"><a href="../../">HOME</a><a href="../../labs/lab-3/">LAB 3</a><a href="../../slides/lesson-3/">SLIDES</a></nav><button class="menu-button" type="button" aria-expanded="false" aria-controls="mobile-outline">CONTENTS</button></header>
+  <nav class="mobile-outline" id="mobile-outline"><div class="mobile-outline-head"><span>LESSON 3</span><button type="button" data-close-menu>CLOSE</button></div><ol><li><a href="#outcomes">Outcomes</a></li><li><a href="#claims">Claims</a></li><li><a href="#workflow">Workflow</a></li><li><a href="#agent">Review pass</a></li><li><a href="#slides">Slides</a></li></ol></nav>
+  <main>
+    <section class="article-hero"><div class="article-hero-meta"><div><span>DATE</span><strong>MON AUG 24</strong></div><div><span>TIME</span><strong>1-4 PM</strong></div><div><span>FORMAT</span><strong>LESSON + LAB</strong></div></div><div class="article-hero-copy"><p>CODING LESSON 3</p><h1>Compare patterns.</h1><p class="article-deck">Move from a table to a defensible comparison, using plots and a simple model without turning association into causation.</p><div class="article-actions"><a href="../../labs/lab-3/">OPEN LAB 3 →</a><a href="../../slides/lesson-3/">OPEN SLIDES ↗</a></div></div><aside class="article-hero-side"><p>Describe first<br>Model second<br>Qualify always</p></aside></section>
+    <div class="article-layout">
+      <aside class="article-nav"><span>IN THIS LESSON</span><a href="#outcomes">Outcomes</a><a href="#claims">Claims</a><a href="#workflow">Workflow</a><a href="#agent">Review pass</a><a href="#slides">Slides</a></aside>
+      <article class="article">
+        <section class="article-section reveal" id="outcomes"><p class="section-kicker">LEARNING OUTCOMES</p><h2>Connect a visual pattern to a careful sentence.</h2><p class="article-lead">By the end of the meeting, you should be able to create a legible comparison, fit a simple regression, inspect residuals, and state what the evidence does and does not show.</p><ol class="learning-list"><li><span>01</span><strong>Choose plot encodings that match the variables and question.</strong></li><li><span>02</span><strong>Use transformations when the scale makes a pattern hard to see.</strong></li><li><span>03</span><strong>Interpret a coefficient in the units of the variables.</strong></li><li><span>04</span><strong>Inspect residuals and influential observations.</strong></li><li><span>05</span><strong>Separate descriptive, associational, and causal language.</strong></li></ol></section>
+        <section class="article-section reveal" id="claims"><p class="section-kicker">CLAIM LADDER</p><h2>Use the strongest claim the design can carry.</h2><div class="table-scroll"><table><thead><tr><th>Level</th><th>Example</th><th>Allowed here?</th></tr></thead><tbody><tr><td>Descriptive</td><td>Under-five mortality declined in most observed countries.</td><td>Yes, with coverage noted.</td></tr><tr><td>Associational</td><td>Higher income is associated with lower mortality in this sample.</td><td>Yes, with specification noted.</td></tr><tr><td>Causal</td><td>Higher income caused mortality to fall.</td><td>No. This design does not identify a causal effect.</td></tr></tbody></table></div><div class="callout"><span>INTERPRETATION CHECK</span><p>A more complex model does not repair a weak research design. The purpose here is to learn the mechanics and limits of comparison before the fall sequence develops them further.</p></div></section>
+        <section class="article-section reveal" id="workflow"><p class="section-kicker">LIVE CODING</p><h2>Plot, model, diagnose, explain.</h2><div class="session-plan"><div><time>00-25</time><strong>Plot</strong><p>Map variables deliberately and label units clearly.</p></div><div><time>25-55</time><strong>Transform</strong><p>Compare raw and logged income scales.</p></div><div><time>55-85</time><strong>Model</strong><p>Fit one interpretable regression and read its terms.</p></div><div><time>85-110</time><strong>Diagnose</strong><p>Inspect residuals and surprising observations.</p></div><div><time>110-120</time><strong>Claim</strong><p>Write one result and one limitation.</p></div><div><time>120-180</time><strong>Lab 3</strong><p>Build a comparison for the selected policy track.</p></div></div><div class="code-plate"><div class="code-plate-head"><span>R</span><span>FROM PLOT TO MODEL</span></div><pre><code>ggplot(health, aes(log_income, under5_mortality,
+                   color = income_level)) +
+  geom_point(alpha = 0.45) +
+  geom_smooth(method = "lm", se = FALSE)
+
+fit &lt;- lm(under5_mortality ~ log_income + income_level,
+          data = health)
+summary(fit)</code></pre><p>The line summarizes a fitted relationship. It does not reveal the mechanism that produced it.</p></div></section>
+        <section class="article-section reveal" id="agent"><p class="section-kicker">AGENT REVIEW PASS</p><h2>Separate code review from statistical review.</h2><div class="prompt-box"><span>STARTER PROMPT</span><pre>Goal: Review this analysis in two separate passes.
+Context: Read the policy question, variable dictionary, script, and generated figure.
+Pass 1: Check code behavior, missing values, transformations, labels, and reproducibility.
+Pass 2: Check whether the written claim matches the descriptive design and model output.
+Constraints: Do not rewrite the analysis. Quote the exact evidence for each concern. Do not suggest causal language.
+Done when: I have a short list of verified issues, uncertain issues, and checks I can run in R.</pre></div><ul class="checklist"><li><span>□</span><strong>Can every concern be tied to code, output, or documentation?</strong></li><li><span>□</span><strong>Did the agent confuse prediction, association, and causation?</strong></li><li><span>□</span><strong>Did you inspect at least one surprising observation yourself?</strong></li><li><span>□</span><strong>Does the final sentence name a limitation?</strong></li></ul></section>
+        <section class="article-section reveal" id="slides"><p class="section-kicker">SLIDES</p><h2>Lesson deck.</h2><p>The stable slide address lets the lesson page stay intact while the deck evolves.</p><figure class="slide-frame"><iframe src="../../slides/lesson-3/index.html" title="Lesson 3 slides"></iframe><figcaption><span>LESSON 3 / REVEALJS</span><a href="../../slides/lesson-3/">OPEN FULL SCREEN ↗</a></figcaption></figure></section>
+      </article>
+      <aside class="article-margin"><dl><div><dt>INPUT</dt><dd>Analysis table</dd></div><div><dt>OUTPUT</dt><dd>Figure + model</dd></div><div><dt>AGENT ROLE</dt><dd>Critical reviewer</dd></div></dl></aside>
+    </div>
+    <nav class="page-turn"><a href="../lesson-2/"><span>PREVIOUS</span><strong>Lesson 2: Build the dataset</strong></a><a href="../../labs/lab-3/"><span>NEXT</span><strong>Lab 3: Comparison studio</strong></a></nav>
+  </main>
+  <footer class="site-footer"><div><span>API 209</span><strong>MATH CAMP 2026</strong></div><p>Lesson 3 of 4.</p><a href="#top">RETURN TO TOP ↑</a></footer>
+  <script src="../../script.js"></script>
+</body>
+</html>

@@ -1,0 +1,83 @@
+---
+title: "Compare patterns"
+subtitle: "Coding Lesson 3 · Math Camp 2026"
+author: "API 209"
+format:
+  revealjs:
+    theme: ../slide-theme.scss
+    output-file: index.html
+    embed-resources: true
+    transition: none
+    background-transition: none
+    slide-number: c/t
+    progress: true
+    footer: "API 209 · MATH CAMP 2026 · LESSON 3"
+---
+
+## Today {.inverse}
+
+<span class="kicker">MON AUG 24 · 1-4 PM</span>
+
+Move from a table to a defensible comparison: **plot, model, diagnose, explain**.
+
+## The claim ladder
+
+| Claim | Example | Here? |
+|---|---|---|
+| Descriptive | Mortality declined in observed countries | Yes |
+| Associational | Income is associated with mortality | Yes |
+| Causal | Income caused mortality to fall | No |
+
+## See the scale
+
+```{.r}
+ggplot(health, aes(log_income,
+                   under5_mortality,
+                   color = income_level)) +
+  geom_point(alpha = 0.45) +
+  geom_smooth(method = "lm", se = FALSE)
+```
+
+Label the units. Name the sample. Inspect surprises.
+
+## Summarize the relationship
+
+```{.r}
+fit <- lm(
+  under5_mortality ~ log_income + income_level,
+  data = health
+)
+
+summary(fit)
+```
+
+A coefficient is not a mechanism.
+
+## Two review passes
+
+::: columns
+::: {.column width="50%"}
+### Code review
+
+- Sample
+- Missingness
+- Transformations
+- Labels
+- Reproducibility
+:::
+::: {.column width="50%"}
+### Statistical review
+
+- Units
+- Specification
+- Residuals
+- Claim strength
+- Limitations
+:::
+:::
+
+## Lab 3 {.inverse}
+
+<span class="kicker">COMPARISON STUDIO · 3-4 PM</span>
+
+One figure. One model. One careful claim. One limitation.

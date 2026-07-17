@@ -1,0 +1,65 @@
+---
+title: "Audit the handoff"
+subtitle: "Coding Lesson 4 · Math Camp 2026"
+author: "API 209"
+format:
+  revealjs:
+    theme: ../slide-theme.scss
+    output-file: index.html
+    embed-resources: true
+    transition: none
+    background-transition: none
+    slide-number: c/t
+    progress: true
+    footer: "API 209 · MATH CAMP 2026 · LESSON 4"
+---
+
+## Today {.inverse}
+
+<span class="kicker">TUE AUG 25 · 3-5 PM</span>
+
+Package the question, data, code, evidence, limitations, and AI assistance so another person can inspect the work.
+
+## Minimum handoff
+
+- One descriptive or associational question
+- Source, years, unit, and indicator definitions
+- One R script or Quarto notebook
+- One figure or table with a careful statement
+- One limitation
+- One AI-use note
+
+## A clean render is a test
+
+```yaml
+---
+title: "Math Camp field notebook"
+format: html
+execute:
+  echo: true
+  warning: false
+---
+```
+
+Restart R. Render from the source. Repair hidden state.
+
+## Four-part audit
+
+| Pass | Core question |
+|---|---|
+| Reproducibility | Does it run clean? |
+| Provenance | Can I trace the data? |
+| Interpretation | Does the claim match the design? |
+| Communication | Can a new reader follow it? |
+
+## AI-use note
+
+> I used [tool] to [contribution]. I provided [public context]. I verified it using [checks]. I revised or rejected [example]. I remain responsible for the analysis and interpretation.
+
+## Lab 4 {.inverse}
+
+<span class="kicker">MINI HACKATHON · WED AUG 26 · 4-5 PM</span>
+
+Exchange. Run cold. Audit. Repair one high-value issue.
+
+**Nothing is graded. A useful failure is a success.**

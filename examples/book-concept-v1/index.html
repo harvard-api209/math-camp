@@ -1,0 +1,476 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="Math Camp 2026. A visual field guide to data, R, and quantitative reasoning before API 209.">
+    <meta name="theme-color" content="#f5f5f0">
+    <title>Math Camp 2026 | API 209</title>
+    <link rel="icon" href="data:,">
+    <link rel="preload" href="assets/fonts/DepartureMono-Regular.woff2" as="font" type="font/woff2" crossorigin>
+    <link rel="stylesheet" href="styles.css">
+    <script>
+      document.documentElement.classList.add("js");
+    </script>
+  </head>
+  <body>
+    <div class="page-progress" aria-hidden="true"><span></span></div>
+    <div class="edge-ruler" aria-hidden="true"></div>
+
+    <header class="site-header">
+      <a class="brand" href="#top" aria-label="Math Camp 2026 home">
+        <span>API 209</span>
+        <strong>MATH CAMP 2026</strong>
+      </a>
+
+      <div class="header-chapter">
+        <span>FOUNDATIONS</span>
+        <strong>/ HOW TO THINK WITH DATA</strong>
+      </div>
+
+      <nav class="chapter-nav" aria-label="Chapter navigation">
+        <a href="#contents" aria-label="Open table of contents">INDEX</a>
+        <a href="#schedule" aria-label="Go to the schedule">CAMP MAP</a>
+      </nav>
+
+      <button class="menu-button" type="button" aria-expanded="false" aria-controls="mobile-outline">
+        OUTLINE
+      </button>
+    </header>
+
+    <nav class="mobile-outline" id="mobile-outline" aria-label="Mobile chapter outline">
+      <div class="mobile-outline-head">
+        <span>TABLE_OF_CONTENTS</span>
+        <button type="button" data-close-menu>CLOSE</button>
+      </div>
+      <ol>
+        <li><a href="#introduction">00 / Introduction</a></li>
+        <li><a href="#observations">01 / Observations</a></li>
+        <li><a href="#variables">02 / Variables</a></li>
+        <li><a href="#distributions">03 / Distributions</a></li>
+        <li><a href="#comparison">04 / Comparison</a></li>
+        <li><a href="#models">05 / Models</a></li>
+        <li><a href="#workflow">06 / Workflow</a></li>
+        <li><a href="#schedule">07 / Camp map</a></li>
+      </ol>
+    </nav>
+
+    <main id="top">
+      <section class="cover">
+        <div class="cover-meta">
+          <div>
+            <span>PUBLIC_POLICY</span>
+            <strong>API 209</strong>
+          </div>
+          <div>
+            <span>EDITION</span>
+            <strong>SUMMER 2026</strong>
+          </div>
+          <div>
+            <span>FORMAT</span>
+            <strong>FIELD GUIDE</strong>
+          </div>
+        </div>
+
+        <div class="cover-title">
+          <p>2,860 words | API 209 teaching team</p>
+          <h1>How to think with data.</h1>
+          <p class="cover-deck">A field guide to observations, comparisons, models, and reproducible quantitative work.</p>
+        </div>
+
+        <div class="cover-intro">
+          <p class="dropcap">Math camp is not a speed test. It is a short manual for learning how quantitative work is assembled from observations, choices, comparisons, and code.</p>
+          <p>We will begin with the shape of a dataset, move through visualization and modeling, and finish with a workflow that another person can inspect and run. No prior fluency is assumed.</p>
+        </div>
+
+        <figure class="technical-figure cover-figure" aria-labelledby="fig-001-caption">
+          <figcaption id="fig-001-caption">
+            <span>FIG_001</span>
+            <span>[ OBSERVATIONS, SIGNAL, AND UNCERTAINTY ]</span>
+            <span id="figure-clock">t = 0.00</span>
+          </figcaption>
+          <div class="plot-frame">
+            <canvas id="hero-plot" aria-label="Animated scatterplot showing observations and a fitted trend"></canvas>
+            <span class="axis-label axis-label-y">OUTCOME</span>
+            <span class="axis-label axis-label-x">PREDICTOR</span>
+          </div>
+          <div class="figure-controls">
+            <p>Each point is an observation. The line is a compact description of their shared pattern.</p>
+            <button id="plot-control" type="button" aria-pressed="false">PAUSE_ANIMATION</button>
+          </div>
+        </figure>
+
+        <div class="cover-footer">
+          <span>HARVARD KENNEDY SCHOOL</span>
+          <span>DESCRIPTION + PREDICTION</span>
+          <span>READING TIME: 14 MIN</span>
+        </div>
+      </section>
+
+      <section class="contents-panel" id="contents" aria-labelledby="contents-title">
+        <div class="contents-heading">
+          <span>INDEX</span>
+          <h2 id="contents-title">Table of Contents.</h2>
+        </div>
+        <div class="contents-list">
+          <a href="#introduction"><span>00</span><strong>Introduction</strong><small>Why the pieces matter.</small></a>
+          <a href="#observations"><span>01</span><strong>Observations</strong><small>What a row represents.</small></a>
+          <a href="#variables"><span>02</span><strong>Variables</strong><small>Turning concepts into columns.</small></a>
+          <a href="#distributions"><span>03</span><strong>Distributions</strong><small>Seeing shape before summaries.</small></a>
+          <a href="#comparison"><span>04</span><strong>Comparison</strong><small>Building a credible contrast.</small></a>
+          <a href="#models"><span>05</span><strong>Models</strong><small>Compressing patterns carefully.</small></a>
+          <a href="#workflow"><span>06</span><strong>Workflow</strong><small>Making the path reproducible.</small></a>
+          <a href="#schedule"><span>07</span><strong>Camp map</strong><small>Four modules before API 209.</small></a>
+        </div>
+        <div class="contents-stats">
+          <div><span>SECTIONS</span><strong>08</strong></div>
+          <div><span>FIGURES</span><strong>06</strong></div>
+          <div><span>SESSIONS</span><strong>08</strong></div>
+          <div><span>TOOLS</span><strong>R + RSTUDIO</strong></div>
+        </div>
+      </section>
+
+      <div class="chapter-layout">
+        <aside class="chapter-outline" aria-label="Table of contents">
+          <p>TABLE_OF_CONTENTS</p>
+          <ol>
+            <li><a class="is-active" href="#introduction"><span>00</span>Introduction</a></li>
+            <li><a href="#observations"><span>01</span>Observations</a></li>
+            <li><a href="#variables"><span>02</span>Variables</a></li>
+            <li><a href="#distributions"><span>03</span>Distributions</a></li>
+            <li><a href="#comparison"><span>04</span>Comparison</a></li>
+            <li><a href="#models"><span>05</span>Models</a></li>
+            <li><a href="#workflow"><span>06</span>Workflow</a></li>
+            <li><a href="#schedule"><span>07</span>Camp map</a></li>
+          </ol>
+          <div class="outline-meter" aria-hidden="true"><span></span></div>
+        </aside>
+
+        <article class="chapter">
+          <section class="chapter-section reveal" id="introduction">
+            <div class="section-number">00</div>
+            <div class="section-copy">
+              <p class="section-kicker">INTRODUCTION</p>
+              <h2>Data does not arrive with its meaning attached.</h2>
+              <div class="prose two-column-prose">
+                <p class="lead dropcap">A dataset looks rectangular and orderly, but every cell is the result of a decision. Someone chose what to observe, how to measure it, and what to leave out.</p>
+                <div>
+                  <p>Quantitative work begins by reconstructing those decisions. Before calculation, we ask what each row represents, what each variable means, and whether the available comparison matches the policy question.</p>
+                  <p>Code helps us make those choices visible. It does not replace judgment. The goal of math camp is to connect the two.</p>
+                </div>
+              </div>
+            </div>
+          </section>
+
+          <figure class="technical-figure full-bleed reveal" aria-labelledby="fig-002-caption">
+            <figcaption id="fig-002-caption">
+              <span>FIG_002</span>
+              <span>[ THE ANATOMY OF A DATASET ]</span>
+              <span>n = 12</span>
+            </figcaption>
+            <div class="dataset-diagram" data-animate-grid>
+              <div class="dataset-label label-rows">OBSERVATIONS / ROWS</div>
+              <div class="dataset-label label-columns">VARIABLES / COLUMNS</div>
+              <div class="dataset-grid" aria-hidden="true">
+                <span style="--x:0;--y:0">ID</span><span style="--x:1;--y:0">AGE</span><span style="--x:2;--y:0">GROUP</span><span style="--x:3;--y:0">OUTCOME</span>
+                <span style="--x:0;--y:1">001</span><span style="--x:1;--y:1">31</span><span style="--x:2;--y:1">A</span><span style="--x:3;--y:1">18.2</span>
+                <span style="--x:0;--y:2">002</span><span style="--x:1;--y:2">44</span><span style="--x:2;--y:2">B</span><span style="--x:3;--y:2">27.4</span>
+                <span style="--x:0;--y:3">003</span><span style="--x:1;--y:3">28</span><span style="--x:2;--y:3">A</span><span style="--x:3;--y:3">21.1</span>
+                <span style="--x:0;--y:4">004</span><span style="--x:1;--y:4">39</span><span style="--x:2;--y:4">B</span><span style="--x:3;--y:4">32.8</span>
+                <span style="--x:0;--y:5">005</span><span style="--x:1;--y:5">35</span><span style="--x:2;--y:5">A</span><span style="--x:3;--y:5">25.6</span>
+              </div>
+            </div>
+          </figure>
+
+          <section class="chapter-section reveal" id="observations">
+            <div class="section-number">01</div>
+            <div class="section-copy">
+              <p class="section-kicker">OBSERVATIONS</p>
+              <h2>A row is a claim about what counts as one thing.</h2>
+              <div class="prose">
+                <p class="lead">A row might represent a person, a school, a municipality, a country-year, or an interview. Changing the unit changes the question.</p>
+                <p>Suppose one table has a row for each student and another has a row for each classroom. An average computed from the first table gives every student equal weight. An average computed from the second gives every classroom equal weight. Both can be correct, but they describe different populations.</p>
+              </div>
+              <aside class="formula-note">
+                <span>UNIT_OF_ANALYSIS</span>
+                <strong>ONE ROW = ONE OBSERVATION</strong>
+                <p>Write this sentence before you write a model.</p>
+              </aside>
+            </div>
+          </section>
+
+          <section class="chapter-section reveal" id="variables">
+            <div class="section-number">02</div>
+            <div class="section-copy">
+              <p class="section-kicker">VARIABLES</p>
+              <h2>A variable is a concept translated into values.</h2>
+              <div class="prose two-column-prose">
+                <p class="lead">Income, learning, trust, and program participation sound concrete until we need to place them in a column.</p>
+                <div>
+                  <p>Measurement makes an abstract idea operational. The variable name should tell us what was measured, while documentation should tell us how, when, and for whom.</p>
+                  <p>Good analysis preserves the distance between the concept and its measurement. We do not treat a proxy as if it were the thing itself.</p>
+                </div>
+              </div>
+
+              <div class="variable-machine" aria-label="Concept to variable diagram">
+                <div>
+                  <span>CONCEPT</span>
+                  <strong>ECONOMIC SECURITY</strong>
+                </div>
+                <i aria-hidden="true"></i>
+                <div>
+                  <span>MEASURE</span>
+                  <strong>MONTHLY HOUSEHOLD INCOME</strong>
+                </div>
+                <i aria-hidden="true"></i>
+                <div>
+                  <span>VARIABLE</span>
+                  <strong>income_usd</strong>
+                </div>
+              </div>
+            </div>
+          </section>
+
+          <figure class="technical-figure full-bleed reveal" aria-labelledby="fig-003-caption">
+            <figcaption id="fig-003-caption">
+              <span>FIG_003</span>
+              <span>[ ONE SUMMARY, TWO DISTRIBUTIONS ]</span>
+              <span>MEAN = 24</span>
+            </figcaption>
+            <div class="distribution-diagram">
+              <div class="distribution-axis">
+                <span>0</span><span>10</span><span>20</span><span>30</span><span>40</span><span>50</span>
+              </div>
+              <div class="distribution-row">
+                <strong>A</strong>
+                <div class="dot-field dot-field-tight" aria-hidden="true">
+                  <i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i>
+                </div>
+              </div>
+              <div class="distribution-row">
+                <strong>B</strong>
+                <div class="dot-field dot-field-wide" aria-hidden="true">
+                  <i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i>
+                </div>
+              </div>
+              <div class="mean-marker"><span>μ</span></div>
+            </div>
+          </figure>
+
+          <section class="chapter-section reveal" id="distributions">
+            <div class="section-number">03</div>
+            <div class="section-copy">
+              <p class="section-kicker">DISTRIBUTIONS</p>
+              <h2>The average is a location, not a complete description.</h2>
+              <div class="prose">
+                <p class="lead">Two groups can have the same mean and completely different shapes.</p>
+                <p>A distribution reveals concentration, spread, gaps, and unusual observations. This is why we visualize before modeling. A chart lets us see which features a summary preserves and which features it erases.</p>
+              </div>
+              <blockquote>
+                <p>Start with the shape. Then decide which summary earns the right to represent it.</p>
+              </blockquote>
+            </div>
+          </section>
+
+          <section class="chapter-section reveal" id="comparison">
+            <div class="section-number">04</div>
+            <div class="section-copy">
+              <p class="section-kicker">COMPARISON</p>
+              <h2>A useful difference needs a useful counterfactual.</h2>
+              <div class="prose two-column-prose">
+                <p class="lead">Description asks what happened. Causal reasoning asks what would have happened otherwise.</p>
+                <div>
+                  <p>That second outcome is not observed for the same person at the same time. We approximate it with another group, another period, or a model.</p>
+                  <p>The credibility of the result depends on the comparison, not the visual polish of the final coefficient.</p>
+                </div>
+              </div>
+
+              <div class="comparison-diagram" data-comparison>
+                <div class="comparison-group">
+                  <span>OBSERVED</span>
+                  <div class="comparison-value">31.7</div>
+                  <small>PROGRAM GROUP</small>
+                </div>
+                <div class="comparison-operator">
+                  <span>MINUS</span>
+                  <strong>-</strong>
+                </div>
+                <div class="comparison-group">
+                  <span>COMPARISON</span>
+                  <div class="comparison-value">26.4</div>
+                  <small>REFERENCE GROUP</small>
+                </div>
+                <div class="comparison-operator">
+                  <span>EQUALS</span>
+                  <strong>=</strong>
+                </div>
+                <div class="comparison-group result">
+                  <span>DIFFERENCE</span>
+                  <div class="comparison-value">5.3</div>
+                  <small>DESCRIPTIVE CONTRAST</small>
+                </div>
+              </div>
+            </div>
+          </section>
+
+          <figure class="technical-figure full-bleed reveal" aria-labelledby="fig-004-caption">
+            <figcaption id="fig-004-caption">
+              <span>FIG_004</span>
+              <span>[ A MODEL AND ITS RESIDUALS ]</span>
+              <span>ŷ = β₀ + β₁x</span>
+            </figcaption>
+            <div class="residual-frame">
+              <canvas id="residual-plot" aria-label="Regression line with animated residual distances"></canvas>
+              <div class="residual-key">
+                <span><i class="key-point"></i>OBSERVATION</span>
+                <span><i class="key-line"></i>MODEL</span>
+                <span><i class="key-dash"></i>RESIDUAL</span>
+              </div>
+            </div>
+          </figure>
+
+          <section class="chapter-section reveal" id="models">
+            <div class="section-number">05</div>
+            <div class="section-copy">
+              <p class="section-kicker">MODELS</p>
+              <h2>A model is a deliberate compression of reality.</h2>
+              <div class="prose">
+                <p class="lead">A regression line cannot preserve every observation. It preserves a pattern we have chosen to summarize.</p>
+                <p>The distance between each observation and the fitted value is a residual. Residuals are not merely errors to hide. They show what the model does not explain and help us diagnose where the compression fails.</p>
+              </div>
+
+              <div class="code-plate">
+                <div class="code-plate-head"><span>R</span><span>MODEL_01</span></div>
+                <pre><code>model &lt;- lm(
+  outcome ~ program + baseline,
+  data = camp_data
+)
+
+summary(model)</code></pre>
+                <p>Read the formula as a sentence: describe the outcome using program status and the baseline measure.</p>
+              </div>
+            </div>
+          </section>
+
+          <section class="chapter-section reveal" id="workflow">
+            <div class="section-number">06</div>
+            <div class="section-copy">
+              <p class="section-kicker">WORKFLOW</p>
+              <h2>The path to the result is part of the result.</h2>
+              <div class="prose">
+                <p class="lead">Reproducibility means that a reader can inspect the source, rerun the transformations, and recover the same output.</p>
+              </div>
+
+              <ol class="workflow-list">
+                <li>
+                  <span>IMPORT</span>
+                  <strong>Keep source files unchanged.</strong>
+                  <p>Record where the data came from and when it was retrieved.</p>
+                </li>
+                <li>
+                  <span>CLEAN</span>
+                  <strong>Make every transformation explicit.</strong>
+                  <p>Use code for recoding, filtering, joining, and handling missing values.</p>
+                </li>
+                <li>
+                  <span>EXPLORE</span>
+                  <strong>Look before choosing the model.</strong>
+                  <p>Plot distributions, inspect unusual cases, and test assumptions.</p>
+                </li>
+                <li>
+                  <span>MODEL</span>
+                  <strong>Connect the method to the question.</strong>
+                  <p>State what the model preserves and what it leaves unexplained.</p>
+                </li>
+                <li>
+                  <span>COMMUNICATE</span>
+                  <strong>Write the claim at the right level.</strong>
+                  <p>Distinguish description, prediction, association, and causation.</p>
+                </li>
+              </ol>
+            </div>
+          </section>
+
+          <figure class="technical-figure full-bleed reveal" aria-labelledby="fig-005-caption">
+            <figcaption id="fig-005-caption">
+              <span>FIG_005</span>
+              <span>[ A REPRODUCIBLE ANALYSIS PIPELINE ]</span>
+              <span>INPUT → OUTPUT</span>
+            </figcaption>
+            <div class="pipeline-diagram" aria-hidden="true">
+              <div><span>01</span><strong>RAW_DATA</strong><small>.CSV / .XLSX</small></div>
+              <i></i>
+              <div><span>02</span><strong>CLEANING</strong><small>.R</small></div>
+              <i></i>
+              <div><span>03</span><strong>ANALYSIS</strong><small>.R / .RMD</small></div>
+              <i></i>
+              <div><span>04</span><strong>REPORT</strong><small>.HTML / .PDF</small></div>
+            </div>
+          </figure>
+
+          <section class="chapter-section schedule-section reveal" id="schedule">
+            <div class="section-number">07</div>
+            <div class="section-copy">
+              <p class="section-kicker">CAMP MAP</p>
+              <h2>Four modules before API 209.</h2>
+              <div class="prose">
+                <p class="lead">Each module combines a short conceptual lesson, a guided hands-on session, and independent practice.</p>
+              </div>
+
+              <div class="schedule-list">
+                <article>
+                  <span>AUG_15-19</span>
+                  <strong>Data wrangling</strong>
+                  <p>Objects, data frames, joins, missing values, and transparent transformations.</p>
+                  <small>SESSIONS 01-02</small>
+                </article>
+                <article>
+                  <span>AUG_20-26</span>
+                  <strong>Data visualization</strong>
+                  <p>Distributions, comparisons, the grammar of graphics, and clear annotation.</p>
+                  <small>SESSIONS 03-04</small>
+                </article>
+                <article>
+                  <span>AUG_26-28</span>
+                  <strong>Statistical modeling</strong>
+                  <p>Regression for description, prediction, and structured comparison.</p>
+                  <small>SESSIONS 05-06</small>
+                </article>
+                <article>
+                  <span>SEP_02-04</span>
+                  <strong>AI and reproducibility</strong>
+                  <p>Responsible assistance, verification, automation, and research records.</p>
+                  <small>SESSIONS 07-08</small>
+                </article>
+              </div>
+
+              <div class="closing-note">
+                <span>NEXT</span>
+                <p>Bring a working installation of R and RStudio, the completed summer assignment, and one policy question you would like to understand better.</p>
+                <a href="mailto:rrodriguezramirez@g.harvard.edu">CONTACT THE SUMMER TF</a>
+              </div>
+            </div>
+          </section>
+        </article>
+
+        <aside class="margin-register" aria-hidden="true">
+          <div><span>DOC</span><strong>MC_2026</strong></div>
+          <div><span>REV</span><strong>FIRST_PASS</strong></div>
+          <div><span>LANG</span><strong>R</strong></div>
+          <div><span>MODE</span><strong>VISUAL</strong></div>
+        </aside>
+      </div>
+    </main>
+
+    <footer class="site-footer">
+      <div>
+        <span>API_209</span>
+        <strong>MATH CAMP 2026</strong>
+      </div>
+      <p>Advanced Quantitative Methods: Description and Prediction.</p>
+      <a href="#top">RETURN_TO_TOP ↑</a>
+    </footer>
+
+    <script src="script.js"></script>
+  </body>
+</html>
