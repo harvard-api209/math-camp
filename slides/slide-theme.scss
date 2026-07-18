@@ -5,23 +5,17 @@ $link-color: #a51c30;
 $selection-bg: #a51c30;
 $selection-color: #ffffff;
 $presentation-heading-color: #151515;
-$presentation-heading-font: "Departure Mono", "Courier New", monospace;
+$presentation-heading-font: Georgia, "Times New Roman", serif;
 $presentation-heading-font-weight: 400;
-$presentation-font-size-root: 34px;
+$presentation-font-size-root: 30px;
 $code-block-bg: #e6e3d9;
 $code-color: #151515;
 $code-block-border-color: #151515;
 
 /*-- scss:rules --*/
-@font-face {
-  font-family: "Departure Mono";
-  src: url("../../../../../../../assets/fonts/DepartureMono-Regular.woff2") format("woff2");
-  font-display: swap;
-}
-
 .reveal {
   font-family: Arial, Helvetica, sans-serif;
-  letter-spacing: -0.018em;
+  letter-spacing: -0.012em;
 }
 
 .reveal .slides {
@@ -30,25 +24,56 @@ $code-block-border-color: #151515;
 
 .reveal .slides section {
   box-sizing: border-box;
-  padding: 62px 72px;
+  padding: 52px 64px;
   border: 1px solid #151515;
 }
 
 .reveal h1,
 .reveal h2,
 .reveal h3 {
-  letter-spacing: -0.055em;
-  line-height: 0.96;
+  font-family: Georgia, "Times New Roman", serif;
+  font-weight: 400;
+  letter-spacing: -0.045em;
+  line-height: 1;
   text-transform: none;
+  text-wrap: pretty;
 }
 
-.reveal h1 { font-size: 2.35em; max-width: 14ch; }
-.reveal h2 { font-size: 1.8em; max-width: 18ch; }
-.reveal h3 { font-size: 1.05em; letter-spacing: -0.025em; }
+.reveal h1 { font-size: 2.45em; max-width: none; }
+.reveal h2 {
+  max-width: none;
+  font-size: 1.72em;
+  white-space: nowrap;
+}
+.reveal h3 { font-size: 1.08em; letter-spacing: -0.025em; }
+
+.reveal #title-slide {
+  display: flex !important;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+}
+
+.reveal #title-slide h1,
+.reveal #title-slide .title,
+.reveal #title-slide .subtitle,
+.reveal #title-slide .author {
+  width: 100%;
+  margin-right: auto;
+  margin-left: auto;
+  text-align: center;
+}
+
+.reveal #title-slide h1,
+.reveal #title-slide .title {
+  white-space: nowrap;
+}
 
 .reveal p,
 .reveal li {
   max-width: 38em;
+  line-height: 1.42;
 }
 
 .reveal strong { color: #a51c30; }
@@ -56,20 +81,21 @@ $code-block-border-color: #151515;
 .reveal .kicker,
 .reveal .slide-number,
 .reveal figcaption {
-  font-family: "Departure Mono", "Courier New", monospace;
+  font-family: Arial, Helvetica, sans-serif;
+  font-weight: 700;
   font-size: 0.42em;
-  letter-spacing: 0.09em;
+  letter-spacing: 0.11em;
   text-transform: uppercase;
 }
 
 .reveal .kicker {
   display: block;
-  margin-bottom: 3.5rem;
+  margin-bottom: 2.4rem;
   color: #a51c30;
 }
 
 .reveal .columns {
-  gap: 4rem;
+  gap: 3rem;
 }
 
 .reveal blockquote {
@@ -84,16 +110,39 @@ $code-block-border-color: #151515;
 
 .reveal pre {
   width: 100%;
+  max-height: none;
+  overflow: auto;
   box-shadow: none;
   border: 1px solid #151515;
+  font-size: 0.56em;
+  line-height: 1.38;
+  scrollbar-width: none;
+}
+
+.reveal pre::-webkit-scrollbar {
+  display: none;
+}
+
+.reveal div.sourceCode {
+  overflow-x: hidden;
+}
+
+.reveal code.sourceCode {
+  overflow-x: visible;
+}
+
+.reveal div.sourceCode::-webkit-scrollbar,
+.reveal code.sourceCode::-webkit-scrollbar {
+  display: none;
 }
 
 .reveal code {
-  font-family: "Departure Mono", "Courier New", monospace;
+  font-family: "SFMono-Regular", Menlo, Monaco, Consolas, "Liberation Mono", monospace;
 }
 
 .reveal table {
-  font-size: 0.64em;
+  font-size: 0.61em;
+  line-height: 1.32;
 }
 
 .reveal table th,
@@ -109,9 +158,10 @@ $code-block-border-color: #151515;
 .reveal .controls { color: #a51c30; }
 
 .reveal .footer {
-  font-family: "Departure Mono", "Courier New", monospace;
+  font-family: Arial, Helvetica, sans-serif;
+  font-weight: 700;
   font-size: 0.32em;
-  letter-spacing: 0.06em;
+  letter-spacing: 0.08em;
   text-transform: uppercase;
 }
 
@@ -135,9 +185,10 @@ $code-block-border-color: #151515;
   display: block;
   margin-bottom: 0.45rem;
   color: #a51c30;
-  font-family: "Departure Mono", "Courier New", monospace;
+  font-family: Arial, Helvetica, sans-serif;
+  font-weight: 700;
   font-size: 0.42em;
-  letter-spacing: 0.09em;
+  letter-spacing: 0.11em;
   content: "YOUR TURN";
 }
 
@@ -147,9 +198,10 @@ $code-block-border-color: #151515;
   padding: 0.3rem 0.55rem;
   background: #151515;
   color: #ffffff;
-  font-family: "Departure Mono", "Courier New", monospace;
+  font-family: Arial, Helvetica, sans-serif;
+  font-weight: 700;
   font-size: 0.42em;
-  letter-spacing: 0.08em;
+  letter-spacing: 0.1em;
 }
 
 .reveal .choice-grid {
@@ -187,17 +239,364 @@ $code-block-border-color: #151515;
 
 .reveal .big-number {
   color: #a51c30;
-  font-family: "Departure Mono", "Courier New", monospace;
+  font-family: Georgia, "Times New Roman", serif;
   font-size: 4.6em;
   line-height: 0.9;
 }
 
 .reveal .claim-line {
   margin-top: 1.6rem;
-  padding: 1rem 0;
-  border-top: 1px solid #151515;
-  border-bottom: 1px solid #151515;
-  font-size: 1.08em;
+  padding: 0.2rem 0 0.2rem 1rem;
+  border-left: 8px solid #a51c30;
+  font-family: Georgia, "Times New Roman", serif;
+  font-size: 1.12em;
+  line-height: 1.28;
+}
+
+.reveal .profile-layout {
+  display: grid;
+  grid-template-columns: 0.72fr 1.28fr;
+  gap: 3rem;
+  align-items: center;
+  margin-top: 1rem;
+}
+
+.reveal .profile-photo {
+  width: min(100%, 420px);
+  aspect-ratio: 1;
+  justify-self: center;
+  object-fit: cover;
+  object-position: center 31%;
+  border: 1px solid #151515;
+  border-radius: 50%;
+  filter: saturate(0.82);
+}
+
+.reveal .profile-copy {
+  font-size: 0.92em;
+}
+
+.reveal .profile-copy .name {
+  margin: 0 0 1.2rem;
+  color: #a51c30;
+  font-family: Georgia, "Times New Roman", serif;
+  font-size: 1.72em;
+  line-height: 1.02;
+}
+
+.reveal .definition-list {
+  display: grid;
+  gap: 0;
+  width: 100%;
+  margin-top: 1.4rem;
+  border-top: 2px solid #151515;
+}
+
+.reveal .definition-row {
+  display: grid;
+  grid-template-columns: minmax(190px, 0.34fr) minmax(0, 1fr);
+  gap: 1.4rem;
+  align-items: start;
+  padding: 0.72rem 0.2rem;
+  border-bottom: 1px solid rgba(21, 21, 21, 0.45);
+  font-size: 0.78em;
+  line-height: 1.28;
+}
+
+.reveal .definition-row strong {
+  font-size: 1.06em;
+}
+
+.reveal .definition-list.three-column .definition-row {
+  grid-template-columns: minmax(140px, 0.23fr) minmax(0, 0.72fr) minmax(0, 0.72fr);
+  gap: 1.2rem;
+}
+
+.reveal .definition-list .definition-head {
+  font-family: Arial, Helvetica, sans-serif;
+  font-size: 0.56em;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
+.reveal .protocol-flow {
+  display: grid;
+  grid-template-columns: repeat(5, minmax(0, 1fr));
+  gap: 1.55rem;
+  align-items: stretch;
+  margin-top: 2.2rem;
+}
+
+.reveal .protocol-step {
+  position: relative;
+  min-height: 260px;
+  padding: 1rem;
+  border: 1px solid #151515;
+  background: #e6e3d9;
+}
+
+.reveal .protocol-step:not(:last-child)::after {
+  position: absolute;
+  z-index: 2;
+  top: 50%;
+  right: -1.35rem;
+  color: #a51c30;
+  font-size: 1.35em;
+  line-height: 1;
+  content: "→";
+  transform: translateY(-50%);
+}
+
+.reveal .protocol-step span {
+  display: block;
+  margin-bottom: 1.6rem;
+  color: #5f5c55;
+  font-size: 0.54em;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+}
+
+.reveal .protocol-step strong {
+  display: block;
+  margin-bottom: 0.55rem;
+  font-family: Georgia, "Times New Roman", serif;
+  font-size: 1.14em;
+  font-weight: 400;
+}
+
+.reveal .protocol-step p {
+  margin: 0;
+  font-size: 0.68em;
+  line-height: 1.32;
+}
+
+.reveal .choice-grid.six-up {
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+}
+
+.reveal .choice-grid.six-up > div {
+  min-height: 88px;
+}
+
+.reveal .choice-grid .aside-choice {
+  border-color: #a51c30;
+  background: rgba(165, 28, 48, 0.055);
+}
+
+.reveal .archetype-layout {
+  display: grid;
+  grid-template-columns: minmax(0, 1.55fr) minmax(300px, 0.72fr);
+  gap: 2rem;
+  align-items: stretch;
+  margin-top: 1rem;
+}
+
+.reveal .archetype-board {
+  position: relative;
+  min-height: 520px;
+  margin: 0 0 1.4rem 2.3rem;
+  border-bottom: 2px solid #151515;
+  border-left: 2px solid #151515;
+}
+
+.reveal .archetype-board::before,
+.reveal .archetype-board::after {
+  position: absolute;
+  background: repeating-linear-gradient(
+    to right,
+    rgba(165, 28, 48, 0.75) 0 10px,
+    transparent 10px 18px
+  );
+  content: "";
+}
+
+.reveal .archetype-board::before {
+  top: 50%;
+  right: 0;
+  left: 0;
+  height: 2px;
+}
+
+.reveal .archetype-board::after {
+  top: 0;
+  bottom: 0;
+  left: 50%;
+  width: 2px;
+  background: repeating-linear-gradient(
+    to bottom,
+    rgba(165, 28, 48, 0.75) 0 10px,
+    transparent 10px 18px
+  );
+}
+
+.reveal .axis-x,
+.reveal .axis-y {
+  position: absolute;
+  color: #5f5c55;
+  font-size: 0.44em;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
+.reveal .axis-x {
+  right: 0;
+  bottom: -1.5rem;
+}
+
+.reveal .axis-y {
+  top: 0;
+  left: -2.5rem;
+  writing-mode: vertical-rl;
+  transform: rotate(180deg);
+}
+
+.reveal .archetype-marker {
+  position: absolute;
+  z-index: 2;
+  width: 190px;
+  transform: translate(-50%, -50%);
+}
+
+.reveal .archetype-marker::before {
+  display: block;
+  width: 20px;
+  height: 20px;
+  margin-bottom: 0.25rem;
+  border: 3px solid #151515;
+  border-radius: 50%;
+  background: #a51c30;
+  content: "";
+}
+
+.reveal .archetype-marker strong {
+  display: block;
+  font-size: 0.55em;
+  line-height: 1.1;
+}
+
+.reveal .archetype-marker span {
+  display: block;
+  margin-top: 0.15rem;
+  font-size: 0.44em;
+  line-height: 1.2;
+}
+
+.reveal .archetype-marker.explorer { top: 23%; left: 21%; }
+.reveal .archetype-marker.builder { top: 21%; left: 75%; }
+.reveal .archetype-marker.beginner { top: 73%; left: 21%; }
+.reveal .archetype-marker.skeptic { top: 72%; left: 75%; }
+.reveal .archetype-marker.calendar { top: 49%; left: 50%; width: 220px; }
+
+.reveal .archetype-marker.calendar::before {
+  background: #f2f0e7;
+}
+
+.reveal .archetype-discussion {
+  padding: 1rem 1.1rem;
+  border-top: 7px solid #a51c30;
+  background: #e6e3d9;
+}
+
+.reveal .archetype-discussion h3 {
+  margin-top: 0;
+}
+
+.reveal .archetype-discussion p,
+.reveal .archetype-discussion li {
+  font-size: 0.68em;
+  line-height: 1.35;
+}
+
+.reveal .setup-grid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 0.8rem;
+  margin-top: 1.2rem;
+}
+
+.reveal .setup-grid > div {
+  min-height: 128px;
+  padding: 0.8rem 1rem;
+  border: 1px solid #151515;
+  background: #e6e3d9;
+}
+
+.reveal .setup-grid span {
+  display: block;
+  margin-bottom: 0.45rem;
+  color: #5f5c55;
+  font-size: 0.46em;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+}
+
+.reveal .setup-grid strong {
+  display: block;
+  margin-bottom: 0.35rem;
+  font-family: Georgia, "Times New Roman", serif;
+  font-size: 0.96em;
+  font-weight: 400;
+}
+
+.reveal .setup-grid p {
+  margin: 0;
+  font-size: 0.62em;
+  line-height: 1.3;
+}
+
+.reveal .setup-gate {
+  margin-top: 1rem;
+  padding: 0.72rem 1rem;
+  background: #a51c30;
+  color: #ffffff;
+  font-size: 0.72em;
+  font-weight: 700;
+  text-align: center;
+}
+
+.reveal .workflow-compare {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 1.2rem;
+  margin-top: 1.25rem;
+}
+
+.reveal .workflow-compare > div {
+  padding: 1rem 1.15rem;
+  border-top: 7px solid #151515;
+  background: #e6e3d9;
+}
+
+.reveal .workflow-compare > div:last-child {
+  border-top-color: #a51c30;
+}
+
+.reveal .workflow-compare h3 {
+  margin-top: 0;
+}
+
+.reveal .workflow-compare li {
+  font-size: 0.74em;
+}
+
+.reveal .source {
+  display: block;
+  margin-top: 1.25rem;
+  color: #5f5c55;
+  font-family: Arial, Helvetica, sans-serif;
+  font-size: 0.42em;
+  letter-spacing: 0.02em;
+  line-height: 1.45;
+}
+
+.reveal .source a {
+  color: inherit;
+}
+
+.reveal .slides section > :last-child {
+  margin-bottom: 0;
 }
 
 .reveal .notes {
@@ -208,5 +607,18 @@ $code-block-border-color: #151515;
   .reveal .slides section { padding: 34px; }
 
   .reveal .choice-grid,
-  .reveal .tool-grid { grid-template-columns: 1fr; }
+  .reveal .tool-grid,
+  .reveal .profile-layout,
+  .reveal .protocol-flow,
+  .reveal .choice-grid.six-up,
+  .reveal .setup-grid,
+  .reveal .workflow-compare,
+  .reveal .archetype-layout { grid-template-columns: 1fr; }
+
+  .reveal h2 { white-space: normal; }
+
+  .reveal .definition-row,
+  .reveal .definition-list.three-column .definition-row {
+    grid-template-columns: 1fr;
+  }
 }

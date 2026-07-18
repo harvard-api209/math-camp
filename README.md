@@ -44,7 +44,7 @@ quarto render slides/lesson-1/slides.qmd
 
 The lesson chapter embeds `slides/lesson-1/index.html`, so no lesson-page edit is required. Repeat with lesson 2, 3, or 4. Shared deck styling lives in `slides/slide-theme.scss`.
 
-The four facilitated decks contain 40, 36, 36, and 38 rendered slides, respectively. Each deck includes speaker notes, timed interaction prompts, prediction checks, short partner protocols, and a direct handoff to its lab. The source is intentionally more complete than a conventional presentation outline so the teaching team can shorten or reorder a live session without having to invent missing explanations.
+The four facilitated decks contain 54, 39, 39, and 41 rendered slides, respectively. Each deck includes speaker notes, timed interaction prompts, prediction checks, short partner protocols, and a direct handoff to its lab. The source is intentionally more complete than a conventional presentation outline so the teaching team can shorten or reorder a live session without having to invent missing explanations.
 
 To render every deck:
 

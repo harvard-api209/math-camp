@@ -296,20 +296,87 @@
   let heroFrame = 0;
   let heroStart = performance.now();
 
-  const heroPoints = Array.from({ length: 62 }, (_, index) => {
-    const x = (index + 1) / 63;
+  const heroPoints = Array.from({ length: 46 }, (_, index) => {
+    const x = (index + 1) / 47;
     const seeded = Math.sin((index + 7) * 91.733) * 19471.318;
-    const noise = (seeded - Math.floor(seeded) - 0.5) * 0.39;
-    return { x, noise };
+    const noise = (seeded - Math.floor(seeded) - 0.5) * 0.31;
+    const y = Math.min(0.93, Math.max(0.07, 0.16 + 0.67 * x + noise));
+    return { x, y };
   });
+
+  const heroMeanX = heroPoints.reduce((total, point) => total + point.x, 0) / heroPoints.length;
+  const heroMeanY = heroPoints.reduce((total, point) => total + point.y, 0) / heroPoints.length;
+  const heroOlsSlope = heroPoints.reduce(
+    (total, point) => total + (point.x - heroMeanX) * (point.y - heroMeanY),
+    0
+  ) / heroPoints.reduce(
+    (total, point) => total + (point.x - heroMeanX) ** 2,
+    0
+  );
+  const heroOlsIntercept = heroMeanY - heroOlsSlope * heroMeanX;
+  const heroSse = (intercept, slope) => heroPoints.reduce(
+    (total, point) => total + (point.y - (intercept + slope * point.x)) ** 2,
+    0
+  );
+  const heroMinimumSse = heroSse(heroOlsIntercept, heroOlsSlope);
+  const heroCandidates = [
+    {
+      intercept: heroOlsIntercept + 0.24,
+      slope: heroOlsSlope - 0.52,
+      label: "CANDIDATE 01"
+    },
+    {
+      intercept: heroOlsIntercept - 0.17,
+      slope: heroOlsSlope + 0.34,
+      label: "CANDIDATE 02"
+    },
+    {
+      intercept: heroOlsIntercept + 0.08,
+      slope: heroOlsSlope - 0.15,
+      label: "CANDIDATE 03"
+    },
+    {
+      intercept: heroOlsIntercept,
+      slope: heroOlsSlope,
+      label: "OLS MINIMUM"
+    }
+  ];
+  const heroStageDuration = 3600;
+  const heroTransitionStart = 0.52;
+  const heroTransitionEnd = 0.94;
+  const clampUnit = (value) => Math.max(0, Math.min(1, value));
+  const smoothStep = (value) => {
+    const clamped = clampUnit(value);
+    return clamped * clamped * (3 - 2 * clamped);
+  };
 
   const drawHero = (context, width, height, time) => {
     if (!width || !height) return;
-    const phase = reduceMotion.matches ? 0 : (time - heroStart) / 1400;
     const padX = Math.max(48, width * 0.075);
     const padY = Math.max(48, height * 0.11);
     const plotWidth = width - padX * 2;
     const plotHeight = height - padY * 2;
+    const cycleTime = reduceMotion.matches
+      ? heroStageDuration * (heroCandidates.length - 1)
+      : Math.max(0, time - heroStart);
+    const stageIndex = reduceMotion.matches
+      ? heroCandidates.length - 1
+      : Math.floor(cycleTime / heroStageDuration) % heroCandidates.length;
+    const stageProgress = reduceMotion.matches
+      ? 0
+      : (cycleTime % heroStageDuration) / heroStageDuration;
+    const nextIndex = (stageIndex + 1) % heroCandidates.length;
+    const from = heroCandidates[stageIndex];
+    const to = heroCandidates[nextIndex];
+    const mix = smoothStep(
+      (stageProgress - heroTransitionStart) / (heroTransitionEnd - heroTransitionStart)
+    );
+    const intercept = from.intercept + (to.intercept - from.intercept) * mix;
+    const slope = from.slope + (to.slope - from.slope) * mix;
+    const currentSse = heroSse(intercept, slope);
+    const atMinimum = Math.abs(currentSse - heroMinimumSse) < 0.00001;
+    const activeLabel = mix < 0.5 ? from.label : to.label;
+    const fittedValue = (x) => intercept + slope * x;
 
     context.clearRect(0, 0, width, height);
     context.strokeStyle = ink;
@@ -322,13 +389,32 @@
     context.lineTo(width - padX, height - padY);
     context.stroke();
 
-    heroPoints.forEach((point, index) => {
-      const drift = Math.sin(phase + index * 0.77) * 0.013;
-      const y = Math.min(0.94, Math.max(0.06, 0.17 + 0.66 * point.x + point.noise + drift));
+    heroPoints.forEach((point) => {
       const px = padX + point.x * plotWidth;
-      const py = height - padY - y * plotHeight;
-      const major = index % 13 === 0;
+      const py = height - padY - point.y * plotHeight;
+      const fittedY = height - padY - fittedValue(point.x) * plotHeight;
 
+      context.save();
+      context.strokeStyle = "rgba(165, 28, 48, 0.42)";
+      context.setLineDash([3, 4]);
+      context.beginPath();
+      context.moveTo(px, py);
+      context.lineTo(px, fittedY);
+      context.stroke();
+      context.restore();
+    });
+
+    context.strokeStyle = ink;
+    context.lineWidth = atMinimum ? 2.4 : 1.45;
+    context.beginPath();
+    context.moveTo(padX, height - padY - fittedValue(0) * plotHeight);
+    context.lineTo(width - padX, height - padY - fittedValue(1) * plotHeight);
+    context.stroke();
+
+    heroPoints.forEach((point, index) => {
+      const px = padX + point.x * plotWidth;
+      const py = height - padY - point.y * plotHeight;
+      const major = index % 11 === 0;
       context.beginPath();
       context.rect(px - (major ? 4 : 3), py - (major ? 4 : 3), major ? 8 : 6, major ? 8 : 6);
       context.fillStyle = major ? ink : paper;
@@ -337,33 +423,26 @@
       context.stroke();
     });
 
-    context.strokeStyle = ink;
-    context.lineWidth = 2;
-    context.beginPath();
-    context.moveTo(padX, height - padY - 0.17 * plotHeight);
-    context.lineTo(width - padX, height - padY - 0.83 * plotHeight);
-    context.stroke();
-
-    context.lineWidth = 1;
-    context.setLineDash([5, 7]);
-    const markerX = padX + ((phase * 0.08) % 1) * plotWidth;
-    context.beginPath();
-    context.moveTo(markerX, padY);
-    context.lineTo(markerX, height - padY);
-    context.stroke();
-    context.setLineDash([]);
-
     context.font = '11px "Departure Mono", monospace';
     context.fillStyle = ink;
     context.fillText("0", padX - 4, height - padY + 20);
     context.fillText("1", width - padX - 5, height - padY + 20);
+    context.fillText(activeLabel, padX + 8, padY + 16);
+    context.fillText(`Σe² = ${currentSse.toFixed(3)}`, padX + 8, padY + 34);
+    context.fillText(`OLS minimum = ${heroMinimumSse.toFixed(3)}`, padX + 8, padY + 52);
 
     if (heroClock) {
-      heroClock.textContent = `t = ${phase.toFixed(2)}`;
+      heroClock.textContent = atMinimum
+        ? `Σe² = ${currentSse.toFixed(3)} · MIN`
+        : `Σe² = ${currentSse.toFixed(3)}`;
     }
   };
 
   const heroPlot = makeCanvas(heroCanvas, drawHero);
+  if (heroControl && heroPaused) {
+    heroControl.setAttribute("aria-pressed", "true");
+    heroControl.textContent = "PLAY COMPARISON";
+  }
 
   const animateHero = (time) => {
     if (!heroPaused && heroVisible) {
@@ -381,7 +460,7 @@
   heroControl?.addEventListener("click", () => {
     heroPaused = !heroPaused;
     heroControl.setAttribute("aria-pressed", String(heroPaused));
-    heroControl.textContent = heroPaused ? "PLAY_ANIMATION" : "PAUSE_ANIMATION";
+    heroControl.textContent = heroPaused ? "PLAY COMPARISON" : "PAUSE COMPARISON";
     if (!heroPaused) heroStart = performance.now();
   });
 
@@ -465,7 +544,7 @@
     heroPaused = reduceMotion.matches;
     heroControl?.setAttribute("aria-pressed", String(heroPaused));
     if (heroControl) {
-      heroControl.textContent = heroPaused ? "PLAY_ANIMATION" : "PAUSE_ANIMATION";
+      heroControl.textContent = heroPaused ? "PLAY COMPARISON" : "PAUSE COMPARISON";
     }
 
     cancelAnimationFrame(heroFrame);

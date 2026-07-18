@@ -1,12 +1,15 @@
 ---
 title: "Meet the evidence"
 subtitle: "Coding Lesson 1 · Math Camp 2026"
-author: "API 209"
+author: "Rony Rodriguez-Ramirez"
 format:
   revealjs:
     theme: ../slide-theme.scss
     output-file: index.html
     embed-resources: true
+    width: 1600
+    height: 900
+    margin: 0.04
     transition: none
     background-transition: none
     slide-number: c/t
@@ -30,11 +33,108 @@ Write one condition on a sticky note or in your field notebook. No technical voc
 0:00-0:03. Leave this slide visible as students enter. Ask for two or three conditions and keep them for the verification discussion.
 :::
 
-## Welcome {.inverse}
+## Welcome to Math Camp {.inverse}
 
 <span class="kicker">THU AUG 13 · 1-4 PM</span>
 
 We begin with a **policy question**, meet the evidence, and learn what a coding agent changes about the work.
+
+## Welcome
+
+<div class="profile-layout">
+<img class="profile-photo" src="../../../website/math-camp/figures/people/rony.jpg" alt="Portrait of Rony Rodriguez-Ramirez">
+<div class="profile-copy">
+<p class="name">Rony Rodriguez-Ramirez</p>
+
+- Education Policy, with a focus on the economics of education
+- Previous research experience at the World Bank—DIME and DECRG—and Innovations for Poverty Action
+- I like coding, especially when it helps us ask a better question
+- I will teach the four coding lessons and work with you during the labs
+</div>
+</div>
+
+::: {.notes}
+0:03-0:06. Adapted directly from the 2024 “Who am I?” slide. Introduce yourself before asking students to introduce themselves.
+:::
+
+## What you can expect from me
+
+- I will make the reasoning behind the code visible.
+- I will help you find the next useful question when something breaks.
+- I will never treat speed as a substitute for understanding.
+- I will give beginners a clear path and experienced coders room to extend it.
+
+**My goal:** you leave ready for the semester, able to move in R, and able to find help without giving away the analytical decision.
+
+## Stop here: setup check
+
+<span class="kicker">WE CANNOT BEGIN THE CODING WORK UNTIL EVERY LAPTOP PASSES</span>
+
+<div class="setup-grid">
+<div><span>01</span><strong>Project</strong><p>The <code>math-camp/2026</code> folder is open as the workspace.</p></div>
+<div><span>02</span><strong>R</strong><p>R starts, and the console accepts a command.</p></div>
+<div><span>03</span><strong>Packages</strong><p><code>tidyverse</code> and <code>here</code> load without an error.</p></div>
+<div><span>04</span><strong>Quarto</strong><p><code>quarto check</code> finds both Quarto and R.</p></div>
+<div><span>05</span><strong>Codex</strong><p>You are signed in and can open the course project.</p></div>
+<div><span>06</span><strong>Data</strong><p>The frozen WDI teaching file is present in <code>data/derived</code>.</p></div>
+</div>
+
+<div class="setup-gate">THE CLASS MOVES FORWARD WHEN ALL SIX CHECKS ARE GREEN.</div>
+
+::: {.notes}
+0:06-0:09. Open the setup guide. Explain that this is a genuine gate, not a reminder. Ask students to keep the slide visible while they run the two smoke tests.
+:::
+
+## Run the smoke test
+
+::: columns
+::: {.column width="54%"}
+### In the R console
+
+```{.r}
+library(tidyverse)
+library(here)
+
+mean(c(2, 4, 6, 8))
+here()
+```
+
+Expect `5` and the path to this project.
+:::
+::: {.column width="42%"}
+### In the terminal
+
+```{.bash}
+quarto check
+```
+
+Confirm that the report finds:
+
+- Quarto
+- R
+- the expected project path
+
+[Open the full setup guide](../../setup/)
+:::
+:::
+
+::: {.notes}
+0:09-0:16. Every student runs both checks on their own laptop. Do not accept “it worked yesterday.” The visible outputs are the evidence.
+:::
+
+## Make every laptop green
+
+<div class="definition-list">
+<div class="definition-row"><strong>Green</strong><span>All six checks pass. Keep the outputs visible and help one nearby person.</span></div>
+<div class="definition-row"><strong>Yellow</strong><span>The software opens, but a package, path, or Quarto check fails. Pair with the teaching team and repair it now.</span></div>
+<div class="definition-row"><strong>Red</strong><span>R, Quarto, the project, or Codex access is missing. Pause here and complete the installation or sign-in.</span></div>
+</div>
+
+<div class="setup-gate">NO ONE STARTS THE DATA EXERCISE WITH A KNOWN SETUP FAILURE.</div>
+
+::: {.notes}
+0:16-0:22. Use a visible green/yellow/red status count. This is the one whole-room status check that is operationally necessary. Recruit green students as helpers, but require each student to run their own commands.
+:::
 
 ## Today has three movements
 
@@ -55,34 +155,33 @@ We begin with a **policy question**, meet the evidence, and learn what a coding 
 - Give an agent one bounded task.
 - Verify one generated claim with evidence.
 
-## Many starting points, one room
+## AI + coding archetypes
 
-<div class="choice-grid">
-<div><strong>NEW + CURIOUS</strong><br>No coding yet, ready to begin.</div>
-<div><strong>NEW + NERVOUS</strong><br>No coding yet, uncertain about the pace.</div>
-<div><strong>EXPERIENCED + CURIOUS</strong><br>Some coding, ready to explore new tools.</div>
-<div><strong>EXPERIENCED + CAUTIOUS</strong><br>Some coding, skeptical about AI workflows.</div>
+<div class="archetype-layout">
+<div class="archetype-board" role="img" aria-label="A two-axis map of coding experience and comfort working with AI">
+<span class="axis-x">MORE CODING EXPERIENCE →</span>
+<span class="axis-y">MORE COMFORT WORKING WITH AI →</span>
+<div class="archetype-marker explorer"><strong>CURIOUS NEWCOMER</strong><span>“The agent made a plot. Now I want to know what it did.”</span></div>
+<div class="archetype-marker builder"><strong>AUGMENTED BUILDER</strong><span>“I can read the code, and I want the agent to handle the boring parts.”</span></div>
+<div class="archetype-marker beginner"><strong>CAREFUL BEGINNER</strong><span>“Please show me one step before anyone automates five.”</span></div>
+<div class="archetype-marker skeptic"><strong>CODE-FIRST SKEPTIC</strong><span>“I trust the script I wrote. Convince me the agent helps.”</span></div>
+<div class="archetype-marker calendar"><strong>CALENDAR ENTHUSIAST</strong><span>“I am here, I have coffee, and I remain open to evidence.”</span></div>
+</div>
+<div class="archetype-discussion">
+<h3>Not a ranking.</h3>
+
+- Each position brings a useful instinct.
+- Your position can change with the task.
+- Coding experience and AI comfort are different dimensions.
+
+**Discuss briefly:** Which axis feels less settled for you? What kind of evidence or support would help?
+
+<span class="timer">2 MINUTES</span>
+</div>
 </div>
 
-::: {.activity}
-Which description is nearest to you today? There is no preferred quadrant.
-:::
-
 ::: {.notes}
-0:06-0:10. Adapted from the experience-excitement archetype activity used in Math Camp 2024. Use a show of hands or ask students to move to four corners.
-:::
-
-## Meet one coding neighbor
-
-::: {.activity}
-In pairs, share:
-
-1. Your name and a place you call home.
-2. One experience with data, code, or statistics.
-3. One thing you hope an AI tool can help you do.
-4. One thing you do not want an AI tool to decide for you.
-
-<span class="timer">4 MINUTES</span>
+0:22-0:26. Restore the two-axis archetype discussion from Math Camp 2024, replacing “experience with R” and “excitement about R” with coding experience and comfort working with AI. The point is movement and support, not classification. Invite a brief neighbor discussion without requiring anyone to announce a quadrant.
 :::
 
 ## Classroom norms
@@ -103,21 +202,107 @@ In pairs, share:
 
 <div class="claim-line">It is more useful to practice a skill with people you know than to perform competence alone.</div>
 
-The goal of Math Camp is not to memorize commands. It is to build a repeatable way to ask, run, inspect, and repair.
+Math Camp builds a repeatable way to ask, run, inspect, and repair. Memorizing commands is secondary.
+
+## Is it still worth learning to code?
+
+::: {.activity}
+Ask the question before hearing an answer:
+
+> If an agent can generate working code, what—if anything—is still worth learning?
+
+Choose one position: **more important**, **less important**, or **important in a different way**. Write one reason.
+
+<span class="timer">3 MINUTES</span>
+:::
+
+::: {.notes}
+0:18-0:21. Take a quick room vote. Do not resolve the question immediately. Ask one student from each position what they mean by “learn coding”: syntax recall, reading, modifying, testing, decomposing, or designing.
+:::
+
+## Andrew Ng's answer
+
+<div class="claim-line">Coding plus prompting can do more than prompting alone.</div>
+
+- Natural language makes software easier to start.
+- Code makes an instruction inspectable, repeatable, and testable.
+- AI assistance shortens the distance between an idea and a working prototype.
+- That faster feedback makes small builds a powerful way to learn.
+
+<span class="source">Paraphrased from Andrew Ng, “Coding Skill is More Valuable Than Ever” (2023) and “New Opportunities for the New Year” (2025), DeepLearning.AI.</span>
+
+::: {.notes}
+0:21-0:24. Be precise about the claim. Ng does not argue that everyone must become a software engineer or memorize syntax. He argues that coding expands what prompting can accomplish and that AI-assisted building makes experimentation easier.
+:::
+
+## Our answer for Math Camp
+
+**Yes—but the target has moved.**
+
+Use your coding knowledge to:
+
+1. read what it proposes,
+2. predict what should happen,
+3. change the right part,
+4. test the result,
+5. recognize when the policy question and the code no longer match.
+
+## Where I want to see you afterward
+
+Adapted from the 2024 Math Camp promise:
+
+- **Ready for the semester** and prepared to keep learning.
+- **Able to move in R** without waiting for someone to type every line.
+- **Able to craft a useful question** before searching for an answer.
+- **Able to find help** in documentation, code, classmates, and agents.
+- **Confident enough to make mistakes publicly and repair them.**
+
+<div class="claim-line">Use every available form of help while keeping the analytical judgment in your own hands.</div>
+
+::: {.notes}
+0:24-0:28. Say this in the first person. The 2024 deck promised readiness, enough R, and knowing how to craft questions and where to look for answers. Preserve that humane destination while updating what “enough R” means in an agent-assisted workflow.
+:::
 
 ## Why the workflow changed
 
-In earlier courses, the main loop was:
+<div class="workflow-compare">
+<div>
+<h3>Earlier loop</h3>
 
-> Write code → run code → search the error → try again
+- Write one line or function.
+- Run it and wait for an error.
+- Search the error message.
+- Try another line.
+- Keep most project context in your head.
+</div>
+<div>
+<h3>Agent-assisted loop</h3>
 
-Now coding agents can read project files, propose edits, run commands, and explain failures. That changes the speed and shape of the loop.
+- Frame a task across one or several files.
+- Supply context before an error appears.
+- Authorize the actions the agent may take.
+- Inspect commands, output, and changes.
+- Design a check for the result.
+</div>
+</div>
 
-**It does not remove the need for statistical judgment.**
+<div class="claim-line">The unit of work expands from a line of code to a project. Responsibility for the analytical decision stays with the researcher.</div>
 
 ::: {.notes}
-0:18-0:23. Connect to students' experience with RStudio or Posit Cloud. Say explicitly that the site itself is native HTML; Quarto will be used later for slides and an optional notebook.
+0:35-0:40. Do not caricature the earlier workflow: it remains useful for learning and debugging. The change is that agents can act before an error and across more context. That increases both leverage and the surface area of a mistake.
 :::
+
+## Faster code changes the bottleneck
+
+When an agent can draft code quickly, more of the work moves into decisions that precede and follow the code:
+
+1. **Question:** Is the requested task connected to the policy question?
+2. **Context:** Did the agent receive the right files, definitions, and constraints?
+3. **Permission:** Should this action be read-only, reversible, or allowed to edit?
+4. **Verification:** What independent evidence would reveal a mistake?
+5. **Communication:** Can another person see what changed and why it was accepted?
+
+**The scarce skill is defensible judgment across the whole workflow.**
 
 ## From a studio to a supervised workshop
 
@@ -142,24 +327,103 @@ Now coding agents can read project files, propose edits, run commands, and expla
 
 ## What is AI?
 
-For this camp, **generative AI** means a model that predicts and produces new text or code from instructions and context.
+**Artificial intelligence** is the umbrella.
 
-It can produce a plausible continuation of your request.
+For this camp, **generative AI** means systems that produce new text or code from instructions and context.
 
-It does not directly observe truth, understand your policy setting as a person does, or guarantee that generated code is correct.
+The tool can produce a remarkably useful continuation of your request. It does not directly observe truth, understand your policy setting as a person does, or guarantee that generated code is correct.
 
 ::: {.notes}
 0:23-0:28. Keep this conceptual and short. Distinguish fluency from knowledge. Return to the arrival prompt: plausible language is not a verification condition.
 :::
 
-## AI is not one thing
+## An LLM is a language engine
+
+<div class="claim-line">An LLM uses an instruction and its available context to generate language or code.</div>
+
+The engine can explain, draft, classify, and imitate patterns.
+
+By itself, it cannot:
+
+- open your project,
+- run R,
+- inspect a graph,
+- or confirm a policy claim.
+
+::: {.notes}
+0:28-0:31. Use autocomplete as the entry analogy, then qualify it: the scale and learned representations are much richer, but the output is generated rather than retrieved from a guaranteed truth store.
+:::
+
+## Five layers, five questions
 
 <div class="tool-grid">
-<div><h3>MODEL</h3><p>The system that generates text or code.</p></div>
-<div><h3>CHAT INTERFACE</h3><p>A conversation window that sends prompts to a model.</p></div>
-<div><h3>CODING ASSISTANT</h3><p>Suggestions inside an editor or notebook.</p></div>
-<div><h3>CODING AGENT</h3><p>A tool that can inspect a project, propose file changes, and run checks.</p></div>
+<div><h3>MODEL</h3><p>What can it generate?</p></div>
+<div><h3>CONTEXT</h3><p>What can it currently see?</p></div>
+<div><h3>TOOLS</h3><p>What actions can it request?</p></div>
+<div><h3>PERMISSIONS</h3><p>What actions may actually run?</p></div>
 </div>
+
+<div class="claim-line">The loop asks: what result came back, and should the agent continue?</div>
+
+## Model, chat, agent, harness
+
+<div class="definition-list">
+<div class="definition-row definition-head"><span>LAYER</span><span>JOB</span></div>
+<div class="definition-row"><strong>LLM</strong><span>Generate text, code, or a request to use a tool.</span></div>
+<div class="definition-row"><strong>Chat interface</strong><span>Carry messages between a person and the model.</span></div>
+<div class="definition-row"><strong>Coding agent</strong><span>Use the model in a loop that can read, act, and observe results.</span></div>
+<div class="definition-row"><strong>Harness</strong><span>Assemble context, expose tools, enforce permissions, return results, and manage the loop.</span></div>
+</div>
+
+## The supervised workshop
+
+::: columns
+::: {.column width="54%"}
+**The model is the language engine.**
+
+**The harness is the workshop:** workbench, toolbox, clipboard, locked cabinets, and measuring instruments.
+
+**The agent is the engine operating inside the workshop.**
+:::
+::: {.column width="42%"}
+**You are the investigator.**
+
+You write the work order, grant access, watch the work, and decide whether the evidence supports keeping it.
+:::
+:::
+
+::: {.notes}
+0:31-0:35. This is the durable analogy for all four lessons. Reuse it explicitly later: prompt=work order, diff=receipt, tests=measuring instruments.
+:::
+
+## What happens during a tool call?
+
+1. The model generates: “Read `data/README.md`.”
+2. The harness checks the tool and permission.
+3. Ordinary software reads the file.
+4. The harness returns the file contents.
+5. The model receives new context and chooses the next step.
+
+<div class="claim-line">The harness converts the model's request into a controlled action performed by ordinary software.</div>
+
+## Human tool-call simulation
+
+::: {.activity}
+Four roles:
+
+1. **Investigator:** writes the work order.
+2. **Model:** may only request an action.
+3. **Harness:** checks permission and carries the request.
+4. **R tool:** returns a result.
+
+Where can a mistake enter? Where can it be caught?
+
+<span class="timer">5 MINUTES</span>
+:::
+
+::: {.notes}
+0:35-0:40. Give the model a card that says “Count rows by year.” Give the harness a read-only permission card. Give R a prepared output. Debrief the difference between observing a command and verifying that it answers the policy question.
+:::
 
 ## Chatbot or coding agent?
 
@@ -175,14 +439,14 @@ Which actions require project access?
 :::
 
 ::: {.notes}
-0:28-0:33. Answers: 1 and 4 can be chat interactions; 2 and 3 are agentic project work. A coding agent can also perform 1 and 4.
+0:40-0:44. Answers: 1 and 4 can be chat interactions; 2 and 3 are agentic project work. A coding agent can also perform 1 and 4.
 :::
 
 ## Codex
 
 <span class="kicker">OUR BASELINE TOOL</span>
 
-Codex is OpenAI's coding agent. In this camp it can:
+Codex is OpenAI's coding agent—not the name of one fixed model. In this camp it can:
 
 - read the files you place in the project,
 - explain or edit R, Quarto, HTML, and documentation,
@@ -221,6 +485,8 @@ The same verification obligations apply.
 | Determines policy validity | No | No |
 | Owns the final result | No | No |
 
+Compare the **context, tools, permissions, changes, and checks** that each harness makes visible.
+
 ## Match the tool to the need
 
 <div class="choice-grid">
@@ -246,7 +512,7 @@ Match each need to R, RStudio, Quarto, or a coding agent.
 - Help experienced students extend a task without leaving beginners behind.
 - Practice the workflow students will encounter in policy organizations.
 
-The purpose is **more attention for reasoning**, not less attention for learning.
+These tools should free more attention for **reasoning and learning**.
 
 ## Where agents fail
 
@@ -288,42 +554,27 @@ An agent does not absorb responsibility because it wrote the code.
 
 ## The recurring protocol
 
-::: columns
-::: {.column width="33%"}
-### 01
-
-**Human pass**
-
-Frame. Inspect. Predict.
-:::
-::: {.column width="33%"}
-### 02
-
-**Agent pass**
-
-Delegate a bounded task.
-:::
-::: {.column width="33%"}
-### 03
-
-**Evidence pass**
-
-Run. Trace. Challenge.
-:::
-:::
+<div class="protocol-flow" role="img" aria-label="A five-step cycle from prediction to a documented judgment">
+<div class="protocol-step"><span>01</span><strong>Predict</strong><p>Frame the question and state what you expect.</p></div>
+<div class="protocol-step"><span>02</span><strong>Delegate</strong><p>Give the agent one bounded assignment.</p></div>
+<div class="protocol-step"><span>03</span><strong>Observe</strong><p>Watch the files, commands, output, and diff.</p></div>
+<div class="protocol-step"><span>04</span><strong>Verify</strong><p>Run an independent check that bears on the claim.</p></div>
+<div class="protocol-step"><span>05</span><strong>Narrate</strong><p>Record what you accepted, revised, rejected, or left open.</p></div>
+</div>
 
 ::: {.notes}
-0:49-0:53. Connect each pass to an observable action. Students should be able to point to their human prediction, agent output, and verification result.
+0:49-0:54. Connect each pass to an observable action. Students should be able to point to their prediction, work order, tool result, verification, and judgment.
 :::
 
 ## A useful prompt has four parts
 
-| Part | Question |
-|---|---|
-| **Goal** | What concrete outcome do I want? |
-| **Context** | Which files, audience, and definitions matter? |
-| **Constraints** | What must not happen? |
-| **Done when** | What evidence will show completion? |
+<div class="definition-list">
+<div class="definition-row definition-head"><span>PART</span><span>QUESTION</span></div>
+<div class="definition-row"><strong>Goal</strong><span>What concrete outcome do I want?</span></div>
+<div class="definition-row"><strong>Context</strong><span>Which files, audience, and definitions matter?</span></div>
+<div class="definition-row"><strong>Constraints</strong><span>What must not happen?</span></div>
+<div class="definition-row"><strong>Done when</strong><span>What observable evidence will show completion?</span></div>
+</div>
 
 ## Repair this prompt
 
@@ -355,12 +606,13 @@ With a partner, add a goal, context, constraint, and done-when check. Make the t
 
 ## Four tools, four jobs
 
-| Tool | What it does | What it does not decide |
-|---|---|---|
-| R | Executes instructions and computes results. | Whether the question matters. |
-| RStudio | Organizes scripts, console, files, and plots. | Whether code is substantively correct. |
-| Quarto | Combines narrative, code, and output. | Whether a claim follows from evidence. |
-| Coding agent | Proposes, explains, edits, and checks. | Whether its output should be trusted. |
+<div class="definition-list three-column">
+<div class="definition-row definition-head"><span>TOOL</span><span>WHAT IT DOES</span><span>WHAT YOU STILL DECIDE</span></div>
+<div class="definition-row"><strong>R</strong><span>Executes instructions and computes results.</span><span>Whether the question matters.</span></div>
+<div class="definition-row"><strong>RStudio</strong><span>Organizes scripts, console, files, and plots.</span><span>Whether the code is substantively correct.</span></div>
+<div class="definition-row"><strong>Quarto</strong><span>Combines narrative, code, and output.</span><span>Whether the claim follows from the evidence.</span></div>
+<div class="definition-row"><strong>Coding agent</strong><span>Proposes, explains, edits, and checks.</span><span>Whether its output deserves your trust.</span></div>
+</div>
 
 ## One dataset, four policy paths
 

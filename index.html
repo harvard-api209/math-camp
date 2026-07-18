@@ -8,7 +8,7 @@
     <title>Math Camp 2026 | Code, data, and judgment</title>
     <link rel="icon" href="data:,">
     <link rel="preload" href="assets/fonts/DepartureMono-Regular.woff2" as="font" type="font/woff2" crossorigin>
-    <link rel="stylesheet" href="styles.css?v=book-20260717f">
+    <link rel="stylesheet" href="styles.css?v=book-20260718n">
     <script>document.documentElement.classList.add("js");</script>
   </head>
   <body class="home-page">
@@ -72,15 +72,15 @@
         </div>
 
         <figure class="technical-figure cover-figure" aria-labelledby="home-figure-caption">
-          <figcaption id="home-figure-caption"><span>FIG_001</span><span>[ ONE QUESTION, MANY OBSERVATIONS ]</span><span id="figure-clock">t = 0.00</span></figcaption>
+          <figcaption id="home-figure-caption"><span>FIG_001</span><span>[ OLS MINIMIZES SQUARED RESIDUALS ]</span><span id="figure-clock">Σe² = —</span></figcaption>
           <div class="plot-frame">
-            <canvas id="hero-plot" aria-label="Animated country-year scatterplot with a fitted trend"></canvas>
+            <canvas id="hero-plot" aria-label="Animated ordinary least squares demonstration. Fixed observations are compared with candidate lines. Vertical residuals and the sum of their squares shrink until the ordinary least squares line is reached."></canvas>
             <span class="axis-label axis-label-y">OUTCOME</span>
             <span class="axis-label axis-label-x">PREDICTOR</span>
           </div>
           <div class="figure-controls">
-            <p>The agent can draw a line. Your job is to decide what the points represent and what the line can support.</p>
-            <button id="plot-control" type="button" aria-pressed="false">PAUSE ANIMATION</button>
+            <p>Each vertical segment is a residual. OLS selects the intercept and slope that make Σe² as small as possible.</p>
+            <button id="plot-control" type="button" aria-pressed="false">PAUSE COMPARISON</button>
           </div>
         </figure>
 
@@ -214,6 +214,6 @@
       <a href="#top">RETURN TO TOP ↑</a>
     </footer>
 
-    <script src="script.js?v=book-20260717f"></script>
+    <script src="script.js?v=book-20260718n"></script>
   </body>
 </html>

@@ -7,6 +7,9 @@ format:
     theme: ../slide-theme.scss
     output-file: index.html
     embed-resources: true
+    width: 1600
+    height: 900
+    margin: 0.04
     transition: none
     background-transition: none
     slide-number: c/t
@@ -61,6 +64,21 @@ The question is not “Can the author make it work?”
 The question is:
 
 > Can another person recover the question, inputs, decisions, and result without relying on the author's memory?
+
+## Someone else's kitchen
+
+A recipe is not tested because its author can cook from memory.
+
+It is tested when another person can use:
+
+- the listed ingredients,
+- the listed equipment,
+- the written sequence,
+- and the stated result
+
+to produce the dish without whispered instructions.
+
+<div class="claim-line">A clean run removes the computational equivalent of remembered ingredients.</div>
 
 ## Reproducibility for Math Camp
 
@@ -132,6 +150,19 @@ project/
 ```
 
 Names should help a new reader predict where evidence lives.
+
+## The project's flight recorder
+
+The record of what happened lives across:
+
+- the README and source files,
+- data documentation and retrieval dates,
+- console or render output,
+- the agent work order and change summary,
+- the verification result,
+- and the AI-use note.
+
+<div class="claim-line">A flight recorder does not prevent every failure. It makes the failure reconstructable.</div>
 
 ## Order the script
 
@@ -335,6 +366,15 @@ Exchange with a partner. Underline the verification evidence.
 <div><h3>INTERPRETATION</h3><p>Does the claim fit the design?</p></div>
 <div><h3>COMMUNICATION</h3><p>Can a new reader follow it?</p></div>
 </div>
+
+## What harness evidence can prove
+
+| Evidence | Supports | Does not establish |
+|---|---|---|
+| Clean render log | The path executed here | The claim is statistically appropriate |
+| Key and range checks | Named structural conditions held | The indicator measures the intended concept |
+| Diff | Which source changed | The change improved the analysis |
+| AI-use note | Assistance was described | Every generated contribution was correct |
 
 ## Audit 1: reproducibility
 

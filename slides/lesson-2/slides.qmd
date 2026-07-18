@@ -7,6 +7,9 @@ format:
     theme: ../slide-theme.scss
     output-file: index.html
     embed-resources: true
+    width: 1600
+    height: 900
+    margin: 0.04
     transition: none
     background-transition: none
     slide-number: c/t
@@ -74,8 +77,20 @@ Today we ask a harder question: **How did those columns get into this file?**
 <div><h3>OUTPUT</h3><p>Figures, tables, models, and reports.</p></div>
 </div>
 
+## Chain of custody
+
+Imagine the raw download as evidence arriving in a sealed bag.
+
+- **Raw:** preserve exactly.
+- **Script:** record each examination.
+- **Derived file:** show the result of a reproducible step.
+- **Key and range checks:** confirm nothing silently multiplied, disappeared, or changed meaning.
+- **Analysis table:** use only after the path can be reconstructed.
+
+<div class="claim-line">Clean-looking data are not necessarily trustworthy. Inspectable data have a defensible history.</div>
+
 ::: {.notes}
-0:03-0:10. Ask which layer should be edited by hand. Answer: none, but raw data especially must be preserved exactly.
+0:03-0:12. Ask which layer should be edited by hand. Answer: none, but raw data especially must be preserved exactly. Ask where an undocumented spreadsheet edit would appear in the chain. Answer: nowhere—which is the problem.
 :::
 
 ## Reconstruct the pipeline
@@ -393,6 +408,21 @@ An agent can help:
 
 It must not silently overwrite the frozen baseline.
 
+## Give agency one rung at a time
+
+<div class="tool-grid">
+<div><h3>READ</h3><p>Recover the existing pipeline. No edits.</p></div>
+<div><h3>PLAN</h3><p>Name sources, files, risks, and checks.</p></div>
+<div><h3>BUILD</h3><p>Create a new dated output. Protect the baseline.</p></div>
+<div><h3>COMPARE</h3><p>Produce a receipt for additions, revisions, and failures.</p></div>
+</div>
+
+::: {.activity}
+At which rung would you stop if the indicator definition changed?
+
+What evidence would you need before continuing?
+:::
+
 ## Weak update prompt
 
 > Update the dataset to 2025.
@@ -457,6 +487,18 @@ In pairs, review the update contract and add:
 
 <span class="timer">6 MINUTES</span>
 :::
+
+## Keep a workshop receipt
+
+For each agent round, record:
+
+1. **Context:** what the agent actually read.
+2. **Permission:** read, plan, edit, run, or network.
+3. **Action:** exact file change, request, or command.
+4. **Observation:** diff, status, error, row count, or path.
+5. **Decision:** continue, revise, reject, or stop.
+
+<div class="claim-line">The receipt is more useful than “the agent updated the data.”</div>
 
 ## Lab 2 tomorrow
 

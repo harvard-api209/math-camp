@@ -7,6 +7,9 @@ format:
     theme: ../slide-theme.scss
     output-file: index.html
     embed-resources: true
+    width: 1600
+    height: 900
+    margin: 0.04
     transition: none
     background-transition: none
     slide-number: c/t
@@ -94,6 +97,18 @@ Every graph chooses:
 - which comparison becomes easy.
 
 The code is part of that argument.
+
+## Every graph is a map
+
+A map is useful because it leaves most of the world out.
+
+A figure or model does the same:
+
+- preserves features needed for one comparison,
+- suppresses details that do not fit the current view,
+- becomes dangerous when we forget what was omitted.
+
+<div class="claim-line">The question is not “Did we include everything?” It is “Is this the right map for this journey?”</div>
 
 ## Critique before coding
 
@@ -410,6 +425,17 @@ Do not delete an observation merely because it is inconvenient.
 :::
 :::
 
+## A second reader, not a judge
+
+The agent should look for **traceable mismatches**:
+
+- the question names one population but the code filters another,
+- the caption names all countries but the model drops missing rows,
+- the coefficient is described in the wrong units,
+- the prose says “caused” while the design is associational.
+
+“This analysis seems biased” is not yet a finding.
+
 ## Weak review prompt
 
 > Is my analysis correct?
@@ -437,6 +463,24 @@ For every agent concern, ask:
 - What R check can confirm it?
 - Is the concern about code, data, statistics, or writing?
 - What evidence would make me reject the concern?
+
+## Counterexample hunt
+
+::: {.activity}
+Find one:
+
+- country-year,
+- subgroup,
+- period,
+- scale,
+- or defensible specification
+
+that makes the headline less complete.
+
+Does it overturn the claim, narrow it, or identify the next question?
+
+<span class="timer">4 MINUTES</span>
+:::
 
 ## One-minute claim
 
