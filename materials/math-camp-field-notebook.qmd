@@ -56,9 +56,14 @@ Explain every filter and transformation in plain language.
 
 # Replace this example with the variables for your selected policy track.
 analysis_data <- wdi |>
-  select(iso3c, country, year, income_level,
+  select(iso3c, country, year, income_level_current,
          gdp_per_capita_ppp, under5_mortality) |>
-  filter(year >= 2000) |>
+  filter(
+    year >= 2000,
+    !is.na(gdp_per_capita_ppp),
+    gdp_per_capita_ppp > 0,
+    !is.na(under5_mortality)
+  ) |>
   mutate(log_income = log(gdp_per_capita_ppp))
 
 stopifnot(
@@ -71,6 +76,7 @@ stopifnot(
 ```{r}
 #| label: figure
 #| fig-cap: "Replace this caption with the population, variables, years, and units."
+#| fig-alt: "Scatterplot of log GDP per capita and under-five mortality for complete country-year observations."
 
 ggplot(analysis_data, aes(log_income, under5_mortality)) +
   geom_point(alpha = 0.4, na.rm = TRUE) +
@@ -82,6 +88,53 @@ ggplot(analysis_data, aes(log_income, under5_mortality)) +
 ```
 
 Write the strongest descriptive or associational statement supported by the output.
+
+## Simple model and interpretation
+
+The coefficient on `log_income` is not the change associated with a one-percent
+increase. Translate it into changes that a reader can recognize.
+
+```{r}
+#| label: model
+
+fit <- lm(
+  under5_mortality ~ log_income + income_level_current,
+  data = analysis_data
+)
+
+beta <- unname(coef(fit)[["log_income"]])
+tibble(
+  comparison = c("10% higher GDP per capita", "double GDP per capita"),
+  estimated_change_in_deaths_per_1000 = c(
+    beta * log(1.10),
+    beta * log(2)
+  )
+)
+```
+
+Write both interpretations as pooled associations, comparing observations in
+the same included current income-level category. Do not describe either number
+as the effect of making a country richer.
+
+## Residual check
+
+```{r}
+#| label: residuals
+
+diagnostics <- analysis_data |>
+  mutate(
+    fitted = predict(fit),
+    residual = resid(fit)
+  ) |>
+  arrange(desc(abs(residual)))
+
+diagnostics |>
+  select(country, year, under5_mortality, fitted, residual) |>
+  slice_head(n = 8)
+```
+
+Choose one row. Record what you checked before proposing a substantive story
+for why its observed value differs from the fitted value.
 
 ## What this does not show
 
@@ -96,3 +149,26 @@ I used **[Codex / Claude Code / other]** to **[explain, generate, debug, review,
 | Agent claim or change | Check performed | Result |
 |---|---|---|
 |  |  | Confirmed / contradicted / unresolved |
+
+## Clean-session receipt
+
+Restart R, choose **Session → Restart R**, then render this notebook without
+running chunks manually. Record:
+
+- render date and time;
+- R version from `R.version.string`;
+- number of model observations from `nobs(fit)`;
+- whether the HTML opened without an error;
+- any warning you investigated rather than suppressed.
+
+## Handoff checklist
+
+- [ ] The question names a population, outcome, comparison, and period.
+- [ ] The data source, snapshot, unit, and indicator definitions are visible.
+- [ ] Every object is created before it is used.
+- [ ] The figure has units and useful alternative text.
+- [ ] The 10% and doubling interpretations match the logged predictor.
+- [ ] A residual or other diagnostic is inspected.
+- [ ] The claim is associational and a specific limitation is stated.
+- [ ] AI assistance and human verification are disclosed.
+- [ ] The notebook renders from a clean R session.

@@ -1,4 +1,4 @@
-iso3c,country,region,income_level,lending_type,year,adolescent_fertility,carbon_intensity,electricity_access,female_secondary_enrollment,gdp_per_capita_growth,gdp_per_capita_ppp,internet_use,renewable_electricity,under5_mortality
+iso3c,country,region,income_level_current,lending_type_current,year,adolescent_fertility,carbon_intensity,electricity_access,female_secondary_enrollment,gdp_per_capita_growth,gdp_per_capita_ppp,internet_use,renewable_electricity,under5_mortality
 ABW,Aruba,Latin America & Caribbean,High income,Not classified,2000,43.729,0.0789065343616353,91.7,91.7377166748047,6.51922376579444,37618.9926155094,15.4428229480349,0,
 ABW,Aruba,Latin America & Caribbean,High income,Not classified,2001,40.463,0.0765841113590476,100,97.3598327636719,3.21240568796392,38827.4672740448,17.1,0,
 ABW,Aruba,Latin America & Caribbean,High income,Not classified,2002,38.185,0.0844518782366993,100,98.0552368164062,-1.62809915245946,38195.3176084346,18.8,0,

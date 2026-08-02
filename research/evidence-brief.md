@@ -117,15 +117,14 @@ Sources: [Codex best practices](https://learn.chatgpt.com/guides/best-practices)
 Current coding-agent explanations increasingly distinguish the language model
 from the harness around it. Microsoft's VS Code team describes the harness as
 the layer that assembles context, exposes tools, executes tool calls, and
-returns results to the model for another round. Theo Browne's 2026 walkthrough
-uses the same practical distinction: the model pauses, the harness runs
-ordinary code to read, list, or edit files, and the result is appended to the
-conversation before the next model step. This distinction matters
+returns results to the model for another round. In that loop, the model pauses,
+the harness runs ordinary code to read, list, or edit files, and the result is
+appended to the conversation before the next model step. This distinction matters
 pedagogically because it gives students concrete questions to ask: What files
 can the agent see? Which tools can it call? What permission did I grant? What
 result came back? What check stops the loop?
 
-Sources: [The Coding Harness Behind GitHub Copilot in VS Code](https://code.visualstudio.com/blogs/2026/05/15/agent-harnesses-github-copilot-vscode), [Theo Browne, “How does Claude Code actually work?”](https://rewiz.app/channels/%40theo-t3gg/how-does-claude-code-actually-work)
+Source: [The Coding Harness Behind GitHub Copilot in VS Code](https://code.visualstudio.com/blogs/2026/05/15/agent-harnesses-github-copilot-vscode)
 
 ### AI assistance changes what it means to learn coding; it does not remove the value
 

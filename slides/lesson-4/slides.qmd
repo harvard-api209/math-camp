@@ -125,6 +125,23 @@ Predict what happens after restarting R and running only this line. What evidenc
 0:11-0:17. Demonstrate the failure live. Do not rescue it immediately. Ask the room to name the missing setup steps.
 :::
 
+## Handoff clinic: a project that lies
+
+Open `examples/handoff-clinic/`. It contains four deliberate failures:
+
+1. an absolute path that works only on one computer,
+2. an object used before it is created,
+3. an output older than the code,
+4. a causal sentence unsupported by the analysis.
+
+Run `Rscript examples/handoff-clinic/analysis.R` from a clean session. Stop at
+the first failure, record the evidence, and repair one issue at a time. The
+instructor key is separate from the student fixture.
+
+::: {.notes}
+0:17-0:28. Let the first run fail. Students predict and record the first blocker before anyone edits. Repair the absolute path and hidden object in public, then compare the stale output and causal claim. This is a worked example of the four audit categories, not a generic warning.
+:::
+
 ## Clean run protocol
 
 1. Save source files.
@@ -181,23 +198,17 @@ Where should the source note appear?
 :::
 
 ::: {.notes}
-0:17-0:24. Accept variations, but insist that dependencies and inputs precede transformations and outputs.
+0:28-0:35. Accept variations, but insist that dependencies and inputs precede transformations and outputs.
 :::
 
 ## One entry point
 
 A reviewer should not need to guess which script runs first.
 
-```{.r}
-library(tidyverse)
-
-wdi <- read_csv(
-  "data/derived/math-camp-wdi-2000-2022.csv",
-  show_col_types = FALSE
-)
-
-source("code/01-build-analysis-data.R")
-source("code/02-compare-patterns.R")
+```{.bash}
+Rscript code/01-inspect.R
+Rscript code/02-build-analysis.R
+Rscript code/03-compare.R
 ```
 
 For this small camp project, one well-ordered script is also acceptable.
@@ -241,7 +252,7 @@ execute:
 8. Verification record.
 
 ::: {.notes}
-0:24-0:32. Open the provided notebook. Show that students may keep an R script instead. The notebook is optional and ungraded.
+0:35-0:43. Open the provided notebook. Show that students may keep an R script instead. The notebook is optional and ungraded.
 :::
 
 ## A clean render is a test
@@ -267,7 +278,7 @@ Name two reasons this line might render an unhelpful result even if it does not 
 :::
 
 ::: {.notes}
-0:32-0:38. Expected: missing values yield `NA` without `na.rm=TRUE`; the full table may mix years and aggregates; the object may not exist in a clean run.
+0:43-0:49. Expected: missing values yield `NA` without `na.rm=TRUE`; the full table may mix years; the object may not exist in a clean run.
 :::
 
 ## README as an invitation
@@ -319,7 +330,7 @@ Useful limitations are specific:
 “More research is needed” is not enough.
 
 ::: {.notes}
-0:38-0:47. Ask students to improve one generic limitation by naming the exact threat and likely direction of concern.
+0:49-0:58. Ask students to improve one generic limitation by naming the exact threat and likely direction of concern.
 :::
 
 ## AI-use note
@@ -355,7 +366,7 @@ Exchange with a partner. Underline the verification evidence.
 :::
 
 ::: {.notes}
-0:47-0:56. Debrief one example that distinguishes agent generation from human verification. Take a five-minute break.
+0:58-1:08. Debrief one example that distinguishes agent generation from human verification. Take a five-minute break.
 :::
 
 ## The four-part audit
@@ -410,7 +421,7 @@ Exchange with a partner. Underline the verification evidence.
 - Is AI use disclosed plainly?
 
 ::: {.notes}
-1:01-1:13. Assign one audit to each section of the room. Ask each section to name the single most consequential failure in its category.
+1:08-1:23. Assign one audit to each section of the room. Ask each section to name the single most consequential failure in its category and cite the fixture evidence.
 :::
 
 ## Rank findings by consequence
@@ -461,7 +472,7 @@ The partner has three minutes to identify:
 :::
 
 ::: {.notes}
-1:13-1:23. Switch roles after three minutes. Authors may only observe. Debrief the first blocker each partner encountered.
+1:23-1:40. Switch roles after five minutes. Authors may only observe. Debrief the first blocker each partner encountered and require a file or output citation.
 :::
 
 ## Minimum handoff
@@ -512,5 +523,5 @@ Choose one score you want to raise during the lab.
 The goal is not perfect code. The goal is work another person can understand, inspect, and improve.
 
 ::: {.notes}
-1:23-1:30. Close by reminding students the artifact is theirs and optional. The fall semester will deepen the statistical methods; this camp establishes the workflow.
+1:40-2:00. Run the confidence map, allow ten minutes for one high-value repair, and close with the clean-run receipt. Remind students the artifact is theirs and optional. The fall semester will deepen the statistical methods; this camp establishes the workflow.
 :::

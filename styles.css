@@ -2356,6 +2356,25 @@ blockquote p {
   color: var(--ink);
 }
 
+.article-page .article-section > .article-source {
+  margin: 24px 0 30px;
+  color: var(--book-muted);
+  font-family: var(--type);
+  font-size: 11px;
+  line-height: 1.6;
+  text-align: left;
+  text-indent: 0;
+  text-justify: auto;
+  hyphens: none;
+}
+
+.article-page .article-source > span {
+  margin-right: 0.55em;
+  color: var(--ink);
+  font-weight: 700;
+  letter-spacing: 0.08em;
+}
+
 .article-page .article-nav {
   counter-reset: reader-nav;
   top: calc(var(--header-height) + 30px);
@@ -3654,7 +3673,7 @@ blockquote p {
 .home-page .home-chapter {
   display: block;
   padding: 92px clamp(54px, 7vw, 92px) 104px;
-  border-top: 1px solid var(--book-rule);
+  border-top: 0;
   scroll-margin-top: calc(var(--header-height) + 18px);
 }
 
@@ -3673,15 +3692,16 @@ blockquote p {
 }
 
 .home-page .home-chapter h2 {
-  max-width: 13ch;
+  width: 100%;
+  max-width: none;
   margin: 0 0 30px;
   color: var(--ink);
   font-family: Georgia, "Times New Roman", serif;
-  font-size: clamp(39px, 4.3vw, 54px);
+  font-size: clamp(39px, 4vw, 50px);
   font-weight: 400;
   letter-spacing: -0.04em;
   line-height: 1.04;
-  text-wrap: balance;
+  text-wrap: pretty;
 }
 
 .home-page .home-chapter .chapter-intro,
@@ -3695,17 +3715,50 @@ blockquote p {
   text-align: justify;
   text-justify: inter-word;
   hyphens: auto;
+  text-indent: 1.55em;
 }
 
 .home-page .home-chapter .home-prose > p + p {
   margin-top: 1.1em;
 }
 
+.home-page .home-subsection {
+  margin-top: 76px;
+  padding-top: 0;
+  scroll-margin-top: calc(var(--header-height) + 18px);
+}
+
+.home-page .home-subsection h3 {
+  width: 100%;
+  max-width: none;
+  margin: 0 0 26px;
+  color: var(--ink);
+  font-family: Georgia, "Times New Roman", serif;
+  font-size: clamp(30px, 3.1vw, 40px);
+  font-weight: 400;
+  letter-spacing: -0.032em;
+  line-height: 1.08;
+  text-wrap: pretty;
+}
+
+.home-page .home-subsection > p:not(.section-kicker) {
+  max-width: 65ch;
+  margin: 0;
+  color: var(--book-ink);
+  font-family: Georgia, "Times New Roman", serif;
+  font-size: 17px;
+  line-height: 1.72;
+  text-align: justify;
+  text-indent: 1.55em;
+  text-justify: inter-word;
+  hyphens: auto;
+}
+
 .home-page .editorial-list {
   display: block;
   margin: 46px 0 0;
   padding: 0;
-  border-top: 1px solid var(--book-ink);
+  border-top: 0;
   list-style: none;
 }
 
@@ -3713,7 +3766,7 @@ blockquote p {
 .home-page .editorial-list > a {
   margin: 0;
   padding: 0;
-  border-bottom: 1px solid var(--book-rule);
+  border-bottom: 0;
 }
 
 .home-page .editorial-list > li > a,
@@ -3863,12 +3916,22 @@ blockquote p {
 
   .home-page .home-chapter h2 {
     font-size: 38px;
+    text-wrap: pretty;
   }
 
   .home-page .home-chapter .chapter-intro,
-  .home-page .home-chapter .home-prose > p:not(.section-kicker) {
+  .home-page .home-chapter .home-prose > p:not(.section-kicker),
+  .home-page .home-subsection > p:not(.section-kicker) {
     font-size: 16px;
     line-height: 1.67;
+  }
+
+  .home-page .home-subsection {
+    margin-top: 58px;
+  }
+
+  .home-page .home-subsection h3 {
+    font-size: 31px;
   }
 
   .home-page .editorial-list {
@@ -4068,4 +4131,18 @@ blockquote p {
   .library-page .article-hero h1 {
     font-size: clamp(44px, 13vw, 62px);
   }
+}
+
+/* Book rhythm uses whitespace, not decorative horizontal rulers. */
+.home-page .editorial-list,
+.home-page .editorial-list > li,
+.home-page .editorial-list > li > a,
+.home-page .editorial-list > a,
+.article-page .article-section,
+.article-page .article-section + .article-section,
+.article-page .protocol-grid,
+.article-page .protocol-grid > div,
+.article-page .page-turn a {
+  border-top: 0;
+  border-bottom: 0;
 }

@@ -1,0 +1,7 @@
+HANDOFF RESULT
+
+Rows analyzed: 4,991
+Latest year: 2025
+Conclusion: Raising national income reduces under-five mortality.
+
+Generated before the current source file was saved.

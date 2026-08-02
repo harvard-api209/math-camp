@@ -22,6 +22,21 @@ Open `http://localhost:8080`.
 
 Opening `index.html` directly also works for most pages, but a local server more closely matches deployment and makes iframe behavior easier to verify.
 
+## Run the student project
+
+Students should download the complete repository, open
+`math-camp-2026.Rproj`, and begin with [START-HERE.md](START-HERE.md). The first
+automated gate is:
+
+```sh
+Rscript code/check_setup.R --codex-confirmed
+```
+
+The project includes a complete common path (`code/01-inspect.R` through
+`code/03-compare.R`), a safe public-data update script, four optional policy
+track recipes, and a deliberately broken handoff clinic. Every analysis script
+starts from a saved file; none requires an object left in an R console.
+
 ## Book architecture
 
 - `index.html`: public student homepage, schedule, lesson index, policy tracks, and resource guide
@@ -44,7 +59,7 @@ quarto render slides/lesson-1/slides.qmd
 
 The lesson chapter embeds `slides/lesson-1/index.html`, so no lesson-page edit is required. Repeat with lesson 2, 3, or 4. Shared deck styling lives in `slides/slide-theme.scss`.
 
-The four facilitated decks contain 54, 39, 39, and 41 rendered slides, respectively. Each deck includes speaker notes, timed interaction prompts, prediction checks, short partner protocols, and a direct handoff to its lab. The source is intentionally more complete than a conventional presentation outline so the teaching team can shorten or reorder a live session without having to invent missing explanations.
+The four facilitated decks contain 55, 39, 40, and 42 rendered slides, respectively. Each deck includes speaker notes, timed interaction prompts, prediction checks, short partner protocols, and a direct handoff to its lab. The source is intentionally more complete than a conventional presentation outline so the teaching team can shorten or reorder a live session without having to invent missing explanations.
 
 To render every deck:
 
@@ -55,15 +70,19 @@ do
 done
 ```
 
-## Rebuild the default dataset
+## Rebuild the default dataset (maintainers only)
 
-The checked-in CSVs are frozen through 2022. Rebuild them from the official World Bank API with:
+The checked-in CSVs are frozen through 2022. The build refuses to overwrite
+them unless a maintainer explicitly opts in:
 
 ```sh
-Rscript data/build_wdi.R
+MATH_CAMP_WRITE_FROZEN=YES Rscript data/build_wdi.R
 ```
 
-The script writes a wide file, a long file, and an indicator dictionary. Students extending the data should write a new dated output rather than overwrite the frozen baseline.
+The script writes a wide file, a long file, and a full indicator dictionary
+after validating keys, years, schema, and metadata. Students extend one public
+indicator with `code/04-update-indicator.R`; it writes a dated file under
+`data/updates/` and cannot overwrite the frozen baseline.
 
 ## Instructor access
 

@@ -6,4 +6,7 @@
 .quarto/
 *_cache/
 *_files/
-
+outputs/*
+!outputs/.gitkeep
+data/updates/*
+!data/updates/.gitkeep

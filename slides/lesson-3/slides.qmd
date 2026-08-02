@@ -147,7 +147,7 @@ ggplot(data = health_analysis,
 
 ```{.r}
 # Map a variable to color
-aes(color = income_level)
+aes(color = income_level_current)
 
 # Set every point to one color
 geom_point(color = "#a51c30")
@@ -190,7 +190,7 @@ Run after every meaningful layer. A plot object can be inspected and extended.
 ```{.r}
 p +
   geom_point(
-    aes(color = income_level),
+    aes(color = income_level_current),
     alpha = 0.45,
     size = 1.8
   )
@@ -202,7 +202,7 @@ Opacity reduces overplotting. Color introduces a grouped comparison.
 
 ```{.r}
 p +
-  geom_point(aes(color = income_level), alpha = 0.45) +
+  geom_point(aes(color = income_level_current), alpha = 0.45) +
   labs(
     title = "Income and under-five mortality",
     subtitle = "Observed country-years, 2000-2022",
@@ -248,7 +248,7 @@ On a log scale, which pair is farther apart?
 
 ```{.r}
 p +
-  geom_point(aes(color = income_level), alpha = 0.45) +
+  geom_point(aes(color = income_level_current), alpha = 0.45) +
   geom_smooth(
     method = "lm",
     formula = y ~ x,
@@ -278,7 +278,7 @@ Which hidden feature could change the story most for your policy track?
 ```{.r}
 p +
   geom_point(alpha = 0.35) +
-  facet_wrap(~ income_level) +
+  facet_wrap(~ income_level_current) +
   labs(x = "Log GDP per capita, PPP",
        y = "Deaths per 1,000 live births")
 ```
@@ -307,7 +307,7 @@ With a partner, improve one plot for your track:
 
 ```{.r}
 fit <- lm(
-  under5_mortality ~ log_income + income_level,
+  under5_mortality ~ log_income + income_level_current,
   data = health_analysis
 )
 
@@ -329,14 +329,23 @@ outcome ~ predictor + comparison group
 
 ## Coefficients have units
 
-For a model with log income:
+For a model with log income, translate the fitted coefficient into changes a
+reader recognizes:
 
-> A one-unit increase in log GDP per capita is associated with an estimated change of β deaths per 1,000 live births, comparing observations at the same included income level.
+```{.r}
+beta <- unname(coef(fit)[["log_income"]])
 
-The sentence must use the coefficient actually produced by the model.
+beta * log(1.10)  # 10% higher GDP per capita
+beta * log(2)     # double GDP per capita
+```
+
+- A 10% comparison uses `beta * log(1.10)`.
+- A doubling uses `beta * log(2)`.
+- Both results are changes in deaths per 1,000 live births.
+- Both remain pooled associations, not effects of making a country richer.
 
 ::: {.notes}
-0:56-1:06. Do not turn this into a full regression lecture. Emphasize syntax, units, reference categories, and association.
+0:56-1:06. Run the calculation with the actual fitted coefficient. Ask students to compare the sign and magnitude of the 10% and doubling statements. Emphasize syntax, units, current income-level categories, and association.
 :::
 
 ## Interpret or overreach?
@@ -482,6 +491,10 @@ Does it overturn the claim, narrow it, or identify the next question?
 <span class="timer">4 MINUTES</span>
 :::
 
+::: {.notes}
+1:15-1:27. Give students the first four minutes individually, then compare in track pairs. Require each pair to name the observation or specification and the exact check they ran. Debrief whether it overturns, narrows, or redirects the claim.
+:::
+
 ## One-minute claim
 
 ::: {.activity}
@@ -496,7 +509,26 @@ Exchange with a partner and underline any causal verb.
 :::
 
 ::: {.notes}
-1:15-1:23. Ask partners to replace causal language with descriptive or associational language without making the sentence empty.
+1:27-1:37. Ask partners to replace causal language with descriptive or associational language without making the sentence empty. Require the 10% or doubling interpretation to use the number produced by their model.
+:::
+
+## Run the complete track recipe
+
+Do not change two column names in the health model and call it a new track.
+
+```{.bash}
+Rscript code/tracks/01-health.R
+Rscript code/tracks/02-gender.R
+Rscript code/tracks/03-access.R
+Rscript code/tracks/04-climate.R
+```
+
+Each recipe defines a different unit, sample, comparison, and limitation. Choose
+one, read its receipt, and explain why its design differs from the common health
+example.
+
+::: {.notes}
+1:37-1:50. Assign one recipe per working group. Beginners run and read the receipt; experienced students inspect the sample construction. Ask one representative from each track to state its unit and strongest limitation.
 :::
 
 ## Lab 3 begins next
@@ -527,5 +559,5 @@ Complete three sentences:
 :::
 
 ::: {.notes}
-1:23-1:30. Use remaining transition time to form cross-track pairs and open Lab 3. The lesson plus lab meeting runs three hours total.
+1:50-2:00. Form cross-track pairs, complete the exit ticket, and open Lab 3. The lesson plus lab meeting runs three hours total.
 :::

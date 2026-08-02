@@ -140,7 +140,7 @@ Useful for comparing indicators or reshaping.
 :::
 
 ::: {.notes}
-0:10-0:16. Show the two downloadable files. Ask students to state the unit in each. Long data has a country-year-indicator unit.
+0:12-0:16. Show the two downloadable files. Ask students to state the unit in each. Long data has a country-year-indicator unit.
 :::
 
 ## Tidy data
@@ -173,7 +173,7 @@ wdi |>
   )
 
 wdi |>
-  count(income_level, sort = TRUE)
+  count(income_level_current, sort = TRUE)
 ```
 
 ::: {.notes}
@@ -209,7 +209,7 @@ Name the first verb you would use for each task. More than one pipeline can be r
 ```{.r}
 health <- wdi |>
   select(
-    iso3c, country, year, income_level,
+    iso3c, country, year, income_level_current,
     gdp_per_capita_ppp, under5_mortality
   ) |>
   filter(year >= 2000) |>
@@ -488,6 +488,10 @@ In pairs, review the update contract and add:
 <span class="timer">6 MINUTES</span>
 :::
 
+::: {.notes}
+1:17-1:32. First inspect `code/04-update-indicator.R` together: identify the official endpoint, protected destination, key test, and retrieval date. Then give pairs six minutes to strengthen the contract and compare one proposed check. This makes the permission ladder concrete before anyone gives an agent network access.
+:::
+
 ## Keep a workshop receipt
 
 For each agent round, record:
@@ -500,6 +504,10 @@ For each agent round, record:
 
 <div class="claim-line">The receipt is more useful than “the agent updated the data.”</div>
 
+::: {.notes}
+1:32-1:45. Run the student update script for one indicator or use a saved API response if the network is unavailable. Record the command, row count, latest observed year, output path, and one limitation. Confirm with file checksums that neither frozen CSV changed.
+:::
+
 ## Lab 2 tomorrow
 
 <span class="kicker">THU AUG 20 · 4-5 PM</span>
@@ -511,6 +519,10 @@ You will supervise an update for one indicator and leave with:
 - a provenance note,
 - one check that caught a problem,
 - one unresolved question.
+
+::: {.notes}
+1:45-1:53. Open Lab 2, identify the comparison table students will complete, and make sure every student knows that a documented API failure is an acceptable result. The required achievement is a trustworthy receipt, not a particular latest year.
+:::
 
 ## Exit ticket
 

@@ -1,4 +1,4 @@
-iso3c,country,year,variable,indicator_code,value,region,income_level,lending_type
+iso3c,country,year,variable,indicator_code,value,region,income_level_current,lending_type_current
 ABW,Aruba,2000,adolescent_fertility,SP.ADO.TFRT,43.729,Latin America & Caribbean,High income,Not classified
 ABW,Aruba,2000,carbon_intensity,EN.GHG.CO2.RT.GDP.PP.KD,0.0789065343616353,Latin America & Caribbean,High income,Not classified
 ABW,Aruba,2000,electricity_access,EG.ELC.ACCS.ZS,91.7,Latin America & Caribbean,High income,Not classified

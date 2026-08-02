@@ -8,7 +8,7 @@
     <title>Math Camp 2026 | Code, data, and judgment</title>
     <link rel="icon" href="data:,">
     <link rel="preload" href="assets/fonts/DepartureMono-Regular.woff2" as="font" type="font/woff2" crossorigin>
-    <link rel="stylesheet" href="styles.css?v=book-20260718n">
+    <link rel="stylesheet" href="styles.css?v=book-20260729q">
     <script>document.documentElement.classList.add("js");</script>
   </head>
   <body class="home-page">
@@ -32,8 +32,7 @@
       <span>CONTENTS</span>
       <a href="#introduction">Start here</a>
       <a href="#purpose">Why this camp</a>
-      <a href="#schedule">Schedule</a>
-      <a href="#lessons">Four lessons</a>
+      <a href="#schedule">Schedule + lessons</a>
       <a href="#questions">Policy questions</a>
       <a href="#protocol">Working protocol</a>
       <a href="#resources">Resources</a>
@@ -101,7 +100,7 @@
       <section class="home-chapter" id="schedule" aria-labelledby="schedule-title">
         <div class="home-prose">
           <p class="section-kicker">AUGUST 2026</p>
-          <h2 id="schedule-title">Twelve hours across three weeks.</h2>
+          <h2 id="schedule-title">Twelve hours, four lessons, one investigation.</h2>
           <p class="chapter-intro">The schedule alternates between guided lessons and coding labs. A lesson introduces one stage of the investigation; its lab gives you time to try that stage with classmates, compare decisions, and ask for help. The work accumulates, so each meeting begins where the previous one ended.</p>
           <ol class="editorial-list schedule-sequence">
             <li>
@@ -141,23 +140,21 @@
               </a>
             </li>
           </ol>
-        </div>
-      </section>
 
-      <section class="home-chapter" id="lessons" aria-labelledby="lessons-title">
-        <div class="home-prose">
-          <p class="section-kicker">READING PATH</p>
-          <h2 id="lessons-title">Four lessons, one investigation.</h2>
-          <p class="chapter-intro">The lessons are chapters rather than isolated demonstrations. Each one answers a question that the next lesson needs: What is in the file? How should we construct an analysis table? What pattern can we describe? Can another person inspect and rerun what we did?</p>
-          <ol class="editorial-list lesson-sequence">
-            <li><a href="lessons/lesson-1/"><span class="entry-number">01</span><span class="entry-copy"><strong>Meet the evidence.</strong><small>Learn what R, RStudio, Quarto, Codex, and Claude Code do; then inspect rows, variables, types, keys, coverage, and missingness.</small></span></a></li>
-            <li><a href="lessons/lesson-2/"><span class="entry-number">02</span><span class="entry-copy"><strong>Build the dataset.</strong><small>Choose variables, filter and group observations, join documentation, preserve provenance, and supervise a small data update.</small></span></a></li>
-            <li><a href="lessons/lesson-3/"><span class="entry-number">03</span><span class="entry-copy"><strong>Compare patterns.</strong><small>Read distributions, make a purposeful plot, fit a simple regression, examine residuals, and state the boundary of an associational claim.</small></span></a></li>
-            <li><a href="lessons/lesson-4/"><span class="entry-number">04</span><span class="entry-copy"><strong>Audit the handoff.</strong><small>Ask an agent to review the project, reproduce the important checks, improve the communication, and leave a transparent record.</small></span></a></li>
-          </ol>
-          <aside class="reading-note" aria-label="Shared dataset note">
-            <p><strong>The common starting point.</strong> Every path can use the same World Bank World Development Indicators teaching file: 4,991 country-year rows covering 2000–2022. Keeping the file, unit, period, and documentation together reduces setup problems and gives the room a common object to discuss. Students who want a higher ceiling may update or extend it, but no one needs to find a different dataset before learning the workflow.</p>
-          </aside>
+          <div class="home-subsection" id="lessons" aria-labelledby="lessons-title">
+            <p class="section-kicker">THE FOUR-LESSON ARC</p>
+            <h3 id="lessons-title">Each lesson answers the question the next one needs.</h3>
+            <p>The lessons are chapters rather than isolated demonstrations: What is in the file? How should we construct an analysis table? What pattern can we describe? Can another person inspect and rerun what we did?</p>
+            <ol class="editorial-list lesson-sequence">
+              <li><a href="lessons/lesson-1/"><span class="entry-number">01</span><span class="entry-copy"><strong>Meet the evidence.</strong><small>Learn what R, RStudio, Quarto, Codex, and Claude Code do; then inspect rows, variables, types, keys, coverage, and missingness.</small></span></a></li>
+              <li><a href="lessons/lesson-2/"><span class="entry-number">02</span><span class="entry-copy"><strong>Build the dataset.</strong><small>Choose variables, filter and group observations, join documentation, preserve provenance, and supervise a small data update.</small></span></a></li>
+              <li><a href="lessons/lesson-3/"><span class="entry-number">03</span><span class="entry-copy"><strong>Compare patterns.</strong><small>Read distributions, make a purposeful plot, fit a simple regression, examine residuals, and state the boundary of an associational claim.</small></span></a></li>
+              <li><a href="lessons/lesson-4/"><span class="entry-number">04</span><span class="entry-copy"><strong>Audit the handoff.</strong><small>Ask an agent to review the project, reproduce the important checks, improve the communication, and leave a transparent record.</small></span></a></li>
+            </ol>
+            <aside class="reading-note" aria-label="Shared dataset note">
+              <p><strong>The common starting point.</strong> Every path can use the same World Bank World Development Indicators teaching file: 4,991 country-year rows covering 2000–2022. Keeping the file, unit, period, and documentation together reduces setup problems and gives the room a common object to discuss. Students who want a higher ceiling may update or extend it, but no one needs to find a different dataset before learning the workflow.</p>
+            </aside>
+          </div>
         </div>
       </section>
 
@@ -165,7 +162,7 @@
         <div class="home-prose">
           <p class="section-kicker">POLICY QUESTIONS</p>
           <h2 id="questions-title">One file. Four ways into development.</h2>
-          <p class="chapter-intro">A shared dataset does not require a single substantive interest. The four questions below let students choose a development problem while the class keeps the same unit of observation, documentation, and core R workflow. That common structure makes it possible to compare reasoning across groups without turning the lab into four unrelated courses.</p>
+          <p class="chapter-intro">Everyone first completes the same health example, giving the room one common object to inspect and discuss. Students may then choose a development path. The paths share documentation and a verification protocol, but they do not force different questions into one model: each complete recipe defines its own unit, sample, comparison, and limitation.</p>
           <p>These are deliberately descriptive and associational exercises. Their purpose is to practice turning a broad concern into variables, comparisons, checks, and honest claim language. A visible pattern can motivate a better question; it does not by itself establish a policy effect.</p>
           <ol class="editorial-list policy-sequence">
             <li><span class="entry-number">01</span><span class="entry-copy"><small>HEALTH · INCOME AND SURVIVAL</small><strong>How is national income associated with under-five mortality, and does the pattern differ by income group?</strong><p>Use GDP per capita, under-five mortality, and income classifications to examine scale, transformation, and between-group comparisons.</p></span></li>
@@ -214,6 +211,6 @@
       <a href="#top">RETURN TO TOP ↑</a>
     </footer>
 
-    <script src="script.js?v=book-20260718n"></script>
+    <script src="script.js?v=book-20260718o"></script>
   </body>
 </html>

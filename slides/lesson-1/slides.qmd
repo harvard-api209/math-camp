@@ -71,9 +71,9 @@ We begin with a **policy question**, meet the evidence, and learn what a coding 
 <span class="kicker">WE CANNOT BEGIN THE CODING WORK UNTIL EVERY LAPTOP PASSES</span>
 
 <div class="setup-grid">
-<div><span>01</span><strong>Project</strong><p>The <code>math-camp/2026</code> folder is open as the workspace.</p></div>
+<div><span>01</span><strong>Project</strong><p><code>math-camp-2026.Rproj</code> is open in RStudio.</p></div>
 <div><span>02</span><strong>R</strong><p>R starts, and the console accepts a command.</p></div>
-<div><span>03</span><strong>Packages</strong><p><code>tidyverse</code> and <code>here</code> load without an error.</p></div>
+<div><span>03</span><strong>Packages</strong><p>The project checker finds all five required packages.</p></div>
 <div><span>04</span><strong>Quarto</strong><p><code>quarto check</code> finds both Quarto and R.</p></div>
 <div><span>05</span><strong>Codex</strong><p>You are signed in and can open the course project.</p></div>
 <div><span>06</span><strong>Data</strong><p>The frozen WDI teaching file is present in <code>data/derived</code>.</p></div>
@@ -85,38 +85,22 @@ We begin with a **policy question**, meet the evidence, and learn what a coding 
 0:06-0:09. Open the setup guide. Explain that this is a genuine gate, not a reminder. Ask students to keep the slide visible while they run the two smoke tests.
 :::
 
-## Run the smoke test
+## Run the readiness gate
 
-::: columns
-::: {.column width="54%"}
-### In the R console
-
-```{.r}
-library(tidyverse)
-library(here)
-
-mean(c(2, 4, 6, 8))
-here()
-```
-
-Expect `5` and the path to this project.
-:::
-::: {.column width="42%"}
-### In the terminal
+### In the RStudio terminal
 
 ```{.bash}
-quarto check
+Rscript code/check_setup.R --codex-confirmed
 ```
 
-Confirm that the report finds:
+The report checks:
 
-- Quarto
-- R
-- the expected project path
+- the project and R version,
+- required packages and Quarto,
+- the frozen dataset,
+- your manual confirmation that Codex opens with this project.
 
 [Open the full setup guide](../../setup/)
-:::
-:::
 
 ::: {.notes}
 0:09-0:16. Every student runs both checks on their own laptop. Do not accept “it worked yesterday.” The visible outputs are the evidence.
@@ -136,6 +120,27 @@ Confirm that the report finds:
 0:16-0:22. Use a visible green/yellow/red status count. This is the one whole-room status check that is operationally necessary. Recruit green students as helpers, but require each student to run their own commands.
 :::
 
+## First contact with the evidence
+
+Run the project’s first complete script:
+
+```{.bash}
+Rscript code/01-inspect.R
+```
+
+Before reading every line of R, find four facts in the receipt:
+
+1. How many rows are in the file?
+2. What does the key claim to be?
+3. What years are present?
+4. Which indicator has the most missing values?
+
+The script and its output are now shared objects we can question together.
+
+::: {.notes}
+0:22-0:28. This is the first authentic data contact. Students run the checked-in script rather than watching an instructor demo. Ask beginners to locate the four printed facts and advanced students to open the script and identify the assertions. Do not continue until everyone has either produced the receipt or is paired with a helper who is repairing a specific error.
+:::
+
 ## Today has three movements
 
 1. **Us:** starting points, norms, and why coding is a collective skill.
@@ -143,7 +148,7 @@ Confirm that the report finds:
 3. **The evidence:** rows, variables, keys, missingness, and the first inspection loop.
 
 ::: {.notes}
-0:03-0:06. Explain that the first two hours are the lesson and the final hour is Lab 1. The session alternates explanation and action.
+0:28-0:30. Explain that the first two hours are the lesson and the final hour is Lab 1. The session alternates explanation and action.
 :::
 
 ## By 4 PM
@@ -181,7 +186,7 @@ Confirm that the report finds:
 </div>
 
 ::: {.notes}
-0:22-0:26. Restore the two-axis archetype discussion from Math Camp 2024, replacing “experience with R” and “excitement about R” with coding experience and comfort working with AI. The point is movement and support, not classification. Invite a brief neighbor discussion without requiring anyone to announce a quadrant.
+0:30-0:34. Restore the two-axis archetype discussion from Math Camp 2024, replacing “experience with R” and “excitement about R” with coding experience and comfort working with AI. The point is movement and support, not classification. Invite a brief neighbor discussion without requiring anyone to announce a quadrant.
 :::
 
 ## Classroom norms
@@ -195,7 +200,7 @@ Confirm that the report finds:
 - Speed is not the same as understanding.
 
 ::: {.notes}
-0:14-0:18. Ask students what norm would make it easier to admit confusion. Add one room-generated norm verbally.
+0:34-0:37. Ask students what norm would make it easier to admit confusion. Add one room-generated norm verbally.
 :::
 
 ## Coding is a skill
@@ -217,7 +222,7 @@ Choose one position: **more important**, **less important**, or **important in a
 :::
 
 ::: {.notes}
-0:18-0:21. Take a quick room vote. Do not resolve the question immediately. Ask one student from each position what they mean by “learn coding”: syntax recall, reading, modifying, testing, decomposing, or designing.
+0:37-0:40. Take a quick room vote. Do not resolve the question immediately. Ask one student from each position what they mean by “learn coding”: syntax recall, reading, modifying, testing, decomposing, or designing.
 :::
 
 ## Andrew Ng's answer
@@ -232,7 +237,7 @@ Choose one position: **more important**, **less important**, or **important in a
 <span class="source">Paraphrased from Andrew Ng, “Coding Skill is More Valuable Than Ever” (2023) and “New Opportunities for the New Year” (2025), DeepLearning.AI.</span>
 
 ::: {.notes}
-0:21-0:24. Be precise about the claim. Ng does not argue that everyone must become a software engineer or memorize syntax. He argues that coding expands what prompting can accomplish and that AI-assisted building makes experimentation easier.
+0:40-0:43. Be precise about the claim. Ng does not argue that everyone must become a software engineer or memorize syntax. He argues that coding expands what prompting can accomplish and that AI-assisted building makes experimentation easier.
 :::
 
 ## Our answer for Math Camp
@@ -260,7 +265,7 @@ Adapted from the 2024 Math Camp promise:
 <div class="claim-line">Use every available form of help while keeping the analytical judgment in your own hands.</div>
 
 ::: {.notes}
-0:24-0:28. Say this in the first person. The 2024 deck promised readiness, enough R, and knowing how to craft questions and where to look for answers. Preserve that humane destination while updating what “enough R” means in an agent-assisted workflow.
+0:43-0:46. Say this in the first person. The 2024 deck promised readiness, enough R, and knowing how to craft questions and where to look for answers. Preserve that humane destination while updating what “enough R” means in an agent-assisted workflow.
 :::
 
 ## Why the workflow changed
@@ -289,20 +294,39 @@ Adapted from the 2024 Math Camp promise:
 <div class="claim-line">The unit of work expands from a line of code to a project. Responsibility for the analytical decision stays with the researcher.</div>
 
 ::: {.notes}
-0:35-0:40. Do not caricature the earlier workflow: it remains useful for learning and debugging. The change is that agents can act before an error and across more context. That increases both leverage and the surface area of a mistake.
+0:46-0:50. Do not caricature the earlier workflow: it remains useful for learning and debugging. The change is that agents can act before an error and across more context. That increases both leverage and the surface area of a mistake.
 :::
 
-## Faster code changes the bottleneck
+## Understanding is the new bottleneck
 
-When an agent can draft code quickly, more of the work moves into decisions that precede and follow the code:
+When an agent can produce code faster than we can absorb it, understanding becomes the scarce resource.
 
-1. **Question:** Is the requested task connected to the policy question?
-2. **Context:** Did the agent receive the right files, definitions, and constraints?
-3. **Permission:** Should this action be read-only, reversible, or allowed to edit?
-4. **Verification:** What independent evidence would reveal a mistake?
-5. **Communication:** Can another person see what changed and why it was accepted?
+<div class="workflow-compare">
+<div>
+<h3>Understand to verify</h3>
 
-**The scarce skill is defensible judgment across the whole workflow.**
+- Does the code run?
+- Does it match the request?
+- Do the checks pass?
+- Should I accept or reject it?
+</div>
+<div>
+<h3>Understand to participate</h3>
+
+- Why was this approach chosen?
+- What assumptions and tradeoffs does it contain?
+- Which question should come next?
+- How should the investigation evolve?
+</div>
+</div>
+
+Before keeping substantial agent-written code, explain its **purpose**, its **expected effect**, and **one check** in your own words. If you cannot, ask the agent to quiz you or build a smaller example you can manipulate.
+
+<span class="source">Adapted and paraphrased from Geoffrey Litt, [“Understanding is the New Bottleneck”](https://www.geoffreylitt.com/2026/07/02/understanding-is-the-new-bottleneck.html), July 2, 2026.</span>
+
+::: {.notes}
+Use this as the bridge from “why learn coding?” to the agent workflow. Litt’s key distinction is that understanding is not only a final quality-control gate. It supplies the concepts students need to make the next analytical move. Ask: “If the code passed every test but you could not explain what changed, could you responsibly choose the next model or variable?” Introduce the three-part speed regulator: explain purpose, predict effect, name a check. An agent-generated quiz or a tiny manipulable example can help build understanding, but students must answer and manipulate it themselves.
+:::
 
 ## From a studio to a supervised workshop
 
@@ -334,7 +358,7 @@ For this camp, **generative AI** means systems that produce new text or code fro
 The tool can produce a remarkably useful continuation of your request. It does not directly observe truth, understand your policy setting as a person does, or guarantee that generated code is correct.
 
 ::: {.notes}
-0:23-0:28. Keep this conceptual and short. Distinguish fluency from knowledge. Return to the arrival prompt: plausible language is not a verification condition.
+0:50-0:53. Keep this conceptual and short. Distinguish fluency from knowledge. Return to the arrival prompt: plausible language is not a verification condition.
 :::
 
 ## An LLM is a language engine
@@ -351,7 +375,7 @@ By itself, it cannot:
 - or confirm a policy claim.
 
 ::: {.notes}
-0:28-0:31. Use autocomplete as the entry analogy, then qualify it: the scale and learned representations are much richer, but the output is generated rather than retrieved from a guaranteed truth store.
+0:53-0:55. Use autocomplete as the entry analogy, then qualify it: the scale and learned representations are much richer, but the output is generated rather than retrieved from a guaranteed truth store.
 :::
 
 ## Five layers, five questions
@@ -393,7 +417,7 @@ You write the work order, grant access, watch the work, and decide whether the e
 :::
 
 ::: {.notes}
-0:31-0:35. This is the durable analogy for all four lessons. Reuse it explicitly later: prompt=work order, diff=receipt, tests=measuring instruments.
+0:55-0:58. This is the durable analogy for all four lessons. Reuse it explicitly later: prompt=work order, diff=receipt, tests=measuring instruments.
 :::
 
 ## What happens during a tool call?
@@ -422,7 +446,7 @@ Where can a mistake enter? Where can it be caught?
 :::
 
 ::: {.notes}
-0:35-0:40. Give the model a card that says “Count rows by year.” Give the harness a read-only permission card. Give R a prepared output. Debrief the difference between observing a command and verifying that it answers the policy question.
+0:58-1:02. Give the model a card that says “Count rows by year.” Give the harness a read-only permission card. Give R a prepared output. Debrief the difference between observing a command and verifying that it answers the policy question.
 :::
 
 ## Chatbot or coding agent?
@@ -439,7 +463,7 @@ Which actions require project access?
 :::
 
 ::: {.notes}
-0:40-0:44. Answers: 1 and 4 can be chat interactions; 2 and 3 are agentic project work. A coding agent can also perform 1 and 4.
+1:02-1:04. Answers: 1 and 4 can be chat interactions; 2 and 3 are agentic project work. A coding agent can also perform 1 and 4.
 :::
 
 ## Codex
@@ -471,7 +495,7 @@ Claude Code is Anthropic's coding agent for terminal and development workflows. 
 The same verification obligations apply.
 
 ::: {.notes}
-0:33-0:39. Treat “Codex” and “Claude Code” as product names, not models. Avoid a brand contest. Students can use either, but Codex is the common classroom baseline.
+1:04-1:07. Treat “Codex” and “Claude Code” as product names, not models. Avoid a brand contest. Students can use either, but Codex is the common classroom baseline.
 :::
 
 ## Codex and Claude Code
@@ -501,7 +525,7 @@ Match each need to R, RStudio, Quarto, or a coding agent.
 :::
 
 ::: {.notes}
-0:39-0:43. A=R, B=RStudio, C=Quarto, D=coding agent. Ask why an agent cannot replace the other three.
+1:07-1:10. A=R, B=RStudio, C=Quarto, D=coding agent. Ask why an agent cannot replace the other three.
 :::
 
 ## Why use these tools?
@@ -541,7 +565,7 @@ Never give a coding agent:
 This camp uses public World Bank data.
 
 ::: {.notes}
-0:43-0:49. Ask students to name a data type that should stay out of an agent. Clarify that a paid education account does not make every input appropriate.
+1:10-1:13. Ask students to name a data type that should stay out of an agent. Clarify that a paid education account does not make every input appropriate.
 :::
 
 ## Responsibility stays human
@@ -563,7 +587,7 @@ An agent does not absorb responsibility because it wrote the code.
 </div>
 
 ::: {.notes}
-0:49-0:54. Connect each pass to an observable action. Students should be able to point to their prediction, work order, tool result, verification, and judgment.
+1:13-1:17. Connect each pass to an observable action. Students should be able to point to their prediction, work order, tool result, verification, and judgment.
 :::
 
 ## A useful prompt has four parts
@@ -587,7 +611,7 @@ With a partner, add a goal, context, constraint, and done-when check. Make the t
 :::
 
 ::: {.notes}
-0:53-0:59. Invite two pairs to read prompts. Ask the room which wording makes success observable. Then take a five-minute break.
+1:17-1:22. Invite two pairs to read prompts. Ask the room which wording makes success observable. Then take a five-minute break.
 :::
 
 ## Live agent demonstration {.inverse}
@@ -601,7 +625,7 @@ With a partner, add a goal, context, constraint, and done-when check. Make the t
 5. Verify the row count and key in R.
 
 ::: {.notes}
-1:04-1:14. Use the actual repository. Narrate why each file is shared and why edits are initially prohibited. Intentionally ask one underspecified follow-up, then improve it.
+1:27-1:34. Use the actual repository. Narrate why each file is shared and why edits are initially prohibited. Intentionally ask one underspecified follow-up, then improve it.
 :::
 
 ## Four tools, four jobs
@@ -627,13 +651,13 @@ All four begin with the same question: **What exactly does one row represent?**
 
 <div class="tool-grid">
 <div><h3>4,991</h3><p>country-year observations</p></div>
-<div><h3>217</h3><p>economies and aggregate units</p></div>
+<div><h3>217</h3><p>non-aggregate economies</p></div>
 <div><h3>23</h3><p>years from 2000 through 2022</p></div>
 <div><h3>9</h3><p>policy indicators</p></div>
 </div>
 
 ::: {.notes}
-1:14-1:19. Explain that “economies” includes aggregates in World Bank metadata. Distinguish a frozen teaching snapshot from a permanently authoritative dataset.
+1:34-1:37. Explain that the teaching file contains 217 non-aggregate economies. Distinguish a frozen teaching snapshot from a permanently authoritative dataset.
 :::
 
 ## Row, variable, key
@@ -678,7 +702,7 @@ summarise(wdi, economies = n_distinct(iso3c))
 ```
 
 ::: {.notes}
-1:19-1:29. Live-code this block. Pause after each line and ask what new fact it establishes. Do not rush package errors; use them to explain environment versus code.
+1:37-1:44. Return to the receipt students generated at 0:22. Live-code this block to reveal how those facts were established. Pause after each line and ask what new fact it establishes.
 :::
 
 ## Predict before run
@@ -720,7 +744,7 @@ Without an agent:
 :::
 
 ::: {.notes}
-1:29-1:38. Circulate. Ask beginners to narrate each pipe step. Ask advanced students to add a uniqueness assertion. Debrief two different observations.
+1:44-1:50. Circulate. Ask beginners to narrate each pipe step. Ask advanced students to add a uniqueness assertion. Debrief two different observations.
 :::
 
 ## Agent explanation pass
@@ -759,7 +783,7 @@ Then tell one nearby person what you think the outcome variable is.
 :::
 
 ::: {.notes}
-1:38-1:44. Help students form temporary working groups. Do not require group submission. Check that students frame the questions as descriptive or associational.
+1:50-1:54. Help students form temporary working groups. Do not require group submission. Check that students frame the questions as descriptive or associational.
 :::
 
 ## Lab 1 begins next
@@ -789,5 +813,5 @@ Complete three sentences:
 :::
 
 ::: {.notes}
-1:44-1:50. Collect verbal examples. Use the remaining transition time to open Lab 1 and make sure every student has the file and an individual script.
+1:54-2:00. Collect verbal examples. Use the remaining transition time to open Lab 1 and make sure every student has the file and an individual script.
 :::
