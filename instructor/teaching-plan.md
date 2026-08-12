@@ -102,6 +102,12 @@ Quarto as tools with distinct jobs; and introduces Codex and Claude Code as
 products that package models, tools, and harnesses. Use the risk-by-verifiability matrix and require
 four items before execution: goal, context, permission, and proof.
 
+Use Adam Smith's pin factory as the historical bridge into this system. The
+division of labor can increase output, while coordination determines whether
+the specialized contributions form a useful product. Apply the same question
+to the student, agent, R, and harness: who frames, who acts, what travels across
+the handoff, and who verifies the result?
+
 The opening asks explicitly, **“Is it still worth learning to code?”** Students
 vote before hearing an answer and distinguish syntax recall from reading,
 modifying, decomposing, testing, and designing. Use Andrew Ng's argument that
@@ -139,9 +145,11 @@ Keep a **build record**: each transformation has a reason and a visible check,
 and the frozen source is never rewritten. Planned interactions: write the table
 contract, identify the key, predict what each verb changes, diagnose a
 many-to-many join, inspect a proposed diff, and write the build record. Lab 2
-is a sixty-minute build-table sprint. A public-data update remains an optional
-high-ceiling extension. The common path ends with a checked table from the
-frozen file.
+is a sixty-minute build-table sprint. Its common path uses `select()`,
+`filter()`, `mutate()`, a key test, and a short build record. Grouped summaries,
+metadata joins, another policy track, and a public-data update are optional
+extensions. This scope gives every student time to finish one checked table
+from the frozen file.
 
 ## Lesson 3: Discover patterns
 

@@ -25,7 +25,7 @@ Context: Read code/02-build-analysis.R and the indicator dictionary.
 Permission: Propose a diff. Do not run it or change frozen data.
 Constraints: Keep the country-year unit and lowercase names.
 Proof: Report rows, unique keys, years, missingness, ranges,
-unmatched joins, and every failed condition.
+and every failed condition.
 \end{lstlisting}
 \end{frame}
 
@@ -96,14 +96,44 @@ unmatched joins, and every failed condition.
     \toprule
     Minutes & Work & Result \\
     \midrule
-    00--10 & Contract & Population, unit, key, period, and variables. \\
-    10--25 & Select + filter & Required columns and sample. \\
-    25--35 & Mutate + group & One justified variable. \\
-    35--45 & Join & Metadata after a key check. \\
-    45--52 & Agent pass & One reviewable improvement. \\
-    52--60 & Build record & Checks and a short explanation. \\
+    00--08 & Contract & Population, unit, key, period, and variables. \\
+    08--25 & Select + filter & Required columns and sample. \\
+    25--35 & Mutate & One justified variable and a hand check. \\
+    35--43 & Structure checks & Unique key, rows, years, missingness, and ranges. \\
+    43--53 & Agent pass & One reviewable improvement. \\
+    53--60 & Build record & Checks and a four-sentence explanation. \\
     \bottomrule
   \end{tabularx}
+\end{frame}
+
+\begin{frame}{The common path and the extensions}
+  \begin{columns}[T,onlytextwidth]
+    \begin{column}{0.48\textwidth}
+      \begin{block}{Required in 60 minutes}
+        \begin{itemize}
+          \item select and filter;
+          \item create \texttt{log\_income};
+          \item test the country--year key;
+          \item record coverage and ranges;
+          \item review one bounded agent proposal.
+        \end{itemize}
+      \end{block}
+    \end{column}
+    \begin{column}{0.48\textwidth}
+      \begin{block}{Extension after the common path}
+        \begin{itemize}
+          \item summarize by region;
+          \item diagnose a metadata join;
+          \item adapt another policy track;
+          \item retrieve a newer public indicator.
+        \end{itemize}
+      \end{block}
+    \end{column}
+  \end{columns}
+
+  \vfill
+  Everyone leaves with the same checked object. Extensions deepen the work
+  without changing the shared foundation.
 \end{frame}
 
 \begin{frame}{The lab is done when}

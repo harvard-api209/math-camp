@@ -1,6 +1,65 @@
 \section{From a model to an agent}
 \subsection{The parts of the system}
 
+\begin{frame}{A pin factory begins with divided work}
+  \begin{columns}[T,onlytextwidth]
+    \begin{column}{0.48\textwidth}
+      \begin{quote}
+        ``The greatest improvements in the productive powers of labour''
+        grew from the division of labour.
+      \end{quote}
+      \vspace{-0.3em}
+      {\footnotesize Adapted from \citet[Book I, Chapter I]{smith1776wealth}.}
+    \end{column}
+    \begin{column}{0.48\textwidth}
+      \begin{tikzpicture}[
+        stage/.style={draw=palegray,rounded corners=2pt,text width=2.15cm,
+          minimum height=0.82cm,align=center,font=\small},
+        arr/.style={-{Latex[length=1.8mm]},color=crimson,thick}
+      ]
+        \node[stage] (draw) {Draw wire};
+        \node[stage,right=0.30cm of draw] (straight) {Straighten};
+        \node[stage,below=0.38cm of straight] (cut) {Cut};
+        \node[stage,left=0.30cm of cut] (point) {Point};
+        \node[stage,below=0.38cm of point] (head) {Add head};
+        \node[stage,right=0.30cm of head] (finish) {Finish};
+        \draw[arr] (draw)--(straight);
+        \draw[arr] (straight.south)--(cut.north);
+        \draw[arr] (cut)--(point);
+        \draw[arr] (point.south)--(head.north);
+        \draw[arr] (head)--(finish);
+      \end{tikzpicture}
+    \end{column}
+  \end{columns}
+
+  \vfill
+  Specialization raises a coordination question: \alert{who defines the task,
+  passes context, checks the handoff, and accepts the final product?}
+\end{frame}
+
+\begin{frame}{AI changes the division of analytical work}
+  \begin{center}
+  \begin{tikzpicture}[
+    node distance=0.42cm,
+    box/.style={draw=palegray,rounded corners=2pt,text width=2.45cm,
+      minimum height=1.22cm,align=center,font=\small},
+    arr/.style={-{Latex[length=1.8mm]},color=crimson,thick}
+  ]
+    \node[box] (person1) {\textbf{Person}\\question + standard};
+    \node[box,right=of person1] (agent) {\textbf{Agent}\\propose + execute};
+    \node[box,right=of agent] (software) {\textbf{R + tools}\\compute + record};
+    \node[box,right=of software] (person2) {\textbf{Person}\\verify + interpret};
+    \draw[arr] (person1)--node[above,font=\scriptsize]{work order}(agent);
+    \draw[arr] (agent)--node[above,font=\scriptsize]{tool calls}(software);
+    \draw[arr] (software)--node[above,font=\scriptsize]{evidence}(person2);
+  \end{tikzpicture}
+  \end{center}
+
+  \vspace{0.7em}
+  The productivity gain depends on coordination. A useful workflow makes the
+  task, context, permissions, output, and acceptance check visible.
+\end{frame}
+
 \begin{frame}{AI includes several kinds of systems}
   \small
   \begin{tabularx}{\textwidth}{@{}>{\bfseries}p{3.0cm}X@{}}

@@ -71,7 +71,7 @@ cp main.pdf lesson-2.pdf
 
 The website embeds `lesson-1.pdf` and `lesson-2.pdf`. Edit their English LaTeX sections directly. After each change, compile the deck, scan the log, and inspect every rendered slide before replacing the public PDF.
 
-The current PDFs contain 48 pages for Lesson 1 and 43 pages for Lesson 2, including title pages, section maps, and references. Later lesson materials remain internal drafts and are not part of the public release.
+The current PDFs contain 50 pages for Lesson 1 and 45 pages for Lesson 2, including title pages, section maps, and references. Later lesson materials remain internal drafts and are not part of the public release.
 
 ## Rebuild the default dataset (maintainers only)
 

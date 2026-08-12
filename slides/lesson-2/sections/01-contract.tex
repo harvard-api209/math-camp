@@ -69,6 +69,30 @@
   should produce.
 \end{frame}
 
+\begin{frame}{The table contract is a map of the question}
+  \begin{center}
+  \begin{tikzpicture}[
+    node distance=0.40cm,
+    box/.style={draw=palegray,rounded corners=2pt,text width=2.30cm,
+      minimum height=1.08cm,align=center,font=\small},
+    arr/.style={-{Latex[length=1.8mm]},color=crimson,thick}
+  ]
+    \node[box] (question) {\textbf{Policy question}\\income and mortality};
+    \node[box,right=of question] (contract) {\textbf{Table contract}\\population + unit + key};
+    \node[box,right=of contract] (code) {\textbf{R pipeline}\\select + filter + mutate};
+    \node[box,right=of code] (table) {\textbf{Checked table}\\one country--year row};
+    \draw[arr] (question)--(contract);
+    \draw[arr] (contract)--(code);
+    \draw[arr] (code)--(table);
+  \end{tikzpicture}
+  \end{center}
+
+  \vspace{0.7em}
+  A map is selective. The contract records the choices needed to connect the
+  source data to this question, and the build record shows whether the code
+  followed that map.
+\end{frame}
+
 \begin{frame}{The health table contract}
   \footnotesize
   \renewcommand{\arraystretch}{1.16}

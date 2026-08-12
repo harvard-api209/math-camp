@@ -103,22 +103,22 @@
             <h2>Move from contract to table.</h2>
             <div class="session-plan">
               <div>
-                <time>00–10</time><strong>Contract</strong>
+                <time>00–08</time><strong>Contract</strong>
                 <p>
                   Write population, unit, key, period, outcome, and comparison.
                 </p>
               </div>
               <div>
-                <time>10–25</time><strong>Select + filter</strong>
+                <time>08–25</time><strong>Select + filter</strong>
                 <p>Keep required variables and define the time window.</p>
               </div>
               <div>
-                <time>25–35</time><strong>Mutate + group</strong>
-                <p>Create one justified variable and inspect its meaning.</p>
+                <time>25–35</time><strong>Mutate</strong>
+                <p>Create one justified variable and complete a hand check.</p>
               </div>
               <div>
-                <time>35–45</time><strong>Join</strong>
-                <p>Add metadata only after checking the right-side key.</p>
+                <time>35–43</time><strong>Structure checks</strong>
+                <p>Test the key, rows, years, missingness, and ranges.</p>
               </div>
             </div>
             <div class="code-plate">
@@ -132,15 +132,21 @@ wdi &lt;- read_csv(
   show_col_types = FALSE
 )
 
-health &lt;- wdi |&gt;
+health_analysis &lt;- wdi |&gt;
   select(
-    iso3c, country, year, income_level_current,
+    iso3c, country, region, income_level_current, year,
     gdp_per_capita_ppp, under5_mortality
   ) |&gt;
-  filter(year &gt;= 2000) |&gt;
-  mutate(log_income = log(gdp_per_capita_ppp))
+  filter(
+    !is.na(gdp_per_capita_ppp),
+    gdp_per_capita_ppp &gt; 0,
+    !is.na(under5_mortality)
+  ) |&gt;
+  mutate(log_income = log(gdp_per_capita_ppp)) |&gt;
+  arrange(iso3c, year)
 
-stopifnot(!anyDuplicated(health[c("iso3c", "year")]))</code></pre>
+stopifnot(!anyDuplicated(health_analysis[c("iso3c", "year")]))
+stopifnot(all(is.finite(health_analysis$log_income)))</code></pre>
               <p>
                 Run one verb at a time. Before each run, mark whether rows,
                 columns, values, ordering, or the unit should change. After the
@@ -173,16 +179,16 @@ stopifnot(!anyDuplicated(health[c("iso3c", "year")]))</code></pre>
                     <td>Missingness, range, and one hand check</td>
                   </tr>
                   <tr>
-                    <td>After a join</td>
-                    <td>Did rows multiply or fail to match?</td>
-                    <td>Key test, row count, and <code>anti_join()</code></td>
+                    <td>Before the agent pass</td>
+                    <td>Does the table meet its stated contract?</td>
+                    <td>Key, rows, years, missingness, and ranges</td>
                   </tr>
                 </tbody>
               </table>
             </div>
           </section>
           <section class="article-section reveal" id="agent">
-            <p class="section-kicker">45–52 MINUTES</p>
+            <p class="section-kicker">43–53 MINUTES</p>
             <h2>Delegate one bounded improvement.</h2>
             <div class="prompt-box">
               <span>BOUNDED AGENT PASS</span>
@@ -191,8 +197,7 @@ Goal: Review my health-table pipeline and propose checks for its stated contract
 Context: Read my script and the indicator dictionary. The unit must remain country-year.
 Permission: Read and propose a patch; do not run it or alter frozen data.
 Constraints: Keep object and column names in lowercase. Do not redesign the pipeline or make a policy claim.
-Proof: Explain which contract field each check tests and show the smallest proposed diff.</pre
-              >
+Proof: Explain which contract field each check tests and show the smallest proposed diff.</pre>
             </div>
             <p>
               Inspect the diff. Keep only checks you can explain. If the agent
@@ -201,7 +206,7 @@ Proof: Explain which contract field each check tests and show the smallest propo
             </p>
           </section>
           <section class="article-section reveal" id="receipt">
-            <p class="section-kicker">52–60 MINUTES</p>
+            <p class="section-kicker">53–60 MINUTES</p>
             <h2>Keep a short build record.</h2>
             <ul class="checklist">
               <li>
@@ -225,10 +230,6 @@ Proof: Explain which contract field each check tests and show the smallest propo
               </li>
               <li>
                 <span>□</span
-                ><strong>Any unmatched join keys are listed.</strong>
-              </li>
-              <li>
-                <span>□</span
                 ><strong
                   >The script starts from a saved file and runs without objects
                   left in the console.</strong
@@ -240,6 +241,15 @@ Proof: Explain which contract field each check tests and show the smallest propo
               observations were excluded; what the logged variable means; and
               which limitation remains for the policy question.
             </p>
+            <div class="callout">
+              <span>COMMON PATH FIRST</span>
+              <p>
+                The required lab ends with one checked health table. Regional
+                summaries, metadata joins, other policy tracks, reusable
+                functions, and newer public data are extensions for students who
+                finish the common path.
+              </p>
+            </div>
             <div class="protocol-grid">
               <div>
                 <span>KEEP</span><strong>One script.</strong>
@@ -259,10 +269,10 @@ Proof: Explain which contract field each check tests and show the smallest propo
               </div>
             </div>
             <p>
-              <strong>Optional extension.</strong> Adapt the scaffold to one
-              other policy track or write a reusable checking function. Updating
-              the public data beyond 2022 is available as a separate optional
-              extension.
+              <strong>Optional extension.</strong> Summarize by region, diagnose
+              a metadata join, adapt another policy track, or write a reusable
+              checking function. Updating the public data beyond 2022 is a
+              separate optional extension.
             </p>
           </section>
         </article>
