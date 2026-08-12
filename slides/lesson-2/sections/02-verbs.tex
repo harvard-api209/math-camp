@@ -1,0 +1,153 @@
+\section{Six data verbs}
+\subsection{Predict, run, check, explain}
+
+\begin{frame}{Six verbs, six decisions}
+  \footnotesize
+  \renewcommand{\arraystretch}{1.18}
+  \begin{tabularx}{\textwidth}{@{}>{\bfseries}p{2.2cm}X@{}}
+    \toprule
+    Verb & Question before we run it \\
+    \midrule
+    \texttt{select()} & Which variables and identifiers remain? \\
+    \texttt{filter()} & Which observations leave the population? \\
+    \texttt{mutate()} & What new value is created, and in which unit? \\
+    \texttt{group\_by()} & Which observations belong together? \\
+    \texttt{summarise()} & What does one output row represent? \\
+    \texttt{left\_join()} & Which keys connect the tables? \\
+    \bottomrule
+  \end{tabularx}
+\end{frame}
+
+\begin{frame}{Use one recurring move}
+  \begin{center}
+  \begin{tikzpicture}[
+    node distance=0.42cm,
+    processbox/.style={draw=palegray,rounded corners=2pt,text width=2.7cm,
+      minimum height=1.35cm,align=center,font=\small},
+    arr/.style={-{Latex[length=2mm]},color=crimson,thick}
+  ]
+    \node[processbox] (predict) {\textbf{Predict}\\What should change?};
+    \node[processbox,right=of predict] (run) {\textbf{Run}\\Execute one small step};
+    \node[processbox,right=of run] (check) {\textbf{Check}\\Did that change occur?};
+    \node[processbox,right=of check] (explain) {\textbf{Explain}\\Why should it remain?};
+    \draw[arr] (predict)--(run);
+    \draw[arr] (run)--(check);
+    \draw[arr] (check)--(explain);
+  \end{tikzpicture}
+  \end{center}
+
+  \vfill
+  Predict rows, columns, values, order, or unit before running the step.
+\end{frame}
+
+\begin{frame}[fragile]{\texttt{select()} defines the scope}
+\begin{lstlisting}[language=R]
+health <- wdi |>
+  select(
+    iso3c,
+    country,
+    year,
+    income_level_current,
+    gdp_per_capita_ppp,
+    under5_mortality
+  )
+\end{lstlisting}
+
+  \textbf{Predict:} Which columns will leave? Which identifiers need to stay?
+\end{frame}
+
+\begin{frame}[fragile]{Check after \texttt{select()}}
+\begin{lstlisting}[language=R]
+names(health)
+glimpse(health)
+
+stopifnot(all(
+  c("iso3c", "year") %in% names(health)
+))
+\end{lstlisting}
+
+  Run the key check after confirming that the contract identifiers are still
+  present.
+\end{frame}
+
+\begin{frame}[fragile]{\texttt{filter()} changes the population}
+\begin{lstlisting}[language=R]
+health <- health |>
+  filter(year >= 2000)
+\end{lstlisting}
+
+  Before running:
+  \begin{itemize}
+    \item How many years should remain?
+    \item Could a country disappear completely?
+    \item Are we removing missing indicators on purpose or by accident?
+  \end{itemize}
+\end{frame}
+
+\begin{frame}[fragile]{Check after \texttt{filter()}}
+\begin{lstlisting}[language=R]
+health |>
+  summarise(
+    rows = n(),
+    countries = n_distinct(iso3c),
+    first_year = min(year),
+    last_year = max(year)
+  )
+\end{lstlisting}
+
+  Compare country and year coverage to identify which observations left the
+  sample.
+\end{frame}
+
+\begin{frame}[fragile]{\texttt{mutate()} makes a claim about meaning}
+\begin{lstlisting}[language=R]
+health <- health |>
+  mutate(
+    log_income = log(gdp_per_capita_ppp)
+  )
+\end{lstlisting}
+
+  The logarithm compresses the upper tail. It also changes how we interpret a
+  later coefficient. The new column carries a substantive decision about scale.
+\end{frame}
+
+\begin{frame}[fragile]{Check after \texttt{mutate()}}
+\begin{lstlisting}[language=R]
+health |>
+  summarise(
+    missing_income = sum(is.na(gdp_per_capita_ppp)),
+    missing_log = sum(is.na(log_income)),
+    min_income = min(gdp_per_capita_ppp, na.rm = TRUE),
+    max_income = max(gdp_per_capita_ppp, na.rm = TRUE)
+  )
+\end{lstlisting}
+
+  What would happen if income were zero or negative?
+\end{frame}
+
+\begin{frame}[fragile]{Grouping changes the unit}
+\begin{lstlisting}[language=R]
+regional_year <- health |>
+  group_by(region, year) |>
+  summarise(
+    mean_mortality = mean(under5_mortality, na.rm = TRUE),
+    countries = n_distinct(iso3c),
+    .groups = "drop"
+  )
+\end{lstlisting}
+
+  Grouping produces one region--year row in this summary.
+\end{frame}
+
+\begin{frame}{Predict the output}
+  Suppose the table has seven regions and 23 years.
+
+  \begin{enumerate}
+    \item What is the largest possible row count after the summary?
+    \item Why might the actual count be smaller?
+    \item Does \texttt{na.rm = TRUE} solve missing coverage?
+  \end{enumerate}
+
+  \vfill
+  Take three minutes. Write the answers before we run the code.
+\end{frame}

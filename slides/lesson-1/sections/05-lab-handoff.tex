@@ -1,0 +1,73 @@
+\section{From Lesson 1 to Lab 1}
+\subsection{What we keep}
+
+\begin{frame}{What we learned in Lesson 1}
+  \begin{itemize}
+    \item Choose the task before choosing the tool.
+    \item Keep understanding close to the speed of production.
+    \item Match agent autonomy to risk and verifiability.
+    \item Define completion evidence before execution.
+    \item Keep the question, interpretation, and responsibility with the person.
+  \end{itemize}
+
+  \vfill
+  We will reuse this supervision structure during the next lessons as the code
+  changes.
+\end{frame}
+
+\begin{frame}{Lab 1 is an installation clinic}
+  \vfill
+  \begin{center}
+    {\LARGE\color{crimson}The data exercise begins after every laptop passes the readiness gate.}
+
+    \vspace{0.8em}
+    A laptop is ready when the setup check is green. A red result leaves with
+    the exact error, one repair step, and a named person for follow-up.
+  \end{center}
+  \vfill
+\end{frame}
+
+\begin{frame}[fragile]{The readiness gate}
+  Open the Terminal tab in RStudio and run:
+
+\begin{lstlisting}
+Rscript code/check_setup.R --codex-confirmed
+\end{lstlisting}
+
+  The checker verifies:
+  \begin{itemize}
+    \item the course project and the R version;
+    \item required R packages;
+    \item Quarto;
+    \item the frozen teaching data;
+    \item Codex access to the same project.
+  \end{itemize}
+\end{frame}
+
+\begin{frame}{Lab 1 route}
+  \small
+  \begin{tabularx}{\textwidth}{@{}>{\color{crimson}\bfseries}p{1.7cm}>{\bfseries}p{3.0cm}X@{}}
+    \toprule
+    Minutes & Focus & What we need to see \\
+    \midrule
+    00--05 & Triage & Green, yellow, or red output. \\
+    05--15 & Project + R & Extracted folder, open project, current R. \\
+    15--25 & Packages & Install only what the checker reports. \\
+    25--35 & Quarto & Install, restart RStudio, and rerun. \\
+    35--50 & Data + Codex & Frozen file and project access. \\
+    50--60 & Final gate & Green result or an owned repair plan. \\
+    \bottomrule
+  \end{tabularx}
+\end{frame}
+
+\begin{frame}{Before we leave}
+  Write one sentence for each item:
+  \begin{enumerate}
+    \item One task I would delegate to a coding agent.
+    \item One decision I would keep with the person.
+    \item One type of evidence I will require before I keep generated code.
+  \end{enumerate}
+
+  \vfill
+  Bring these answers back when we begin Lesson 2.
+\end{frame}

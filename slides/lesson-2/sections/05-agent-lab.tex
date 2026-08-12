@@ -1,0 +1,120 @@
+\section{From Lesson 2 to Lab 2}
+\subsection{Bounded help}
+
+\begin{frame}{Give the agent one task you can evaluate}
+  A broad request hides the important decisions:
+  \begin{block}{Too broad}
+    Clean this dataset and make it analysis-ready.
+  \end{block}
+
+  Ask for one improvement:
+  \begin{itemize}
+    \item add a key or range assertion;
+    \item diagnose unmatched join keys;
+    \item produce a compact build record.
+  \end{itemize}
+
+  \vfill
+  First write a small pipeline that you can read. Then use the agent as a reviewer.
+\end{frame}
+
+\begin{frame}[fragile]{A bounded request for the health table}
+\begin{lstlisting}
+Goal: Add a build record for the health analysis table.
+Context: Read code/02-build-analysis.R and the indicator dictionary.
+Permission: Propose a diff. Do not run it or change frozen data.
+Constraints: Keep the country-year unit and lowercase names.
+Proof: Report rows, unique keys, years, missingness, ranges,
+unmatched joins, and every failed condition.
+\end{lstlisting}
+\end{frame}
+
+\begin{frame}{Review the proposed diff}
+  For every added check, answer:
+  \begin{enumerate}
+    \item Which table-contract field does it test?
+    \item What failure would it expose?
+    \item Can I explain the output?
+    \item Does the proposed change affect the population, transformation, or key?
+  \end{enumerate}
+
+  \vfill
+  A change to the population, transformation, or key is a substantive decision.
+  The analyst remains responsible even when the request is described as code cleanup.
+\end{frame}
+
+\begin{frame}{Decisions the analyst keeps}
+  \begin{itemize}
+    \item The meaning of one row.
+    \item The population represented by a filter.
+    \item Whether a transformation fits the policy question.
+    \item Whether current metadata can be interpreted historically.
+    \item Whether missing coverage weakens the comparison.
+  \end{itemize}
+
+  \vfill
+  The analyst interprets the evidence that the agent exposes.
+\end{frame}
+
+\begin{frame}{Updating public data is an extension}
+  Extending one indicator beyond 2022 can be useful. It also adds:
+  \begin{itemize}
+    \item an internet and API dependency;
+    \item retrieval dates and version changes;
+    \item possible revisions to earlier years;
+    \item new metadata questions.
+  \end{itemize}
+
+  \vfill
+  First build the frozen table correctly. Then extend it with a separate record.
+\end{frame}
+
+\begin{frame}{What we learned in Lesson 2}
+  \begin{itemize}
+    \item The table contract comes before the data verbs.
+    \item Every verb should have a reason and a check.
+    \item A join must preserve the intended key and unit.
+    \item The analysis table should rebuild from a protected source.
+    \item The agent improves one bounded part under analyst review.
+  \end{itemize}
+\end{frame}
+
+\begin{frame}{Lab 2}
+  \vfill
+  \begin{center}
+    {\LARGE\color{crimson}Build one country--year table.}
+
+    \vspace{0.75em}
+    Test its contract and explain the decisions that produced it.
+  \end{center}
+  \vfill
+\end{frame}
+
+\begin{frame}{Lab 2 route}
+  \small
+  \begin{tabularx}{\textwidth}{@{}>{\color{crimson}\bfseries}p{1.6cm}>{\bfseries}p{3.2cm}X@{}}
+    \toprule
+    Minutes & Work & Result \\
+    \midrule
+    00--10 & Contract & Population, unit, key, period, and variables. \\
+    10--25 & Select + filter & Required columns and sample. \\
+    25--35 & Mutate + group & One justified variable. \\
+    35--45 & Join & Metadata after a key check. \\
+    45--52 & Agent pass & One reviewable improvement. \\
+    52--60 & Build record & Checks and a short explanation. \\
+    \bottomrule
+  \end{tabularx}
+\end{frame}
+
+\begin{frame}{The lab is done when}
+  \begin{itemize}
+    \item The script rebuilds the table from the frozen file.
+    \item The country--year key is unique.
+    \item The build record includes rows, years, missingness, ranges, and matches.
+    \item You can explain one consequential decision without the agent.
+  \end{itemize}
+
+  \vfill
+  The lab has no submission or grade. Keep the script because the next lesson
+  will use this table.
+\end{frame}

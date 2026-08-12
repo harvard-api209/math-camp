@@ -10,3 +10,17 @@ outputs/*
 !outputs/.gitkeep
 data/updates/*
 !data/updates/.gitkeep
+
+# LaTeX slide build intermediates. Public decks use lesson-1.pdf and lesson-2.pdf.
+slides/lesson-*/main.aux
+slides/lesson-*/main.bbl
+slides/lesson-*/main.blg
+slides/lesson-*/main.fdb_latexmk
+slides/lesson-*/main.fls
+slides/lesson-*/main.log
+slides/lesson-*/main.nav
+slides/lesson-*/main.out
+slides/lesson-*/main.pdf
+slides/lesson-*/main.snm
+slides/lesson-*/main.toc
+slides/lesson-*/main.vrb

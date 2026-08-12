@@ -1,28 +1,290 @@
 <!doctype html>
 <html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <meta name="description" content="Math Camp 2026 Coding Lesson 4: audit the handoff.">
-  <title>Lesson 4: Audit the handoff | Math Camp 2026</title>
-  <link rel="icon" href="data:,">
-  <link rel="stylesheet" href="../../styles.css?v=book-20260718p">
-  <script>document.documentElement.classList.add("js");</script>
-</head>
-<body id="top" class="article-page">
-  <div class="page-progress" aria-hidden="true"><span></span></div>
-  <header class="site-header"><a class="brand" href="../../"><span>API 209</span><strong>MATH CAMP 2026</strong></a><div class="header-chapter"><span>LESSON 4</span><strong>/ AUDIT THE HANDOFF</strong></div><nav class="chapter-nav"><a href="../../">HOME</a><a href="../../labs/lab-4/">LAB 4</a><a href="../../slides/lesson-4/">SLIDES</a></nav><button class="menu-button" type="button" aria-expanded="false" aria-controls="mobile-outline">CONTENTS</button></header>
-  <nav class="mobile-outline" id="mobile-outline"><div class="mobile-outline-head"><span>LESSON 4</span><button type="button" data-close-menu>CLOSE</button></div><ol><li><a href="#outcomes">What survives a handoff</a></li><li><a href="#handoff">The minimum handoff</a></li><li><a href="#workflow">Building the trail</a></li><li><a href="#audit">Auditing with an agent</a></li><li><a href="#slides">Slides</a></li></ol></nav>
-  <main>
-    <section class="article-hero"><div class="article-hero-meta"><div><span>LESSON</span><strong>TUE AUG 25</strong></div><div><span>TIME</span><strong>3-5 PM</strong></div><div><span>LAB</span><strong>WED AUG 26, 4-5 PM</strong></div></div><div class="article-hero-copy"><p>CODING LESSON 4</p><h1>Audit the handoff.</h1><p class="article-deck">Test the analysis like a recipe in someone else’s kitchen: no remembered objects, whispered instructions, or invisible agent work.</p><div class="article-actions"><a href="../../labs/lab-4/">OPEN LAB 4 →</a><a href="../../slides/lesson-4/">OPEN SLIDES ↗</a></div></div><aside class="article-hero-side"><p>Run clean<br>Read critically<br>Disclose plainly</p></aside></section>
-    <div class="article-layout">
-      <aside class="article-nav"><span>IN THIS LESSON</span><a href="#outcomes">What survives a handoff</a><a href="#handoff">The minimum handoff</a><a href="#workflow">Building the trail</a><a href="#audit">Auditing with an agent</a><a href="#slides">Slides</a></aside>
-      <article class="article">
-        <section class="article-section reveal" id="outcomes"><p class="section-kicker">LEARNING OUTCOMES</p><h2>Leave evidence another person can follow.</h2><p class="article-lead">By the end of the lesson, you should be able to render a small notebook, rerun it from a clean session, document the data, and disclose how an AI agent contributed.</p><ol class="learning-list"><li><span>01</span><strong>Organize code in a readable sequence from input to output.</strong></li><li><span>02</span><strong>Render a Quarto notebook with code, results, and interpretation.</strong></li><li><span>03</span><strong>Run the project from a clean R session.</strong></li><li><span>04</span><strong>Write a concise source, limitation, and AI-use note.</strong></li><li><span>05</span><strong>Audit someone else’s handoff constructively.</strong></li></ol><h3>Why this matters for policy work</h3><p>Policy analysis rarely remains on the computer where it began. A colleague may need to update the data, a decision maker may ask where a number came from, or a future analyst may have to reproduce the figure after the original author has moved on. A handoff is successful when that person can reconstruct the path from question to source to code to claim without relying on private memory.</p><div class="callout"><span>SOMEONE ELSE'S KITCHEN</span><p>A recipe has not been tested because its author can cook the dish from memory. It is tested when another person, with the listed ingredients and equipment, can follow the written sequence and obtain the expected result. A clean project run removes the analyst's remembered objects, console history, local paths, and silent explanations in the same way.</p></div><p>Agent-assisted work makes disclosure part of that path. Saying that AI was used is not enough. A useful record distinguishes what the agent generated, which files or sources it consulted, what the analyst checked, and which uncertainty remains. This is not paperwork added after analysis. It is how responsibility stays visible when computational work is shared.</p></section>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta
+      name="description"
+      content="Math Camp 2026 Coding Lesson 4: audit the handoff."
+    />
+    <meta name="robots" content="noindex,nofollow" />
+    <title>Lesson 4: Audit the handoff | Math Camp 2026</title>
+    <link rel="icon" href="data:," />
+    <link rel="stylesheet" href="../../styles.css?v=book-20260718p" />
+    <script>
+      document.documentElement.classList.add("js");
+    </script>
+  </head>
+  <body id="top" class="article-page">
+    <div class="page-progress" aria-hidden="true"><span></span></div>
+    <header class="site-header">
+      <a class="brand" href="../../"
+        ><span>API 209</span><strong>MATH CAMP 2026</strong></a
+      >
+      <div class="header-chapter">
+        <span>LESSON 4 · DRAFT</span><strong>/ AUDIT THE HANDOFF</strong>
+      </div>
+      <nav class="chapter-nav">
+        <a href="../../instructor/">INSTRUCTOR</a
+        ><a href="../../labs/lab-4/">LAB 4</a
+        ><a href="../../slides/lesson-4/">SLIDES</a>
+      </nav>
+      <button
+        class="menu-button"
+        type="button"
+        aria-expanded="false"
+        aria-controls="mobile-outline"
+      >
+        CONTENTS
+      </button>
+    </header>
+    <nav class="mobile-outline" id="mobile-outline">
+      <div class="mobile-outline-head">
+        <span>LESSON 4</span
+        ><button type="button" data-close-menu>CLOSE</button>
+      </div>
+      <ol>
+        <li><a href="#outcomes">What survives a handoff</a></li>
+        <li><a href="#handoff">The minimum handoff</a></li>
+        <li><a href="#workflow">Building the trail</a></li>
+        <li><a href="#audit">Auditing with an agent</a></li>
+        <li><a href="#slides">Slides</a></li>
+      </ol>
+    </nav>
+    <main>
+      <section class="article-hero">
+        <div class="article-hero-meta">
+          <div><span>LESSON</span><strong>TUE AUG 25</strong></div>
+          <div><span>TIME</span><strong>3-5 PM</strong></div>
+          <div><span>STATUS</span><strong>INSTRUCTOR DRAFT</strong></div>
+        </div>
+        <div class="article-hero-copy">
+          <p>CODING LESSON 4</p>
+          <h1>Audit the handoff.</h1>
+          <p class="article-deck">
+            Test the analysis on another computer and with another reader. The
+            successful handoff rebuilds from saved inputs, recorded
+            instructions, and inspectable agent work.
+          </p>
+          <div class="article-actions">
+            <a href="../../labs/lab-4/">OPEN LAB 4 →</a
+            ><a href="../../slides/lesson-4/">OPEN SLIDES ↗</a>
+          </div>
+        </div>
+        <aside class="article-hero-side">
+          <p>Run clean<br />Read critically<br />Disclose plainly</p>
+        </aside>
+      </section>
+      <div class="article-layout">
+        <aside class="article-nav">
+          <span>IN THIS LESSON</span
+          ><a href="#outcomes">What survives a handoff</a
+          ><a href="#handoff">The minimum handoff</a
+          ><a href="#workflow">Building the trail</a
+          ><a href="#audit">Auditing with an agent</a
+          ><a href="#slides">Slides</a>
+        </aside>
+        <article class="article">
+          <section class="article-section reveal" id="outcomes">
+            <p class="section-kicker">LEARNING OUTCOMES</p>
+            <h2>Leave evidence that another person can follow.</h2>
+            <p class="article-lead">
+              By the end of the lesson, you should be able to render a small
+              notebook, rerun it from a clean session, document the data, and
+              disclose how an AI agent contributed.
+            </p>
+            <ol class="learning-list">
+              <li>
+                <span>01</span
+                ><strong
+                  >Organize code in a readable sequence from input to
+                  output.</strong
+                >
+              </li>
+              <li>
+                <span>02</span
+                ><strong
+                  >Render a Quarto notebook with code, results, and
+                  interpretation.</strong
+                >
+              </li>
+              <li>
+                <span>03</span
+                ><strong>Run the project from a clean R session.</strong>
+              </li>
+              <li>
+                <span>04</span
+                ><strong
+                  >Write a concise source, limitation, and AI-use note.</strong
+                >
+              </li>
+              <li>
+                <span>05</span
+                ><strong>Audit someone else’s handoff constructively.</strong>
+              </li>
+            </ol>
+            <h3>Why this matters for policy work</h3>
+            <p>
+              Policy analysis rarely stays on the computer where it started. A
+              colleague may need to update the data. A decision maker may ask
+              where a number came from, or a future analyst may need to
+              reproduce the figure after the original author has left. The
+              handoff works when this person can reconstruct the path from the
+              question to the source, code, and claim without depending on the
+              author's memory.
+            </p>
+            <div class="callout">
+              <span>SOMEONE ELSE'S KITCHEN</span>
+              <p>
+                Another person tests the recipe by using the listed
+                ingredients and equipment, follow the written sequence, and
+                obtain the expected result. A clean project run applies the same
+                test by removing remembered objects, console history, local
+                paths, and unrecorded explanations.
+              </p>
+            </div>
+            <p>
+              When an agent helps with the analysis, disclosure becomes part of
+              this path. Record what the agent generated, which files or
+              sources it consulted, what the analyst checked, and which
+              uncertainty remains. This record keeps responsibility visible when
+              the computational work moves to another person.
+            </p>
+          </section>
 
-        <section class="article-section reveal" id="handoff"><p class="section-kicker">MINIMUM HANDOFF</p><h2>Small, complete, optional.</h2><div class="table-scroll"><table><thead><tr><th>Element</th><th>Minimum</th><th>Question to ask</th></tr></thead><tbody><tr><td>Question</td><td>One descriptive or associational question.</td><td>Can a reader identify the population and outcome?</td></tr><tr><td>Data</td><td>Source, years, unit, and indicator definitions.</td><td>Could the file be rebuilt?</td></tr><tr><td>Code</td><td>One R script or Quarto notebook.</td><td>Does it run from a clean session?</td></tr><tr><td>Evidence</td><td>One figure or table and one careful statement.</td><td>Does the statement match the output?</td></tr><tr><td>Disclosure</td><td>What the agent did and what the human verified.</td><td>Is responsibility visible?</td></tr></tbody></table></div><p><strong>Not an assignment.</strong> Nothing is graded or submitted. The artifact is a personal field notebook that can travel into the fall semester if it is useful.</p></section>
-        <section class="article-section reveal" id="cold-run"><p class="section-kicker">COLD-RUN TEST</p><h2>Reproducibility begins when memory is removed.</h2><p>Code can appear to work because objects, packages, or manual edits remain in the current session. A clean render starts without those invisible supports and reveals what the project actually contains.</p><div class="table-scroll"><table><thead><tr><th>Hidden dependency</th><th>Symptom</th><th>Repair</th></tr></thead><tbody><tr><td>Console-created object</td><td><code>object not found</code> after restart.</td><td>Create it in the script before use.</td></tr><tr><td>Unloaded package</td><td>A function works only in the old session.</td><td>Load the package explicitly near setup.</td></tr><tr><td>Absolute path</td><td>The file works only on one computer.</td><td>Use a project-relative path.</td></tr><tr><td>Manual data edit</td><td>The output cannot be rebuilt from source.</td><td>Express the change in code and preserve raw data.</td></tr><tr><td>Stale output</td><td>The figure disagrees with current code.</td><td>Render outputs from the current source.</td></tr></tbody></table></div><h3>Live failure clinic</h3><p>The instructor will open a notebook that appears complete but fails from a clean session. Students first predict the hidden dependency, then propose the smallest repair, then verify by rendering again. The failure is the lesson evidence, not an interruption.</p></section>
-        <section class="article-section reveal" id="workflow"><p class="section-kicker">LIVE CODING</p><h2>Turn working code into a readable trail.</h2><div class="session-plan"><div><time>00-20</time><strong>Organize</strong><p>Inputs, setup, transformations, analysis, and outputs.</p></div><div><time>20-45</time><strong>Narrate</strong><p>Add question, definitions, interpretation, and limitation.</p></div><div><time>45-70</time><strong>Render</strong><p>Build the notebook and repair hidden-state failures.</p></div><div><time>70-95</time><strong>Disclose</strong><p>Describe agent contributions and human checks.</p></div><div><time>95-120</time><strong>Audit</strong><p>Run the four-part audit before the lab exchange.</p></div></div><div class="code-plate"><div class="code-plate-head"><span>QUARTO</span><span>Field notebook</span></div><pre><code>---
+          <section class="article-section reveal" id="handoff">
+            <p class="section-kicker">MINIMUM HANDOFF</p>
+            <h2>Small, complete, optional.</h2>
+            <div class="table-scroll">
+              <table>
+                <thead>
+                  <tr>
+                    <th>Element</th>
+                    <th>Minimum</th>
+                    <th>Question to ask</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td>Question</td>
+                    <td>One descriptive or associational question.</td>
+                    <td>Can a reader identify the population and outcome?</td>
+                  </tr>
+                  <tr>
+                    <td>Data</td>
+                    <td>Source, years, unit, and indicator definitions.</td>
+                    <td>Could the file be rebuilt?</td>
+                  </tr>
+                  <tr>
+                    <td>Code</td>
+                    <td>One R script or Quarto notebook.</td>
+                    <td>Does it run from a clean session?</td>
+                  </tr>
+                  <tr>
+                    <td>Evidence</td>
+                    <td>One figure or table and one careful statement.</td>
+                    <td>Does the statement match the output?</td>
+                  </tr>
+                  <tr>
+                    <td>Disclosure</td>
+                    <td>What the agent did and what the human verified.</td>
+                    <td>Is responsibility visible?</td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+            <p>
+              <strong>Personal field notebook.</strong> The artifact is optional,
+              ungraded, and available for use during the fall semester.
+            </p>
+          </section>
+          <section class="article-section reveal" id="cold-run">
+            <p class="section-kicker">COLD-RUN TEST</p>
+            <h2>Remove memory before testing reproducibility.</h2>
+            <p>
+              Code can look correct because objects, packages, or manual edits
+              remain in the current session. A clean render starts without this
+              invisible support and shows what the project actually contains.
+            </p>
+            <div class="table-scroll">
+              <table>
+                <thead>
+                  <tr>
+                    <th>Hidden dependency</th>
+                    <th>Symptom</th>
+                    <th>Repair</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td>Console-created object</td>
+                    <td><code>object not found</code> after restart.</td>
+                    <td>Create it in the script before use.</td>
+                  </tr>
+                  <tr>
+                    <td>Unloaded package</td>
+                    <td>A function works only in the old session.</td>
+                    <td>Load the package explicitly near setup.</td>
+                  </tr>
+                  <tr>
+                    <td>Absolute path</td>
+                    <td>The file works only on one computer.</td>
+                    <td>Use a project-relative path.</td>
+                  </tr>
+                  <tr>
+                    <td>Manual data edit</td>
+                    <td>The output cannot be rebuilt from source.</td>
+                    <td>Express the change in code and preserve raw data.</td>
+                  </tr>
+                  <tr>
+                    <td>Stale output</td>
+                    <td>The figure disagrees with current code.</td>
+                    <td>Render outputs from the current source.</td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+            <h3>Live failure clinic</h3>
+            <p>
+              The instructor will open a notebook that looks complete but fails
+              in a clean session. Students first predict the hidden dependency
+              and propose the smallest repair. They then render the notebook
+              again to verify the change. The failure becomes evidence for the
+              lesson.
+            </p>
+          </section>
+          <section class="article-section reveal" id="workflow">
+            <p class="section-kicker">LIVE CODING</p>
+            <h2>Turn working code into a readable trail.</h2>
+            <div class="session-plan">
+              <div>
+                <time>00-20</time><strong>Organize</strong>
+                <p>Inputs, setup, transformations, analysis, and outputs.</p>
+              </div>
+              <div>
+                <time>20-45</time><strong>Narrate</strong>
+                <p>
+                  Add question, definitions, interpretation, and limitation.
+                </p>
+              </div>
+              <div>
+                <time>45-70</time><strong>Render</strong>
+                <p>Build the notebook and repair hidden-state failures.</p>
+              </div>
+              <div>
+                <time>70-95</time><strong>Disclose</strong>
+                <p>Describe agent contributions and human checks.</p>
+              </div>
+              <div>
+                <time>95-120</time><strong>Audit</strong>
+                <p>Run the four-part audit before the lab exchange.</p>
+              </div>
+            </div>
+            <div class="code-plate">
+              <div class="code-plate-head">
+                <span>QUARTO</span><span>Field notebook</span>
+              </div>
+              <pre><code>---
 title: "Math Camp field notebook"
 format: html
 execute:
@@ -36,22 +298,227 @@ execute:
 
 ## Comparison
 
-## What this does not show
+## Limitation
 
-## AI-use note</code></pre></div><div class="code-notes"><p><strong>The YAML header</strong> gives Quarto the document title and output format. Keeping <code>echo: true</code> makes the code visible in the rendered notebook, while <code>warning: false</code> suppresses routine warnings without hiding errors.</p><p><strong>Question and data</strong> come before results so a reader can recover the population, variables, years, source, and definitions before encountering a figure or table.</p><p><strong>Comparison and limitation</strong> keep the numerical result beside the sentence it can support and the stronger claim it cannot establish.</p><p><strong>The AI-use note</strong> records what the agent contributed, which context it read, what the analyst verified, and any unresolved uncertainty. A clean render then tests whether this trail depends on forgotten console commands or local state.</p></div></section>
-        <section class="article-section reveal" id="audit"><p class="section-kicker">FOUR-PART AUDIT</p><h2>Use the harness to make review observable.</h2><p>An audit is more trustworthy when it leaves a trail. Ask the agent to cite exact files, run named checks where permitted, and separate observed failures from recommendations. The harness can expose tool calls and command output; the human reviewer still decides whether those checks address the policy and statistical risks that matter.</p><div class="prompt-box"><span>Starter prompt</span><pre>Goal: Audit this project for handoff readiness.
+## AI-use note</code></pre>
+            </div>
+            <div class="code-notes">
+              <p>
+                <strong>The YAML header</strong> gives Quarto the document title
+                and output format. Keeping <code>echo: true</code> makes the
+                code visible in the rendered notebook, while
+                <code>warning: false</code> suppresses routine warnings without
+                hiding errors.
+              </p>
+              <p>
+                <strong>Question and data</strong> come before results so a
+                reader can recover the population, variables, years, source, and
+                definitions before encountering a figure or table.
+              </p>
+              <p>
+                <strong>Comparison and limitation</strong> keep the numerical
+                result beside its supported interpretation and the boundary of
+                the current design.
+              </p>
+              <p>
+                <strong>The AI-use note</strong> records what the agent
+                contributed, which context it read, what the analyst verified,
+                and any unresolved uncertainty. A clean render then tests
+                whether this trail depends on forgotten console commands or
+                local state.
+              </p>
+            </div>
+          </section>
+          <section class="article-section reveal" id="audit">
+            <p class="section-kicker">FOUR-PART AUDIT</p>
+            <h2>Use the harness to leave an observable review trail.</h2>
+            <p>
+              An audit is more trustworthy when another person can inspect its
+              evidence. Ask the agent to cite exact files, run named checks
+              where permitted, and separate observed failures from
+              recommendations. The harness can show tool calls and command
+              output. The human reviewer still decides whether those checks
+              address the policy and statistical risks that matter.
+            </p>
+            <div class="prompt-box">
+              <span>Starter prompt</span>
+              <pre>
+Goal: Audit this project for handoff readiness.
 Context: Read the README, data documentation, R or Quarto source, and rendered output.
 Review separately: (1) reproducibility, (2) data provenance and integrity, (3) statistical interpretation, and (4) communication and accessibility.
 Constraints: Do not edit files. Rank issues by consequence. Cite the file and evidence for every claim. Say when you are uncertain.
-Done when: I have a short prioritized checklist that a human can verify.</pre></div><div class="table-scroll"><table><thead><tr><th>Audit evidence</th><th>What it proves</th><th>What it does not prove</th></tr></thead><tbody><tr><td>Clean render log</td><td>The documented path executed in this environment.</td><td>The statistical claim is appropriate.</td></tr><tr><td>Key and range checks</td><td>Named structural conditions held.</td><td>The indicator measures the intended concept.</td></tr><tr><td>Diff or change summary</td><td>Which source files changed.</td><td>The changes improved the analysis.</td></tr><tr><td>AI-use note</td><td>How assistance and verification were described.</td><td>That every generated contribution was correct.</td></tr></tbody></table></div><ul class="checklist"><li><span>□</span><strong>Does the project run after restarting R?</strong></li><li><span>□</span><strong>Are data source, retrieval date, and indicator definitions present?</strong></li><li><span>□</span><strong>Does the text avoid unsupported causal language?</strong></li><li><span>□</span><strong>Does the AI-use note distinguish generation from verification?</strong></li></ul></section>
-        <section class="article-section reveal" id="slides"><p class="section-kicker">SLIDES</p><h2>Lesson deck.</h2><p>Edit the source deck freely, then render it back to this stable location.</p><figure class="slide-frame"><iframe src="../../slides/lesson-4/index.html?v=book-20260718o" title="Lesson 4 slides"></iframe><figcaption><span>LESSON 4 / REVEALJS</span><a href="../../slides/lesson-4/">OPEN FULL SCREEN ↗</a></figcaption></figure></section>
-        <section class="article-section reveal" id="failure-clinic"><p class="section-kicker">WORKED FAILURE CLINIC</p><h2>Audit a project that appears finished.</h2><p>The folder <code>examples/handoff-clinic/</code> is deliberately broken. Its script points to an absolute file path, uses an object that a previous console created, leaves a stale result in <code>outputs/</code>, and turns a descriptive pattern into a causal claim. These failures map directly to reproducibility, provenance, interpretation, and communication.</p><ol class="learning-list"><li><span>01</span><strong>Predict.</strong> Read the script without running it and mark the first line likely to fail on your computer.</li><li><span>02</span><strong>Run clean.</strong> Execute <code>Rscript examples/handoff-clinic/analysis.R</code> from the project root and save the first error.</li><li><span>03</span><strong>Repair one blocker.</strong> Replace the absolute input with the project-relative frozen CSV, then create every object before it is used.</li><li><span>04</span><strong>Compare source and output.</strong> Check whether the saved result could have been created by the current script. A file’s presence is not evidence that it is current.</li><li><span>05</span><strong>Revise the claim.</strong> Replace causal language with the strongest descriptive or associational sentence the code supports.</li></ol><div class="callout"><span>FIRST BLOCKER RULE</span><p>Do not ask an agent to fix everything at once. Record the first observable failure, make the smallest source repair, rerun from the beginning, and repeat. This preserves the chain between a change and the evidence that it worked.</p></div><h3>What a useful audit comment looks like</h3><p><strong>Weak:</strong> “The project is not reproducible.” <strong>Useful:</strong> “<code>examples/handoff-clinic/analysis.R</code> reads an absolute path under another user’s home directory, so a clean run stops before loading data. Replace it with the project-relative frozen CSV and rerun from the root.” The second comment cites a file, names evidence, states consequence, and proposes a verifiable repair.</p></section>
-      </article>
-      <aside class="article-margin"><dl><div><dt>INPUT</dt><dd>Question + evidence</dd></div><div><dt>OUTPUT</dt><dd>Field notebook</dd></div><div><dt>AGENT ROLE</dt><dd>Handoff auditor</dd></div></dl></aside>
-    </div>
-    <nav class="page-turn"><a href="../lesson-3/"><span>PREVIOUS</span><strong>Lesson 3: Compare patterns</strong></a><a href="../../labs/lab-4/"><span>NEXT</span><strong>Lab 4: Mini hackathon</strong></a></nav>
-  </main>
-  <footer class="site-footer"><div><span>API 209</span><strong>MATH CAMP 2026</strong></div><p>Lesson 4 of 4.</p><a href="#top">RETURN TO TOP ↑</a></footer>
-  <script src="../../script.js?v=book-20260718o"></script>
-</body>
+Done when: I have a short prioritized checklist that a human can verify.</pre
+              >
+            </div>
+            <div class="table-scroll">
+              <table>
+                <thead>
+                  <tr>
+                    <th>Audit evidence</th>
+                    <th>What it proves</th>
+                    <th>Further evidence needed</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td>Clean render log</td>
+                    <td>The documented path executed in this environment.</td>
+                    <td>The statistical claim is appropriate.</td>
+                  </tr>
+                  <tr>
+                    <td>Key and range checks</td>
+                    <td>Named structural conditions held.</td>
+                    <td>The indicator measures the intended concept.</td>
+                  </tr>
+                  <tr>
+                    <td>Diff or change summary</td>
+                    <td>Which source files changed.</td>
+                    <td>The changes improved the analysis.</td>
+                  </tr>
+                  <tr>
+                    <td>AI-use note</td>
+                    <td>How assistance and verification were described.</td>
+                    <td>That every generated contribution was correct.</td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+            <ul class="checklist">
+              <li>
+                <span>□</span
+                ><strong>Does the project run after restarting R?</strong>
+              </li>
+              <li>
+                <span>□</span
+                ><strong
+                  >Are data source, retrieval date, and indicator definitions
+                  present?</strong
+                >
+              </li>
+              <li>
+                <span>□</span
+                ><strong
+                  >Does the text avoid unsupported causal language?</strong
+                >
+              </li>
+              <li>
+                <span>□</span
+                ><strong
+                  >Does the AI-use note distinguish generation from
+                  verification?</strong
+                >
+              </li>
+            </ul>
+          </section>
+          <section class="article-section reveal" id="slides">
+            <p class="section-kicker">SLIDES</p>
+            <h2>Lesson deck.</h2>
+            <p>
+              Edit the source deck and render the updated version to this same
+              location.
+            </p>
+            <figure class="slide-frame">
+              <iframe
+                src="../../slides/lesson-4/index.html?v=book-20260718o"
+                title="Lesson 4 slides"
+              ></iframe>
+              <figcaption>
+                <span>LESSON 4 / REVEALJS</span
+                ><a href="../../slides/lesson-4/">OPEN FULL SCREEN ↗</a>
+              </figcaption>
+            </figure>
+          </section>
+          <section class="article-section reveal" id="failure-clinic">
+            <p class="section-kicker">WORKED FAILURE CLINIC</p>
+            <h2>Audit a project that appears finished.</h2>
+            <p>
+              The folder <code>examples/handoff-clinic/</code> is deliberately
+              broken. Its script points to an absolute file path, uses an object
+              that a previous console created, leaves a stale result in
+              <code>outputs/</code>, and turns a descriptive pattern into a
+              causal claim. These failures map directly to reproducibility,
+              provenance, interpretation, and communication.
+            </p>
+            <ol class="learning-list">
+              <li>
+                <span>01</span><strong>Predict.</strong> Read the script without
+                running it and mark the first line likely to fail on your
+                computer.
+              </li>
+              <li>
+                <span>02</span><strong>Run clean.</strong> Execute
+                <code>Rscript examples/handoff-clinic/analysis.R</code> from the
+                project root and save the first error.
+              </li>
+              <li>
+                <span>03</span><strong>Repair one blocker.</strong> Replace the
+                absolute input with the project-relative frozen CSV, then create
+                every object before it is used.
+              </li>
+              <li>
+                <span>04</span><strong>Compare source and output.</strong> Check
+                recreate the saved result with the current script, then compare
+                timestamps and output.
+              </li>
+              <li>
+                <span>05</span><strong>Revise the claim.</strong> Replace causal
+                language with the strongest descriptive or associational
+                sentence the code supports.
+              </li>
+            </ol>
+            <div class="callout">
+              <span>FIRST BLOCKER RULE</span>
+              <p>
+                Give the agent one ranked finding at a time. Record the first
+                observable failure, make the smallest source repair, rerun from
+                the beginning, and repeat. This preserves the chain between a
+                change and the evidence that it worked.
+              </p>
+            </div>
+            <h3>What a useful audit comment looks like</h3>
+            <p>
+              <strong>Weak:</strong> “The project is not reproducible.”
+              <strong>Useful:</strong> “<code
+                >examples/handoff-clinic/analysis.R</code
+              >
+              reads an absolute path under another user’s home directory, so a
+              clean run stops before loading data. Replace it with the
+              project-relative frozen CSV and rerun from the root.” The second
+              comment cites a file, names evidence, states consequence, and
+              proposes a verifiable repair.
+            </p>
+          </section>
+        </article>
+        <aside class="article-margin">
+          <dl>
+            <div>
+              <dt>INPUT</dt>
+              <dd>Question + evidence</dd>
+            </div>
+            <div>
+              <dt>OUTPUT</dt>
+              <dd>Field notebook</dd>
+            </div>
+            <div>
+              <dt>AGENT ROLE</dt>
+              <dd>Handoff auditor</dd>
+            </div>
+          </dl>
+        </aside>
+      </div>
+      <nav class="page-turn">
+        <a href="../lesson-3/"
+          ><span>PREVIOUS</span><strong>Lesson 3: Discover patterns</strong></a
+        ><a href="../../labs/lab-4/"
+          ><span>NEXT</span><strong>Lab 4: Mini hackathon</strong></a
+        >
+      </nav>
+    </main>
+    <footer class="site-footer">
+      <div><span>API 209</span><strong>MATH CAMP 2026</strong></div>
+      <p>Lesson 4 of 4.</p>
+      <a href="#top">RETURN TO TOP ↑</a>
+    </footer>
+    <script src="../../script.js?v=book-20260718o"></script>
+  </body>
 </html>

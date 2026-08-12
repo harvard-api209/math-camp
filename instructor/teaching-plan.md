@@ -1,6 +1,6 @@
 # Math Camp 2026 teaching plan
 
-This plan turns the four lesson decks into facilitated class meetings rather than short presentations. Slides provide the public teaching sequence; speaker notes provide timing, prompts, demonstrations, and transitions. Lab pages provide complete student-facing instructions.
+This plan uses the four lesson decks as the spine of facilitated class meetings. Slides provide the public teaching sequence; speaker notes provide timing, prompts, demonstrations, and transitions. Lab pages provide complete student-facing instructions.
 
 ## Recurring lesson rhythm
 
@@ -21,12 +21,11 @@ The two three-hour meetings reserve their last hour for the corresponding lab.
 
 ## The teaching model: engine, workshop, investigator
 
-Use the same analogy in every meeting so students do not have to relearn the
-technology vocabulary.
+Use the same analogy in every meeting to keep the technology vocabulary stable.
 
 - **The LLM is a language engine.** It is exceptionally good at producing a
-  plausible next piece of language or code. It is not a database, a source, or
-  an independent observer of the policy setting.
+  plausible next piece of language or code. Evidence still comes from project
+  files, primary sources, code behavior, and the policy setting.
 - **The harness is the workshop.** It decides which project context reaches the
   model, which tools are available, which actions require permission, what tool
   results return to the conversation, and when the loop stops.
@@ -40,7 +39,7 @@ Connect each familiar course tool to a physical object:
 
 | Course tool | Analogy | Teaching point |
 |---|---|---|
-| R | Laboratory instrument | It performs specified operations; it does not choose the question. |
+| R | Laboratory instrument | It performs specified operations; the analyst chooses the question. |
 | RStudio | Lab bench | It keeps code, objects, files, and output visible together. |
 | Quarto | Lab notebook | It records the path from question to code to result. |
 | Coding agent | Junior research assistant | It can act quickly across the project but needs a clear assignment and supervision. |
@@ -57,8 +56,8 @@ Every demonstration and lab should visibly pass through the same five stages:
 4. **Verify:** Which R check, source, or clean run can test the result?
 5. **Narrate:** What did we accept, revise, reject, or leave unresolved?
 
-Do not collapse “observe” and “verify.” Seeing that an agent ran a command is not
-the same as deciding that the command tested the relevant analytical claim.
+Teach “observe” and “verify” as separate steps. A tool log shows that an agent
+ran a command. Verification asks whether that command tested the relevant claim.
 
 ## Scaffold and fade
 
@@ -73,8 +72,8 @@ removes support:
 
 This keeps the floor low for students new to code while creating a real ceiling
 for experienced programmers. High-ceiling extensions should deepen
-verification, provenance, or statistical judgment rather than reward faster
-prompting.
+verification, provenance, and statistical judgment. The high ceiling requires
+more than prompting speed.
 
 ## Interaction vocabulary
 
@@ -86,16 +85,22 @@ prompting.
 - **Human versus agent:** compare a human-first attempt with a generated attempt and name what changed.
 - **One-minute paper:** write the strongest supported claim and one limitation.
 
-## Lesson 1: Meet the evidence
+## Lesson 1: AI, coding, and judgment
 
 **Lesson time:** 120 minutes. **Lab time:** 60 minutes.
 
-The lesson welcomes the room, normalizes different starting points, explains why
-the camp has moved from an IDE-only workflow to a human-agent-evidence workflow,
-and builds the engine/workshop/investigator mental model. It distinguishes AI,
-an LLM, a chat interface, an agent, and a harness; introduces Codex and Claude
-Code as products rather than as models; establishes privacy, permissions, and
-verification norms; and then teaches the first R inspection loop.
+Begin by welcoming the room and recognizing that students have different
+starting points. Some have not written code before; some already use R; many
+know a chat interface but not a coding agent inside a project. Use the light
+archetypes exercise to make this variation visible without asking students to
+identify themselves publicly. Then introduce the driving question: **what
+should we delegate, to which system, and with what evidence?**
+
+The lesson then builds the engine/workshop/investigator mental model. It
+distinguishes an LLM, chat interface, agent, and harness; treats R, RStudio, and
+Quarto as tools with distinct jobs; and introduces Codex and Claude Code as
+products that package models, tools, and harnesses. Use the risk-by-verifiability matrix and require
+four items before execution: goal, context, permission, and proof.
 
 The opening asks explicitly, **“Is it still worth learning to code?”** Students
 vote before hearing an answer and distinguish syntax recall from reading,
@@ -105,37 +110,40 @@ an important advantage for inspectable and repeatable actions. Then restore the
 2024 Math Camp destination in updated form: students should leave ready for the
 semester, able to move in R, able to craft questions and locate help, and
 confident enough to make and repair mistakes in public. The final line is:
-**independence does not mean working without help; it means retaining
-independence of judgment.**
+**students should use help while retaining responsibility for judgment.**
 
-Before any data exercise, run a **non-negotiable setup gate**. Every student must
-open the `math-camp/2026` project, start R, load `tidyverse` and `here`, confirm
-that `here()` points to the course project, run `quarto check`, sign in to Codex,
-and locate the frozen WDI file. Use green/yellow/red status: green students can
-help, yellow students repair a package or path problem with the teaching team,
-and red students complete the missing installation or sign-in. Do not advance
-to the inspection code while a known setup failure remains. Budget 15–20 minutes
-and keep the full setup guide open.
+The final hour is an **installation clinic**. The evidence inventory and R
+analysis begin after the readiness gate. Every student opens the project, starts R, verifies the required
+packages, finds Quarto, locates the frozen WDI file, signs in to Codex, and runs
+`Rscript code/check_setup.R --codex-confirmed`. Green students help gather
+diagnostic evidence. Yellow and red students work through macOS, Windows,
+package, path, or account lanes. A student leaves either green or with the exact
+failure, next repair, and a named instructor or ICA responsible for follow-up.
 
-Planned interactions: arrival prompt, mandatory setup gate,
-AI-comfort × coding-experience archetype discussion, “is coding still worth learning?” room
-vote, “engine or workshop?” classification, a human tool-call simulation,
-tool-matching check, prompt repair, prediction before code,
-missing-versus-zero check, policy-track choice, and exit ticket.
+Planned interactions: light archetype discussion, “is coding still worth
+learning?” reflection, engine/workshop classification, human tool-call
+simulation, risk-and-verifiability placement, weak-to-bounded request repair,
+and installation triage.
 
 ## Lesson 2: Build the dataset
 
 **Lesson time:** 120 minutes. **Lab time:** 60 minutes on the following day.
 
-The lesson follows one indicator from source to analysis table. Students learn file layers, tidy structure, types, keys, missingness, joins, assertions, provenance, and version comparison. The agent is introduced as a supervised data engineer whose work must be reviewed through a diff and explicit checks.
+The lesson turns a table contract into one analysis-ready object. Students learn
+`select()`, `filter()`, `mutate()`, `group_by()`, `summarise()`, and joins while
+tracking the population, unit, key, time period, variables, missingness, and
+provenance. The agent is a bounded cleaning assistant that may add checks or
+diagnose one step only after students can evaluate the human-readable pipeline.
 
-Use the analogy of **chain of custody**: each transformation should leave a
-trace, and raw evidence is never rewritten. Planned interactions: reconstruct
-the data pipeline, identify the key, predict a many-to-many join, choose the
-correct verb, diagnose silent row loss, inspect an update contract, compare a
-change receipt, and write a provenance sentence.
+Keep a **build record**: each transformation has a reason and a visible check,
+and the frozen source is never rewritten. Planned interactions: write the table
+contract, identify the key, predict what each verb changes, diagnose a
+many-to-many join, inspect a proposed diff, and write the build record. Lab 2
+is a sixty-minute build-table sprint. A public-data update remains an optional
+high-ceiling extension. The common path ends with a checked table from the
+frozen file.
 
-## Lesson 3: Compare patterns
+## Lesson 3: Discover patterns
 
 **Lesson time:** 120 minutes. **Lab time:** 60 minutes.
 
@@ -152,7 +160,7 @@ and run separate code and statistical agent reviews.
 
 **Lesson time:** 120 minutes. **Lab time:** 60 minutes on the following day.
 
-The lesson explains reproducibility, clean sessions, Quarto as a field notebook rather than the website framework, README and provenance requirements, AI-use disclosure, and the four-part handoff audit. Students prepare for an exchange in which another person runs the project cold.
+The lesson explains reproducibility, clean sessions, Quarto as a field notebook, README and provenance requirements, AI-use disclosure, and the four-part handoff audit. The course website uses a separate framework. Students prepare for an exchange in which another person runs the project cold.
 
 Use the analogy of **a recipe tested in someone else's kitchen**: the author
 cannot silently provide ingredients, objects, or remembered steps. Planned
@@ -166,6 +174,6 @@ rehearsal, and final confidence map.
 - Demonstrations must include at least one intentional error or failed assumption.
 - Ask students to predict before revealing output.
 - Keep the frozen dataset and a no-agent fallback available if internet services fail.
-- Do not equate speed with mastery; invite multiple solution paths.
+- Treat speed and mastery as separate dimensions; invite multiple solution paths.
 - Working groups are temporary. Every student keeps an individual script or notebook.
-- No artifact is graded or submitted.
+- The personal artifact is optional and ungraded.

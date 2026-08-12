@@ -1,0 +1,182 @@
+\section{Learning with an agent}
+\subsection{Understanding and cognitive debt}
+
+\begin{frame}{When generation becomes cheap}
+  \begin{center}
+  \begin{tikzpicture}[
+    node distance=0.52cm,
+    stage/.style={draw=palegray,rounded corners=2pt,text width=2.4cm,
+      minimum height=1.15cm,align=center},
+    arr/.style={-{Latex[length=2mm]},thick,color=crimson}
+  ]
+    \node[stage] (gen) {Generate\\candidates};
+    \node[stage,right=of gen] (sel) {Select\\what matters};
+    \node[stage,right=of sel] (ver) {Verify\\the result};
+    \node[stage,right=of ver] (exp) {Explain and\\use it};
+    \draw[arr] (gen) -- (sel);
+    \draw[arr] (sel) -- (ver);
+    \draw[arr] (ver) -- (exp);
+  \end{tikzpicture}
+  \end{center}
+
+  \vspace{0.6em}
+  Faster production shifts more of our time toward choosing, checking,
+  explaining, and connecting the result to the question.
+\end{frame}
+
+\begin{frame}{Understanding is the new bottleneck}
+  \begin{columns}[T,onlytextwidth]
+    \column{0.47\textwidth}
+      \begin{block}{Understand to verify}
+        \begin{itemize}
+          \item Does the code run?
+          \item Does it match the request?
+          \item Do the checks pass?
+          \item Should I keep it?
+        \end{itemize}
+      \end{block}
+    \column{0.49\textwidth}
+      \begin{block}{Understand to participate}
+        \begin{itemize}
+          \item Why was this approach chosen?
+          \item Which assumptions are inside it?
+          \item What question should come next?
+          \item How should the project change?
+        \end{itemize}
+      \end{block}
+  \end{columns}
+
+  \vfill
+  \fnote{Adapted and paraphrased from \citet{litt2026}. Litt argues that understanding supports approval of the current work and active participation in the next project loop.}
+\end{frame}
+
+\begin{frame}{Cognitive debt}
+  The project can continue while the people responsible for it lose the ability
+  to explain:
+  \begin{itemize}
+    \item what the system is supposed to do;
+    \item why an important decision was made;
+    \item which assumptions the output carries;
+    \item how to change the work safely.
+  \end{itemize}
+
+  \vspace{0.45em}
+  This is \alert{cognitive debt}: the work advances faster than shared
+  understanding. The cost appears later, when we need to modify, teach, or
+  repair the project.
+
+  \vfill
+  \fnote{Concept adapted from the discussion in \citet{litt2026}, which connects the term to Margaret-Anne Storey and Simon Willison.}
+\end{frame}
+
+\begin{frame}{Education has two products}
+  \begin{columns}[T,onlytextwidth]
+    \column{0.47\textwidth}
+      \begin{block}{The artifact}
+        A script, table, figure, or explanation that works for the current task.
+      \end{block}
+    \column{0.49\textwidth}
+      \begin{block}{The learner}
+        A person who can ask a new question, notice a mistake, and change the
+        work after the class ends.
+      \end{block}
+  \end{columns}
+
+  \vfill
+  Learning remains incomplete when a student keeps an agent-produced artifact
+  without being able to reconstruct its central decision.
+\end{frame}
+
+\begin{frame}{What one coding experiment suggests}
+  \citet{shen2026} randomly assigned AI assistance to 52 developers learning a
+  new Python library.
+
+  \begin{columns}[T,onlytextwidth]
+    \column{0.48\textwidth}
+      \begin{block}{Immediate product}
+        The AI group finished about two minutes earlier. The difference was not
+        statistically significant.
+      \end{block}
+    \column{0.48\textwidth}
+      \begin{block}{Later mastery}
+        The AI group scored 50\% on the quiz, compared with 67\% without AI. The
+        largest gap appeared in debugging.
+      \end{block}
+  \end{columns}
+
+  \vfill
+  This small study examines one skill. We use its result as a warning and avoid
+  generalizing it to every learning setting.
+\end{frame}
+
+\begin{frame}{Experience still changes the result}
+  People with more task knowledge can usually:
+  \begin{itemize}
+    \item give the agent a better plan;
+    \item notice missing context;
+    \item request a more relevant check;
+    \item recover when a plausible answer is wrong.
+  \end{itemize}
+
+  \vfill
+  Observational evidence from coding-agent sessions finds persistent returns to
+  expertise. The authors describe this association and leave its causal
+  interpretation open
+  \citep{hitzig2026}.
+\end{frame}
+
+\subsection{A learning routine}
+
+\begin{frame}{Before, during, and after agent help}
+  \small
+  \begin{tabularx}{\textwidth}{@{}>{\bfseries}p{2.0cm}p{4.6cm}X@{}}
+    \toprule
+    Moment & Student action & Useful agent support \\
+    \midrule
+    Before & Predict the result and state the criterion. & Ask for a plan or a small example. \\
+    During & Compare the proposal with your prediction. & Ask why and test a small case. \\
+    After & Reconstruct and explain the central decision. & Ask for a quiz or an independent check. \\
+    \bottomrule
+  \end{tabularx}
+
+  \vfill
+  The goal is to keep our understanding close to the speed of production
+  \citep{shen2026,litt2026}.
+\end{frame}
+
+\begin{frame}{The student standard}
+  Before keeping a substantial block of agent-written code, be ready to state:
+  \begin{enumerate}
+    \item its purpose;
+    \item its input and output;
+    \item one important assumption;
+    \item one consequence of changing it;
+    \item one check that could reveal a mistake.
+  \end{enumerate}
+
+  \vfill
+  If this is difficult, ask the agent for a smaller example, an explanation with
+  background, or a short quiz. Then try again in your own words.
+\end{frame}
+
+\begin{frame}{Use the agent to help you understand}
+  \begin{columns}[T,onlytextwidth]
+    \column{0.31\textwidth}
+      \begin{block}{Explainer}
+        Ask for the goal, background, important choices, and a literate walkthrough.
+      \end{block}
+    \column{0.31\textwidth}
+      \begin{block}{Quiz}
+        Ask five questions that test whether you can reconstruct the central change.
+      \end{block}
+    \column{0.31\textwidth}
+      \begin{block}{Micro-example}
+        Ask for a small object you can change and observe. Another long explanation may be harder to test.
+      \end{block}
+  \end{columns}
+
+  \vfill
+  These suggestions adapt Litt's techniques to a classroom: explanation,
+  retrieval practice, and small environments that the learner can manipulate
+  \citep{litt2026}.
+\end{frame}

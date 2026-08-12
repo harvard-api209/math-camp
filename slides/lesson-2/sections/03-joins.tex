@@ -1,0 +1,69 @@
+\section{Joining tables}
+\subsection{Protect the unit}
+
+\begin{frame}{A join can multiply rows quietly}
+  \begin{center}
+  \begin{tikzpicture}[
+    table/.style={draw=palegray,rounded corners=2pt,text width=3.0cm,
+      minimum height=1.55cm,align=center},
+    arr/.style={-{Latex[length=2mm]},color=crimson,thick}
+  ]
+    \node[table] (left) {\textbf{Analysis table}\\Kenya, 2022\\one row};
+    \node[table,right=1.1cm of left] (right) {\textbf{Metadata}\\Kenya\\two rows};
+    \node[table,right=1.1cm of right] (joined) {\textbf{Joined table}\\Kenya, 2022\\two rows};
+    \draw[arr] (left)--(right);
+    \draw[arr] (right)--(joined);
+  \end{tikzpicture}
+  \end{center}
+
+  \vspace{0.65em}
+  Every value can look real while Kenya receives twice the weight. Inspect the
+  join structure because the values alone will hide this problem.
+\end{frame}
+
+\begin{frame}[fragile]{Test the right-side key first}
+\begin{lstlisting}[language=R]
+stopifnot(
+  !anyDuplicated(metadata["iso3c"])
+)
+
+joined <- left_join(
+  health,
+  metadata,
+  by = "iso3c"
+)
+\end{lstlisting}
+
+  The key on the right table determines whether rows on the left can multiply.
+\end{frame}
+
+\begin{frame}[fragile]{Leave a join record}
+\begin{lstlisting}[language=R]
+stopifnot(nrow(joined) == nrow(health))
+stopifnot(!anyDuplicated(joined[c("iso3c", "year")]))
+
+unmatched <- anti_join(
+  health,
+  metadata,
+  by = "iso3c"
+)
+\end{lstlisting}
+
+  Successful syntax still requires row-count and key checks to confirm that the
+  join preserved the object described by the table contract.
+\end{frame}
+
+\begin{frame}{Diagnose the broken join}
+  The row count increased after \texttt{left\_join()}.
+
+  Which check should come first?
+  \begin{enumerate}
+    \item Delete duplicated rows in the output.
+    \item Test the right-side key for duplicates.
+    \item Change to \texttt{inner\_join()}.
+    \item Ask an agent to rewrite the complete pipeline.
+  \end{enumerate}
+
+  \vfill
+  The first useful check is number 2. The other options can hide the reason.
+\end{frame}

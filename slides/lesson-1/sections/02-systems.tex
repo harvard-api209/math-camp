@@ -1,0 +1,155 @@
+\section{From a model to an agent}
+\subsection{The parts of the system}
+
+\begin{frame}{AI includes several kinds of systems}
+  \small
+  \begin{tabularx}{\textwidth}{@{}>{\bfseries}p{3.0cm}X@{}}
+    \toprule
+    Term & Working definition for this course \\
+    \midrule
+    Artificial intelligence & A broad family of systems for prediction, perception, language, planning, or action. \\
+    Large language model & A model that produces language, code, or a tool request from an instruction and context. \\
+    Chat interface & A message window around a model. \\
+    Coding agent & A model working in a loop with tools that can act inside a project. \\
+    \bottomrule
+  \end{tabularx}
+
+  \vfill
+  We use these terms separately because they imply different actions and
+  different things to verify.
+\end{frame}
+
+\begin{frame}{How we arrived at coding agents}
+  \begin{center}
+  \begin{tikzpicture}[
+    node distance=0.28cm,
+    box/.style={draw=palegray,rounded corners=2pt,text width=2.15cm,
+      minimum height=1.45cm,align=center,font=\small,inner sep=4pt},
+    arr/.style={-{Latex[length=1.8mm]},color=crimson,thick}
+  ]
+    \node[box] (dl) {Deep learning\\and transformers};
+    \node[box,right=of dl] (fm) {Foundation\\models};
+    \node[box,right=of fm] (chat) {Chat\\interfaces};
+    \node[box,right=of chat] (tools) {Reasoning\\and tools};
+    \node[box,right=of tools] (agents) {Coding\\agents};
+    \draw[arr] (dl)--(fm);
+    \draw[arr] (fm)--(chat);
+    \draw[arr] (chat)--(tools);
+    \draw[arr] (tools)--(agents);
+  \end{tikzpicture}
+  \end{center}
+
+  \vspace{0.7em}
+  The shift from a simple chatbot to a project agent happened in stages. Each
+  stage changed who can execute, what the system can touch, and what evidence we
+  can observe.
+\end{frame}
+
+\begin{frame}{From conversation to action}
+  \small
+  \begin{tabularx}{\textwidth}{@{}>{\bfseries}p{2.6cm}p{4.6cm}X@{}}
+    \toprule
+    Experience & Who executes & What we can observe \\
+    \midrule
+    Chat & A person copies, pastes, and runs each step. & A response. \\
+    Code completion & A person works; the model suggests nearby code. & A code fragment. \\
+    Agent & The system plans, uses tools, observes, and continues. & A sequence of actions. \\
+    Coding agent & The agent operates on project files and the terminal. & Diffs, commands, logs, and artifacts. \\
+    \bottomrule
+  \end{tabularx}
+
+  \vfill
+  Codex and Claude Code are coding agents. Their project access allows them to
+  read files, use tools, and return observable results
+  \citep{openai2026codex,anthropic2025claudecode}.
+\end{frame}
+
+\begin{frame}{A coding agent is a system of parts}
+  \begin{center}
+  \begin{tikzpicture}[
+    node distance=0.30cm,
+    box/.style={draw=palegray,rounded corners=2pt,text width=2.10cm,
+      minimum height=1.10cm,align=center,font=\small,inner sep=4pt},
+    arr/.style={-{Latex[length=1.8mm]},color=crimson,thick}
+  ]
+    \node[box] (model) {Model\\language + code};
+    \node[box,right=of model] (context) {Context\\files + history};
+    \node[box,right=of context] (tools) {Tools\\editor + terminal};
+    \node[box,right=of tools] (harness) {Harness\\loop + controls};
+    \node[box,right=of harness] (human) {Person\\goal + judgment};
+    \draw[arr] (model)--(context);
+    \draw[arr] (context)--(tools);
+    \draw[arr] (tools)--(harness);
+    \draw[arr] (harness)--(human);
+  \end{tikzpicture}
+  \end{center}
+
+  \vspace{0.75em}
+  The harness connects the model to the environment and applies permissions. We
+  still define the objective, the standard, and the final decision.
+\end{frame}
+
+\begin{frame}{Watch one tool-call loop}
+  \begin{center}
+  \begin{tikzpicture}[
+    node distance=0.45cm,
+    processbox/.style={draw=palegray,rounded corners=2pt,text width=2.6cm,
+      minimum height=1.25cm,align=center,font=\small,inner sep=5pt},
+    arr/.style={-{Latex[length=2mm]},color=crimson,thick}
+  ]
+    \node[processbox] (request) {\textbf{1. Request}\\Read a file or run a command};
+    \node[processbox,right=of request] (permission) {\textbf{2. Permission}\\Is this action allowed?};
+    \node[processbox,right=of permission] (execution) {\textbf{3. Execution}\\Ordinary software acts};
+    \node[processbox,right=of execution] (observation) {\textbf{4. Observation}\\The result returns};
+    \draw[arr] (request.east)--(permission.west);
+    \draw[arr] (permission.east)--(execution.west);
+    \draw[arr] (execution.east)--(observation.west);
+
+    \coordinate (return-right) at ($(observation.south)+(0,-0.62cm)$);
+    \coordinate (return-left) at ($(request.south)+(0,-0.62cm)$);
+    \draw[arr]
+      (observation.south)--(return-right)--
+      node[below,font=\scriptsize,text=darkgray] {If another action is needed, the loop begins again.}
+      (return-left)--(request.south);
+  \end{tikzpicture}
+  \end{center}
+
+  \vfill
+  This loop helps us ask what actually happened. Evidence of an action comes
+  from the exposed tool call, result, or log.
+\end{frame}
+
+\begin{frame}{Four course tools, four jobs}
+  \footnotesize
+  \renewcommand{\arraystretch}{1.18}
+  \begin{tabularx}{\textwidth}{@{}>{\bfseries}p{1.7cm}p{5.2cm}X@{}}
+    \toprule
+    Tool & What it does & Decision left to the analyst \\
+    \midrule
+    R & Runs data and statistical operations. & Whether an operation represents the intended concept. \\
+    RStudio & Keeps scripts, console, files, objects, and plots visible. & Whether the code is substantively correct. \\
+    Quarto & Combines code, prose, and output in an optional notebook. & Whether the narrative follows from the evidence. \\
+    Codex & Reads, proposes, edits, runs, and checks inside a project. & Whether its output deserves our trust. \\
+    \bottomrule
+  \end{tabularx}
+\end{frame}
+
+\subsection{Choose the task first}
+
+\begin{frame}{Choose the tool after the task}
+  \small
+  \begin{tabularx}{\textwidth}{@{}p{4.0cm}p{4.2cm}X@{}}
+    \toprule
+    Need & Smallest useful system & Acceptance evidence \\
+    \midrule
+    Calculate a summary & R script & A hand check and a reproducible result \\
+    Explain an error & Chat or agent with the error and code & Explanation matches a small test \\
+    Modify a project & Coding agent with limited access & Diff, clean run, and relevant checks \\
+    Decide a policy interpretation & Person with evidence & Definitions, assumptions, and argument \\
+    \bottomrule
+  \end{tabularx}
+
+  \vfill
+  More autonomy creates more places where something can go wrong. Start with the
+  simplest system that lets you verify the result.
+\end{frame}

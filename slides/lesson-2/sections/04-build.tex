@@ -1,0 +1,71 @@
+\section{Build and record the table}
+\subsection{One common path}
+
+\begin{frame}[fragile]{One complete health pipeline}
+\begin{lstlisting}[language=R]
+health <- wdi |>
+  select(
+    iso3c, country, year, income_level_current,
+    gdp_per_capita_ppp, under5_mortality
+  ) |>
+  filter(year >= 2000) |>
+  mutate(log_income = log(gdp_per_capita_ppp))
+
+stopifnot(!anyDuplicated(health[c("iso3c", "year")]))
+stopifnot(all(health$year >= 2000))
+\end{lstlisting}
+\end{frame}
+
+\begin{frame}{Read the pipeline as decisions}
+  \begin{enumerate}
+    \item \textbf{Population:} rows before 2000 leave the sample.
+    \item \textbf{Scope:} selected columns define the health question.
+    \item \textbf{Transformation:} logged income stays beside the original measure.
+    \item \textbf{Structure:} the country--year key is tested in code.
+  \end{enumerate}
+
+  \vfill
+  Each important line should correspond to a field in the table contract.
+\end{frame}
+
+\begin{frame}{Use current metadata within its time meaning}
+  \texttt{income\_level\_current} is the classification attached when this
+  snapshot was assembled.
+
+  \vspace{0.6em}
+  It is useful for a current grouping. It does \alert{not} prove that a country
+  belonged to that income group in 2000.
+
+  \vspace{0.6em}
+  A historical classification needs a separate country--year source, a retrieval
+  date, and documentation.
+\end{frame}
+
+\begin{frame}{The build record}
+  \begin{columns}[T,onlytextwidth]
+    \column{0.31\textwidth}
+      \begin{block}{Rows and key}
+        Input and output rows; country--year uniqueness.
+      \end{block}
+      \begin{block}{Years}
+        First year, last year, and coverage.
+      \end{block}
+    \column{0.31\textwidth}
+      \begin{block}{Missingness}
+        Observed and missing values by variable.
+      \end{block}
+      \begin{block}{Ranges}
+        Plausible values in documented units.
+      \end{block}
+    \column{0.31\textwidth}
+      \begin{block}{Matches}
+        Unmatched and multiplied join keys.
+      \end{block}
+      \begin{block}{Decision note}
+        What changed and why it belongs.
+      \end{block}
+  \end{columns}
+
+  \vfill
+  The record is useful when every check points back to the table contract.
+\end{frame}

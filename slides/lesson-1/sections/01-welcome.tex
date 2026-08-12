@@ -1,0 +1,176 @@
+\section{Welcome and the question}
+\subsection{Where we begin}
+
+\begin{frame}{Welcome}
+  \begin{columns}[T,onlytextwidth]
+    \column{0.31\textwidth}
+      \centering
+      \begin{tikzpicture}
+        \clip (0,0) circle (1.78cm);
+        \node at (0,-0.05) {\includegraphics[width=3.75cm]{../../../website/math-camp/figures/people/rony.jpg}};
+      \end{tikzpicture}
+    \column{0.64\textwidth}
+      {\Large\color{crimson}Rony Rodriguez-Ramirez}
+
+      \vspace{0.35em}
+      \begin{itemize}
+        \item I work in education policy, with a focus on economics of education.
+        \item I have worked with research teams at the World Bank and Innovations for Poverty Action.
+        \item I like coding when it helps us ask a clearer question.
+        \item I will teach these coding lessons and work with you during the labs.
+      \end{itemize}
+  \end{columns}
+\end{frame}
+
+\begin{frame}{We have different starting points}
+  Some people in this room are writing code for the first time. Others already
+  use R for research. Many people know ChatGPT. A coding agent that works inside
+  a project will be a newer experience for most of us.
+
+  \vspace{0.6em}
+  \begin{block}{This is fine}
+    We will use one common project. Each student can take steps that fit their
+    experience with coding and their current comfort with AI.
+  \end{block}
+
+  \vfill
+  Your starting point can also change from one task to another.
+\end{frame}
+
+\begin{frame}{Some AI + coding archetypes}
+  \centering
+  \begin{tikzpicture}[
+    x=1cm,
+    y=1cm,
+    archetype/.style={
+      draw=black!28,
+      fill=black!4,
+      rounded corners=2pt,
+      align=left,
+      inner sep=5pt,
+      text width=3.2cm,
+      font=\scriptsize
+    },
+    guide/.style={black!24,dashed,line width=0.4pt},
+    axis/.style={black!72,-{Latex[length=2mm]},line width=0.7pt}
+  ]
+    % Plot area and quadrant guides
+    \draw[guide] (6.1,0) -- (6.1,5.35);
+    \draw[guide] (0,2.68) -- (12.2,2.68);
+    \draw[axis] (0,0) -- (12.55,0);
+    \draw[axis] (0,0) -- (0,5.65);
+
+    % Axis labels
+    \node[font=\scriptsize,anchor=north west,text=black!65] at (0,-0.14) {new to coding};
+    \node[font=\scriptsize,anchor=north east,text=black!65] at (12.2,-0.14) {experienced coder};
+    \node[font=\scriptsize\bfseries,anchor=north] at (6.1,-0.48) {Coding experience};
+    \node[font=\scriptsize,rotate=90,anchor=south,text=black!65] at (-0.40,0) {cautious};
+    \node[font=\scriptsize,rotate=90,anchor=north,text=black!65] at (-0.40,5.35) {ready};
+    \node[font=\scriptsize\bfseries,rotate=90,anchor=south] at (-0.82,2.68) {Willingness to delegate};
+
+    % Archetypes: approximate positions, not scores
+    \node[archetype,anchor=center] at (2.25,1.55)
+      {\textbf{Careful beginner}\\Show me one step before we automate five.};
+    \node[archetype,anchor=center] at (2.55,4.10)
+      {\textbf{Curious explorer}\\The agent made a plot. I want to know what it did.};
+    \node[archetype,anchor=center] at (9.50,4.10)
+      {\textbf{Augmented builder}\\I can read the code. Let the agent handle the repetitive part.};
+    \node[archetype,anchor=center] at (9.60,1.55)
+      {\textbf{Code-first skeptic}\\I trust my script. Show me why the agent helps.};
+    \node[archetype,fill=crimson!7,draw=crimson!45,text width=2.75cm,anchor=center] at (5.95,0.72)
+      {\textbf{Calendar visitor}\\Curiosity may arrive after the coffee.};
+  \end{tikzpicture}
+
+  \vfill
+  \small These positions are approximate. Your position can change with the task.
+\end{frame}
+
+\begin{frame}{The question for today}
+  \vfill
+  \begin{center}
+    {\LARGE\color{crimson}
+      What should we delegate, to which system,\\
+      and with what evidence?}
+  \end{center}
+  \vfill
+  The task and the evidence determine which tool belongs in the workflow.
+\end{frame}
+
+\begin{frame}{What I want you to do by the end}
+  \begin{enumerate}
+    \item Distinguish a model, a chat interface, a coding agent, and a harness.
+    \item Explain the different jobs of R, RStudio, Quarto, and Codex.
+    \item Decide whether a task should stay with you or can be delegated.
+    \item Write one bounded request with a visible completion check.
+    \item Inspect an agent result before you keep it.
+  \end{enumerate}
+
+  \vfill
+  Today we need enough shared understanding to use this workflow together.
+  Expertise will grow through practice during Math Camp and the semester.
+\end{frame}
+
+\subsection{Why coding still matters}
+
+\begin{frame}{Is it still worth learning to code?}
+  \begin{columns}[T,onlytextwidth]
+    \column{0.46\textwidth}
+      \begin{block}{Yes, because code helps us}
+        \begin{itemize}
+          \item make an instruction precise;
+          \item repeat the same operation;
+          \item inspect what a tool produced;
+          \item change one part and test it.
+        \end{itemize}
+      \end{block}
+    \column{0.50\textwidth}
+      Learning code is less about remembering every function. It is more about
+      reading, predicting, changing, testing, and explaining.
+
+      \vspace{0.55em}
+      Andrew Ng argues that a lower barrier to coding increases what people can
+      build. Even a small amount of coding knowledge can therefore support more
+      ambitious work \citep{ng2023skills,ng2025trends}.
+  \end{columns}
+\end{frame}
+
+\begin{frame}{The target has changed}
+  A useful coding learner can:
+  \begin{itemize}
+    \item read a proposed script and say what it should do;
+    \item change the relevant line without changing the question;
+    \item run a small test and interpret the result;
+    \item find where a claim enters the code;
+    \item notice when the code and the policy question separate.
+  \end{itemize}
+
+  \vfill
+  Syntax still matters alongside supervision, testing, and interpretation.
+\end{frame}
+
+\begin{frame}{Why the workflow changed}
+  \begin{columns}[T,onlytextwidth]
+    \column{0.45\textwidth}
+      \begin{block}{Earlier loop}
+        \begin{enumerate}
+          \item Write code.
+          \item Run code.
+          \item Search the error.
+          \item Try again.
+        \end{enumerate}
+      \end{block}
+    \column{0.51\textwidth}
+      \begin{block}{Agent-assisted loop}
+        \begin{enumerate}
+          \item Define the result and evidence.
+          \item Let the agent inspect or propose.
+          \item Watch files, commands, output, and the diff.
+          \item Test, then accept, revise, or reject.
+        \end{enumerate}
+      \end{block}
+  \end{columns}
+
+  \vfill
+  The agent makes production faster. It also makes supervision part of
+  computational literacy.
+\end{frame}

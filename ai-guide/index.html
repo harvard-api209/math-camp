@@ -1,27 +1,419 @@
 <!doctype html>
 <html lang="en">
-<head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1"><meta name="description" content="Math Camp 2026 AI workflow guide for responsible coding-agent use."><title>AI workflow guide | Math Camp 2026</title><link rel="icon" href="data:,"><link rel="stylesheet" href="../styles.css?v=book-20260718p"><script>document.documentElement.classList.add("js");</script></head>
-<body id="top" class="article-page"><div class="page-progress" aria-hidden="true"><span></span></div>
-  <header class="site-header"><a class="brand" href="../"><span>API 209</span><strong>MATH CAMP 2026</strong></a><div class="header-chapter"><span>FIELD GUIDE</span><strong>/ AI WORKFLOW</strong></div><nav class="chapter-nav"><a href="../">HOME</a><a href="../setup/">SETUP</a><a href="../glossary/">GLOSSARY</a></nav><button class="menu-button" type="button" aria-expanded="false" aria-controls="mobile-outline">CONTENTS</button></header>
-  <nav class="mobile-outline" id="mobile-outline"><div class="mobile-outline-head"><span>AI WORKFLOW</span><button type="button" data-close-menu>CLOSE</button></div><ol><li><a href="#anatomy">Anatomy</a></li><li><a href="#protocol">Protocol</a></li><li><a href="#prompt">Prompt</a></li><li><a href="#verify">Verify</a></li><li><a href="#failures">Failures</a></li><li><a href="#disclose">Disclose</a></li></ol></nav>
-  <main><section class="article-hero"><div class="article-hero-meta"><div><span>BASELINE</span><strong>CODEX</strong></div><div><span>ALTERNATIVE</span><strong>CLAUDE CODE</strong></div><div><span>RULE</span><strong>EVIDENCE WINS</strong></div></div><div class="article-hero-copy"><p>FIELD GUIDE 03</p><h1>Work with an agent.</h1><p class="article-deck">Use AI to accelerate exploration and expose assumptions, while keeping the policy question, verification, and final judgment visibly human.</p></div><aside class="article-hero-side"><p>Human pass<br>Agent pass<br>Evidence pass</p></aside></section>
-    <div class="article-layout"><aside class="article-nav"><span>ON THIS PAGE</span><a href="#anatomy">Anatomy</a><a href="#protocol">Protocol</a><a href="#prompt">Prompt</a><a href="#verify">Verify</a><a href="#failures">Failures</a><a href="#disclose">Disclose</a></aside><article class="article">
-      <section class="article-section reveal" id="anatomy"><p class="section-kicker">MODEL ≠ AGENT</p><h2>Know which part is doing what.</h2><p class="article-lead">A coding agent feels like one intelligent object, but it is a system of parts. Separating those parts makes the work easier to supervise and the failures easier to diagnose.</p><div class="table-scroll"><table><thead><tr><th>Layer</th><th>What it contributes</th><th>Question to ask</th></tr></thead><tbody><tr><td>LLM</td><td>Generates language, code, and tool requests from context.</td><td>Could this be plausible pattern completion rather than a grounded fact?</td></tr><tr><td>System instructions</td><td>Set durable behavior and boundaries.</td><td>What rules is the model following that I cannot see in my prompt?</td></tr><tr><td>Context</td><td>Files, history, documentation, and tool results available now.</td><td>Did the agent read the correct file and current version?</td></tr><tr><td>Tools</td><td>Read files, search, edit, run R or shell commands, and browse sources.</td><td>Which action actually produced this result?</td></tr><tr><td>Permissions</td><td>Limit which tools, paths, and external actions are allowed.</td><td>Did I grant more access than this task needs?</td></tr><tr><td>Loop</td><td>Returns each tool result to the model so it can continue.</td><td>What evidence should make the loop stop?</td></tr></tbody></table></div><div class="callout"><span>WORKSHOP ANALOGY</span><p>The model is the language engine; the harness is the workshop; the agent is the engine working inside that workshop. Your prompt is the work order, a diff is the receipt, and tests are the measuring instruments. You remain the investigator.</p></div><p>Codex and Claude Code combine these layers differently, so the same model can behave differently in another product. Do not ask only “Which model is this?” Ask what context, tools, permissions, and feedback the current harness provides.</p></section>
-      <section class="article-section reveal" id="protocol"><p class="section-kicker">THE RECURRING LOOP</p><h2>Predict, delegate, observe, verify, narrate.</h2><div class="protocol-grid"><div><span>01 / PREDICT</span><h3>Frame an expectation.</h3><p>State the question, inspect the inputs, and predict one result before asking for help.</p></div><div><span>02 / DELEGATE</span><h3>Give a bounded contract.</h3><p>Specify the goal, relevant files, constraints, permissions, and observable definition of done.</p></div><div><span>03 / OBSERVE</span><h3>Watch the workshop.</h3><p>Notice which files, commands, edits, outputs, and uncertainties the harness exposes.</p></div><div><span>04 / VERIFY</span><h3>Challenge the result.</h3><p>Run the code, inspect the diff, test keys and ranges, and consult primary documentation.</p></div><div><span>05 / NARRATE</span><h3>Make a judgment.</h3><p>Record what you accepted, revised, rejected, or left unresolved—and why.</p></div></div><div class="callout"><span>THE AGENT IS NOT THE SOURCE</span><p>A confident explanation is not evidence. The source data, documentation, code behavior, statistical output, and research design are evidence.</p></div></section>
-      <section class="article-section reveal" id="prompt"><p class="section-kicker">PROMPT ANATOMY</p><h2>Make success observable.</h2><div class="table-scroll"><table><thead><tr><th>Part</th><th>Question it answers</th><th>Example</th></tr></thead><tbody><tr><td>Goal</td><td>What outcome do I want?</td><td>Explain the join or update one indicator.</td></tr><tr><td>Context</td><td>Which files and facts matter?</td><td>Read the script and indicator dictionary.</td></tr><tr><td>Constraints</td><td>What must not happen?</td><td>Do not overwrite the frozen dataset.</td></tr><tr><td>Done when</td><td>How can I verify completion?</td><td>Keys are unique and year coverage is reported.</td></tr></tbody></table></div><div class="prompt-box"><span>GENERAL TEMPLATE</span><pre>Goal: [one concrete outcome]
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta
+      name="description"
+      content="Math Camp 2026 AI workflow guide for responsible coding-agent use."
+    />
+    <title>AI workflow guide | Math Camp 2026</title>
+    <link rel="icon" href="data:," />
+    <link rel="stylesheet" href="../styles.css?v=book-20260718p" />
+    <script>
+      document.documentElement.classList.add("js");
+    </script>
+  </head>
+  <body id="top" class="article-page">
+    <div class="page-progress" aria-hidden="true"><span></span></div>
+    <header class="site-header">
+      <a class="brand" href="../"
+        ><span>API 209</span><strong>MATH CAMP 2026</strong></a
+      >
+      <div class="header-chapter">
+        <span>FIELD GUIDE</span><strong>/ AI WORKFLOW</strong>
+      </div>
+      <nav class="chapter-nav">
+        <a href="../">HOME</a><a href="../setup/">SETUP</a
+        ><a href="../glossary/">GLOSSARY</a>
+      </nav>
+      <button
+        class="menu-button"
+        type="button"
+        aria-expanded="false"
+        aria-controls="mobile-outline"
+      >
+        CONTENTS
+      </button>
+    </header>
+    <nav class="mobile-outline" id="mobile-outline">
+      <div class="mobile-outline-head">
+        <span>AI WORKFLOW</span
+        ><button type="button" data-close-menu>CLOSE</button>
+      </div>
+      <ol>
+        <li><a href="#anatomy">Anatomy</a></li>
+        <li><a href="#protocol">Protocol</a></li>
+        <li><a href="#prompt">Prompt</a></li>
+        <li><a href="#verify">Verify</a></li>
+        <li><a href="#failures">Failures</a></li>
+        <li><a href="#disclose">Disclose</a></li>
+      </ol>
+    </nav>
+    <main>
+      <section class="article-hero">
+        <div class="article-hero-meta">
+          <div><span>BASELINE</span><strong>CODEX</strong></div>
+          <div><span>ALTERNATIVE</span><strong>CLAUDE CODE</strong></div>
+          <div><span>RULE</span><strong>EVIDENCE WINS</strong></div>
+        </div>
+        <div class="article-hero-copy">
+          <p>FIELD GUIDE 03</p>
+          <h1>Work with a coding agent.</h1>
+          <p class="article-deck">
+            Use AI to explore and make assumptions visible. Keep the policy
+            question, verification, and final judgment with the person doing the
+            analysis.
+          </p>
+        </div>
+        <aside class="article-hero-side">
+          <p>Human pass<br />Agent pass<br />Evidence pass</p>
+        </aside>
+      </section>
+      <div class="article-layout">
+        <aside class="article-nav">
+          <span>ON THIS PAGE</span><a href="#anatomy">Anatomy</a
+          ><a href="#protocol">Protocol</a><a href="#prompt">Prompt</a
+          ><a href="#verify">Verify</a><a href="#failures">Failures</a
+          ><a href="#disclose">Disclose</a>
+        </aside>
+        <article class="article">
+          <section class="article-section reveal" id="anatomy">
+            <p class="section-kicker">MODEL ≠ AGENT</p>
+            <h2>Separate the parts of the system.</h2>
+            <p class="article-lead">
+              A coding agent combines several parts: a model, instructions,
+              context, tools, permissions, and a loop. Naming these parts helps
+              us supervise the task and diagnose a failure carefully.
+            </p>
+            <div class="table-scroll">
+              <table>
+                <thead>
+                  <tr>
+                    <th>Layer</th>
+                    <th>What it contributes</th>
+                    <th>Question to ask</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td>LLM</td>
+                    <td>
+                      Generates language, code, and tool requests from context.
+                    </td>
+                    <td>
+                      Which source grounds this claim?
+                    </td>
+                  </tr>
+                  <tr>
+                    <td>System instructions</td>
+                    <td>Set durable behavior and boundaries.</td>
+                    <td>
+                      What rules is the model following that I cannot see in my
+                      prompt?
+                    </td>
+                  </tr>
+                  <tr>
+                    <td>Context</td>
+                    <td>
+                      Files, history, documentation, and tool results available
+                      now.
+                    </td>
+                    <td>
+                      Did the agent read the correct file and current version?
+                    </td>
+                  </tr>
+                  <tr>
+                    <td>Tools</td>
+                    <td>
+                      Read files, search, edit, run R or shell commands, and
+                      browse sources.
+                    </td>
+                    <td>Which action actually produced this result?</td>
+                  </tr>
+                  <tr>
+                    <td>Permissions</td>
+                    <td>
+                      Limit which tools, paths, and external actions are
+                      allowed.
+                    </td>
+                    <td>Did I grant more access than this task needs?</td>
+                  </tr>
+                  <tr>
+                    <td>Loop</td>
+                    <td>
+                      Returns each tool result to the model so it can continue.
+                    </td>
+                    <td>What evidence should make the loop stop?</td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+            <div class="callout">
+              <span>WORKSHOP ANALOGY</span>
+              <p>
+                The model is the language engine. The harness supplies the
+                workshop, and the agent uses the engine inside it. Your prompt
+                works as a work order. The diff records the change, while tests
+                measure whether it worked. You remain the investigator.
+              </p>
+            </div>
+            <p>
+              Codex and Claude Code combine these layers in different ways. For
+              this reason, the same model may behave differently in another
+              product. Ask about the model together with the context, tools,
+              permissions, and feedback provided by the current harness.
+            </p>
+          </section>
+          <section class="article-section reveal" id="protocol">
+            <p class="section-kicker">THE RECURRING LOOP</p>
+            <h2>Use five steps, and keep the evidence visible.</h2>
+            <div class="protocol-grid">
+              <div>
+                <span>01 / PREDICT</span>
+                <h3>Begin with an expectation.</h3>
+                <p>
+                  State the question, inspect the inputs, and predict one result
+                  before asking for help.
+                </p>
+              </div>
+              <div>
+                <span>02 / DELEGATE</span>
+                <h3>Define a bounded task.</h3>
+                <p>
+                  Specify the goal, relevant files, constraints, permissions,
+                  and an observable definition of done.
+                </p>
+              </div>
+              <div>
+                <span>03 / OBSERVE</span>
+                <h3>Watch what the system does.</h3>
+                <p>
+                  Notice which files, commands, edits, outputs, and
+                  uncertainties the harness exposes.
+                </p>
+              </div>
+              <div>
+                <span>04 / VERIFY</span>
+                <h3>Test the result.</h3>
+                <p>
+                  Run the code, inspect the diff, test keys and ranges, and
+                  consult primary documentation.
+                </p>
+              </div>
+              <div>
+                <span>05 / NARRATE</span>
+                <h3>Record your decision.</h3>
+                <p>
+                  State what you accepted, revised, rejected, or left
+                  unresolved, and explain why.
+                </p>
+              </div>
+            </div>
+            <div class="callout">
+              <span>WHERE EVIDENCE COMES FROM</span>
+              <p>
+                Use source data, documentation, code behavior, statistical
+                output, and research design as evidence. Treat an agent
+                explanation as a proposal that still needs a check.
+              </p>
+            </div>
+          </section>
+          <section class="article-section reveal" id="prompt">
+            <p class="section-kicker">PROMPT ANATOMY</p>
+            <h2>Define a result that you can observe.</h2>
+            <div class="table-scroll">
+              <table>
+                <thead>
+                  <tr>
+                    <th>Part</th>
+                    <th>Question it answers</th>
+                    <th>Example</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td>Goal</td>
+                    <td>What outcome do I want?</td>
+                    <td>Explain the join or update one indicator.</td>
+                  </tr>
+                  <tr>
+                    <td>Context</td>
+                    <td>Which files and facts matter?</td>
+                    <td>Read the script and indicator dictionary.</td>
+                  </tr>
+                  <tr>
+                    <td>Constraints</td>
+                    <td>What must not happen?</td>
+                    <td>Do not overwrite the frozen dataset.</td>
+                  </tr>
+                  <tr>
+                    <td>Done when</td>
+                    <td>How can I verify completion?</td>
+                    <td>Keys are unique and year coverage is reported.</td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+            <div class="prompt-box">
+              <span>GENERAL TEMPLATE</span>
+              <pre>
+Goal: [one concrete outcome]
 Context: [files, audience, question, relevant definitions]
 Constraints: [scope, source rules, no-edit boundaries, claim limits]
 Done when: [tests, output, comparison, or explanation I can inspect]
 
-Before acting, state any consequential assumption you need to make.</pre></div></section>
-      <section class="article-section reveal" id="verify"><p class="section-kicker">VERIFICATION MENU</p><h2>Match the check to the claim.</h2><ul class="checklist"><li><span>□</span><strong>Code claim: run a small example and inspect the object.</strong></li><li><span>□</span><strong>Data claim: count rows, test keys, inspect ranges, and read source metadata.</strong></li><li><span>□</span><strong>Statistical claim: reproduce the output and restate it in units.</strong></li><li><span>□</span><strong>Policy claim: compare the wording with the research design.</strong></li><li><span>□</span><strong>Source claim: open the primary source and confirm the relevant detail.</strong></li></ul><p>When possible, ask the agent to propose checks, then choose and execute the checks yourself.</p></section>
-      <section class="article-section reveal" id="failures"><p class="section-kicker">COMMON FAILURE MODES</p><h2>Learn to recognize plausible wrongness.</h2><div class="table-scroll"><table><thead><tr><th>Failure</th><th>Signal</th><th>Response</th></tr></thead><tbody><tr><td>Invented variable</td><td>Code references a column absent from <code>names()</code>.</td><td>Inspect the dictionary and exact file.</td></tr><tr><td>Silent row loss</td><td>A filter or model drops observations.</td><td>Compare row counts and missingness.</td></tr><tr><td>Many-to-many join</td><td>Rows unexpectedly multiply.</td><td>Test keys on both sides before joining.</td></tr><tr><td>Unsupported cause</td><td>Language shifts from “associated” to “caused.”</td><td>Return to the design and claim ladder.</td></tr><tr><td>Hidden state</td><td>Code works only after console experiments.</td><td>Restart R and run from the top.</td></tr><tr><td>False citation</td><td>A source cannot be opened or does not support the claim.</td><td>Use the primary source and verify manually.</td></tr></tbody></table></div></section>
-      <section class="article-section reveal" id="disclose"><p class="section-kicker">TRANSPARENCY</p><h2>Describe contribution and verification.</h2><div class="prompt-box"><span>AI-USE NOTE</span><pre>I used [Codex / Claude Code] to [explain, generate, debug, review, or update].
+Before acting, state any consequential assumption you need to make.</pre
+              >
+            </div>
+          </section>
+          <section class="article-section reveal" id="verify">
+            <p class="section-kicker">VERIFICATION MENU</p>
+            <h2>Choose a check that matches the claim.</h2>
+            <ul class="checklist">
+              <li>
+                <span>□</span
+                ><strong
+                  >Code claim: run a small example and inspect the
+                  object.</strong
+                >
+              </li>
+              <li>
+                <span>□</span
+                ><strong
+                  >Data claim: count rows, test keys, inspect ranges, and read
+                  source metadata.</strong
+                >
+              </li>
+              <li>
+                <span>□</span
+                ><strong
+                  >Statistical claim: reproduce the output and restate it in
+                  units.</strong
+                >
+              </li>
+              <li>
+                <span>□</span
+                ><strong
+                  >Policy claim: compare the wording with the research
+                  design.</strong
+                >
+              </li>
+              <li>
+                <span>□</span
+                ><strong
+                  >Source claim: open the primary source and confirm the
+                  relevant detail.</strong
+                >
+              </li>
+            </ul>
+            <p>
+              You can ask the agent to propose checks. You should still choose
+              and run the checks yourself when possible.
+            </p>
+          </section>
+          <section class="article-section reveal" id="failures">
+            <p class="section-kicker">COMMON FAILURE MODES</p>
+            <h2>Recognize an answer that looks plausible but is wrong.</h2>
+            <div class="table-scroll">
+              <table>
+                <thead>
+                  <tr>
+                    <th>Failure</th>
+                    <th>Signal</th>
+                    <th>Response</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td>Invented variable</td>
+                    <td>
+                      Code references a column absent from <code>names()</code>.
+                    </td>
+                    <td>Inspect the dictionary and exact file.</td>
+                  </tr>
+                  <tr>
+                    <td>Silent row loss</td>
+                    <td>A filter or model drops observations.</td>
+                    <td>Compare row counts and missingness.</td>
+                  </tr>
+                  <tr>
+                    <td>Many-to-many join</td>
+                    <td>Rows unexpectedly multiply.</td>
+                    <td>Test keys on both sides before joining.</td>
+                  </tr>
+                  <tr>
+                    <td>Unsupported cause</td>
+                    <td>Language shifts from “associated” to “caused.”</td>
+                    <td>Return to the design and claim ladder.</td>
+                  </tr>
+                  <tr>
+                    <td>Hidden state</td>
+                    <td>Code works only after console experiments.</td>
+                    <td>Restart R and run from the top.</td>
+                  </tr>
+                  <tr>
+                    <td>False citation</td>
+                    <td>
+                      A source cannot be opened or does not support the claim.
+                    </td>
+                    <td>Use the primary source and verify manually.</td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+          </section>
+          <section class="article-section reveal" id="disclose">
+            <p class="section-kicker">TRANSPARENCY</p>
+            <h2>State what the agent contributed and how you checked it.</h2>
+            <div class="prompt-box">
+              <span>AI-USE NOTE</span>
+              <pre>
+I used [Codex / Claude Code] to [explain, generate, debug, review, or update].
 I provided it with [public project context].
 I verified its contribution by [tests, source comparison, clean render, or manual review].
 I revised or rejected [important example].
-I remain responsible for the analysis and interpretation.</pre></div><div class="callout"><span>PRIVACY BOUNDARY</span><p>Do not send personal data, identifiable student records, credentials, private API keys, confidential research files, or unpublished sensitive material to a coding agent.</p></div></section>
-    </article><aside class="article-margin"><dl><div><dt>AGENT</dt><dd>Collaborator</dd></div><div><dt>SOURCE</dt><dd>Not the agent</dd></div><div><dt>RESPONSIBILITY</dt><dd>Human</dd></div></dl></aside></div>
-    <nav class="page-turn"><a href="../datasets/"><span>PREVIOUS</span><strong>Dataset guide</strong></a><a href="../glossary/"><span>NEXT</span><strong>Glossary</strong></a></nav></main>
-  <footer class="site-footer"><div><span>API 209</span><strong>MATH CAMP 2026</strong></div><p>Student field guide.</p><a href="#top">RETURN TO TOP ↑</a></footer><script src="../script.js?v=book-20260718o"></script></body>
+I remain responsible for the analysis and interpretation.</pre
+              >
+            </div>
+            <div class="callout">
+              <span>PRIVACY BOUNDARY</span>
+              <p>
+                Do not send personal data, identifiable student records,
+                credentials, private API keys, confidential research files, or
+                unpublished sensitive material to a coding agent.
+              </p>
+            </div>
+          </section>
+        </article>
+        <aside class="article-margin">
+          <dl>
+            <div>
+              <dt>AGENT</dt>
+              <dd>Collaborator</dd>
+            </div>
+            <div>
+              <dt>SOURCE</dt>
+              <dd>Project evidence</dd>
+            </div>
+            <div>
+              <dt>RESPONSIBILITY</dt>
+              <dd>Human</dd>
+            </div>
+          </dl>
+        </aside>
+      </div>
+      <nav class="page-turn">
+        <a href="../datasets/"
+          ><span>PREVIOUS</span><strong>Dataset guide</strong></a
+        ><a href="../glossary/"><span>NEXT</span><strong>Glossary</strong></a>
+      </nav>
+    </main>
+    <footer class="site-footer">
+      <div><span>API 209</span><strong>MATH CAMP 2026</strong></div>
+      <p>Student field guide.</p>
+      <a href="#top">RETURN TO TOP ↑</a>
+    </footer>
+    <script src="../script.js?v=book-20260718o"></script>
+  </body>
 </html>

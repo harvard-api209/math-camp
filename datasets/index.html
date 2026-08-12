@@ -1,22 +1,334 @@
 <!doctype html>
 <html lang="en">
-<head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1"><meta name="description" content="Math Camp 2026 dataset and policy question guide."><title>Dataset guide | Math Camp 2026</title><link rel="icon" href="data:,"><link rel="stylesheet" href="../styles.css?v=book-20260718p"><script>document.documentElement.classList.add("js");</script></head>
-<body id="top" class="article-page"><div class="page-progress" aria-hidden="true"><span></span></div>
-  <header class="site-header"><a class="brand" href="../"><span>API 209</span><strong>MATH CAMP 2026</strong></a><div class="header-chapter"><span>FIELD GUIDE</span><strong>/ DATASETS</strong></div><nav class="chapter-nav"><a href="../">HOME</a><a href="../setup/">SETUP</a><a href="../ai-guide/">AI GUIDE</a></nav><button class="menu-button" type="button" aria-expanded="false" aria-controls="mobile-outline">CONTENTS</button></header>
-  <nav class="mobile-outline" id="mobile-outline"><div class="mobile-outline-head"><span>DATASETS</span><button type="button" data-close-menu>CLOSE</button></div><ol><li><a href="#default">Default file</a></li><li><a href="#questions">Questions</a></li><li><a href="#dictionary">Dictionary</a></li><li><a href="#update">Update</a></li></ol></nav>
-  <main><section class="article-hero"><div class="article-hero-meta"><div><span>SOURCE</span><strong>WORLD BANK WDI</strong></div><div><span>YEARS</span><strong>2000-2022</strong></div><div><span>UNIT</span><strong>COUNTRY-YEAR</strong></div></div><div class="article-hero-copy"><p>FIELD GUIDE 02</p><h1>One dataset, four paths.</h1><p class="article-deck">Start from the same documented country-year file, then choose a policy question that gives the coding work a purpose.</p></div><aside class="article-hero-side"><p>217 economies<br>23 years<br>9 indicators</p></aside></section>
-    <div class="article-layout"><aside class="article-nav"><span>ON THIS PAGE</span><a href="#default">Default file</a><a href="#questions">Questions</a><a href="#dictionary">Dictionary</a><a href="#update">Update</a></aside><article class="article">
-      <section class="article-section reveal" id="default"><p class="section-kicker">FROZEN BASELINE</p><h2>Begin from a common reference point.</h2><p class="article-lead">The default dataset is a teaching snapshot built from the World Bank World Development Indicators API. It reduces setup friction while retaining real missingness, revisions, uneven time coverage, and policy-relevant variables.</p><div class="table-scroll"><table><thead><tr><th>File</th><th>Shape</th><th>Use</th></tr></thead><tbody><tr><td><a href="../data/derived/math-camp-wdi-2000-2022.csv">Wide CSV</a></td><td>One country-year per row; indicators in columns.</td><td>Default lessons and analysis.</td></tr><tr><td><a href="../data/derived/math-camp-wdi-2000-2022-long.csv">Long CSV</a></td><td>One country-year-indicator per row.</td><td>Reshaping and indicator comparisons.</td></tr><tr><td><a href="../data/documentation/indicator-dictionary.csv">Indicator dictionary</a></td><td>One indicator per row.</td><td>Tracks, official names, units, definitions, sources, and retrieval dates.</td></tr><tr><td><a href="../code/01-inspect.R">Inspection script</a></td><td>Runnable R source.</td><td>Check schema, key, years, and missingness.</td></tr><tr><td><a href="../data/build_wdi.R">Protected build script</a></td><td>Maintainer-only R source.</td><td>Rebuild frozen files only with explicit opt-in.</td></tr></tbody></table></div><div class="callout"><span>FROZEN DOES NOT MEAN TRUE FOREVER</span><p>The 2022 endpoint gives the class a shared baseline. Official historical values may later be revised. The update lab treats those revisions as something to detect and document.</p></div><p><strong>Classification warning.</strong> <code>income_level_current</code> and <code>lending_type_current</code> describe World Bank metadata available when the teaching snapshot was assembled. They are not historical classifications. The project joins countries by <code>iso3c</code>, not by names that may differ across sources.</p></section>
-      <section class="article-section reveal" id="questions"><p class="section-kicker">COMMON CORE, OPTIONAL PATHS</p><h2>Begin together, then choose a complete recipe.</h2><p>Everyone first runs the health example so the room shares one sample, one model, and one vocabulary for checking work. The four optional paths are not interchangeable versions of that model. Each question requires its own unit, sample, comparison, and limitation; use the complete scripts in <a href="../code/tracks/README.md"><code>code/tracks/</code></a>.</p><ol class="learning-list"><li><span>01</span><strong>Health: complete country-years, 2000–2022.</strong> Compare logged income and under-five mortality while describing current income classifications honestly.</li><li><span>02</span><strong>Gender: complete country observations in 2022.</strong> Compare female secondary enrollment and adolescent fertility in a cross-section, noting missing coverage and regional context.</li><li><span>03</span><strong>Access: country trajectories at least ten years long.</strong> Compare annual change in electricity and internet access using each country’s actual elapsed years.</li><li><span>04</span><strong>Climate: countries in the latest common complete year.</strong> Compare renewable electricity and carbon intensity while showing per-capita growth; the frozen file’s latest complete common year is 2021, not 2022.</li></ol><p>These are descriptive and associational questions. The dataset alone does not identify causal effects.</p></section>
-      <section class="article-section reveal" id="dictionary"><p class="section-kicker">NINE INDICATORS</p><h2>Codes are part of the evidence.</h2><div class="table-scroll"><table><thead><tr><th>Track</th><th>Indicator code</th><th>Plain-language role</th></tr></thead><tbody><tr><td>Health</td><td><code>NY.GDP.PCAP.PP.KD</code></td><td>GDP per capita, purchasing-power adjusted.</td></tr><tr><td>Health</td><td><code>SH.DYN.MORT</code></td><td>Under-five deaths per 1,000 live births.</td></tr><tr><td>Gender</td><td><code>SE.SEC.ENRR.FE</code></td><td>Female secondary enrollment, gross percent.</td></tr><tr><td>Gender</td><td><code>SP.ADO.TFRT</code></td><td>Births per 1,000 women ages 15-19.</td></tr><tr><td>Access</td><td><code>EG.ELC.ACCS.ZS</code></td><td>Population with access to electricity.</td></tr><tr><td>Access</td><td><code>IT.NET.USER.ZS</code></td><td>Population using the internet.</td></tr><tr><td>Climate</td><td><code>EG.ELC.RNEW.ZS</code></td><td>Renewable share of electricity output.</td></tr><tr><td>Climate</td><td><code>EN.GHG.CO2.RT.GDP.PP.KD</code></td><td>Carbon intensity of economic activity.</td></tr><tr><td>Climate</td><td><code>NY.GDP.PCAP.KD.ZG</code></td><td>Annual real GDP per capita growth.</td></tr></tbody></table></div><p>Use the downloadable dictionary for official names, exact units, and source notes.</p></section>
-      <section class="article-section reveal" id="update"><p class="section-kicker">OPTIONAL HIGH CEILING</p><h2>Extend one indicator safely.</h2><p>Students who want a larger challenge can supervise an agent-assisted request to the official API. Run <code>Rscript code/04-update-indicator.R SH.DYN.MORT under5_mortality</code>. The script writes a retrieval-dated file under <code>data/updates/</code>; the maintainer build refuses to overwrite the frozen baseline without an explicit environment variable.</p><div class="prompt-box"><span>NON-NEGOTIABLES</span><pre>Official source only.
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta
+      name="description"
+      content="Math Camp 2026 dataset and policy question guide."
+    />
+    <title>Dataset guide | Math Camp 2026</title>
+    <link rel="icon" href="data:," />
+    <link rel="stylesheet" href="../styles.css?v=book-20260718p" />
+    <script>
+      document.documentElement.classList.add("js");
+    </script>
+  </head>
+  <body id="top" class="article-page">
+    <div class="page-progress" aria-hidden="true"><span></span></div>
+    <header class="site-header">
+      <a class="brand" href="../"
+        ><span>API 209</span><strong>MATH CAMP 2026</strong></a
+      >
+      <div class="header-chapter">
+        <span>FIELD GUIDE</span><strong>/ DATASETS</strong>
+      </div>
+      <nav class="chapter-nav">
+        <a href="../">HOME</a><a href="../setup/">SETUP</a
+        ><a href="../ai-guide/">AI GUIDE</a>
+      </nav>
+      <button
+        class="menu-button"
+        type="button"
+        aria-expanded="false"
+        aria-controls="mobile-outline"
+      >
+        CONTENTS
+      </button>
+    </header>
+    <nav class="mobile-outline" id="mobile-outline">
+      <div class="mobile-outline-head">
+        <span>DATASETS</span
+        ><button type="button" data-close-menu>CLOSE</button>
+      </div>
+      <ol>
+        <li><a href="#default">Default file</a></li>
+        <li><a href="#questions">Questions</a></li>
+        <li><a href="#dictionary">Dictionary</a></li>
+        <li><a href="#update">Update</a></li>
+      </ol>
+    </nav>
+    <main>
+      <section class="article-hero">
+        <div class="article-hero-meta">
+          <div><span>SOURCE</span><strong>WORLD BANK WDI</strong></div>
+          <div><span>YEARS</span><strong>2000-2022</strong></div>
+          <div><span>UNIT</span><strong>COUNTRY-YEAR</strong></div>
+        </div>
+        <div class="article-hero-copy">
+          <p>FIELD GUIDE 02</p>
+          <h1>A common dataset, four policy paths.</h1>
+          <p class="article-deck">
+            Begin with the same documented country-year file. Then choose a
+            policy question that gives a purpose to the coding work.
+          </p>
+        </div>
+        <aside class="article-hero-side">
+          <p>217 economies<br />23 years<br />9 indicators</p>
+        </aside>
+      </section>
+      <div class="article-layout">
+        <aside class="article-nav">
+          <span>ON THIS PAGE</span><a href="#default">Default file</a
+          ><a href="#questions">Questions</a><a href="#dictionary">Dictionary</a
+          ><a href="#update">Update</a>
+        </aside>
+        <article class="article">
+          <section class="article-section reveal" id="default">
+            <p class="section-kicker">FROZEN BASELINE</p>
+            <h2>Start with one shared reference file.</h2>
+            <p class="article-lead">
+              The default dataset is a teaching snapshot built from the World
+              Bank World Development Indicators API. It reduces setup problems
+              while preserving real missingness, revisions, unequal time
+              coverage, and variables used in policy analysis.
+            </p>
+            <div class="table-scroll">
+              <table>
+                <thead>
+                  <tr>
+                    <th>File</th>
+                    <th>Shape</th>
+                    <th>Use</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td>
+                      <a href="../data/derived/math-camp-wdi-2000-2022.csv"
+                        >Wide CSV</a
+                      >
+                    </td>
+                    <td>One country-year per row; indicators in columns.</td>
+                    <td>Default lessons and analysis.</td>
+                  </tr>
+                  <tr>
+                    <td>
+                      <a href="../data/derived/math-camp-wdi-2000-2022-long.csv"
+                        >Long CSV</a
+                      >
+                    </td>
+                    <td>One country-year-indicator per row.</td>
+                    <td>Reshaping and indicator comparisons.</td>
+                  </tr>
+                  <tr>
+                    <td>
+                      <a href="../data/documentation/indicator-dictionary.csv"
+                        >Indicator dictionary</a
+                      >
+                    </td>
+                    <td>One indicator per row.</td>
+                    <td>
+                      Tracks, official names, units, definitions, sources, and
+                      retrieval dates.
+                    </td>
+                  </tr>
+                  <tr>
+                    <td>
+                      <a href="../code/01-inspect.R">Inspection script</a>
+                    </td>
+                    <td>Runnable R source.</td>
+                    <td>Check schema, key, years, and missingness.</td>
+                  </tr>
+                  <tr>
+                    <td>
+                      <a href="../data/build_wdi.R">Protected build script</a>
+                    </td>
+                    <td>Maintainer-only R source.</td>
+                    <td>Rebuild frozen files only with explicit opt-in.</td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+            <div class="callout">
+              <span>FROZEN TEACHING BASELINE</span>
+              <p>
+                The 2022 endpoint gives the class one shared baseline. Official
+                historical values can change later. The update lab asks students
+                to detect and document those revisions.
+              </p>
+            </div>
+            <p>
+              <strong>Classification warning.</strong>
+              <code>income_level_current</code> and
+              <code>lending_type_current</code> describe World Bank metadata
+              available when the teaching snapshot was assembled. A historical
+              classification requires a country-year source. The project joins
+              countries by <code>iso3c</code> because country names may differ
+              across sources.
+            </p>
+          </section>
+          <section class="article-section reveal" id="questions">
+            <p class="section-kicker">COMMON CORE, OPTIONAL PATHS</p>
+            <h2>Run the common example first, then choose a complete track.</h2>
+            <p>
+              Everyone begins with the health example. This gives the room one
+              sample, one model, and common language for checking the work. Each
+              optional track then defines the unit, sample, comparison, and
+              limitation required by its own question. Use the complete scripts
+              in <a href="../code/tracks/README.md"><code>code/tracks/</code></a
+              >.
+            </p>
+            <ol class="learning-list">
+              <li>
+                <span>01</span
+                ><strong>Health: complete country-years, 2000–2022.</strong>
+                Compare logged income and under-five mortality while describing
+                current income classifications honestly.
+              </li>
+              <li>
+                <span>02</span
+                ><strong>Gender: complete country observations in 2022.</strong>
+                Compare female secondary enrollment and adolescent fertility in
+                a cross-section, noting missing coverage and regional context.
+              </li>
+              <li>
+                <span>03</span
+                ><strong
+                  >Access: country trajectories at least ten years long.</strong
+                >
+                Compare annual change in electricity and internet access using
+                each country’s actual elapsed years.
+              </li>
+              <li>
+                <span>04</span
+                ><strong
+                  >Climate: countries in the latest common complete
+                  year.</strong
+                >
+                Compare renewable electricity and carbon intensity while showing
+                per-capita growth; the frozen file’s latest complete common year
+                is 2021.
+              </li>
+            </ol>
+            <p>
+              These questions are descriptive and associational. Causal effects
+              require a separate research design.
+            </p>
+          </section>
+          <section class="article-section reveal" id="dictionary">
+            <p class="section-kicker">NINE INDICATORS</p>
+            <h2>The indicator code is also part of the evidence.</h2>
+            <div class="table-scroll">
+              <table>
+                <thead>
+                  <tr>
+                    <th>Track</th>
+                    <th>Indicator code</th>
+                    <th>Plain-language role</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td>Health</td>
+                    <td><code>NY.GDP.PCAP.PP.KD</code></td>
+                    <td>GDP per capita, purchasing-power adjusted.</td>
+                  </tr>
+                  <tr>
+                    <td>Health</td>
+                    <td><code>SH.DYN.MORT</code></td>
+                    <td>Under-five deaths per 1,000 live births.</td>
+                  </tr>
+                  <tr>
+                    <td>Gender</td>
+                    <td><code>SE.SEC.ENRR.FE</code></td>
+                    <td>Female secondary enrollment, gross percent.</td>
+                  </tr>
+                  <tr>
+                    <td>Gender</td>
+                    <td><code>SP.ADO.TFRT</code></td>
+                    <td>Births per 1,000 women ages 15-19.</td>
+                  </tr>
+                  <tr>
+                    <td>Access</td>
+                    <td><code>EG.ELC.ACCS.ZS</code></td>
+                    <td>Population with access to electricity.</td>
+                  </tr>
+                  <tr>
+                    <td>Access</td>
+                    <td><code>IT.NET.USER.ZS</code></td>
+                    <td>Population using the internet.</td>
+                  </tr>
+                  <tr>
+                    <td>Climate</td>
+                    <td><code>EG.ELC.RNEW.ZS</code></td>
+                    <td>Renewable share of electricity output.</td>
+                  </tr>
+                  <tr>
+                    <td>Climate</td>
+                    <td><code>EN.GHG.CO2.RT.GDP.PP.KD</code></td>
+                    <td>Carbon intensity of economic activity.</td>
+                  </tr>
+                  <tr>
+                    <td>Climate</td>
+                    <td><code>NY.GDP.PCAP.KD.ZG</code></td>
+                    <td>Annual real GDP per capita growth.</td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+            <p>
+              Use the downloadable dictionary for the official names, exact
+              units, and source notes.
+            </p>
+          </section>
+          <section class="article-section reveal" id="update">
+            <p class="section-kicker">OPTIONAL EXTENSION</p>
+            <h2>Update one indicator without changing the baseline.</h2>
+            <p>
+              Students who want a larger challenge can supervise an
+              agent-assisted request to the official API. Run
+              <code
+                >Rscript code/04-update-indicator.R SH.DYN.MORT
+                under5_mortality</code
+              >. The script writes a retrieval-dated file under
+              <code>data/updates/</code>. The maintainer build will not
+              overwrite the frozen baseline unless it receives an explicit
+              environment variable.
+            </p>
+            <div class="prompt-box">
+              <span>NON-NEGOTIABLES</span>
+              <pre>
+Official source only.
 New dated output.
 No overwrite of the frozen baseline.
 Indicator code and unit preserved.
 Retrieval date recorded.
 Unique keys tested.
-Historical revisions reported separately from new years.</pre></div></section>
-    </article><aside class="article-margin"><dl><div><dt>DEFAULT</dt><dd>Wide CSV</dd></div><div><dt>ADVANCED</dt><dd>API update</dd></div><div><dt>CLAIMS</dt><dd>Not causal</dd></div></dl></aside></div>
-    <nav class="page-turn"><a href="../setup/"><span>PREVIOUS</span><strong>Setup guide</strong></a><a href="../ai-guide/"><span>NEXT</span><strong>AI workflow guide</strong></a></nav></main>
-  <footer class="site-footer"><div><span>API 209</span><strong>MATH CAMP 2026</strong></div><p>Student field guide.</p><a href="#top">RETURN TO TOP ↑</a></footer><script src="../script.js?v=book-20260718o"></script></body>
+Historical revisions reported separately from new years.</pre
+              >
+            </div>
+          </section>
+        </article>
+        <aside class="article-margin">
+          <dl>
+            <div>
+              <dt>DEFAULT</dt>
+              <dd>Wide CSV</dd>
+            </div>
+            <div>
+              <dt>ADVANCED</dt>
+              <dd>API update</dd>
+            </div>
+            <div>
+              <dt>CLAIMS</dt>
+              <dd>Not causal</dd>
+            </div>
+          </dl>
+        </aside>
+      </div>
+      <nav class="page-turn">
+        <a href="../setup/"><span>PREVIOUS</span><strong>Setup guide</strong></a
+        ><a href="../ai-guide/"
+          ><span>NEXT</span><strong>AI workflow guide</strong></a
+        >
+      </nav>
+    </main>
+    <footer class="site-footer">
+      <div><span>API 209</span><strong>MATH CAMP 2026</strong></div>
+      <p>Student field guide.</p>
+      <a href="#top">RETURN TO TOP ↑</a>
+    </footer>
+    <script src="../script.js?v=book-20260718o"></script>
+  </body>
 </html>

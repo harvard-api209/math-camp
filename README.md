@@ -1,6 +1,6 @@
 # Math Camp 2026
 
-A native static teaching book for API 209 Math Camp 2026. The main website is HTML, CSS, and JavaScript. Quarto is used only for replaceable RevealJS slide decks and the optional student field notebook.
+A native static teaching book for API 209 Math Camp 2026. The main website is HTML, CSS, and JavaScript. The student-facing lesson decks are LaTeX Beamer PDFs. Quarto is used only for the optional student field notebook.
 
 ## Published site
 
@@ -40,8 +40,8 @@ starts from a saved file; none requires an object left in an R console.
 ## Book architecture
 
 - `index.html`: public student homepage, schedule, lesson index, policy tracks, and resource guide
-- `lessons/lesson-1/` through `lesson-4/`: long-form student chapters with policy context, explained code, agent contracts, and embedded decks
-- `labs/lab-1/` through `lab-4/`: focused 60-minute lab guides with runnable code, verification, debriefs, and optional extensions
+- `lessons/lesson-1/` and `lessons/lesson-2/`: the two student lessons in the current release, with explained code, bounded agent tasks, and embedded Beamer PDFs
+- `labs/lab-1/` and `labs/lab-2/`: the installation clinic and the 60-minute build-table lab in the current release
 - `setup/`, `datasets/`, `ai-guide/`, `glossary/`: student field guides
 - `instructor/`: unlisted teaching notes and a detailed facilitation plan; `noindex` is not access control
 - `research/evidence-brief.md`: research base and design rationale
@@ -51,24 +51,27 @@ starts from a saved file; none requires an object left in an R console.
 
 ## Update a lesson deck
 
-Edit the lesson source, keep `output-file: index.html`, and render from this directory:
+The current public decks use the shared files `slides/beamer_preamble.tex`, `slides/beamer_style.sty`, and `slides/references.bib`. Each lesson keeps its metadata in `metadata.tex`, its entry point in `main.tex`, and one LaTeX file per major section under `sections/`.
+
+To edit and compile Lesson 1:
 
 ```sh
-quarto render slides/lesson-1/slides.qmd
+cd slides/lesson-1
+latexmk -pdf main.tex
+cp main.pdf lesson-1.pdf
 ```
 
-The lesson chapter embeds `slides/lesson-1/index.html`, so no lesson-page edit is required. Repeat with lesson 2, 3, or 4. Shared deck styling lives in `slides/slide-theme.scss`.
-
-The four facilitated decks contain 55, 39, 40, and 42 rendered slides, respectively. Each deck includes speaker notes, timed interaction prompts, prediction checks, short partner protocols, and a direct handoff to its lab. The source is intentionally more complete than a conventional presentation outline so the teaching team can shorten or reorder a live session without having to invent missing explanations.
-
-To render every deck:
+Lesson 2 follows the same pattern:
 
 ```sh
-for lesson in 1 2 3 4
-do
-  quarto render "slides/lesson-${lesson}/slides.qmd"
-done
+cd slides/lesson-2
+latexmk -pdf main.tex
+cp main.pdf lesson-2.pdf
 ```
+
+The website embeds `lesson-1.pdf` and `lesson-2.pdf`. Edit their English LaTeX sections directly. After each change, compile the deck, scan the log, and inspect every rendered slide before replacing the public PDF.
+
+The current PDFs contain 48 pages for Lesson 1 and 43 pages for Lesson 2, including title pages, section maps, and references. Later lesson materials remain internal drafts and are not part of the public release.
 
 ## Rebuild the default dataset (maintainers only)
 

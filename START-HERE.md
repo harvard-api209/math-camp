@@ -52,7 +52,7 @@ and compare new years separately from historical revisions.
 
 ## What to keep
 
-Nothing is submitted or graded. If useful, keep:
+The artifact is optional and ungraded. If useful, keep:
 
 - one script you understand;
 - one figure and a careful sentence;

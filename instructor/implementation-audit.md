@@ -9,7 +9,7 @@ student-visible repairs and verification evidence.
 | Incomplete setup guide | Added ZIP/clone directions, macOS and Windows guidance, `.Rproj` entry point, package repair, Codex confirmation, and green/yellow/red gate. | Checker returns yellow without manual Codex confirmation and green with it. |
 | Thin dictionary | Generated nine rows with track, official name, unit, definition, source organization, periodicity, URL, and retrieval date. | `code/01-inspect.R` joins dictionary fields to all nine indicators. |
 | Hidden Lab 3 state | Added a clean-start block that imports data and constructs `health_analysis` before plotting or modeling. | Lab code is also implemented in `code/02-build-analysis.R` and `code/03-compare.R`; both run clean. |
-| Nonparallel tracks | Added complete recipes whose unit and sample match each question rather than swapping columns in one model. | Health, gender, access, and climate scripts each run and create a receipt. |
+| Distinct analytical tracks | Added complete recipes with a unit and sample that match each question. | Health, gender, access, and climate scripts each run and create a receipt. |
 | Frozen file overwrite risk | Maintainer build now requires `MATH_CAMP_WRITE_FROZEN=YES`; student updates write dated files only under `data/updates/`. | Unprivileged build stops. Update runs while frozen-file SHA-256 hashes remain unchanged. |
 | Authentic data arrived late | Lesson 1 now runs `code/01-inspect.R` immediately after the setup gate at minute 22. | Speaker notes place first real-data contact at 0:22–0:28. |
 | Timing gaps and overlaps | Reconciled speaker notes across all decks and assigned later practice blocks through the end of each two-hour lesson. | Notes cover Lesson 1 through 2:00, Lesson 2 through 2:00, Lesson 3 through 2:00, and Lesson 4 through 2:00. |
@@ -32,7 +32,6 @@ A first-time student now has one visible route:
 8. render or keep a small personal artifact;
 9. test a handoff from a clean session.
 
-The likely emotional arc is now deliberate: setup is strict but finite; the first
-success arrives early; beginners have complete scripts rather than blank pages;
-experienced students have real extensions; and uncertainty is framed as a check
-to run rather than evidence that a student does not belong in the room.
+The likely emotional arc is now deliberate: setup is strict and finite; the first
+success arrives early; beginners have complete scripts; experienced students
+have real extensions; and uncertainty becomes a check that the room can run.

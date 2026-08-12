@@ -10,6 +10,5 @@ health example.
 | `03-access.R` | Countries with at least ten years between first and last complete observations | Annual change in electricity and internet access |
 | `04-climate.R` | Complete country observations in the latest common year | Renewable electricity, carbon intensity, and growth |
 
-The scripts deliberately do not force the four questions into the same model.
-Each one defines the sample required by its question, checks its key, creates a
+Each script defines the sample required by its question, checks its key, creates a
 figure, and writes an evidence receipt to `outputs/`.

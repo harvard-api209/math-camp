@@ -15,6 +15,9 @@ format:
     slide-number: c/t
     progress: true
     footer: "API 209 · MATH CAMP 2026 · LESSON 4"
+    include-in-header:
+      text: |
+        <meta name="robots" content="noindex,nofollow">
 ---
 
 ## Before we begin
@@ -24,7 +27,7 @@ format:
 Your code works on your laptop. What would convince you that it is ready for another person?
 
 ::: {.activity}
-Write the first thing the other person should do, not the first thing you should tell them.
+Write the first action that another person should take.
 
 <span class="timer">2 MINUTES</span>
 :::
@@ -59,17 +62,11 @@ Package the question, data, code, evidence, limitations, and AI assistance so an
 
 ## A handoff is an experiment
 
-The question is not “Can the author make it work?”
-
-The question is:
-
-> Can another person recover the question, inputs, decisions, and result without relying on the author's memory?
+Ask whether another person can recover the question, inputs, decisions, and result from the project record.
 
 ## Someone else's kitchen
 
-A recipe is not tested because its author can cook from memory.
-
-It is tested when another person can use:
+A recipe is tested when another person can use:
 
 - the listed ingredients,
 - the listed equipment,
@@ -90,7 +87,7 @@ Another person can:
 - understand the variable definitions,
 - see the limitations and AI contributions.
 
-This is a practical standard, not a guarantee that every environment is identical.
+This practical standard gives the reviewer observable evidence in the current environment.
 
 ::: {.notes}
 0:03-0:11. Distinguish reproducibility from replication. Replication asks whether a result holds in new data or a new study.
@@ -149,7 +146,7 @@ instructor key is separate from the student fixture.
 3. Confirm the project root.
 4. Run or render from the first line.
 5. Stop at the first error.
-6. Repair the source, not the environment by hand.
+6. Repair the source so the change can be rerun.
 7. Repeat until output is rebuilt.
 
 ## Project structure communicates
@@ -179,7 +176,7 @@ The record of what happened lives across:
 - the verification result,
 - and the AI-use note.
 
-<div class="claim-line">A flight recorder does not prevent every failure. It makes the failure reconstructable.</div>
+<div class="claim-line">A flight recorder makes a failure reconstructable.</div>
 
 ## Order the script
 
@@ -203,7 +200,7 @@ Where should the source note appear?
 
 ## One entry point
 
-A reviewer should not need to guess which script runs first.
+Name the first script in the README.
 
 ```{.bash}
 Rscript code/01-inspect.R
@@ -247,7 +244,7 @@ execute:
 3. First inspection.
 4. Analysis sample.
 5. Comparison.
-6. What this does not show.
+6. Limitation.
 7. AI-use note.
 8. Verification record.
 
@@ -265,7 +262,7 @@ Rendering checks whether:
 - figures are generated from code,
 - narrative and output remain together.
 
-It does not prove the analysis is substantively correct.
+Substantive correctness requires separate data and interpretation checks.
 
 ## Predict the render failure
 
@@ -325,9 +322,9 @@ Useful limitations are specific:
 - aggregate units remain in the teaching file,
 - indicator definitions simplify complex policy conditions,
 - the comparison is descriptive or associational,
-- the simple model does not identify a causal effect.
+- causal interpretation requires another research design.
 
-“More research is needed” is not enough.
+Name the missing evidence or design feature directly.
 
 ::: {.notes}
 0:49-0:58. Ask students to improve one generic limitation by naming the exact threat and likely direction of concern.
@@ -347,7 +344,7 @@ I remain responsible for the analysis and interpretation.
 
 > I used AI to help with the code.
 
-This does not reveal:
+This record still requires details about:
 
 - which tool,
 - which contribution,
@@ -380,7 +377,7 @@ Exchange with a partner. Underline the verification evidence.
 
 ## What harness evidence can prove
 
-| Evidence | Supports | Does not establish |
+| Evidence | Supports | Further check needed |
 |---|---|---|
 | Clean render log | The path executed here | The claim is statistically appropriate |
 | Key and range checks | Named structural conditions held | The indicator measures the intended concept |
@@ -393,7 +390,7 @@ Exchange with a partner. Underline the verification evidence.
 - Are packages and inputs declared?
 - Do relative paths work?
 - Does the key test run?
-- Are outputs recreated rather than copied?
+- Can the project recreate every output from its source files?
 - Does a clean render succeed?
 
 ## Audit 2: provenance
@@ -433,7 +430,7 @@ Exchange with a partner. Underline the verification evidence.
 | Medium | Handoff is difficult or ambiguous. |
 | Low | Polish or convenience improvement. |
 
-Do not bury a broken key beneath formatting advice.
+Repair a broken key before addressing formatting.
 
 ## Agent audit contract
 
@@ -498,7 +495,7 @@ You will:
 4. repair one high-value issue,
 5. give a 90-second show-and-tell.
 
-Nothing is graded or submitted.
+The artifact is optional and ungraded.
 
 ## Final confidence map
 
@@ -520,7 +517,7 @@ Choose one score you want to raise during the lab.
 
 **Question → evidence → code → agent → verification → handoff**
 
-The goal is not perfect code. The goal is work another person can understand, inspect, and improve.
+The goal is work another person can understand, inspect, and improve.
 
 ::: {.notes}
 1:40-2:00. Run the confidence map, allow ten minutes for one high-value repair, and close with the clean-run receipt. Remind students the artifact is theirs and optional. The fall semester will deepen the statistical methods; this camp establishes the workflow.

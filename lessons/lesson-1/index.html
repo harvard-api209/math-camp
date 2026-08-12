@@ -1,129 +1,496 @@
 <!doctype html>
 <html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <meta name="description" content="Math Camp 2026 Coding Lesson 1: meet the evidence.">
-  <title>Lesson 1: Meet the evidence | Math Camp 2026</title>
-  <link rel="icon" href="data:,">
-  <link rel="stylesheet" href="../../styles.css?v=book-20260802r">
-  <script>document.documentElement.classList.add("js");</script>
-</head>
-<body id="top" class="article-page">
-  <div class="page-progress" aria-hidden="true"><span></span></div>
-  <header class="site-header">
-    <a class="brand" href="../../"><span>API 209</span><strong>MATH CAMP 2026</strong></a>
-    <div class="header-chapter"><span>LESSON 1</span><strong>/ MEET THE EVIDENCE</strong></div>
-    <nav class="chapter-nav"><a href="../../">HOME</a><a href="../../labs/lab-1/">LAB 1</a><a href="../../slides/lesson-1/">SLIDES</a></nav>
-    <button class="menu-button" type="button" aria-expanded="false" aria-controls="mobile-outline">CONTENTS</button>
-  </header>
-  <nav class="mobile-outline" id="mobile-outline"><div class="mobile-outline-head"><span>LESSON 1</span><button type="button" data-close-menu>CLOSE</button></div><ol><li><a href="#evidence">Why evidence comes first</a></li><li><a href="#toolchain">R, AI, and the toolchain</a></li><li><a href="#inspection">Reading the file</a></li><li><a href="#agent">Working with an agent</a></li><li><a href="#slides">Slides</a></li></ol></nav>
-  <main>
-    <section class="article-hero">
-      <div class="article-hero-meta"><div><span>DATE</span><strong>THU AUG 13</strong></div><div><span>TIME</span><strong>1-4 PM</strong></div><div><span>FORMAT</span><strong>LESSON + LAB</strong></div></div>
-      <div class="article-hero-copy"><p>CODING LESSON 1</p><h1>Meet the evidence.</h1><p class="article-deck">Learn what R, an LLM, a coding agent, and its harness actually do—then use each one without surrendering the policy question.</p><div class="article-actions"><a href="../../labs/lab-1/">OPEN LAB 1 →</a><a href="../../slides/lesson-1/">OPEN SLIDES ↗</a></div></div>
-      <aside class="article-hero-side"><p>Human first<br>Agent second<br>Evidence last</p></aside>
-    </section>
-    <div class="article-layout">
-      <aside class="article-nav"><span>IN THIS LESSON</span><a href="#evidence">Why evidence comes first</a><a href="#toolchain">R, AI, and the toolchain</a><a href="#inspection">Reading the file</a><a href="#agent">Working with an agent</a><a href="#slides">Slides</a></aside>
-      <article class="article">
-        <section class="article-section reveal" id="evidence">
-          <p class="section-kicker">THE FIRST QUESTION</p>
-          <h2>What, exactly, does the file contain?</h2>
-          <p class="article-lead">A policy analysis can fail long before a model is fitted. It can fail when a row is misread, when an aggregate is mistaken for a country, when a missing value is treated as zero, or when two indicators that sound similar are assumed to measure the same thing. Lesson 1 begins with those decisions because they determine what every later graph and coefficient can mean.</p>
-          <p>The shared file follows countries and economies over time. That sounds straightforward, but the phrase “country-year data” still leaves important questions open. Which geographic units are included? Is every country observed in every year? Were the indicators collected in the same way? Does a higher number always mean more of the underlying concept? The code can count rows and summarize values. It cannot answer those interpretive questions without definitions and source documentation.</p>
-          <p>We will work toward five practical abilities: distinguish the tools in the project, run and read a short R script, identify the unit and key of a dataset, inspect coverage and missingness, and verify an explanation produced by a coding agent. These are modest operations, but together they create a defensible first account of the evidence. They also give students with very different coding histories a common language for asking for help without handing away the analysis.</p>
-          <p>The lesson uses one of four international development questions as a thread. You may examine health and income, girls’ secondary enrollment and adolescent fertility, electricity and internet access, or renewable electricity and carbon intensity. At this stage the question is descriptive or associational. We are learning what can be compared, not claiming that one variable causes another.</p>
-        </section>
-        <section class="article-section reveal" id="toolchain">
-          <p class="section-kicker">R, AI, AND THE WORKSPACE</p>
-          <h2>The tools are connected, but they do different work.</h2>
-          <p><strong>R</strong> is the programming language that executes the instructions in our scripts. When R reads a file, filters rows, or calculates a mean, it performs a specified operation and returns a result. <strong>RStudio</strong> is the workspace around R: it gives us an editor, console, file browser, plots, and help. RStudio makes the work easier to see, but it does not change what the R code means.</p>
-          <p><strong>Quarto</strong> combines narrative, code, figures, and output in a document that can be rendered again when the analysis changes. It will be available throughout camp because it is useful for slides and reproducible notes, not because every student must submit a polished report. A plain R script remains a perfectly good place to think.</p>
-          <h3>Is it still worth learning to code?</h3>
-          <p>Yes, but the target is changing. Andrew Ng argues that coding plus prompting can accomplish more than prompting alone: natural language makes it easier to begin, while code makes important instructions inspectable, repeatable, and testable. AI-assisted coding also lowers the cost of trying a small idea, seeing what breaks, and improving it. That makes building a faster route into learning rather than a reason to avoid learning.</p>
-          <p>Geoffrey Litt offers a complementary reason. As agents make code faster to produce, understanding can become the slower—and therefore decisive—part of the workflow. We need understanding not only to verify whether a result passes a check, but also to participate: to recognize the concepts and tradeoffs in the current approach, formulate the next question, and decide how the project should evolve.</p>
-          <p class="article-source"><span>SOURCE</span> Geoffrey Litt, <a href="https://www.geoffreylitt.com/2026/07/02/understanding-is-the-new-bottleneck.html">“Understanding is the New Bottleneck”</a>, July 2, 2026. This lesson paraphrases Litt’s distinction between understanding to verify and understanding to participate.</p>
-          <p>For this camp, “learning to code” does not mean competing with an agent at recalling syntax. It means learning enough to read a proposal, predict what should happen, change the relevant part, test the result, and recognize when the code no longer matches the policy question. The 2024 Math Camp promised that students would leave ready for the semester, know enough R, and know how to craft questions and where to look for answers. We keep that promise and add one expectation: use help without surrendering judgment.</p>
-          <div class="callout"><span>THE DESTINATION</span><p>You should leave ready to move in R, ask a useful question, find appropriate help, and make a defensible decision about what to keep. Independence does not mean working without help; it means retaining independence of judgment.</p></div>
-          <p><strong>Artificial intelligence</strong> is the umbrella term. A <strong>large language model</strong>, or LLM, is one kind of AI: a system that generates language or code from an instruction and the context placed in front of it. It is helpful to imagine an unusually capable language engine. It can continue a pattern, explain a function, or draft R code, but the engine itself does not open a file, run R, browse documentation, or know whether a policy claim is true.</p>
-          <p>A <strong>chat interface</strong> puts a conversation window around that engine. A <strong>coding agent</strong> adds a loop and tools: inspect the project, request a file read or terminal command, observe the result, and decide what to do next. The system that assembles context, offers tools, enforces permissions, returns tool results, preserves history, and decides when the loop stops is often called the <strong>harness</strong>.</p>
-          <div class="callout"><span>THE WORKSHOP ANALOGY</span><p>The LLM is the language engine. The harness is the workshop around it: workbench, toolbox, clipboard, locked cabinets, and measuring instruments. The coding agent is the engine operating inside that workshop. You are the investigator who writes the work order, grants access, watches the work, and decides whether the evidence supports keeping it.</p></div>
-          <div class="protocol-grid"><div><span>MODEL</span><strong>Generates.</strong><p>Produces text, code, or a request to use a tool.</p></div><div><span>HARNESS</span><strong>Connects.</strong><p>Supplies context, tools, permissions, memory, and feedback.</p></div><div><span>AGENT</span><strong>Acts in a loop.</strong><p>Reads, proposes, runs, observes, and continues within its access.</p></div><div><span>INVESTIGATOR</span><strong>Judges.</strong><p>Frames the question and decides what counts as verification.</p></div></div>
-          <p>Codex is the baseline coding agent for Math Camp; Claude Code can be used as an alternative. These are product names, not names for one fixed model. A product may change models or interfaces while keeping a familiar project workflow. That is why we will spend less time comparing brands and more time inspecting context, tools, permissions, changes, and checks.</p>
-          <p>This is why the camp moves beyond a closed RStudio demonstration. Contemporary quantitative work increasingly takes place across scripts, documents, terminals, version histories, and AI-assisted tools. Learning to supervise that environment is now part of computational literacy. It does not replace knowing what a row means or how a transformation works. It makes those forms of knowledge more important because an agent can reproduce a mistake across an entire project very quickly.</p>
-          <div class="table-scroll"><table>
-            <thead><tr><th>Tool</th><th>Its role in this lesson</th><th>The judgment it cannot make for us</th></tr></thead>
-            <tbody>
-              <tr><td>R</td><td>Read, count, transform, and summarize observations.</td><td>Whether the policy question is well framed.</td></tr>
-              <tr><td>RStudio</td><td>Make scripts, objects, files, and output visible together.</td><td>Whether the code represents the intended population.</td></tr>
-              <tr><td>Quarto</td><td>Keep prose, code, and results in a reproducible document.</td><td>Whether a claim follows from the research design.</td></tr>
-              <tr><td>Codex or Claude Code</td><td>Explain project code and perform bounded, reviewable tasks.</td><td>Whether its answer deserves our trust.</td></tr>
-            </tbody>
-          </table></div>
-          <h3>Watch one tool-call loop</h3>
-          <p>When an agent “reads a file,” the LLM does not reach into the computer. It produces a structured request such as “read this path.” The harness checks whether that tool and path are allowed, executes ordinary software, and sends the result back into the next model round. The same sequence applies to editing a file or running an R script. This gives us four points of supervision: the context provided, the action requested, the result returned, and the decision to continue.</p>
-          <p><strong>Class simulation.</strong> One student plays the model, one plays the harness, one plays the R tool, and one plays the investigator. The “model” may only write a tool request. The “harness” decides whether it is permitted and carries the request to “R.” The investigator compares the returned result with the original question. The point is to make the invisible loop visible before anyone trusts it.</p>
-        </section>
-        <section class="article-section reveal" id="inspection">
-          <p class="section-kicker">READING THE FILE</p>
-          <h2>Begin with structure, coverage, and scale.</h2>
-          <p>The first two hours move from the project as a whole to a small set of questions about the data. We will locate the script and data directories, distinguish code written in a source file from commands run in the console, and use assignment to create an R object. We will then inspect the object before selecting a policy track. The final hour is Lab 1, where temporary working groups build an evidence inventory and compare what they found.</p>
-          <div class="session-plan">
-            <div><time>00–25</time><strong>Orient</strong><p>Projects, paths, scripts, the console, and the environment.</p></div>
-            <div><time>25–55</time><strong>Read R</strong><p>Objects, functions, arguments, assignment, and pipes through a small example.</p></div>
-            <div><time>55–90</time><strong>Inspect</strong><p>Rows, variables, types, keys, ranges, years, and missing values.</p></div>
-            <div><time>90–120</time><strong>Question</strong><p>Choose a policy track and connect its concepts to documented variables.</p></div>
-            <div><time>120–180</time><strong>Lab 1</strong><p>Construct and review the evidence inventory.</p></div>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta
+      name="description"
+      content="Math Camp 2026 Lesson 1: AI, coding, and judgment."
+    />
+    <title>Lesson 1: AI, coding, and judgment | Math Camp 2026</title>
+    <link rel="icon" href="data:," />
+    <link rel="stylesheet" href="../../styles.css?v=book-20260811a" />
+    <script>
+      document.documentElement.classList.add("js");
+    </script>
+  </head>
+  <body id="top" class="article-page">
+    <div class="page-progress" aria-hidden="true"><span></span></div>
+    <header class="site-header">
+      <a class="brand" href="../../"
+        ><span>API 209</span><strong>MATH CAMP 2026</strong></a
+      >
+      <div class="header-chapter">
+        <span>LESSON 1</span><strong>/ AI, CODING, AND JUDGMENT</strong>
+      </div>
+      <nav class="chapter-nav">
+        <a href="../../">HOME</a><a href="../../labs/lab-1/">INSTALLATION LAB</a
+        ><a href="../../slides/lesson-1/">SLIDES</a>
+      </nav>
+      <button
+        class="menu-button"
+        type="button"
+        aria-expanded="false"
+        aria-controls="mobile-outline"
+      >
+        CONTENTS
+      </button>
+    </header>
+    <nav class="mobile-outline" id="mobile-outline">
+      <div class="mobile-outline-head">
+        <span>LESSON 1</span
+        ><button type="button" data-close-menu>CLOSE</button>
+      </div>
+      <ol>
+        <li><a href="#welcome">Where we begin</a></li>
+        <li><a href="#question">The question for today</a></li>
+        <li><a href="#systems">Systems and tools</a></li>
+        <li><a href="#judgment">Learning with an agent</a></li>
+        <li><a href="#contract">A bounded work order</a></li>
+        <li><a href="#handoff">Installation handoff</a></li>
+        <li><a href="#slides">Slides</a></li>
+      </ol>
+    </nav>
+    <main>
+      <section class="article-hero">
+        <div class="article-hero-meta">
+          <div><span>DATE</span><strong>THU AUG 13</strong></div>
+          <div><span>LESSON</span><strong>1–3 PM</strong></div>
+          <div><span>LAB</span><strong>3–4 PM</strong></div>
+        </div>
+        <div class="article-hero-copy">
+          <p>CODING LESSON 1</p>
+          <h1>AI, coding, and judgment.</h1>
+          <p class="article-deck">
+            Learn what our tools do, why coding is still useful, and how to ask
+            a coding agent for help while keeping the important decisions with
+            the student.
+          </p>
+          <div class="article-actions">
+            <a href="../../labs/lab-1/">OPEN INSTALLATION LAB →</a
+            ><a href="../../slides/lesson-1/lesson-1.pdf">OPEN SLIDE PDF ↗</a>
           </div>
-          <p>The following script is our first pass. All object and function names use R’s usual lowercase style. Open the project itself before running the code so that the relative path begins in the project directory.</p>
-          <div class="code-plate">
-            <div class="code-plate-head"><span>R</span><span>First look at the teaching file</span></div>
-            <pre><code>library(tidyverse)
-
-wdi &lt;- read_csv(
-  "data/derived/math-camp-wdi-2000-2022.csv",
-  show_col_types = FALSE
-)
-
-glimpse(wdi)
-count(wdi, year)
-summarise(wdi, economies = n_distinct(iso3c))</code></pre>
-          </div>
-          <div class="code-notes">
-            <p><strong><code>library(tidyverse)</code></strong> makes a collection of R packages available in the current session. In this script we need <code>readr</code> to read the comma-separated file and <code>dplyr</code> to count and summarize observations.</p>
-            <p><strong><code>wdi &lt;- read_csv(...)</code></strong> reads the named CSV file and assigns the resulting table to an object called <code>wdi</code>. The arrow points toward the object being created. Setting <code>show_col_types = FALSE</code> suppresses an informational message; it does not change the data.</p>
-            <p><strong><code>glimpse(wdi)</code></strong> gives a compact view of the number of rows and columns, each column’s data type, and a few values. This is where we notice whether a year was read as a number, whether an indicator is numeric, and whether the identifiers look as expected.</p>
-            <p><strong><code>count(wdi, year)</code></strong> groups the rows by year and reports how many appear in each group. Uneven counts are not automatically errors, but they tell us that year coverage needs an explanation.</p>
-            <p><strong><code>summarise(wdi, economies = n_distinct(iso3c))</code></strong> returns one number: the count of distinct economy identifiers. It does not tell us that every identifier is a sovereign country, so we still consult the documentation and inspect aggregate codes.</p>
-          </div>
-          <p>From here we add checks that follow from the substantive question. We count missing observations for the selected indicators, inspect minimum and maximum values in their documented units, and test whether <code>iso3c</code> together with <code>year</code> uniquely identifies a row. A surprising result is an invitation to investigate. It is not a reason to delete an observation until the source and definition justify doing so.</p>
-        </section>
-        <section class="article-section reveal" id="agent">
-          <p class="section-kicker">WORKING WITH AN AGENT</p>
-          <h2>Ask for a claim you can check.</h2>
-          <p>Our first agent conversation is deliberately narrow and read-only. We are not asking the agent to select the policy question, write the entire analysis, or reassure us that the data are clean. We are asking it to read a small piece of public project context and explain what it finds. A useful work order names the goal, points to the relevant files, sets boundaries, and describes what a satisfactory response would contain.</p>
-          <div class="prompt-box"><span>A bounded request</span><pre>Explain the R inspection block in Lesson 1.
-
-Read the script and the indicator dictionary in this project. Do not edit files.
-For each line, describe the object or function, what result it returns, and which
-claim about the dataset that result can support. Separate facts visible in the
-files from interpretations. If the files do not establish something, say so.
-
-Finish with three R checks I can run myself: one for the country-year key, one
-for year coverage, and one for missing values in a selected indicator.</pre></div>
-          <p>After reading the response, choose one numerical or structural statement and reproduce the supporting check in R. If the agent says that the file contains one row per country-year, run the uniqueness test. If it describes a variable’s unit, compare that description with the indicator dictionary. If it gives a row count, recreate the count rather than treating the response as a source.</p>
-          <div class="table-scroll"><table><thead><tr><th>Pass</th><th>Question</th><th>Visible record</th></tr></thead><tbody><tr><td>Predict</td><td>What do I expect before asking?</td><td>One sentence or sketched output.</td></tr><tr><td>Delegate</td><td>What bounded action may the agent take?</td><td>Goal, context, constraints, done when.</td></tr><tr><td>Observe</td><td>What did the harness read, run, or change?</td><td>Tool calls, output, or diff.</td></tr><tr><td>Verify</td><td>Which independent check bears on the claim?</td><td>R result, documentation, or source.</td></tr><tr><td>Narrate</td><td>What do I accept, revise, reject, or leave open?</td><td>One judgment with evidence.</td></tr></tbody></table></div>
-          <p>The most useful outcome is not always confirmation. A contradiction may reveal that the prompt was vague, that the agent read the wrong file, or that our own assumption was unsupported. An unresolved statement is also informative when we can name the external documentation or additional code required to settle it. Verification turns the agent response from an answer into evidence that can be examined.</p>
-          <p><strong>Privacy and responsibility remain with the analyst.</strong> The camp project uses public teaching data. Restricted, identifiable, or confidential data should not be placed into a public AI tool. Proposed edits should be reviewed before they are kept, commands should be run in the intended project, and every result that enters the analysis remains the responsibility of the person presenting it.</p>
-        </section>
-        <section class="article-section reveal" id="slides"><p class="section-kicker">SLIDES</p><h2>Lesson deck.</h2><p>The embedded deck is generated from <code>slides/lesson-1/slides.qmd</code>. Re-rendering that file replaces the deck without changing this page.</p><figure class="slide-frame"><iframe src="../../slides/lesson-1/index.html?v=book-20260718o" title="Lesson 1 slides"></iframe><figcaption><span>LESSON 1 / REVEALJS</span><a href="../../slides/lesson-1/">OPEN FULL SCREEN ↗</a></figcaption></figure></section>
-      </article>
-      <aside class="article-margin"><dl><div><dt>INPUT</dt><dd>Frozen WDI file</dd></div><div><dt>OUTPUT</dt><dd>Evidence inventory</dd></div><div><dt>AGENT ROLE</dt><dd>Explainer</dd></div></dl></aside>
-    </div>
-    <nav class="page-turn"><a href="../../"><span>PREVIOUS</span><strong>Course home</strong></a><a href="../../labs/lab-1/"><span>NEXT</span><strong>Lab 1: Evidence inventory</strong></a></nav>
-  </main>
-  <footer class="site-footer"><div><span>API 209</span><strong>MATH CAMP 2026</strong></div><p>Lesson 1 of 4.</p><a href="#top">RETURN TO TOP ↑</a></footer>
-  <script src="../../script.js?v=book-20260718o"></script>
-</body>
+        </div>
+        <aside class="article-hero-side">
+          <p>Choose the task<br />Understand the work<br />Check the result</p>
+        </aside>
+      </section>
+      <div class="article-layout">
+        <aside class="article-nav">
+          <span>IN THIS LESSON</span><a href="#welcome">Where we begin</a
+          ><a href="#question">The question for today</a
+          ><a href="#systems">Systems and tools</a
+          ><a href="#judgment">Learning with an agent</a
+          ><a href="#contract">A bounded work order</a
+          ><a href="#handoff">Installation handoff</a
+          ><a href="#slides">Slides</a>
+        </aside>
+        <article class="article">
+          <section class="article-section reveal" id="welcome">
+            <p class="section-kicker">WHERE WE BEGIN</p>
+            <h2>We have different starting points.</h2>
+            <p class="article-lead">
+              Some students are writing code for the first time. Others already
+              use R for research. Many have used a chat tool. A coding agent
+              that works inside a project will be new for most of the room. We
+              will use one common project, and each student can take steps that
+              fit their current experience.
+            </p>
+            <div class="report-audit">
+              <div>
+                <span>01</span><strong>Careful beginner</strong>
+                <p>I need one step before we automate five.</p>
+              </div>
+              <div>
+                <span>02</span><strong>Curious explorer</strong>
+                <p>The agent made a plot. I want to know what it did.</p>
+              </div>
+              <div>
+                <span>03</span><strong>Augmented builder</strong>
+                <p>
+                  I can read the code. Let the agent do the repetitive part.
+                </p>
+              </div>
+              <div>
+                <span>04</span><strong>Code-first skeptic</strong>
+                <p>I trust my script. Show me why the agent helps.</p>
+              </div>
+              <div>
+                <span>05</span><strong>Calendar visitor</strong>
+                <p>I am here. Curiosity may arrive after the coffee.</p>
+              </div>
+            </div>
+            <p>
+              These descriptions show approximate starting points. Your position
+              can change from one task to another. The lesson gives the room a
+              common language for asking what the tool should do and what the
+              student needs to understand.
+            </p>
+          </section>
+          <section class="article-section reveal" id="question">
+            <p class="section-kicker">THE QUESTION FOR TODAY</p>
+            <h2>
+              What should we delegate, to which system, and with what evidence?
+            </h2>
+            <p>
+              This question replaces a tour of AI brands. We choose the task
+              before the tool, scale autonomy to the consequences of error, and
+              decide what proof will be required before execution begins.
+            </p>
+            <div class="session-plan">
+              <div>
+                <time>00–20</time><strong>Welcome</strong>
+                <p>
+                  Meet the instructor and recognize the different starting
+                  points in the room.
+                </p>
+              </div>
+              <div>
+                <time>20–45</time><strong>Map</strong>
+                <p>
+                  Distinguish models, chat interfaces, agents, harnesses, R, and
+                  RStudio.
+                </p>
+              </div>
+              <div>
+                <time>45–70</time><strong>Learn</strong>
+                <p>
+                  Discuss understanding, cognitive debt, and what students
+                  should be able to explain.
+                </p>
+              </div>
+              <div>
+                <time>70–95</time><strong>Judge</strong>
+                <p>
+                  Match delegation to risk and to the evidence we can inspect.
+                </p>
+              </div>
+              <div>
+                <time>95–112</time><strong>Specify</strong>
+                <p>
+                  Write one bounded work order with a visible completion check.
+                </p>
+              </div>
+              <div>
+                <time>112–120</time><strong>Handoff</strong>
+                <p>Move every laptop into the installation clinic.</p>
+              </div>
+            </div>
+            <div class="callout">
+              <span>IS CODING STILL WORTH LEARNING?</span>
+              <p>
+                Yes. Coding now includes reading proposals, making precise
+                changes, rerunning work, testing results, and preserving the
+                reasoning. Prompting expands what we can attempt. Coding makes
+                consequential instructions inspectable and repeatable.
+              </p>
+            </div>
+          </section>
+          <section class="article-section reveal" id="systems">
+            <p class="section-kicker">MODEL, HARNESS, TOOL, HUMAN</p>
+            <h2>Each part of the system has a specific job.</h2>
+            <div class="table-scroll">
+              <table>
+                <thead>
+                  <tr>
+                    <th>Layer</th>
+                    <th>Job</th>
+                    <th>Decision left to the student</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td>LLM</td>
+                    <td>
+                      Generates language, code, or a tool request from context.
+                    </td>
+                    <td>Whether the policy question matters.</td>
+                  </tr>
+                  <tr>
+                    <td>Chat interface</td>
+                    <td>Exchanges messages with a model.</td>
+                    <td>Whether a response is grounded.</td>
+                  </tr>
+                  <tr>
+                    <td>Coding agent</td>
+                    <td>
+                      Reads, edits, runs, observes, and continues in a loop.
+                    </td>
+                    <td>Whether its output should be trusted.</td>
+                  </tr>
+                  <tr>
+                    <td>Harness</td>
+                    <td>
+                      Assembles context, exposes tools, enforces permissions,
+                      and returns results.
+                    </td>
+                    <td>Whether the available check tests the right claim.</td>
+                  </tr>
+                  <tr>
+                    <td>R</td>
+                    <td>Executes specified statistical and data operations.</td>
+                    <td>
+                      Whether the chosen operation represents the intended
+                      concept.
+                    </td>
+                  </tr>
+                  <tr>
+                    <td>RStudio</td>
+                    <td>
+                      Keeps scripts, console, objects, files, and plots visible.
+                    </td>
+                    <td>Whether the code is substantively correct.</td>
+                  </tr>
+                  <tr>
+                    <td>Quarto</td>
+                    <td>
+                      Combines prose, code, figures, and output in a
+                      reproducible document.
+                    </td>
+                    <td>Whether the narrative follows from the evidence.</td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+            <p>
+              <strong>Workshop analogy.</strong> The model is a language engine.
+              The harness is the workshop around it: workbench, toolbox,
+              clipboard, locked cabinets, and measuring instruments. The coding
+              agent is the engine operating inside that workshop. The student
+              remains the investigator who writes the work order, grants access,
+              watches the work, and decides what to keep.
+            </p>
+            <div class="protocol-grid">
+              <div>
+                <span>MODEL</span><strong>Generates.</strong>
+                <p>Text, code, or a tool request.</p>
+              </div>
+              <div>
+                <span>HARNESS</span><strong>Connects.</strong>
+                <p>Context, tools, permissions, and feedback.</p>
+              </div>
+              <div>
+                <span>AGENT</span><strong>Acts.</strong>
+                <p>Reads, proposes, runs, and observes.</p>
+              </div>
+              <div>
+                <span>INVESTIGATOR</span><strong>Judges.</strong>
+                <p>Frames the question and defines proof.</p>
+              </div>
+            </div>
+          </section>
+          <section class="article-section reveal" id="judgment">
+            <p class="section-kicker">THE NEW BOTTLENECK</p>
+            <h2>
+              When generation becomes cheap, understanding becomes scarce.
+            </h2>
+            <p>
+              Geoffrey Litt distinguishes two forms of understanding. We need to
+              understand enough to <strong>verify</strong>: Does the code run,
+              match the request, and pass the relevant checks? We also need to
+              understand enough to <strong>participate</strong>: Why was this
+              approach chosen, what assumptions does it contain, and what
+              question should come next?
+            </p>
+            <p>
+              <strong>Cognitive debt</strong> grows when an investigation
+              changes faster than the people responsible for it can absorb. The
+              code may run while nobody can explain why a filter exists, what a
+              variable means, or how to change the analysis safely. In policy
+              work, this debt weakens the analyst’s capacity to judge whom the
+              result represents and what decision it can inform.
+            </p>
+            <div class="protocol-grid">
+              <div>
+                <span>BEFORE</span><strong>Predict and set criteria.</strong>
+                <p>State what should happen and what evidence would count.</p>
+              </div>
+              <div>
+                <span>DURING</span><strong>Compare and test.</strong>
+                <p>Inspect the diff, run a small example, and ask why.</p>
+              </div>
+              <div>
+                <span>AFTER</span><strong>Reconstruct and teach back.</strong>
+                <p>
+                  Explain the purpose, assumption, expected effect, and one
+                  check.
+                </p>
+              </div>
+              <div>
+                <span>IF UNCLEAR</span><strong>Reduce the problem.</strong>
+                <p>
+                  Ask for a toy example or a quiz before accepting the change.
+                </p>
+              </div>
+            </div>
+            <div class="callout">
+              <span>THE STUDENT STANDARD</span>
+              <p>
+                Before keeping substantial agent-written code, state its
+                purpose, identify its input and output, name one assumption,
+                predict one consequence of changing it, and run one check that
+                could expose a mistake.
+              </p>
+            </div>
+            <p class="article-source">
+              <span>SOURCES</span> Adapted and paraphrased from Geoffrey Litt,
+              <a
+                href="https://www.geoffreylitt.com/2026/07/02/understanding-is-the-new-bottleneck.html"
+                >“Understanding is the New Bottleneck”</a
+              >
+              (2026), and Margaret-Anne Storey,
+              <a
+                href="https://margaretstorey.com/blog/2026/02/09/cognitive-debt/"
+                >“How Generative and Agentic AI Shift Concern from Technical
+                Debt to Cognitive Debt”</a
+              >
+              (2026).
+            </p>
+          </section>
+          <section class="article-section reveal" id="contract">
+            <p class="section-kicker">BEFORE EXECUTION</p>
+            <h2>Write four things down.</h2>
+            <div class="learning-list">
+              <li>
+                <span>01</span><strong>Goal.</strong> What concrete outcome do I
+                want?
+              </li>
+              <li>
+                <span>02</span><strong>Context.</strong> Which files, evidence,
+                definitions, and constraints matter?
+              </li>
+              <li>
+                <span>03</span><strong>Permission.</strong> What may the agent
+                read, change, run, or access?
+              </li>
+              <li>
+                <span>04</span><strong>Proof.</strong> What visible evidence
+                will show completion?
+              </li>
+            </div>
+            <div class="risk-matrix">
+              <div class="risk-label">Hard to verify</div>
+              <div>
+                <span>LOWER HARM</span><strong>Explore, then review.</strong>
+                <p>Use the output to generate questions and verify them before drawing conclusions.</p>
+              </div>
+              <div>
+                <span>HIGHER HARM</span><strong>Human decides.</strong>
+                <p>Keep consequential judgment outside the agent.</p>
+              </div>
+              <div class="risk-label">Easy to verify</div>
+              <div>
+                <span>LOWER HARM</span><strong>Delegate and test.</strong>
+                <p>Automate with a visible check.</p>
+              </div>
+              <div>
+                <span>HIGHER HARM</span><strong>Agent plus gates.</strong>
+                <p>Require review, assertions, and permission boundaries.</p>
+              </div>
+            </div>
+            <div class="prompt-box">
+              <span>BOUNDED WORK ORDER</span>
+              <pre>
+Goal: Explain the Math Camp project without changing it.
+Context: Read START-HERE.md, the setup guide, and the project folders.
+Permission: Read only. Do not edit files or browse the web.
+Proof: List the files you read, separate facts from inferences, and end with three checks that I can run myself.</pre
+              >
+            </div>
+            <p>
+              A good work order exposes failure, supports supervision, and gives
+              the class a clear result to discuss.
+            </p>
+          </section>
+          <section class="article-section reveal" id="handoff">
+            <p class="section-kicker">THE FIRST LAB</p>
+            <h2>
+              Analysis begins after every machine passes the readiness gate.
+            </h2>
+            <p>
+              Lab 1 is an installation clinic. Every student must open the
+              complete course project, start R, load the required packages, find
+              Quarto, open the frozen data, and confirm that Codex can read the
+              project.
+            </p>
+            <div class="code-plate">
+              <div class="code-plate-head">
+                <span>TERMINAL</span><span>READINESS GATE</span>
+              </div>
+              <pre><code>Rscript code/check_setup.R --codex-confirmed</code></pre>
+              <p>
+                Green means ready. Yellow means the automatic checks pass and
+                Codex confirmation remains. Red means repair before analysis.
+                Every unresolved failure leaves with a named next step and a
+                person responsible for follow-up.
+              </p>
+            </div>
+            <p>
+              <a href="../../labs/lab-1/"
+                >Open the complete installation clinic →</a
+              >
+            </p>
+          </section>
+          <section class="article-section reveal" id="slides">
+            <p class="section-kicker">SLIDES</p>
+            <h2>Lesson deck.</h2>
+            <p>
+              The slide deck is a 16:9 LaTeX Beamer PDF. It follows the same
+              lesson and ends with the installation clinic.
+            </p>
+            <figure class="slide-frame">
+              <object
+                data="../../slides/lesson-1/lesson-1.pdf#view=FitH"
+                type="application/pdf"
+                aria-label="Lesson 1 slide deck"
+              >
+                <p>
+                  Your browser cannot display the PDF here.
+                  <a href="../../slides/lesson-1/lesson-1.pdf"
+                    >Open the Lesson 1 PDF.</a
+                  >
+                </p>
+              </object>
+              <figcaption>
+                <span>LESSON 1 / LATEX BEAMER PDF</span
+                ><a href="../../slides/lesson-1/lesson-1.pdf">OPEN PDF ↗</a>
+              </figcaption>
+            </figure>
+          </section>
+        </article>
+        <aside class="article-margin">
+          <dl>
+            <div>
+              <dt>INPUT</dt>
+              <dd>Course project</dd>
+            </div>
+            <div>
+              <dt>OUTPUT</dt>
+              <dd>Bounded work order</dd>
+            </div>
+            <div>
+              <dt>AGENT ROLE</dt>
+              <dd>Supervised helper</dd>
+            </div>
+            <div>
+              <dt>LAB</dt>
+              <dd>Installation only</dd>
+            </div>
+          </dl>
+        </aside>
+      </div>
+      <nav class="page-turn">
+        <a href="../../"><span>PREVIOUS</span><strong>Math Camp home</strong></a
+        ><a href="../../labs/lab-1/"
+          ><span>NEXT</span><strong>Lab 1: Installation clinic</strong></a
+        >
+      </nav>
+    </main>
+    <footer class="site-footer">
+      <div><span>API 209</span><strong>MATH CAMP 2026</strong></div>
+      <p>Current release · Lesson 1.</p>
+      <a href="#top">RETURN TO TOP ↑</a>
+    </footer>
+    <script src="../../script.js?v=book-20260811a"></script>
+  </body>
 </html>

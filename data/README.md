@@ -4,7 +4,7 @@ The default teaching dataset is a frozen country-year extract from the World Ban
 
 ## Student use
 
-Open `math-camp-2026.Rproj`. The frozen files are inputs, not scratch space.
+Open `math-camp-2026.Rproj`. Keep the frozen files as protected inputs.
 Inspect them with:
 
 ```bash
@@ -46,7 +46,6 @@ The data contain no individual records or personally identifiable information.
 
 `income_level_current` and `lending_type_current` come from the country metadata
 available when the snapshot was assembled. They are current descriptors joined
-to historical observations, not historically varying classifications. Do not
-write that a country belonged to the same category in every year. Country joins
-use `iso3c`; the build reports country-name disagreements rather than joining on
-names.
+to historical observations. Historical classification requires a country-year
+source. Country joins use `iso3c`; the build reports country-name disagreements
+because names may differ across files.

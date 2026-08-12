@@ -1,52 +1,489 @@
 <!doctype html>
 <html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <meta name="description" content="Math Camp 2026 Coding Lesson 3: compare patterns.">
-  <title>Lesson 3: Compare patterns | Math Camp 2026</title>
-  <link rel="icon" href="data:,">
-  <link rel="stylesheet" href="../../styles.css?v=book-20260718p">
-  <script>document.documentElement.classList.add("js");</script>
-</head>
-<body id="top" class="article-page">
-  <div class="page-progress" aria-hidden="true"><span></span></div>
-  <header class="site-header"><a class="brand" href="../../"><span>API 209</span><strong>MATH CAMP 2026</strong></a><div class="header-chapter"><span>LESSON 3</span><strong>/ COMPARE PATTERNS</strong></div><nav class="chapter-nav"><a href="../../">HOME</a><a href="../../labs/lab-3/">LAB 3</a><a href="../../slides/lesson-3/">SLIDES</a></nav><button class="menu-button" type="button" aria-expanded="false" aria-controls="mobile-outline">CONTENTS</button></header>
-  <nav class="mobile-outline" id="mobile-outline"><div class="mobile-outline-head"><span>LESSON 3</span><button type="button" data-close-menu>CLOSE</button></div><ol><li><a href="#outcomes">From pattern to claim</a></li><li><a href="#claims">Claim strength</a></li><li><a href="#workflow">Plot and model</a></li><li><a href="#agent">Reviewing the analysis</a></li><li><a href="#slides">Slides</a></li></ol></nav>
-  <main>
-    <section class="article-hero"><div class="article-hero-meta"><div><span>DATE</span><strong>MON AUG 24</strong></div><div><span>TIME</span><strong>1-4 PM</strong></div><div><span>FORMAT</span><strong>LESSON + LAB</strong></div></div><div class="article-hero-copy"><p>CODING LESSON 3</p><h1>Compare patterns.</h1><p class="article-deck">Treat plots and models as lenses that compress evidence—useful because they simplify, risky because every simplification hides something.</p><div class="article-actions"><a href="../../labs/lab-3/">OPEN LAB 3 →</a><a href="../../slides/lesson-3/">OPEN SLIDES ↗</a></div></div><aside class="article-hero-side"><p>Describe first<br>Model second<br>Qualify always</p></aside></section>
-    <div class="article-layout">
-      <aside class="article-nav"><span>IN THIS LESSON</span><a href="#outcomes">From pattern to claim</a><a href="#claims">Claim strength</a><a href="#workflow">Plot and model</a><a href="#agent">Reviewing the analysis</a><a href="#slides">Slides</a></aside>
-      <article class="article">
-        <section class="article-section reveal" id="outcomes"><p class="section-kicker">LEARNING OUTCOMES</p><h2>Connect a visual pattern to a careful sentence.</h2><p class="article-lead">By the end of the meeting, you should be able to create a legible comparison, fit a simple regression, inspect residuals, and state what the evidence does and does not show.</p><ol class="learning-list"><li><span>01</span><strong>Choose plot encodings that match the variables and question.</strong></li><li><span>02</span><strong>Use transformations when the scale makes a pattern hard to see.</strong></li><li><span>03</span><strong>Interpret a coefficient in the units of the variables.</strong></li><li><span>04</span><strong>Inspect residuals and influential observations.</strong></li><li><span>05</span><strong>Separate descriptive, associational, and causal language.</strong></li></ol><h3>Why this matters for policy work</h3><p>A figure and a regression both compress a large table into a smaller object that people can reason about. Compression is useful, but it is never neutral. Axis scales determine which differences look large. Color and facets determine which groups become visible. A model formula determines which comparisons are summarized together. Reading those choices is part of reading the evidence.</p><div class="callout"><span>MAP-AND-LENS ANALOGY</span><p>A map is valuable because it leaves most of the world out. A statistical figure or model does the same: it preserves features needed for one comparison and suppresses others. The task is not to demand a map with every detail. It is to know what the current map includes, what it omits, and whether it is suitable for the journey.</p></div><p>International development data make restraint especially important. Countries differ in history, institutions, measurement capacity, and exposure to shocks. Repeated observations are not independent snapshots of identical units. This lesson does not solve those design problems. It teaches students to recognize them, describe an association honestly, and identify the additional evidence that a stronger claim would require.</p></section>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta
+      name="description"
+      content="Math Camp 2026 Coding Lesson 3 draft: discover patterns."
+    />
+    <meta name="robots" content="noindex,nofollow" />
+    <title>Lesson 3 draft: Discover patterns | Math Camp 2026</title>
+    <link rel="icon" href="data:," />
+    <link rel="stylesheet" href="../../styles.css?v=book-20260718p" />
+    <script>
+      document.documentElement.classList.add("js");
+    </script>
+  </head>
+  <body id="top" class="article-page">
+    <div class="page-progress" aria-hidden="true"><span></span></div>
+    <header class="site-header">
+      <a class="brand" href="../../"
+        ><span>API 209</span><strong>MATH CAMP 2026</strong></a
+      >
+      <div class="header-chapter">
+        <span>LESSON 3 · DRAFT</span><strong>/ DISCOVER PATTERNS</strong>
+      </div>
+      <nav class="chapter-nav">
+        <a href="../../instructor/">INSTRUCTOR</a
+        ><a href="../../labs/lab-3/">LAB 3</a
+        ><a href="../../slides/lesson-3/">SLIDES</a>
+      </nav>
+      <button
+        class="menu-button"
+        type="button"
+        aria-expanded="false"
+        aria-controls="mobile-outline"
+      >
+        CONTENTS
+      </button>
+    </header>
+    <nav class="mobile-outline" id="mobile-outline">
+      <div class="mobile-outline-head">
+        <span>LESSON 3</span
+        ><button type="button" data-close-menu>CLOSE</button>
+      </div>
+      <ol>
+        <li><a href="#outcomes">From pattern to claim</a></li>
+        <li><a href="#claims">Claim strength</a></li>
+        <li><a href="#workflow">Plot and model</a></li>
+        <li><a href="#agent">Reviewing the analysis</a></li>
+        <li><a href="#slides">Slides</a></li>
+      </ol>
+    </nav>
+    <main>
+      <section class="article-hero">
+        <div class="article-hero-meta">
+          <div><span>DATE</span><strong>MON AUG 24</strong></div>
+          <div><span>TIME</span><strong>1-4 PM</strong></div>
+          <div><span>STATUS</span><strong>INSTRUCTOR DRAFT</strong></div>
+        </div>
+        <div class="article-hero-copy">
+          <p>CODING LESSON 3</p>
+          <h1>Discover patterns.</h1>
+          <p class="article-deck">
+            Plots and models reduce a large amount of evidence to a smaller
+            object. Each simplification reveals a pattern and hides some
+            information.
+          </p>
+          <div class="article-actions">
+            <a href="../../labs/lab-3/">OPEN LAB 3 →</a
+            ><a href="../../slides/lesson-3/">OPEN SLIDES ↗</a>
+          </div>
+        </div>
+        <aside class="article-hero-side">
+          <p>Describe first<br />Model second<br />Qualify always</p>
+        </aside>
+      </section>
+      <div class="article-layout">
+        <aside class="article-nav">
+          <span>IN THIS LESSON</span
+          ><a href="#outcomes">From pattern to claim</a
+          ><a href="#claims">Claim strength</a
+          ><a href="#workflow">Plot and model</a
+          ><a href="#agent">Reviewing the analysis</a
+          ><a href="#slides">Slides</a>
+        </aside>
+        <article class="article">
+          <section class="article-section reveal" id="outcomes">
+            <p class="section-kicker">LEARNING OUTCOMES</p>
+            <h2>Connect a visual pattern to a careful sentence.</h2>
+            <p class="article-lead">
+              By the end of the meeting, you should be able to create a legible
+              comparison, fit a simple regression, inspect residuals, and state
+              the supported claim and its limitation.
+            </p>
+            <ol class="learning-list">
+              <li>
+                <span>01</span
+                ><strong
+                  >Choose plot encodings that match the variables and
+                  question.</strong
+                >
+              </li>
+              <li>
+                <span>02</span
+                ><strong
+                  >Use transformations when the scale makes a pattern hard to
+                  see.</strong
+                >
+              </li>
+              <li>
+                <span>03</span
+                ><strong
+                  >Interpret a coefficient in the units of the
+                  variables.</strong
+                >
+              </li>
+              <li>
+                <span>04</span
+                ><strong
+                  >Inspect residuals and influential observations.</strong
+                >
+              </li>
+              <li>
+                <span>05</span
+                ><strong
+                  >Separate descriptive, associational, and causal
+                  language.</strong
+                >
+              </li>
+            </ol>
+            <h3>Why this matters for policy work</h3>
+            <p>
+              A figure and a regression reduce a large table to an object that
+              people can discuss. Every reduction encodes choices. Axis scales
+              affect which differences look large. Color
+              and facets affect which groups become visible. The model formula
+              decides which comparisons are summarized together. To read the
+              evidence, we also need to read these choices.
+            </p>
+            <div class="callout">
+              <span>MAP-AND-LENS ANALOGY</span>
+              <p>
+                A map works because it omits most details. A statistical figure
+                or model also keeps the features needed for one comparison and
+                leaves out others. We need to know what the current map
+                includes, what it leaves out, and whether it fits the question
+                we want to study.
+              </p>
+            </div>
+            <p>
+              Restraint matters in international development data. Countries
+              differ in their history, institutions, measurement capacity, and
+              exposure to shocks. Repeated observations contain dependence
+              within countries over time. This lesson helps students recognize
+              these design problems, describe an association honestly, and name
+              the additional evidence needed for a stronger claim.
+            </p>
+          </section>
 
-        <section class="article-section reveal" id="claims"><p class="section-kicker">CLAIM LADDER</p><h2>Use the strongest claim the design can carry.</h2><div class="table-scroll"><table><thead><tr><th>Level</th><th>Example</th><th>Allowed here?</th></tr></thead><tbody><tr><td>Descriptive</td><td>Under-five mortality declined in most observed countries.</td><td>Yes, with coverage noted.</td></tr><tr><td>Associational</td><td>Higher income is associated with lower mortality in this sample.</td><td>Yes, with specification noted.</td></tr><tr><td>Causal</td><td>Higher income caused mortality to fall.</td><td>No. This design does not identify a causal effect.</td></tr></tbody></table></div><p><strong>Interpretation check.</strong> A more complex model does not repair a weak research design. The purpose here is to learn the mechanics and limits of comparison before the fall sequence develops them further.</p></section>
-        <section class="article-section reveal" id="critique"><p class="section-kicker">VISUAL CRITIQUE</p><h2>A graph is an argument made with encodings.</h2><p>We will begin with an intentionally weak figure. In pairs, students mark what the graph asks the eye to compare, what information is hidden, and which design choice most changes the interpretation.</p><div class="protocol-grid"><div><span>NOTICE</span><strong>What do you see?</strong><p>Describe before evaluating.</p></div><div><span>COMPARE</span><strong>What is the eye doing?</strong><p>Position, color, size, shape, or facet.</p></div><div><span>QUESTION</span><strong>What is missing?</strong><p>Units, sample, source, uncertainty, or context.</p></div><div><span>REVISE</span><strong>What one change matters most?</strong><p>Prioritize clarity over decoration.</p></div></div><h3>Three checkpoints for every figure</h3><ul class="checklist"><li><span>□</span><strong>Someone can identify the population, variables, units, and period without narration.</strong></li><li><span>□</span><strong>The encoding supports the comparison instead of distracting from it.</strong></li><li><span>□</span><strong>The caption states what the figure shows and one thing it cannot establish.</strong></li></ul></section>
-        <section class="article-section reveal" id="workflow"><p class="section-kicker">LIVE CODING</p><h2>Plot, model, diagnose, explain.</h2><div class="session-plan"><div><time>00-25</time><strong>Plot</strong><p>Map variables deliberately and label units clearly.</p></div><div><time>25-55</time><strong>Transform</strong><p>Compare raw and logged income scales.</p></div><div><time>55-85</time><strong>Model</strong><p>Fit one interpretable regression and read its terms.</p></div><div><time>85-110</time><strong>Diagnose</strong><p>Inspect residuals and surprising observations.</p></div><div><time>110-120</time><strong>Claim</strong><p>Write one result and one limitation.</p></div><div><time>120-180</time><strong>Lab 3</strong><p>Build a comparison for the selected policy track.</p></div></div><div class="code-plate"><div class="code-plate-head"><span>R</span><span>From plot to model</span></div><pre><code>ggplot(health, aes(log_income, under5_mortality,
+          <section class="article-section reveal" id="claims">
+            <p class="section-kicker">CLAIM LADDER</p>
+            <h2>Use the strongest claim the design can carry.</h2>
+            <div class="table-scroll">
+              <table>
+                <thead>
+                  <tr>
+                    <th>Level</th>
+                    <th>Example</th>
+                    <th>Allowed here?</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td>Descriptive</td>
+                    <td>
+                      Under-five mortality declined in most observed countries.
+                    </td>
+                    <td>Yes, with coverage noted.</td>
+                  </tr>
+                  <tr>
+                    <td>Associational</td>
+                    <td>
+                      Higher income is associated with lower mortality in this
+                      sample.
+                    </td>
+                    <td>Yes, with specification noted.</td>
+                  </tr>
+                  <tr>
+                    <td>Causal</td>
+                    <td>Higher income caused mortality to fall.</td>
+                    <td>Requires another research design.</td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+            <p>
+              <strong>Interpretation check.</strong> Model complexity cannot
+              replace research design. The purpose here is to learn
+              the mechanics and limits of comparison before the fall sequence
+              develops them further.
+            </p>
+          </section>
+          <section class="article-section reveal" id="critique">
+            <p class="section-kicker">VISUAL CRITIQUE</p>
+            <h2>A graph makes an argument through its encodings.</h2>
+            <p>
+              We begin with an intentionally weak figure. In pairs, students
+              mark what the graph asks the eye to compare, which information it
+              hides, and which design choice changes the interpretation most.
+            </p>
+            <div class="protocol-grid">
+              <div>
+                <span>NOTICE</span><strong>What do you see?</strong>
+                <p>Describe before evaluating.</p>
+              </div>
+              <div>
+                <span>COMPARE</span><strong>What is the eye doing?</strong>
+                <p>Position, color, size, shape, or facet.</p>
+              </div>
+              <div>
+                <span>QUESTION</span><strong>What is missing?</strong>
+                <p>Units, sample, source, uncertainty, or context.</p>
+              </div>
+              <div>
+                <span>REVISE</span
+                ><strong>What one change matters most?</strong>
+                <p>Prioritize clarity over decoration.</p>
+              </div>
+            </div>
+            <h3>Three checkpoints for every figure</h3>
+            <ul class="checklist">
+              <li>
+                <span>□</span
+                ><strong
+                  >Someone can identify the population, variables, units, and
+                  period without narration.</strong
+                >
+              </li>
+              <li>
+                <span>□</span
+                ><strong
+                  >The encoding keeps the comparison clear.</strong
+                >
+              </li>
+              <li>
+                <span>□</span
+                ><strong
+                  >The caption states what the figure shows and one thing it
+                  cannot establish.</strong
+                >
+              </li>
+            </ul>
+          </section>
+          <section class="article-section reveal" id="workflow">
+            <p class="section-kicker">LIVE CODING</p>
+            <h2>Build the comparison in stages.</h2>
+            <div class="session-plan">
+              <div>
+                <time>00-25</time><strong>Plot</strong>
+                <p>Map variables deliberately and label units clearly.</p>
+              </div>
+              <div>
+                <time>25-55</time><strong>Transform</strong>
+                <p>Compare raw and logged income scales.</p>
+              </div>
+              <div>
+                <time>55-85</time><strong>Model</strong>
+                <p>Fit one interpretable regression and read its terms.</p>
+              </div>
+              <div>
+                <time>85-110</time><strong>Diagnose</strong>
+                <p>Inspect residuals and surprising observations.</p>
+              </div>
+              <div>
+                <time>110-120</time><strong>Claim</strong>
+                <p>Write one result and one limitation.</p>
+              </div>
+              <div>
+                <time>120-180</time><strong>Lab 3</strong>
+                <p>Build a comparison for the selected policy track.</p>
+              </div>
+            </div>
+            <div class="code-plate">
+              <div class="code-plate-head">
+                <span>R</span><span>From plot to model</span>
+              </div>
+              <pre><code>ggplot(health, aes(log_income, under5_mortality,
                    color = income_level_current)) +
   geom_point(alpha = 0.45) +
   geom_smooth(method = "lm", se = FALSE)
 
 fit &lt;- lm(under5_mortality ~ log_income + income_level_current,
           data = health)
-summary(fit)</code></pre></div><div class="code-notes"><p><strong><code>ggplot(health, aes(...))</code></strong> identifies the data and maps log income, under-five mortality, and income level to visual properties. Those choices determine what the viewer is invited to compare.</p><p><strong><code>geom_point(alpha = 0.45)</code></strong> draws one mark for each observed row and makes overlapping observations partly visible. It does not correct unequal coverage across countries or years.</p><p><strong><code>geom_smooth(method = "lm", se = FALSE)</code></strong> adds a fitted linear summary. The line describes a pattern in the plotted sample; it is not evidence of a mechanism or policy effect.</p><p><strong><code>lm(...)</code></strong> estimates under-five mortality as a function of log income and income group. <code>summary(fit)</code> prints the estimated terms and diagnostics we will interpret in the units and limits of this specification.</p></div></section>
-        <section class="article-section reveal" id="agent"><p class="section-kicker">AGENT REVIEW PASS</p><h2>Use the agent as a second reader, not a statistical judge.</h2><p>The agent now changes roles again. It is not producing the first analysis and it is not choosing the preferred specification. It is looking for traceable mismatches between the question, code, output, and prose. A useful review makes falsifiable claims: “this filter changes the sample from X to Y” is reviewable; “this analysis seems biased” is not yet a finding.</p><div class="prompt-box"><span>Starter prompt</span><pre>Goal: Review this analysis in two separate passes.
+summary(fit)</code></pre>
+            </div>
+            <div class="code-notes">
+              <p>
+                <strong><code>ggplot(health, aes(...))</code></strong>
+                identifies the data and maps log income, under-five mortality,
+                and income level to visual properties. Those choices determine
+                what the viewer is invited to compare.
+              </p>
+              <p>
+                <strong><code>geom_point(alpha = 0.45)</code></strong> draws one
+                mark for each observed row and makes overlapping observations
+                partly visible. Interpret the result together with coverage by
+                country and year.
+              </p>
+              <p>
+                <strong
+                  ><code>geom_smooth(method = "lm", se = FALSE)</code></strong
+                >
+                adds a fitted linear summary. The line describes a pattern in
+                the plotted sample. Evidence about a mechanism or policy effect
+                requires another design.
+              </p>
+              <p>
+                <strong><code>lm(...)</code></strong> estimates under-five
+                mortality as a function of log income and income group.
+                <code>summary(fit)</code> prints the estimated terms and
+                diagnostics we will interpret in the units and limits of this
+                specification.
+              </p>
+            </div>
+          </section>
+          <section class="article-section reveal" id="agent">
+            <p class="section-kicker">AGENT REVIEW PASS</p>
+            <h2>Use the agent as a second reader.</h2>
+            <p>
+              The student produces the first analysis and chooses the preferred
+              specification. The agent then finds traceable differences
+              between the question, code, output, and prose. A useful review
+              makes claims that we can test. “This filter changes the sample
+              from X to Y” can be reviewed. “This analysis seems biased” is not
+              yet a finding.
+            </p>
+            <div class="prompt-box">
+              <span>Starter prompt</span>
+              <pre>
+Goal: Review this analysis in two separate passes.
 Context: Read the policy question, variable dictionary, script, and generated figure.
 Pass 1: Check code behavior, missing values, transformations, labels, and reproducibility.
 Pass 2: Check whether the written claim matches the descriptive design and model output.
 Constraints: Do not rewrite the analysis. Quote the exact evidence for each concern. Do not suggest causal language.
-Done when: I have a short list of verified issues, uncertain issues, and checks I can run in R.</pre></div><h3>Run a counterexample hunt</h3><p>Before accepting the review, find one observation, subgroup, period, or defensible specification that makes the simple story less complete. The goal is not to destroy the analysis. It is to learn whether the claim survives contact with evidence outside its most convenient summary.</p><ul class="checklist"><li><span>□</span><strong>Can every concern be tied to code, output, or documentation?</strong></li><li><span>□</span><strong>Did the agent confuse prediction, association, and causation?</strong></li><li><span>□</span><strong>Did you inspect at least one surprising observation yourself?</strong></li><li><span>□</span><strong>Does the final sentence name a limitation?</strong></li></ul></section>
-        <section class="article-section reveal" id="slides"><p class="section-kicker">SLIDES</p><h2>Lesson deck.</h2><p>The stable slide address lets the lesson page stay intact while the deck evolves.</p><figure class="slide-frame"><iframe src="../../slides/lesson-3/index.html?v=book-20260718o" title="Lesson 3 slides"></iframe><figcaption><span>LESSON 3 / REVEALJS</span><a href="../../slides/lesson-3/">OPEN FULL SCREEN ↗</a></figcaption></figure></section>
-        <section class="article-section reveal" id="interpretation-clinic"><p class="section-kicker">WORKED INTERPRETATION</p><h2>Turn a logged coefficient into a sentence.</h2><p>When the predictor is <code>log_income = log(gdp_per_capita_ppp)</code>, the coefficient is the estimated outcome change for a one-unit change in log income. That one-unit comparison is rarely how a policy reader thinks. Use the fitted coefficient to calculate comparisons that are easier to recognize.</p><div class="code-plate"><div class="code-plate-head"><span>R</span><span>10 PERCENT AND DOUBLING</span></div><pre><code>beta &lt;- unname(coef(fit)[["log_income"]])
+Done when: I have a short list of verified issues, uncertain issues, and checks I can run in R.</pre
+              >
+            </div>
+            <h3>Run a counterexample hunt</h3>
+            <p>
+              Before accepting the review, find one observation, subgroup,
+              period, or defensible specification that makes the simple story
+              less complete. Test whether the claim survives contact with
+              evidence outside its most convenient summary.
+            </p>
+            <ul class="checklist">
+              <li>
+                <span>□</span
+                ><strong
+                  >Can every concern be tied to code, output, or
+                  documentation?</strong
+                >
+              </li>
+              <li>
+                <span>□</span
+                ><strong
+                  >Did the agent confuse prediction, association, and
+                  causation?</strong
+                >
+              </li>
+              <li>
+                <span>□</span
+                ><strong
+                  >Did you inspect at least one surprising observation
+                  yourself?</strong
+                >
+              </li>
+              <li>
+                <span>□</span
+                ><strong>Does the final sentence name a limitation?</strong>
+              </li>
+            </ul>
+          </section>
+          <section class="article-section reveal" id="slides">
+            <p class="section-kicker">SLIDES</p>
+            <h2>Lesson deck.</h2>
+            <p>This address remains the same when the slide deck is updated.</p>
+            <figure class="slide-frame">
+              <iframe
+                src="../../slides/lesson-3/index.html?v=book-20260718o"
+                title="Lesson 3 slides"
+              ></iframe>
+              <figcaption>
+                <span>LESSON 3 / REVEALJS</span
+                ><a href="../../slides/lesson-3/">OPEN FULL SCREEN ↗</a>
+              </figcaption>
+            </figure>
+          </section>
+          <section class="article-section reveal" id="interpretation-clinic">
+            <p class="section-kicker">WORKED INTERPRETATION</p>
+            <h2>Turn a logged coefficient into a sentence.</h2>
+            <p>
+              When the predictor is
+              <code>log_income = log(gdp_per_capita_ppp)</code>, the coefficient
+              is the estimated outcome change for a one-unit change in log
+              income. That one-unit comparison is rarely how a policy reader
+              thinks. Use the fitted coefficient to calculate comparisons that
+              are easier to recognize.
+            </p>
+            <div class="code-plate">
+              <div class="code-plate-head">
+                <span>R</span><span>10 PERCENT AND DOUBLING</span>
+              </div>
+              <pre><code>beta &lt;- unname(coef(fit)[["log_income"]])
 
 change_10_percent &lt;- beta * log(1.10)
-change_doubling &lt;- beta * log(2)</code></pre><p>If <code>change_10_percent</code> is −2.4, the defensible sentence is: “A 10% higher GDP per capita is associated with an estimated 2.4 fewer under-five deaths per 1,000 live births, comparing observations in the same included current income-level category.” The minus sign becomes “fewer”; the outcome unit remains deaths per 1,000; and “associated” keeps the claim within the pooled observational design.</p></div><h3>What this number does not mean</h3><p>It is not a prediction that increasing one country’s income by 10% will reduce mortality by 2.4. The pooled file mixes countries and years, repeated observations, measurement systems, and omitted conditions. Adding current income classifications changes the comparison but does not create a causal design.</p><h3>Read a residual without inventing a story</h3><p>A residual is observed minus fitted. A residual of +18 means the observed mortality rate is 18 deaths per 1,000 above the model’s fitted value for that row. It does not say why. First check the indicator definition, country-year key, source value, missing inputs, and whether the simple functional form is suitable. A surprising row is a question generator, not permission to improvise context.</p><div class="callout"><span>TRACKS ARE NOT COLUMN SWAPS</span><p>The gender recipe uses a 2022 cross-section; the access recipe compares annual endpoint changes at least ten years apart; the climate recipe uses the latest common complete year, 2021. Run the complete scripts in <code>code/tracks/</code> so the unit and sample travel with the variables.</p></div></section>
-      </article>
-      <aside class="article-margin"><dl><div><dt>INPUT</dt><dd>Analysis table</dd></div><div><dt>OUTPUT</dt><dd>Figure + model</dd></div><div><dt>AGENT ROLE</dt><dd>Critical reviewer</dd></div></dl></aside>
-    </div>
-    <nav class="page-turn"><a href="../lesson-2/"><span>PREVIOUS</span><strong>Lesson 2: Build the dataset</strong></a><a href="../../labs/lab-3/"><span>NEXT</span><strong>Lab 3: Comparison studio</strong></a></nav>
-  </main>
-  <footer class="site-footer"><div><span>API 209</span><strong>MATH CAMP 2026</strong></div><p>Lesson 3 of 4.</p><a href="#top">RETURN TO TOP ↑</a></footer>
-  <script src="../../script.js?v=book-20260718o"></script>
-</body>
+change_doubling &lt;- beta * log(2)</code></pre>
+              <p>
+                If <code>change_10_percent</code> is −2.4, the defensible
+                sentence is: “A 10% higher GDP per capita is associated with an
+                estimated 2.4 fewer under-five deaths per 1,000 live births,
+                comparing observations in the same included current income-level
+                category.” The minus sign becomes “fewer”; the outcome unit
+                remains deaths per 1,000; and “associated” keeps the claim
+                within the pooled observational design.
+              </p>
+            </div>
+            <h3>Interpret the coefficient within this design</h3>
+            <p>
+              The estimate summarizes a pooled association. The file mixes
+              countries and years, repeated observations, measurement systems,
+              and omitted conditions. Current income classifications change the
+              comparison. Causal interpretation requires another design.
+            </p>
+            <h3>Read a residual with source checks</h3>
+            <p>
+              A residual is observed minus fitted. A residual of +18 means the
+              observed mortality rate is 18 deaths per 1,000 above the model’s
+              fitted value for that row. An explanation requires additional
+              evidence. First check the
+              indicator definition, country-year key, source value, missing
+              inputs, and whether the simple functional form is suitable. A
+              surprising row should generate a question and a source check.
+            </p>
+            <div class="callout">
+              <span>EACH TRACK NEEDS A COMPLETE RECIPE</span>
+              <p>
+                The gender recipe uses a 2022 cross-section; the access recipe
+                compares annual endpoint changes at least ten years apart; the
+                climate recipe uses the latest common complete year, 2021. Run
+                the complete scripts in <code>code/tracks/</code> so the unit
+                and sample travel with the variables.
+              </p>
+            </div>
+          </section>
+        </article>
+        <aside class="article-margin">
+          <dl>
+            <div>
+              <dt>INPUT</dt>
+              <dd>Analysis table</dd>
+            </div>
+            <div>
+              <dt>OUTPUT</dt>
+              <dd>Figure + model</dd>
+            </div>
+            <div>
+              <dt>AGENT ROLE</dt>
+              <dd>Critical reviewer</dd>
+            </div>
+          </dl>
+        </aside>
+      </div>
+      <nav class="page-turn">
+        <a href="../lesson-2/"
+          ><span>PREVIOUS</span><strong>Lesson 2: Build the dataset</strong></a
+        ><a href="../../labs/lab-3/"
+          ><span>NEXT</span><strong>Lab 3: Comparison studio</strong></a
+        >
+      </nav>
+    </main>
+    <footer class="site-footer">
+      <div><span>API 209</span><strong>MATH CAMP 2026</strong></div>
+      <p>Lesson 3 of 4.</p>
+      <a href="#top">RETURN TO TOP ↑</a>
+    </footer>
+    <script src="../../script.js?v=book-20260718o"></script>
+  </body>
 </html>

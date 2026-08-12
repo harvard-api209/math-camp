@@ -1,0 +1,212 @@
+\section{Delegating a bounded task}
+\subsection{Risk and verifiability}
+
+\begin{frame}{More autonomy can accumulate more errors}
+  \begin{itemize}
+    \item A long task requires several decisions to be correct in sequence.
+    \item One local mistake can influence every later step.
+    \item Breaking the work into parts makes intermediate results observable.
+    \item Tests reduce risk only when they check something related to the real question.
+  \end{itemize}
+
+  \vfill
+  Coding agents have improved quickly on long-task benchmarks. Our project still
+  requires its own checks \citep{metr2025}.
+\end{frame}
+
+\begin{frame}{The frontier is irregular}
+  Two tasks that look similar to us may fall on different sides of the system's
+  capability.
+
+  \begin{columns}[T,onlytextwidth]
+    \column{0.48\textwidth}
+      \begin{block}{Often easier to verify}
+        Rename variables, change a format, add a stated assertion, or reproduce
+        a documented transformation.
+      \end{block}
+    \column{0.48\textwidth}
+      \begin{block}{Often harder to verify}
+        Resolve an ambiguous policy concept, infer missing context, or decide
+        whether an association justifies action.
+      \end{block}
+  \end{columns}
+
+  \vfill
+  Confidence gives us no information about where the task was on this ``jagged
+  frontier'' \citep{dellacqua2026}.
+\end{frame}
+
+\begin{frame}{Match autonomy to risk and verifiability}
+  \begin{columns}[T,onlytextwidth]
+    \column{0.62\textwidth}
+      \centering
+      \begin{tikzpicture}[x=0.88cm,y=0.72cm,
+        action/.style={align=center,text width=2.75cm,font=\small}]
+        \draw[->,thick] (0,0) -- (7.2,0);
+        \draw[->,thick] (0,0) -- (0,4.15);
+        \draw[palegray] (3.55,0) -- (3.55,3.95);
+        \draw[palegray] (0,1.95) -- (7.0,1.95);
+        \node[anchor=north,font=\scriptsize] at (3.55,-0.42) {Result is easier to verify $\longrightarrow$};
+        \node[rotate=90,anchor=south,font=\scriptsize] at (-0.50,1.95) {Harm if it fails};
+        \node[action] at (1.78,2.92) {\color{crimson}\bfseries Person decides\\{\color{muted}\scriptsize policy judgment}};
+        \node[action] at (5.30,2.92) {\bfseries Agent + gates\\{\color{muted}\scriptsize execute with review}};
+        \node[action] at (1.78,0.94) {\bfseries Explore + review\\{\color{muted}\scriptsize questions and options}};
+        \node[action] at (5.30,0.94) {\color{crimson}\bfseries Delegate + test\\{\color{muted}\scriptsize mechanical change}};
+      \end{tikzpicture}
+    \column{0.34\textwidth}
+      \small
+      \textbf{Verifiability} is high when a source, test, or independent
+      comparison can expose the error.
+
+      \vspace{0.45em}
+      \textbf{Harm} includes cost, reversibility, and consequences for people,
+      data, and claims.
+  \end{columns}
+\end{frame}
+
+\subsection{A work order}
+
+\begin{frame}{Write four things before execution}
+  \begin{center}
+  \begin{tikzpicture}[
+    node distance=0.42cm,
+    processbox/.style={draw=palegray,rounded corners=2pt,text width=2.8cm,
+      minimum height=1.55cm,align=center,font=\small},
+    arr/.style={-{Latex[length=2mm]},color=crimson,thick}
+  ]
+    \node[processbox] (goal) {\textbf{1. Goal}\\What concrete result do I want?};
+    \node[processbox,right=of goal] (context) {\textbf{2. Context}\\Which files and definitions matter?};
+    \node[processbox,right=of context] (permission) {\textbf{3. Permission}\\What may the agent read, change, or run?};
+    \node[processbox,right=of permission] (proof) {\textbf{4. Proof}\\What evidence will show completion?};
+    \draw[arr] (goal)--(context);
+    \draw[arr] (context)--(permission);
+    \draw[arr] (permission)--(proof);
+  \end{tikzpicture}
+  \end{center}
+
+  \vfill
+  Describe the proof before delegating the task.
+\end{frame}
+
+\begin{frame}{A weak request}
+  \vspace{0.3em}
+  \begin{block}{Request}
+    Review my project and fix what is wrong.
+  \end{block}
+
+  What is missing?
+  \begin{itemize}
+    \item The object is unbounded.
+    \item Relevant project context is missing.
+    \item The permission boundary is missing.
+    \item Evidence is undefined.
+    \item Completion is undefined.
+  \end{itemize}
+\end{frame}
+
+\begin{frame}[fragile]{A bounded, read-only work order}
+\begin{lstlisting}
+Goal: Explain how a student should start this project.
+Context: Read START-HERE.md and the setup guide.
+Permission: Read only. Do not edit files or browse the web.
+Constraints: Separate facts in the files from your inferences.
+Proof: List the steps in order, cite each source file, and end
+with three checks that the student can run manually.
+\end{lstlisting}
+
+  \vfill
+  The request is long because it makes the files, limits, and completion
+  evidence explicit enough for the student to review.
+\end{frame}
+
+\begin{frame}{Useful context can change a decision}
+  \begin{itemize}
+    \item Give the agent the source file directly.
+    \item Identify the current version and the source of truth.
+    \item Separate facts, decisions, examples, and open questions.
+    \item Ask for references to a file, line, table, or URL.
+    \item Leave out material that cannot change the decision.
+  \end{itemize}
+
+  \vfill
+  \begin{center}
+    {\Large\color{crimson}Good context is information that can change a decision.}
+  \end{center}
+\end{frame}
+
+\begin{frame}{Give permissions according to the task}
+  \begin{columns}[T,onlytextwidth]
+    \column{0.48\textwidth}
+      \begin{block}{Reading}
+        Web pages, documentation, code, public data, and metadata.
+      \end{block}
+      Reading is a good first step when we are still learning the project.
+    \column{0.48\textwidth}
+      \begin{block}{Action}
+        Writing, running, deleting, publishing, sending, or buying.
+      \end{block}
+      Begin with less access. Increase it only when the task needs it.
+  \end{columns}
+
+  \vfill
+  Never provide credentials, API secrets, identifiable student records, or
+  confidential research material to an AI tool.
+\end{frame}
+
+\begin{frame}{Define evidence for the product}
+  \small
+  \begin{tabularx}{\textwidth}{@{}>{\bfseries}p{3.0cm}X@{}}
+    \toprule
+    Product & Minimum evidence \\
+    \midrule
+    Code & It runs from a clean start and relevant checks pass. \\
+    Table or figure & Source, sample, units, and transformations agree. \\
+    Explanation & It matches the files and distinguishes fact from inference. \\
+    Text & Sources are attributed and no result is invented. \\
+    \bottomrule
+  \end{tabularx}
+
+  \vfill
+  A good check is cheap enough to repeat and strong enough to expose a plausible
+  failure.
+\end{frame}
+
+\begin{frame}{Inspect the work behind the answer}
+  \begin{center}
+  \begin{tikzpicture}[
+    node distance=0.26cm,
+    processbox/.style={draw=palegray,rounded corners=2pt,text width=2.2cm,
+      minimum height=1.25cm,align=center,font=\small},
+    arr/.style={-{Latex[length=1.8mm]},color=crimson,thick}
+  ]
+    \node[processbox] (predict) {\textbf{Predict}\\What should happen?};
+    \node[processbox,right=of predict] (delegate) {\textbf{Delegate}\\What may occur?};
+    \node[processbox,right=of delegate] (observe) {\textbf{Observe}\\What did it touch?};
+    \node[processbox,right=of observe] (verify) {\textbf{Verify}\\What check bears on it?};
+    \node[processbox,right=of verify] (explain) {\textbf{Explain}\\Keep, revise, or reject};
+    \draw[arr] (predict)--(delegate);
+    \draw[arr] (delegate)--(observe);
+    \draw[arr] (observe)--(verify);
+    \draw[arr] (verify)--(explain);
+  \end{tikzpicture}
+  \end{center}
+
+  \vfill
+  ``Reject'' and ``still unresolved'' are valid outcomes. Keep a result when the
+  available evidence supports it.
+\end{frame}
+
+\begin{frame}{Live read-only demonstration}
+  Watch Codex read the course project without changing it.
+
+  Record four things:
+  \begin{enumerate}
+    \item Which files did it read?
+    \item Which actions did it request?
+    \item Which statements came directly from files?
+    \item Which decision still belongs to us?
+  \end{enumerate}
+
+  \vfill
+  The demonstration uses the same project that you will open in Lab 1.
+\end{frame}

@@ -91,8 +91,8 @@ Write the strongest descriptive or associational statement supported by the outp
 
 ## Simple model and interpretation
 
-The coefficient on `log_income` is not the change associated with a one-percent
-increase. Translate it into changes that a reader can recognize.
+Translate the coefficient on `log_income` into percentage changes that a reader
+can recognize.
 
 ```{r}
 #| label: model
@@ -112,9 +112,9 @@ tibble(
 )
 ```
 
-Write both interpretations as pooled associations, comparing observations in
-the same included current income-level category. Do not describe either number
-as the effect of making a country richer.
+Write both interpretations as pooled associations among observations in the
+same included current income-level category. Causal interpretation requires a
+separate research design.
 
 ## Residual check
 
@@ -136,7 +136,7 @@ diagnostics |>
 Choose one row. Record what you checked before proposing a substantive story
 for why its observed value differs from the fitted value.
 
-## What this does not show
+## Limitation
 
 Name at least one limitation related to measurement, missingness, comparison, or causal interpretation.
 
@@ -159,7 +159,7 @@ running chunks manually. Record:
 - R version from `R.version.string`;
 - number of model observations from `nobs(fit)`;
 - whether the HTML opened without an error;
-- any warning you investigated rather than suppressed.
+- any warning you investigated and resolved or documented.
 
 ## Handoff checklist
 

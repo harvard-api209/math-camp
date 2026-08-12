@@ -1,0 +1,225 @@
+\NeedsTeXFormat{LaTeX2e}
+\ProvidesPackage{beamer_style}[2026/08/11 API 209 crimson Beamer style]
+
+\definecolor{crimson}{HTML}{A51C30}
+\definecolor{ink}{HTML}{171717}
+\definecolor{muted}{HTML}{666666}
+\definecolor{palegray}{HTML}{D9DEE2}
+\definecolor{buttonfill}{HTML}{ECEDEF}
+\definecolor{citationmuted}{HTML}{8F626A}
+\definecolor{warmgray}{HTML}{F3F1EA}
+
+\usefonttheme{professionalfonts}
+\setbeamercolor{background canvas}{bg=white}
+\setbeamercolor{normal text}{fg=ink,bg=white}
+\setbeamercolor{structure}{fg=crimson}
+\setbeamercolor{alerted text}{fg=crimson}
+\setbeamersize{text margin left=0.72cm,text margin right=0.72cm}
+\setstretch{1.04}
+
+\AtBeginEnvironment{beamer@frameslide}{%
+  \justifying
+  \setlength{\emergencystretch}{1em}%
+}
+\makeatletter
+\expandafter\patchcmd\csname beamerx@\string\beamer@columnenv\endcsname
+  {\leavevmode\raggedright}
+  {\leavevmode\justifying}
+  {}{\PackageWarning{beamer_style}{Could not justify column environments}}
+\expandafter\patchcmd\csname beamerx@\string\beamer@columncom\endcsname
+  {\leavevmode\raggedright}
+  {\leavevmode\justifying}
+  {}{\PackageWarning{beamer_style}{Could not justify column commands}}
+\patchcmd{\beamer@enum@}{\raggedright}{\justifying}{}{}
+\expandafter\patchcmd\csname\string\itemize\endcsname
+  {\raggedright}{\justifying}{}{}
+\makeatother
+
+\addtobeamertemplate{block begin}{}{\justifying}
+\addtobeamertemplate{block alerted begin}{}{\justifying}
+\addtobeamertemplate{block example begin}{}{\justifying}
+
+\setbeamertemplate{navigation symbols}{}
+\setbeamertemplate{headline}{}
+\setbeamercolor{slide number}{fg=muted,bg=white}
+\setbeamerfont{slide number}{size=\scriptsize}
+\setbeamertemplate{footline}{%
+  \leavevmode
+  \hbox{%
+    \begin{beamercolorbox}[
+      wd=0.84\paperwidth,
+      ht=2.4ex,
+      dp=1.0ex,
+      leftskip=0.72cm
+    ]{slide number}%
+      \usebeamerfont{slide number}\insertshorttitle
+    \end{beamercolorbox}%
+    \begin{beamercolorbox}[
+      wd=0.16\paperwidth,
+      ht=2.4ex,
+      dp=1.0ex,
+      rightskip=0.72cm
+    ]{slide number}%
+      \hfill\usebeamerfont{slide number}\insertframenumber/\inserttotalframenumber
+    \end{beamercolorbox}%
+  }%
+}
+
+\setbeamercolor{frametitle}{fg=crimson,bg=white}
+\setbeamerfont{frametitle}{size=\Large,series=\mdseries}
+\setbeamerfont{framesubtitle}{size=\small,shape=\itshape}
+\setbeamertemplate{frametitle}{%
+  \nointerlineskip
+  \vspace{0.14cm}%
+  \raggedright
+  \usebeamerfont{frametitle}\usebeamercolor[fg]{frametitle}%
+  \strut\insertframetitle\strut\par
+  \ifblank{\insertframesubtitle}{}{%
+    {\usebeamerfont{framesubtitle}\color{muted}\insertframesubtitle\par}%
+  }%
+  \vspace{0.04cm}%
+}
+
+\setbeamertemplate{itemize item}{\raise0.15ex\hbox{\scriptsize$\blacktriangleright$}}
+\setbeamertemplate{itemize subitem}{\raise0.3ex\hbox{\scriptsize--}}
+\setbeamertemplate{itemize subsubitem}{\raise0.3ex\hbox{\tiny--}}
+\setlength{\leftmargini}{1.35em}
+\setlength{\leftmarginii}{1.2em}
+
+\setbeamercolor{block title}{fg=ink,bg=warmgray}
+\setbeamercolor{block body}{fg=ink,bg=warmgray}
+\setbeamerfont{block title}{series=\bfseries}
+\setbeamertemplate{blocks}[rounded][shadow=false]
+
+\setbeamercolor{caption name}{fg=crimson}
+\setbeamercolor{caption}{fg=ink}
+\setbeamerfont{caption}{size=\small}
+\setbeamerfont{caption name}{series=\bfseries}
+\setbeamertemplate{caption}[numbered]
+\setlength{\abovecaptionskip}{0pt}
+\setlength{\belowcaptionskip}{0pt}
+
+\makeatletter
+\patchcmd{\TPT@measurement}
+  {\TPT@docapt \vskip.2\baselineskip}
+  {\TPT@docapt \vskip0pt}
+  {}{}
+\patchcmd{\TPT@tabargset}
+  {\TPT@docapt \vskip.2\baselineskip}
+  {\TPT@docapt \vskip0pt}
+  {}{}
+\makeatother
+
+\makeatletter
+\expandafter\patchcmd\csname citet \endcsname
+  {\begingroup}
+  {\begingroup
+   \hypersetup{citecolor=citationmuted}%
+   \color{citationmuted}%
+   \fontsize{\dimexpr\f@size pt*4/5\relax}
+     {\dimexpr\baselineskip*4/5\relax}\selectfont}
+  {}{}
+\expandafter\patchcmd\csname citep \endcsname
+  {\begingroup}
+  {\begingroup
+   \hypersetup{citecolor=citationmuted}%
+   \color{citationmuted}%
+   \fontsize{\dimexpr\f@size pt*4/5\relax}
+     {\dimexpr\baselineskip*4/5\relax}\selectfont}
+  {}{}
+\makeatother
+
+\newcommand\fnote[1]{%
+  \par\vspace{0.12em}%
+  {\footnotesize\justifying\color{muted}#1\par}%
+}
+
+\makeatletter
+\setbeamercolor{title}{fg=crimson}
+\setbeamercolor{subtitle}{fg=ink}
+\setbeamerfont{title}{size=\LARGE,series=\mdseries}
+\setbeamerfont{subtitle}{size=\Large,series=\mdseries}
+\setbeamertemplate{title page}{%
+  \vbox{}\vfill
+  \begin{center}
+    \begin{minipage}{0.82\paperwidth}
+      \centering
+      {\usebeamerfont{title}\usebeamercolor[fg]{title}\inserttitle\par}
+      \ifx\insertsubtitle\@empty\else
+        \vspace{0.25em}%
+        {\usebeamerfont{subtitle}\usebeamercolor[fg]{subtitle}\insertsubtitle\par}%
+      \fi
+    \end{minipage}\par
+    \vspace{0.85cm}
+    \begin{minipage}{0.76\paperwidth}
+      \centering\insertauthor\par
+      \vspace{0.18cm}
+      {\small\color{muted}\insertinstitute\par}
+    \end{minipage}\par
+    \ifx\insertdate\@empty\else
+      \vspace{0.42cm}
+      \begin{minipage}{0.76\paperwidth}
+        \centering\small\color{muted}\insertdate\par
+      \end{minipage}\par
+    \fi
+  \end{center}
+  \vfill
+}
+\makeatother
+
+\setbeamerfont{section in toc}{size=\small,series=\mdseries}
+\setbeamerfont{subsection in toc}{size=\footnotesize,shape=\itshape}
+\setbeamercolor{section in toc}{fg=crimson}
+\setbeamercolor{section in toc shaded}{fg=palegray}
+\setbeamercolor{subsection in toc}{fg=crimson}
+\setbeamercolor{subsection in toc shaded}{fg=palegray}
+\setbeamertemplate{section in toc}{\inserttocsection\par}
+\setbeamertemplate{subsection in toc}{\hspace{1.25em}\inserttocsubsection\par}
+
+\newif\ifsectionoutlines
+\sectionoutlinestrue
+\AtBeginSection[]{%
+  \ifsectionoutlines
+    \begin{frame}[plain,noframenumbering]{Lesson map}
+      \tableofcontents[
+        currentsection,
+        sectionstyle=show/shaded,
+        subsectionstyle=show/show/hide
+      ]
+    \end{frame}
+  \fi
+}
+
+\setbeamercolor{button}{fg=crimson,bg=buttonfill}
+\setbeamerfont{button}{size=\scriptsize,series=\mdseries}
+
+\newcommand<>{\goto}[2]{\alt#3{\hyperlink{#1}{\beamergotobutton{#2}}}{}}
+\newcommand<>{\backto}[2]{\alt#3{\hyperlink{#1}{\beamerreturnbutton{#2}}}{}}
+
+\newcommand{\bottomleft}[1]{%
+  \begin{textblock*}{\dimexpr\paperwidth-1.44cm\relax}(0.72cm,{\dimexpr\paperheight-0.82cm\relax})
+    \noindent\raggedright #1
+  \end{textblock*}%
+}
+\newcommand{\bottomright}[1]{%
+  \begin{textblock*}{\dimexpr\paperwidth-1.44cm\relax}(0.72cm,{\dimexpr\paperheight-0.82cm\relax})
+    \noindent\raggedleft #1
+  \end{textblock*}%
+}
+\newcommand{\topleft}[1]{%
+  \begin{textblock*}{\dimexpr\paperwidth-1.44cm\relax}(0.72cm,0.90cm)
+    \noindent\raggedright #1
+  \end{textblock*}%
+}
+\newcommand{\topright}[1]{%
+  \begin{textblock*}{\dimexpr\paperwidth-1.44cm\relax}(0.72cm,0.90cm)
+    \noindent\raggedleft #1
+  \end{textblock*}%
+}
+
+\AtBeginDocument{%
+  \setlength\abovedisplayskip{0.45em}%
+  \setlength\belowdisplayskip{0.65em}%
+  \setlength\abovedisplayshortskip{0.30em}%
+  \setlength\belowdisplayshortskip{0.45em}%
+}

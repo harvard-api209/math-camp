@@ -1,16 +1,349 @@
 <!doctype html>
 <html lang="en">
-<head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1"><meta name="description" content="Math Camp 2026 glossary of R, data, statistics, and AI terms."><title>Glossary | Math Camp 2026</title><link rel="icon" href="data:,"><link rel="stylesheet" href="../styles.css?v=book-20260718p"><script>document.documentElement.classList.add("js");</script></head>
-<body id="top" class="article-page"><div class="page-progress" aria-hidden="true"><span></span></div>
-  <header class="site-header"><a class="brand" href="../"><span>API 209</span><strong>MATH CAMP 2026</strong></a><div class="header-chapter"><span>FIELD GUIDE</span><strong>/ GLOSSARY</strong></div><nav class="chapter-nav"><a href="../">HOME</a><a href="../datasets/">DATA</a><a href="../ai-guide/">AI GUIDE</a></nav><button class="menu-button" type="button" aria-expanded="false" aria-controls="mobile-outline">CONTENTS</button></header>
-  <nav class="mobile-outline" id="mobile-outline"><div class="mobile-outline-head"><span>GLOSSARY</span><button type="button" data-close-menu>CLOSE</button></div><ol><li><a href="#coding">Coding</a></li><li><a href="#data">Data</a></li><li><a href="#statistics">Statistics</a></li><li><a href="#ai">AI</a></li></ol></nav>
-  <main><section class="article-hero"><div class="article-hero-meta"><div><span>WORDS</span><strong>PLAIN LANGUAGE</strong></div><div><span>SCOPE</span><strong>SUMMER CAMP</strong></div><div><span>USE</span><strong>LOOK UP, RETURN</strong></div></div><div class="article-hero-copy"><p>FIELD GUIDE 04</p><h1>Words for the work.</h1><p class="article-deck">A compact reference for the terms that appear across lessons, labs, code, and agent conversations.</p></div><aside class="article-hero-side"><p>Read<br>Run<br>Return</p></aside></section>
-    <div class="article-layout"><aside class="article-nav"><span>ON THIS PAGE</span><a href="#coding">Coding</a><a href="#data">Data</a><a href="#statistics">Statistics</a><a href="#ai">AI</a></aside><article class="article">
-      <section class="article-section reveal" id="coding"><p class="section-kicker">CODING</p><h2>Instructions and environments.</h2><dl class="glossary-list"><div><dt>Object</dt><dd>A named value stored in an R session, such as a number, table, or model.</dd></div><div><dt>Function</dt><dd>A reusable operation that takes inputs, performs work, and returns an output.</dd></div><div><dt>Argument</dt><dd>A value supplied to a function to control what it does.</dd></div><div><dt>Pipe</dt><dd>The <code>|&gt;</code> operator that passes the result of one step into the next step.</dd></div><div><dt>Script</dt><dd>A plain-text file of code that can be saved, rerun, reviewed, and shared.</dd></div><div><dt>Console</dt><dd>The place where R executes commands immediately. Console history is not a reproducible script.</dd></div><div><dt>Working directory</dt><dd>The folder R treats as its current location when resolving relative paths.</dd></div><div><dt>Clean session</dt><dd>A newly restarted R process with no objects left from earlier work.</dd></div><div><dt>Render</dt><dd>Build a source document, such as Quarto, into HTML, PDF, or slides.</dd></div></dl></section>
-      <section class="article-section reveal" id="data"><p class="section-kicker">DATA</p><h2>Rows, variables, and origins.</h2><dl class="glossary-list"><div><dt>Unit of observation</dt><dd>The entity represented by one row. Here, the default unit is usually a country-year.</dd></div><div><dt>Variable</dt><dd>A measured or constructed attribute stored in a column.</dd></div><div><dt>Key</dt><dd>One or more variables whose values uniquely identify each row.</dd></div><div><dt>Missing value</dt><dd>An observation that is unavailable or not recorded. In R it is commonly represented as <code>NA</code>.</dd></div><div><dt>Tidy data</dt><dd>A structure where each variable is a column, each observation is a row, and each type of unit is a table.</dd></div><div><dt>Join</dt><dd>An operation that combines tables by matching keys.</dd></div><div><dt>Provenance</dt><dd>The documented origin and processing history of data.</dd></div><div><dt>Indicator</dt><dd>A defined measure used to represent a condition or change, often published with a code and unit.</dd></div></dl></section>
-      <section class="article-section reveal" id="statistics"><p class="section-kicker">STATISTICS</p><h2>Patterns and their limits.</h2><dl class="glossary-list"><div><dt>Distribution</dt><dd>The range, frequency, and shape of observed values.</dd></div><div><dt>Transformation</dt><dd>A systematic change to a variable, such as taking a logarithm, to change scale or interpretation.</dd></div><div><dt>Regression</dt><dd>A model that summarizes how an outcome varies with one or more predictors.</dd></div><div><dt>Coefficient</dt><dd>A model quantity that describes an estimated change in the outcome associated with a change in a predictor, holding included predictors constant.</dd></div><div><dt>Residual</dt><dd>The difference between an observed outcome and the model’s fitted value.</dd></div><div><dt>Association</dt><dd>A pattern in which variables vary together. Association alone does not establish causation.</dd></div><div><dt>Causal effect</dt><dd>The change in an outcome produced by an intervention or exposure. Identifying it requires a research design beyond a descriptive regression.</dd></div><div><dt>Analysis sample</dt><dd>The observations actually used in a plot, summary, or model after filters and missingness.</dd></div></dl></section>
-      <section class="article-section reveal" id="ai"><p class="section-kicker">AI AND AGENTS</p><h2>Generated help and human checks.</h2><dl class="glossary-list"><div><dt>Generative AI</dt><dd>A model that produces text, code, images, or other content from instructions and context.</dd></div><div><dt>Coding agent</dt><dd>An AI tool that can inspect a project, propose file changes, run commands, and report results.</dd></div><div><dt>Prompt</dt><dd>The instruction and context given to a model or agent.</dd></div><div><dt>Context</dt><dd>The files, conversation, constraints, and other information available to the agent for a task.</dd></div><div><dt>Hallucination</dt><dd>Generated content that sounds plausible but is unsupported, false, or invented.</dd></div><div><dt>Diff</dt><dd>A line-by-line representation of what changed in a file.</dd></div><div><dt>Verification</dt><dd>An independent check of a claim using code behavior, data, output, documentation, or a primary source.</dd></div><div><dt>AI-use note</dt><dd>A brief record of what an AI tool contributed and how the human checked it.</dd></div></dl></section>
-    </article><aside class="article-margin"><dl><div><dt>LEVEL</dt><dd>Low floor</dd></div><div><dt>DEPTH</dt><dd>Expandable</dd></div><div><dt>GOAL</dt><dd>Shared language</dd></div></dl></aside></div>
-    <nav class="page-turn"><a href="../ai-guide/"><span>PREVIOUS</span><strong>AI workflow guide</strong></a><a href="../"><span>RETURN</span><strong>Course home</strong></a></nav></main>
-  <footer class="site-footer"><div><span>API 209</span><strong>MATH CAMP 2026</strong></div><p>Student field guide.</p><a href="#top">RETURN TO TOP ↑</a></footer><script src="../script.js?v=book-20260718o"></script></body>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta
+      name="description"
+      content="Math Camp 2026 glossary of R, data, statistics, and AI terms."
+    />
+    <title>Glossary | Math Camp 2026</title>
+    <link rel="icon" href="data:," />
+    <link rel="stylesheet" href="../styles.css?v=book-20260718p" />
+    <script>
+      document.documentElement.classList.add("js");
+    </script>
+  </head>
+  <body id="top" class="article-page">
+    <div class="page-progress" aria-hidden="true"><span></span></div>
+    <header class="site-header">
+      <a class="brand" href="../"
+        ><span>API 209</span><strong>MATH CAMP 2026</strong></a
+      >
+      <div class="header-chapter">
+        <span>FIELD GUIDE</span><strong>/ GLOSSARY</strong>
+      </div>
+      <nav class="chapter-nav">
+        <a href="../">HOME</a><a href="../datasets/">DATA</a
+        ><a href="../ai-guide/">AI GUIDE</a>
+      </nav>
+      <button
+        class="menu-button"
+        type="button"
+        aria-expanded="false"
+        aria-controls="mobile-outline"
+      >
+        CONTENTS
+      </button>
+    </header>
+    <nav class="mobile-outline" id="mobile-outline">
+      <div class="mobile-outline-head">
+        <span>GLOSSARY</span
+        ><button type="button" data-close-menu>CLOSE</button>
+      </div>
+      <ol>
+        <li><a href="#coding">Coding</a></li>
+        <li><a href="#data">Data</a></li>
+        <li><a href="#statistics">Statistics</a></li>
+        <li><a href="#ai">AI</a></li>
+      </ol>
+    </nav>
+    <main>
+      <section class="article-hero">
+        <div class="article-hero-meta">
+          <div><span>WORDS</span><strong>PLAIN LANGUAGE</strong></div>
+          <div><span>SCOPE</span><strong>SUMMER CAMP</strong></div>
+          <div><span>USE</span><strong>LOOK UP, RETURN</strong></div>
+        </div>
+        <div class="article-hero-copy">
+          <p>FIELD GUIDE 04</p>
+          <h1>Terms used in the course.</h1>
+          <p class="article-deck">
+            Use this short reference when a term appears in a lesson, lab,
+            script, or conversation with an agent.
+          </p>
+        </div>
+        <aside class="article-hero-side">
+          <p>Read<br />Run<br />Return</p>
+        </aside>
+      </section>
+      <div class="article-layout">
+        <aside class="article-nav">
+          <span>ON THIS PAGE</span><a href="#coding">Coding</a
+          ><a href="#data">Data</a><a href="#statistics">Statistics</a
+          ><a href="#ai">AI</a>
+        </aside>
+        <article class="article">
+          <section class="article-section reveal" id="coding">
+            <p class="section-kicker">CODING</p>
+            <h2>Code, files, and environments.</h2>
+            <dl class="glossary-list">
+              <div>
+                <dt>Object</dt>
+                <dd>
+                  A named value stored in an R session, such as a number, table,
+                  or model.
+                </dd>
+              </div>
+              <div>
+                <dt>Function</dt>
+                <dd>
+                  A reusable operation that receives inputs, does some work, and
+                  returns an output.
+                </dd>
+              </div>
+              <div>
+                <dt>Argument</dt>
+                <dd>
+                  A value supplied to a function that controls what the function
+                  does.
+                </dd>
+              </div>
+              <div>
+                <dt>Pipe</dt>
+                <dd>
+                  The <code>|&gt;</code> operator, which passes the result of
+                  one step into the next.
+                </dd>
+              </div>
+              <div>
+                <dt>Script</dt>
+                <dd>
+                  A plain-text code file that you can save, rerun, review, and
+                  share.
+                </dd>
+              </div>
+              <div>
+                <dt>Console</dt>
+                <dd>
+                  The place where R runs commands immediately. Save useful
+                  console experiments in a script before treating them as
+                  reproducible work.
+                </dd>
+              </div>
+              <div>
+                <dt>Working directory</dt>
+                <dd>
+                  The folder that R uses as its current location when resolving
+                  relative paths.
+                </dd>
+              </div>
+              <div>
+                <dt>Clean session</dt>
+                <dd>
+                  A newly restarted R process with no objects remaining from
+                  earlier work.
+                </dd>
+              </div>
+              <div>
+                <dt>Render</dt>
+                <dd>
+                  Build a source document, such as Quarto, into HTML, PDF, or
+                  slides.
+                </dd>
+              </div>
+            </dl>
+          </section>
+          <section class="article-section reveal" id="data">
+            <p class="section-kicker">DATA</p>
+            <h2>Rows, variables, and origins.</h2>
+            <dl class="glossary-list">
+              <div>
+                <dt>Unit of observation</dt>
+                <dd>
+                  The entity represented by one row. Here, the default unit is
+                  usually a country-year.
+                </dd>
+              </div>
+              <div>
+                <dt>Variable</dt>
+                <dd>A measured or constructed attribute stored in a column.</dd>
+              </div>
+              <div>
+                <dt>Key</dt>
+                <dd>
+                  One or more variables whose values uniquely identify each row.
+                </dd>
+              </div>
+              <div>
+                <dt>Missing value</dt>
+                <dd>
+                  An observation that is unavailable or not recorded. In R it is
+                  commonly represented as <code>NA</code>.
+                </dd>
+              </div>
+              <div>
+                <dt>Tidy data</dt>
+                <dd>
+                  A structure where each variable is a column, each observation
+                  is a row, and each type of unit is a table.
+                </dd>
+              </div>
+              <div>
+                <dt>Join</dt>
+                <dd>An operation that combines tables by matching keys.</dd>
+              </div>
+              <div>
+                <dt>Provenance</dt>
+                <dd>The documented origin and processing history of data.</dd>
+              </div>
+              <div>
+                <dt>Indicator</dt>
+                <dd>
+                  A defined measure used to represent a condition or change,
+                  often published with a code and unit.
+                </dd>
+              </div>
+            </dl>
+          </section>
+          <section class="article-section reveal" id="statistics">
+            <p class="section-kicker">STATISTICS</p>
+            <h2>Patterns and their limits.</h2>
+            <dl class="glossary-list">
+              <div>
+                <dt>Distribution</dt>
+                <dd>The range, frequency, and shape of observed values.</dd>
+              </div>
+              <div>
+                <dt>Transformation</dt>
+                <dd>
+                  A systematic change to a variable, such as taking a logarithm,
+                  to change scale or interpretation.
+                </dd>
+              </div>
+              <div>
+                <dt>Regression</dt>
+                <dd>
+                  A model that summarizes how an outcome varies with one or more
+                  predictors.
+                </dd>
+              </div>
+              <div>
+                <dt>Coefficient</dt>
+                <dd>
+                  A model quantity that describes an estimated change in the
+                  outcome associated with a change in a predictor, holding
+                  included predictors constant.
+                </dd>
+              </div>
+              <div>
+                <dt>Residual</dt>
+                <dd>
+                  The difference between an observed outcome and the model’s
+                  fitted value.
+                </dd>
+              </div>
+              <div>
+                <dt>Association</dt>
+                <dd>
+                  A pattern in which variables vary together. A causal claim
+                  requires a research design beyond the observed association.
+                </dd>
+              </div>
+              <div>
+                <dt>Causal effect</dt>
+                <dd>
+                  The change in an outcome produced by an intervention or
+                  exposure. Identifying it requires a research design beyond a
+                  descriptive regression.
+                </dd>
+              </div>
+              <div>
+                <dt>Analysis sample</dt>
+                <dd>
+                  The observations actually used in a plot, summary, or model
+                  after filters and missingness.
+                </dd>
+              </div>
+            </dl>
+          </section>
+          <section class="article-section reveal" id="ai">
+            <p class="section-kicker">AI AND AGENTS</p>
+            <h2>Generated help and human checks.</h2>
+            <dl class="glossary-list">
+              <div>
+                <dt>Generative AI</dt>
+                <dd>
+                  A model that produces text, code, images, or other content
+                  from instructions and context.
+                </dd>
+              </div>
+              <div>
+                <dt>Coding agent</dt>
+                <dd>
+                  An AI tool that can inspect a project, propose file changes,
+                  run commands, and report results.
+                </dd>
+              </div>
+              <div>
+                <dt>Prompt</dt>
+                <dd>The instruction and context given to a model or agent.</dd>
+              </div>
+              <div>
+                <dt>Context</dt>
+                <dd>
+                  The files, conversation, constraints, and other information
+                  available to the agent for a task.
+                </dd>
+              </div>
+              <div>
+                <dt>Hallucination</dt>
+                <dd>
+                  Generated content that sounds plausible but is unsupported,
+                  false, or invented.
+                </dd>
+              </div>
+              <div>
+                <dt>Diff</dt>
+                <dd>
+                  A line-by-line representation of what changed in a file.
+                </dd>
+              </div>
+              <div>
+                <dt>Verification</dt>
+                <dd>
+                  An independent check of a claim using code behavior, data,
+                  output, documentation, or a primary source.
+                </dd>
+              </div>
+              <div>
+                <dt>AI-use note</dt>
+                <dd>
+                  A brief record of what an AI tool contributed and how the
+                  human checked it.
+                </dd>
+              </div>
+            </dl>
+          </section>
+        </article>
+        <aside class="article-margin">
+          <dl>
+            <div>
+              <dt>LEVEL</dt>
+              <dd>Low floor</dd>
+            </div>
+            <div>
+              <dt>DEPTH</dt>
+              <dd>Expandable</dd>
+            </div>
+            <div>
+              <dt>GOAL</dt>
+              <dd>Shared language</dd>
+            </div>
+          </dl>
+        </aside>
+      </div>
+      <nav class="page-turn">
+        <a href="../ai-guide/"
+          ><span>PREVIOUS</span><strong>AI workflow guide</strong></a
+        ><a href="../"><span>RETURN</span><strong>Course home</strong></a>
+      </nav>
+    </main>
+    <footer class="site-footer">
+      <div><span>API 209</span><strong>MATH CAMP 2026</strong></div>
+      <p>Student field guide.</p>
+      <a href="#top">RETURN TO TOP ↑</a>
+    </footer>
+    <script src="../script.js?v=book-20260718o"></script>
+  </body>
 </html>

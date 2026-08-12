@@ -2185,7 +2185,7 @@ vertical-align: -.125em;
   <li><a href="#comparison" id="toc-comparison" class="nav-link" data-scroll-target="#comparison">Comparison</a></li>
   <li><a href="#simple-model-and-interpretation" id="toc-simple-model-and-interpretation" class="nav-link" data-scroll-target="#simple-model-and-interpretation">Simple model and interpretation</a></li>
   <li><a href="#residual-check" id="toc-residual-check" class="nav-link" data-scroll-target="#residual-check">Residual check</a></li>
-  <li><a href="#what-this-does-not-show" id="toc-what-this-does-not-show" class="nav-link" data-scroll-target="#what-this-does-not-show">What this does not show</a></li>
+  <li><a href="#limitation" id="toc-limitation" class="nav-link" data-scroll-target="#limitation">Limitation</a></li>
   <li><a href="#ai-use-note" id="toc-ai-use-note" class="nav-link" data-scroll-target="#ai-use-note">AI-use note</a></li>
   <li><a href="#verification-record" id="toc-verification-record" class="nav-link" data-scroll-target="#verification-record">Verification record</a></li>
   <li><a href="#clean-session-receipt" id="toc-clean-session-receipt" class="nav-link" data-scroll-target="#clean-session-receipt">Clean-session receipt</a></li>
@@ -2331,7 +2331,7 @@ $ under5_mortality            &lt;dbl&gt; NA, NA, NA, NA, NA, NA, NA, NA, NA, NA
 </section>
 <section id="simple-model-and-interpretation" class="level2">
 <h2 class="anchored" data-anchor-id="simple-model-and-interpretation">Simple model and interpretation</h2>
-<p>The coefficient on <code>log_income</code> is not the change associated with a one-percent increase. Translate it into changes that a reader can recognize.</p>
+<p>Translate the coefficient on <code>log_income</code> into percentage changes that a reader can recognize.</p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb10"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a>fit <span class="ot">&lt;-</span> <span class="fu">lm</span>(</span>
 <span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a>  under5_mortality <span class="sc">~</span> log_income <span class="sc">+</span> income_level_current,</span>
@@ -2354,7 +2354,7 @@ $ under5_mortality            &lt;dbl&gt; NA, NA, NA, NA, NA, NA, NA, NA, NA, NA
 2 double GDP per capita                                  -10.7 </code></pre>
 </div>
 </div>
-<p>Write both interpretations as pooled associations, comparing observations in the same included current income-level category. Do not describe either number as the effect of making a country richer.</p>
+<p>Write both interpretations as pooled associations among observations in the same included current income-level category. Causal interpretation requires a separate research design.</p>
 </section>
 <section id="residual-check" class="level2">
 <h2 class="anchored" data-anchor-id="residual-check">Residual check</h2>
@@ -2385,8 +2385,8 @@ $ under5_mortality            &lt;dbl&gt; NA, NA, NA, NA, NA, NA, NA, NA, NA, NA
 </div>
 <p>Choose one row. Record what you checked before proposing a substantive story for why its observed value differs from the fitted value.</p>
 </section>
-<section id="what-this-does-not-show" class="level2">
-<h2 class="anchored" data-anchor-id="what-this-does-not-show">What this does not show</h2>
+<section id="limitation" class="level2">
+<h2 class="anchored" data-anchor-id="limitation">Limitation</h2>
 <p>Name at least one limitation related to measurement, missingness, comparison, or causal interpretation.</p>
 </section>
 <section id="ai-use-note" class="level2">
@@ -2420,7 +2420,7 @@ $ under5_mortality            &lt;dbl&gt; NA, NA, NA, NA, NA, NA, NA, NA, NA, NA
 <li>R version from <code>R.version.string</code>;</li>
 <li>number of model observations from <code>nobs(fit)</code>;</li>
 <li>whether the HTML opened without an error;</li>
-<li>any warning you investigated rather than suppressed.</li>
+<li>any warning you investigated and resolved or documented.</li>
 </ul>
 </section>
 <section id="handoff-checklist" class="level2">
