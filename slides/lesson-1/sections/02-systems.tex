@@ -1,40 +1,31 @@
 \section{From a model to an agent}
 \subsection{The parts of the system}
 
-\begin{frame}{A pin factory begins with divided work}
-  \begin{columns}[T,onlytextwidth]
-    \begin{column}{0.48\textwidth}
-      \begin{quote}
-        ``The greatest improvements in the productive powers of labour''
-        grew from the division of labour.
-      \end{quote}
-      \vspace{-0.3em}
-      {\footnotesize Adapted from \citet[Book I, Chapter I]{smith1776wealth}.}
-    \end{column}
-    \begin{column}{0.48\textwidth}
-      \begin{tikzpicture}[
-        stage/.style={draw=palegray,rounded corners=2pt,text width=2.15cm,
-          minimum height=0.82cm,align=center,font=\small},
-        arr/.style={-{Latex[length=1.8mm]},color=crimson,thick}
-      ]
-        \node[stage] (draw) {Draw wire};
-        \node[stage,right=0.30cm of draw] (straight) {Straighten};
-        \node[stage,below=0.38cm of straight] (cut) {Cut};
-        \node[stage,left=0.30cm of cut] (point) {Point};
-        \node[stage,below=0.38cm of point] (head) {Add head};
-        \node[stage,right=0.30cm of head] (finish) {Finish};
-        \draw[arr] (draw)--(straight);
-        \draw[arr] (straight.south)--(cut.north);
-        \draw[arr] (cut)--(point);
-        \draw[arr] (point.south)--(head.north);
-        \draw[arr] (head)--(finish);
-      \end{tikzpicture}
-    \end{column}
-  \end{columns}
+\begin{frame}{The pin factory coordinates the division of labor}
+  \begin{center}
+    \begin{minipage}{0.88\textwidth}
+      \centering
+      \large\itshape
+      ``The greatest improvements in the productive powers of labour''
+      grew from the division of labour.
+    \end{minipage}
+
+    \vspace{0.30em}
+    {\footnotesize \citet[Book I, Chapter I]{smith1776wealth}.}
+
+    \vspace{0.42em}
+    \includegraphics[width=0.78\textwidth,height=3.15cm,keepaspectratio,
+      trim=0 275 0 0,clip]{figures/diderot-epinglier-1765.jpeg}
+
+    \vspace{0.18em}
+    {\scriptsize Diderot and d'Alembert, \emph{Encyclopédie},
+    ``Épinglier,'' plate III (1765). Digital image: ARTFL Encyclopédie Project.}
+  \end{center}
 
   \vfill
-  Specialization raises a coordination question: \alert{who defines the task,
-  passes context, checks the handoff, and accepts the final product?}
+  Specialization raises output; \alert{coordination makes divided tasks one product.}
+
+  {\scriptsize Pedagogical framing inspired by a teaching slide shared by Luis Garicano.}
 \end{frame}
 
 \begin{frame}{AI changes the division of analytical work}
@@ -60,6 +51,65 @@
   task, context, permissions, output, and acceptance check visible.
 \end{frame}
 
+\begin{frame}{Knowledge is divided too}
+  \begin{columns}[T,onlytextwidth]
+    \begin{column}{0.47\textwidth}
+      \begin{block}{Hayek: knowledge is dispersed}
+        Relevant facts do not arrive in one complete bundle. People hold
+        different knowledge of context, time, place, and purpose
+        \citep{hayek1945knowledge}.
+      \end{block}
+    \end{column}
+    \begin{column}{0.49\textwidth}
+      \begin{block}{Garicano: route problems to knowledge}
+        Routine problems can stay close to production; exceptional problems
+        move to specialized problem solvers \citep{garicano2000hierarchies}.
+      \end{block}
+    \end{column}
+  \end{columns}
+
+  \vspace{0.65em}
+  \begin{center}
+  \begin{tikzpicture}[
+    node distance=0.55cm,
+    box/.style={draw=palegray,rounded corners=2pt,text width=3.15cm,
+      minimum height=1.12cm,align=center,font=\small},
+    arr/.style={-{Latex[length=1.8mm]},color=crimson,thick}
+  ]
+    \node[box] (student) {Student\\question + local context};
+    \node[box,right=of student] (agent) {Agent\\routine production};
+    \node[box,right=of agent] (expert) {Student + evidence\\exception + judgment};
+    \draw[arr] (student)--node[above,font=\scriptsize]{work order}(agent);
+    \draw[arr] (agent)--node[above,font=\scriptsize]{result + trace}(expert);
+  \end{tikzpicture}
+  \end{center}
+
+  \vfill
+  The student does not disappear from the workflow. The student supplies
+  context, recognizes exceptions, and decides whether the answer can be kept.
+\end{frame}
+
+\begin{frame}{Checkpoint 2: Who knows what?}
+  \alert{Block 1 · minutes 30--34}
+
+  \vspace{0.55em}
+  The WDI file and a ministry report give different under-five mortality values
+  for the same country-year.
+
+  \vspace{0.55em}
+  Decide together:
+  \begin{enumerate}
+    \item What knowledge might each source hold that the other does not?
+    \item What should the agent inspect, and what judgment remains with us?
+  \end{enumerate}
+
+  \vfill
+  \begin{center}
+    \textbf{2 minutes discuss} \hspace{2.0em} $\longrightarrow$ \hspace{2.0em}
+    \textbf{2 minutes share}
+  \end{center}
+\end{frame}
+
 \begin{frame}{AI includes several kinds of systems}
   \small
   \begin{tabularx}{\textwidth}{@{}>{\bfseries}p{3.0cm}X@{}}
@@ -76,32 +126,6 @@
   \vfill
   We use these terms separately because they imply different actions and
   different things to verify.
-\end{frame}
-
-\begin{frame}{How we arrived at coding agents}
-  \begin{center}
-  \begin{tikzpicture}[
-    node distance=0.28cm,
-    box/.style={draw=palegray,rounded corners=2pt,text width=2.15cm,
-      minimum height=1.45cm,align=center,font=\small,inner sep=4pt},
-    arr/.style={-{Latex[length=1.8mm]},color=crimson,thick}
-  ]
-    \node[box] (dl) {Deep learning\\and transformers};
-    \node[box,right=of dl] (fm) {Foundation\\models};
-    \node[box,right=of fm] (chat) {Chat\\interfaces};
-    \node[box,right=of chat] (tools) {Reasoning\\and tools};
-    \node[box,right=of tools] (agents) {Coding\\agents};
-    \draw[arr] (dl)--(fm);
-    \draw[arr] (fm)--(chat);
-    \draw[arr] (chat)--(tools);
-    \draw[arr] (tools)--(agents);
-  \end{tikzpicture}
-  \end{center}
-
-  \vspace{0.7em}
-  The shift from a simple chatbot to a project agent happened in stages. Each
-  stage changed who can execute, what the system can touch, and what evidence we
-  can observe.
 \end{frame}
 
 \begin{frame}{From conversation to action}
@@ -211,4 +235,25 @@
   \vfill
   More autonomy creates more places where something can go wrong. Start with the
   simplest system that lets you verify the result.
+\end{frame}
+
+\begin{frame}{Checkpoint 3: Choose the smallest system}
+  \alert{Block 1 · minutes 46--50}
+
+  \vspace{0.55em}
+  Before comparing mortality across years, you need to know whether the
+  indicator's definition or unit changed.
+
+  \vspace{0.55em}
+  Decide together:
+  \begin{enumerate}
+    \item Which is the smallest useful system: R, chat, a coding agent, or a person?
+    \item What evidence would let you accept its answer?
+  \end{enumerate}
+
+  \vfill
+  \begin{center}
+    \textbf{2 minutes discuss} \hspace{2.0em} $\longrightarrow$ \hspace{2.0em}
+    \textbf{2 minutes share}
+  \end{center}
 \end{frame}

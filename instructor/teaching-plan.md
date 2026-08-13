@@ -89,6 +89,57 @@ more than prompting speed.
 
 **Lesson time:** 120 minutes. **Lab time:** 60 minutes.
 
+Use the lesson clock below. The first block ends after the system map and
+“Choose the tool after the task.” Take the full ten-minute break even if a
+discussion is still open. The second block ends with a live, online policy-
+briefing demonstration and the recurring protocol; the final ten minutes move the room
+into Lab 1.
+
+| Clock | Focus | Deck boundary |
+|---|---|---|
+| 00–08 | Welcome, archetypes, destination | “What I want you to do by the end” |
+| 08–16 | Is coding still worth learning? | “Why the workflow changed” |
+| 16–20 | **Block 1 checkpoint 1** | Two minutes discuss; two minutes share |
+| 20–30 | Pin factory and divided knowledge | “Knowledge is divided too” |
+| 30–34 | **Block 1 checkpoint 2** | Two minutes discuss; two minutes share |
+| 34–46 | Models, agents, harnesses, tools, and tool choice | “Choose the tool after the task” |
+| 46–50 | **Block 1 checkpoint 3** | Two minutes discuss; two minutes share |
+| 50–60 | **Break** | Use the break slide; resume at minute 60 |
+| 60–70 | Understanding and cognitive debt | “Cognitive debt” |
+| 70–74 | **Block 2 checkpoint 1** | Two minutes discuss; two minutes share |
+| 74–84 | Evidence, expertise, and the learning routine | “Use the agent to help you understand” |
+| 84–88 | **Block 2 checkpoint 2** | Two minutes discuss; two minutes share |
+| 88–96 | Risk, verifiability, and the irregular frontier | “Match autonomy to risk and verifiability” |
+| 96–110 | Work order, permissions, proof, and live demo | Ask Codex to retrieve current official WDI data and prepare the East Africa meeting brief without previewing the answer |
+| 110–120 | Lab handoff | Readiness gate and Lab 1 route |
+| 120–180 | **Lab 1** | Installation clinic |
+
+Each checkpoint is a four-minute hard stop. Put the question on screen, ask
+students to discuss with one or two neighbors for exactly two minutes, and then
+use the remaining two minutes for two or three short contributions. Do not turn
+the sharing period into a new lecture. Summarize the disagreement or decision
+in one sentence and continue. The five checkpoints serve different purposes:
+
+1. **Block 1.1 — retrieve and take a position:** name what learning code still
+   contributes when an agent can generate code.
+2. **Block 1.2 — apply divided knowledge:** distinguish what data sources, an
+   agent, and the analyst may know in a policy-data discrepancy.
+3. **Block 1.3 — choose and justify:** select the smallest useful system and
+   state acceptance evidence.
+4. **Block 2.1 — diagnose:** identify cognitive debt in an apparently successful
+   analytical product.
+5. **Block 2.2 — construct:** design one before/during/after learning loop for an
+   agent-assisted task.
+
+The last fourteen minutes of Block 2 are not another checkpoint. Run one live,
+time-pressured policy assignment: “I meet the director of an East Africa
+energy-access program in 20 minutes.” Codex must retrieve current official WDI
+data online, compare Kenya, Rwanda, Tanzania, and Uganda, draft a concise meeting
+brief, provide reproducible R code, cite its sources, and disclose uncertainty.
+Narrate the retrieval, permissions, source selection, calculations, and claim
+language as they happen. Do not preview a prepared answer; the point is to model
+how an analyst supervises an agent under a realistic deadline.
+
 Begin by welcoming the room and recognizing that students have different
 starting points. Some have not written code before; some already use R; many
 know a chat interface but not a coding agent inside a project. Use the light
@@ -106,7 +157,13 @@ Use Adam Smith's pin factory as the historical bridge into this system. The
 division of labor can increase output, while coordination determines whether
 the specialized contributions form a useful product. Apply the same question
 to the student, agent, R, and harness: who frames, who acts, what travels across
-the handoff, and who verifies the result?
+the handoff, and who verifies the result? Show the Diderot and d'Alembert
+pinmaker plate, following the pedagogical example shared by Luis Garicano.
+Then move from divided labor to divided knowledge: Hayek emphasizes that
+relevant knowledge is dispersed, while Garicano explains how organizations
+route routine and exceptional problems to different problem solvers. The
+classroom implication is that students provide local context, recognize
+exceptions, and retain the final evidentiary judgment.
 
 The opening asks explicitly, **“Is it still worth learning to code?”** Students
 vote before hearing an answer and distinguish syntax recall from reading,

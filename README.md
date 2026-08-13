@@ -41,7 +41,7 @@ starts from a saved file; none requires an object left in an R console.
 
 - `index.html`: public student homepage, schedule, lesson index, policy tracks, and resource guide
 - `lessons/lesson-1/` and `lessons/lesson-2/`: the two student lessons in the current release, with explained code, bounded agent tasks, and embedded Beamer PDFs
-- `labs/lab-1/` and `labs/lab-2/`: the installation clinic and the 60-minute build-table lab in the current release
+- `labs/lab-1/` and `labs/lab-2/`: the installation clinic and the 60-minute build-table lab in the current release; Lab 1 includes a printable LaTeX handout under `handout/`
 - `setup/`, `datasets/`, `ai-guide/`, `glossary/`: student field guides
 - `instructor/`: unlisted teaching notes and a detailed facilitation plan; `noindex` is not access control
 - `research/evidence-brief.md`: research base and design rationale
@@ -71,7 +71,15 @@ cp main.pdf lesson-2.pdf
 
 The website embeds `lesson-1.pdf` and `lesson-2.pdf`. Edit their English LaTeX sections directly. After each change, compile the deck, scan the log, and inspect every rendered slide before replacing the public PDF.
 
-The current PDFs contain 50 pages for Lesson 1 and 45 pages for Lesson 2, including title pages, section maps, and references. Later lesson materials remain internal drafts and are not part of the public release.
+The current PDFs contain 58 pages for Lesson 1 and 45 pages for Lesson 2, including title pages, section maps, the Lesson 1 break, five discussion checkpoints, the live online policy-briefing demonstration, the timing route, and references. Later lesson materials remain internal drafts and are not part of the public release.
+
+The Lab 1 handout is a standalone, single-file LaTeX article. Rebuild it with:
+
+```sh
+cd labs/lab-1/handout
+latexmk -pdf main.tex
+cp main.pdf lab-1-handout.pdf
+```
 
 ## Rebuild the default dataset (maintainers only)
 

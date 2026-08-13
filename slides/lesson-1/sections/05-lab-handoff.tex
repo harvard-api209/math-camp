@@ -45,10 +45,16 @@ Rscript code/check_setup.R --codex-confirmed
 \end{frame}
 
 \begin{frame}{Lab 1 route}
-  \small
-  \begin{tabularx}{\textwidth}{@{}>{\color{crimson}\bfseries}p{1.7cm}>{\bfseries}p{3.0cm}X@{}}
+  \footnotesize
+  \setlength{\tabcolsep}{0pt}
+  \setlength{\extrarowheight}{0.18em}
+  \renewcommand{\arraystretch}{1.18}
+  \begin{tabular}{@{}
+    >{\raggedright\arraybackslash\bfseries\color{crimson}}m{2.15cm}
+    @{}>{\raggedright\arraybackslash\bfseries}m{3.20cm}
+    @{}>{\raggedright\arraybackslash}m{8.50cm}@{}}
     \toprule
-    Minutes & Focus & What we need to see \\
+    \textcolor{crimson}{Minutes} & \textbf{Focus} & \textbf{What we need to see} \\
     \midrule
     00--05 & Triage & Green, yellow, or red output. \\
     05--15 & Project + R & Extracted folder, open project, current R. \\
@@ -57,17 +63,5 @@ Rscript code/check_setup.R --codex-confirmed
     35--50 & Data + Codex & Frozen file and project access. \\
     50--60 & Final gate & Green result or an owned repair plan. \\
     \bottomrule
-  \end{tabularx}
-\end{frame}
-
-\begin{frame}{Before we leave}
-  Write one sentence for each item:
-  \begin{enumerate}
-    \item One task I would delegate to a coding agent.
-    \item One decision I would keep with the person.
-    \item One type of evidence I will require before I keep generated code.
-  \end{enumerate}
-
-  \vfill
-  Bring these answers back when we begin Lesson 2.
+  \end{tabular}
 \end{frame}

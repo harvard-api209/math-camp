@@ -1,0 +1,81 @@
+\documentclass[11pt,letterpaper]{article}
+
+% Plain article typography and layout.
+\usepackage[T1]{fontenc}
+\usepackage[english]{babel}
+\usepackage[margin=1in]{geometry}
+\usepackage{mathpazo}
+\usepackage{microtype}
+\usepackage{setspace}
+\usepackage{titlesec}
+\usepackage[hidelinks]{hyperref}
+
+\setstretch{1.15}
+\setlength{\parindent}{1.5em}
+\setlength{\parskip}{0pt}
+\titleformat{\section}{\large\bfseries}{}{0pt}{}
+\titlespacing*{\section}{0pt}{1.0em}{0.35em}
+
+\hypersetup{
+  pdftitle={Lab 1: Installation Clinic},
+  pdfauthor={API 209 Math Camp 2026}
+}
+
+\begin{document}
+
+\begin{center}
+  {\Large\bfseries Lab 1: Installation Clinic}\par
+  \smallskip
+  API 209 Math Camp 2026\par
+  Thursday, August 13, 2026, 3:00--4:00 p.m.
+\end{center}
+
+\section*{What this lab is for}
+
+This first lab makes sure that everyone can use the same course project before
+we begin working with data. We will open the project in RStudio, run one setup
+check, repair any missing pieces, confirm that Codex can access the project, and
+run the check again. This is an installation clinic, not a graded exercise, and
+there is nothing to submit.
+
+Please have your laptop, the complete Math Camp project folder, RStudio, and
+your Harvard-supported Codex account available. Keep the complete checker output
+visible when you ask for help; it tells us which part of the setup needs
+attention.
+
+\section*{What we will do}
+
+\begin{enumerate}
+  \setlength{\itemsep}{0.2em}
+  \setlength{\parsep}{0pt}
+  \setlength{\topsep}{0.3em}
+  \item Open \texttt{math-camp-2026.Rproj} in RStudio.
+  \item Open the \textbf{Terminal} tab and run the initial check:
+    \begin{quote}
+      \verb|Rscript code/check_setup.R|
+    \end{quote}
+  \item Read the result together. If it is red or yellow, we will repair the
+    first reported issue, rerun the command, and continue one issue at a time.
+    The checker covers the project folder, R, required packages, Quarto, and the
+    frozen teaching data.
+  \item Open the same project folder in Codex and confirm that the course files
+    are visible. We will not upload credentials, identifiable student records,
+    or confidential research material.
+  \item Run the complete readiness check:
+    \begin{quote}
+      \verb|Rscript code/check_setup.R --codex-confirmed|
+    \end{quote}
+\end{enumerate}
+
+\section*{How the lab ends}
+
+The goal is a final line that reads \texttt{RESULT: GREEN}. If your computer is
+not green by 4:00 p.m., you will leave knowing the exact failing check, the next
+repair to try, and who will help you follow up. No one begins the shared data
+exercise without a working setup or a clear repair plan.
+
+The complete instructions remain available in the
+\href{https://harvard-api209.github.io/math-camp/labs/lab-1/}{Lab 1 guide} and
+the \href{https://harvard-api209.github.io/math-camp/setup/}{setup guide}.
+
+\end{document}

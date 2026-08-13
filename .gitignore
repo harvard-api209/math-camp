@@ -24,3 +24,12 @@ slides/lesson-*/main.pdf
 slides/lesson-*/main.snm
 slides/lesson-*/main.toc
 slides/lesson-*/main.vrb
+
+# LaTeX handout build intermediates. Public handouts keep main.tex and the
+# explicitly named handout PDF.
+labs/*/handout/main.aux
+labs/*/handout/main.fdb_latexmk
+labs/*/handout/main.fls
+labs/*/handout/main.log
+labs/*/handout/main.out
+labs/*/handout/main.pdf

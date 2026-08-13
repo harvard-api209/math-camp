@@ -68,6 +68,8 @@
           </p>
           <div class="article-actions">
             <a href="../../labs/lab-1/">OPEN INSTALLATION LAB →</a
+            ><a href="../../labs/lab-1/handout/lab-1-handout.pdf"
+              >OPEN LAB HANDOUT ↗</a
             ><a href="../../slides/lesson-1/lesson-1.pdf">OPEN SLIDE PDF ↗</a>
           </div>
         </div>
@@ -145,7 +147,12 @@
                 inside analytical work: a person frames the question, an agent
                 proposes or executes steps, software records the result, and a
                 person verifies and interprets the evidence. The benefit comes
-                from both specialization and a clear handoff.
+                from both specialization and a clear handoff. Hayek adds that
+                relevant knowledge is dispersed; Garicano shows how
+                organizations route common and exceptional problems to people
+                with different knowledge. Applied to Math Camp, the agent can
+                handle bounded production, while the student supplies context,
+                recognizes exceptions, and judges the evidence.
                 <a
                   href="https://www.gutenberg.org/ebooks/3300"
                   target="_blank"
@@ -153,45 +160,84 @@
                   >Source: Adam Smith, <em>The Wealth of Nations</em>, Book I,
                   Chapter I →</a
                 >
+                <a
+                  href="https://www.econlib.org/library/Essays/hykKnw.html"
+                  target="_blank"
+                  rel="noreferrer"
+                  >Source: F. A. Hayek, “The Use of Knowledge in Society” →</a
+                >
+                <a
+                  href="https://doi.org/10.1086/317671"
+                  target="_blank"
+                  rel="noreferrer"
+                  >Source: Luis Garicano, “Hierarchies and the Organization of
+                  Knowledge in Production” →</a
+                >
               </p>
             </div>
             <div class="session-plan">
               <div>
-                <time>00–20</time><strong>Welcome</strong>
+                <time>00–10</time><strong>Welcome + destination</strong>
                 <p>
-                  Meet the instructor and recognize the different starting
-                  points in the room.
+                  Meet the instructor, recognize the room's different starting
+                  points, and name what everyone should be able to do by the
+                  end.
                 </p>
               </div>
               <div>
-                <time>20–45</time><strong>Coordinate</strong>
+                <time>10–20</time
+                ><strong>Is coding still worth learning?</strong>
                 <p>
-                  Use the division of labor to distinguish the jobs of people,
-                  models, agents, R, and the harness.
+                  Separate syntax recall from reading, testing, changing, and
+                  explaining consequential instructions.
                 </p>
               </div>
               <div>
-                <time>45–70</time><strong>Learn</strong>
+                <time>20–35</time><strong>Divide the analytical work</strong>
                 <p>
-                  Discuss understanding, cognitive debt, and what students
-                  should be able to explain.
+                  Use the pin factory to ask who frames, executes, records,
+                  verifies, and interprets.
                 </p>
               </div>
               <div>
-                <time>70–95</time><strong>Judge</strong>
+                <time>35–50</time><strong>Map the system</strong>
                 <p>
-                  Match delegation to risk and to the evidence we can inspect.
+                  Distinguish models, chat, agents, harnesses, R, RStudio,
+                  Quarto, and Codex; then choose the tool after the task.
                 </p>
               </div>
               <div>
-                <time>95–112</time><strong>Specify</strong>
+                <time>50–60</time><strong>Break</strong>
+                <p>Step away from the screen and return at minute 60.</p>
+              </div>
+              <div>
+                <time>60–78</time><strong>Protect understanding</strong>
                 <p>
-                  Write one bounded work order with a visible completion check.
+                  Examine the new bottleneck, cognitive debt, and the learner as
+                  a second product of the work.
                 </p>
               </div>
               <div>
-                <time>112–120</time><strong>Handoff</strong>
-                <p>Move every laptop into the installation clinic.</p>
+                <time>78–90</time><strong>Match autonomy to risk</strong>
+                <p>
+                  Use verifiability and potential harm to decide what may be
+                  delegated and what must remain a human decision.
+                </p>
+              </div>
+              <div>
+                <time>90–110</time><strong>Build a live policy briefing</strong>
+                <p>
+                  Specify goal, context, permission, and proof; then ask Codex
+                  to retrieve current official WDI data and prepare a
+                  time-pressured meeting brief while we inspect the work live.
+                </p>
+              </div>
+              <div>
+                <time>110–120</time><strong>Handoff to Lab 1</strong>
+                <p>
+                  Open the project, locate the readiness command, and begin the
+                  installation clinic at minute 120.
+                </p>
               </div>
             </div>
             <div class="callout">
@@ -410,16 +456,19 @@
               </div>
             </div>
             <div class="prompt-box">
-              <span>BOUNDED WORK ORDER</span>
+              <span>BOUNDED POLICY-ANALYSIS WORK ORDER</span>
               <pre>
-Goal: Explain the Math Camp project without changing it.
-Context: Read START-HERE.md, the setup guide, and the project folders.
-Permission: Read only. Do not edit files or browse the web.
-Proof: List the files you read, separate facts from inferences, and end with three checks that I can run myself.</pre>
+Goal: Prepare an evidence inventory for this question: How is GDP per capita associated with under-five mortality across countries in 2022?
+Context: Use the shared frozen WDI data and indicator dictionary. Focus on country, year, gdp_per_capita_ppp, and under5_mortality.
+Permission: Read and summarize only. Do not edit or update the data, retrieve new data, or fit a model.
+Constraints: Use association language, flag missing values, and do not invent definitions.
+Proof: Report the unit, variable definitions, 2022 coverage, and three checks the class should complete before analysis.</pre>
             </div>
             <p>
+              This work order asks for an evidence inventory, not a conclusion.
               A good work order exposes failure, supports supervision, and gives
-              the class a clear result to discuss.
+              the class a concrete result to verify before fitting a model or
+              making a claim.
             </p>
           </section>
           <section class="article-section reveal" id="handoff">
@@ -450,6 +499,11 @@ Proof: List the files you read, separate facts from inferences, and end with thr
                 >Open the complete installation clinic →</a
               >
             </p>
+            <p>
+              <a href="../../labs/lab-1/handout/lab-1-handout.pdf"
+                >Open or print the one-page Lab 1 handout →</a
+              >
+            </p>
           </section>
           <section class="article-section reveal" id="slides">
             <p class="section-kicker">SLIDES</p>
@@ -457,6 +511,14 @@ Proof: List the files you read, separate facts from inferences, and end with thr
             <p>
               The slide deck is a 16:9 LaTeX Beamer PDF. It follows the same
               lesson and ends with the installation clinic.
+            </p>
+            <p>
+              The first teaching block contains three checkpoints and the
+              second contains two. Every checkpoint reserves two minutes for
+              discussion with nearby classmates and two minutes for whole-room
+              sharing. Block 2 then ends with a live online policy-briefing
+              demonstration. These are opportunities to test an idea and hear
+              another interpretation; there is no submission or grade.
             </p>
             <figure class="slide-frame">
               <object

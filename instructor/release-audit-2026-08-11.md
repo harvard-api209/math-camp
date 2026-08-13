@@ -22,7 +22,7 @@
 - Lesson 2 compiles from `slides/lesson-2/main.tex` with `latexmk -pdf`.
 - The final log scan found no LaTeX errors, undefined control sequences,
   overfull boxes, fatal errors, or missing source files.
-- Lesson 1 has 50 PDF pages; Lesson 2 has 45 PDF pages. Both are 16:9.
+- Lesson 1 has 53 PDF pages; Lesson 2 has 45 PDF pages. Both are 16:9.
 - Every page of both PDFs was rendered to an image and reviewed in four contact
   sheets per lesson. No title, table, code block, or source note is clipped.
 
