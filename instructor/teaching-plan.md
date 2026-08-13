@@ -100,16 +100,16 @@ into Lab 1.
 | 00–08 | Welcome, archetypes, destination | “What I want you to do by the end” |
 | 08–16 | Is coding still worth learning? | “Why the workflow changed” |
 | 16–20 | **Block 1 checkpoint 1** | Two minutes discuss; two minutes share |
-| 20–30 | Pin factory and divided knowledge | “Knowledge is divided too” |
+| 20–30 | Pin factory, full cost of delegation, and divided knowledge | “Knowledge is divided too” |
 | 30–34 | **Block 1 checkpoint 2** | Two minutes discuss; two minutes share |
 | 34–46 | Models, agents, harnesses, tools, and tool choice | “Choose the tool after the task” |
 | 46–50 | **Block 1 checkpoint 3** | Two minutes discuss; two minutes share |
 | 50–60 | **Break** | Use the break slide; resume at minute 60 |
-| 60–70 | Understanding and cognitive debt | “Cognitive debt” |
+| 60–70 | Attention scarcity, understanding, and cognitive debt | “Cognitive debt” |
 | 70–74 | **Block 2 checkpoint 1** | Two minutes discuss; two minutes share |
-| 74–84 | Evidence, expertise, and the learning routine | “Use the agent to help you understand” |
+| 74–84 | Two-period learning, tacit knowledge, evidence, and the learning routine | “Use the agent to help you understand” |
 | 84–88 | **Block 2 checkpoint 2** | Two minutes discuss; two minutes share |
-| 88–96 | Risk, verifiability, and the irregular frontier | “Match autonomy to risk and verifiability” |
+| 88–96 | Capability/adoption/impact, risk, and the irregular frontier | “Match autonomy to risk and verifiability” |
 | 96–110 | Work order, permissions, proof, and live demo | Ask Codex to retrieve current official WDI data and prepare the East Africa meeting brief without previewing the answer |
 | 110–120 | Lab handoff | Readiness gate and Lab 1 route |
 | 120–180 | **Lab 1** | Installation clinic |
@@ -165,6 +165,14 @@ route routine and exceptional problems to different problem solvers. The
 classroom implication is that students provide local context, recognize
 exceptions, and retain the final evidentiary judgment.
 
+Immediately after the pin factory, count the full cost of delegation. Present
+net value as time saved plus quality gain minus specification, verification,
+and expected error costs. Connect this to Coase's transaction-cost logic: the
+relevant comparison is between complete organizational arrangements, not
+between the speed of a person and the speed of an agent on one isolated step.
+Use the WDI example in the slide. If production saves twenty minutes but the
+handoff and review add thirty, the agent has not reduced total analytical work.
+
 The opening asks explicitly, **“Is it still worth learning to code?”** Students
 vote before hearing an answer and distinguish syntax recall from reading,
 modifying, decomposing, testing, and designing. Use Andrew Ng's argument that
@@ -175,6 +183,49 @@ semester, able to move in R, able to craft questions and locate help, and
 confident enough to make and repair mistakes in public. The final line is:
 **students should use help while retaining responsibility for judgment.**
 
+Use Linus Torvalds's 2026 mailing-list intervention to move the discussion from
+whether AI is useful to whether it helps the people responsible for maintaining
+the work. Ask students to translate his “maintainer test” into policy analysis:
+does the agent reduce total work or merely transfer work to reviewers, does it
+surface correctable errors, and can the accountable analyst inspect and reject
+the result? Present the excerpt as a direct quotation with a link to the
+linux-media archive; it is not a general endorsement of unreviewed output.
+
+In Block 2, place cognitive debt in a longer philosophical conversation. Plato's
+\*Phaedrus\* distinguishes an external reminder from understanding, while
+Aristotle's \*Nicomachean Ethics\*, Book VI, distinguishes technical making from
+practical judgment about situations that could be otherwise. Keep the teaching
+application concrete: students should be able to question and reconstruct an
+agent-produced artifact, and they should identify which policy choice remains a
+matter of judgment rather than technique.
+
+Open Block 2 with Herbert Simon's attention argument. More generated output
+does not abolish scarcity; it consumes the scarce attention needed to select,
+verify, explain, and integrate results. Then use the two-period learning model
+to separate today's artifact quality from tomorrow's capability. AI assistance
+can improve the first while either increasing capability through scaffolding or
+reducing it by displacing practice.
+
+Use Polanyi to explain why expertise is not a complete list of explicit rules:
+experienced people carry patterns, exceptions, and situational judgment. Pair
+that idea with Brynjolfsson, Li, and Raymond's customer-support evidence. AI may
+distribute useful patterns to novices, but students must still learn to notice
+when a pattern does not apply. State the empirical scope and avoid treating the
+workplace result as direct evidence about Math Camp learning.
+
+Before the jagged frontier, distinguish capability, adoption, and impact. A
+benchmark establishes capability under benchmark conditions. It does not show
+that people will integrate the system into a real workflow or that use will
+improve productivity, learning, or decisions. Use the 90-second prompt on the
+slide as a retrieval check inside the existing 88--96 minute block; do not add
+another checkpoint to the clock.
+
+When introducing the predict–delegate–observe–verify–explain protocol, briefly
+connect it to Norbert Wiener's cybernetic account of control through messages
+and feedback. The point is not to turn the lesson into intellectual history. It
+is to explain why observability is a condition for meaningful supervision: a
+person cannot correct a system whose actions and results remain hidden.
+
 The final hour is an **installation clinic**. The evidence inventory and R
 analysis begin after the readiness gate. Every student opens the project, starts R, verifies the required
 packages, finds Quarto, locates the frozen WDI file, signs in to Codex, and runs
@@ -182,6 +233,13 @@ packages, finds Quarto, locates the frozen WDI file, signs in to Codex, and runs
 diagnostic evidence. Yellow and red students work through macOS, Windows,
 package, path, or account lanes. A student leaves either green or with the exact
 failure, next repair, and a named instructor or ICA responsible for follow-up.
+
+Students who reach green while repairs continue complete the first read-only
+agent proof for 8--10 minutes. Codex locates the start instructions, frozen WDI data, and indicator
+dictionary, returns exact paths and short descriptions, and separates file facts
+from inference. The student manually verifies every path in RStudio and opens at
+least one file. This runs in parallel with repairs and does not become a required
+submission or a reason to stop helping students who are not yet green.
 
 Planned interactions: light archetype discussion, “is coding still worth
 learning?” reflection, engine/workshop classification, human tool-call

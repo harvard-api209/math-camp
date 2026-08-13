@@ -45,6 +45,7 @@
         <li><a href="#triage">Triage the room</a></li>
         <li><a href="#repair">Repair by layer</a></li>
         <li><a href="#green">Prove readiness</a></li>
+        <li><a href="#proof">First read-only proof</a></li>
         <li><a href="#help">Leave with a repair owner</a></li>
       </ol>
     </nav>
@@ -78,6 +79,7 @@
           ><a href="#triage">Triage the room</a
           ><a href="#repair">Repair by layer</a
           ><a href="#green">Prove readiness</a
+          ><a href="#proof">First read-only proof</a
           ><a href="#help">Leave with a repair owner</a>
         </aside>
         <article class="article">
@@ -258,6 +260,42 @@
               </li>
             </ul>
           </section>
+          <section class="article-section reveal" id="proof">
+            <p class="section-kicker">OPTIONAL · 8–10 MINUTES · AFTER YOUR GATE IS GREEN</p>
+            <h2>Prove that the agent and the student see the same project.</h2>
+            <p>
+              This optional 8–10 minute extension runs while setup repairs
+              continue. Open the course project in Codex and give it a
+              read-only request:
+            </p>
+            <div class="prompt-box">
+              <span>READ-ONLY PROJECT CHECK</span>
+              <pre>Read this project without changing files or running commands. Locate (1) the course start instructions, (2) the frozen WDI data, and (3) the indicator dictionary. Return each exact file path and one sentence about what the file contains. Separate statements you read from the files from inferences you made.</pre>
+            </div>
+            <ol class="learning-list">
+              <li>
+                <span>01</span><strong>Check each path manually.</strong> Use
+                RStudio’s Files pane rather than accepting the answer from memory.
+              </li>
+              <li>
+                <span>02</span><strong>Open one named file.</strong> Confirm that
+                the description matches what the file actually contains.
+              </li>
+              <li>
+                <span>03</span><strong>Name the boundary.</strong> Write one
+                sentence distinguishing what the agent learned from files from
+                what it inferred.
+              </li>
+            </ol>
+            <div class="callout">
+              <span>NO SUBMISSION</span>
+              <p>
+                This is a first supervised agent exercise, not a race and not a
+                graded artifact. If your machine is not green, continue repairing
+                setup instead.
+              </p>
+            </div>
+          </section>
           <section class="article-section reveal" id="help">
             <p class="section-kicker">57–60 MINUTES</p>
             <h2>Every red result leaves with an owned repair.</h2>
@@ -304,7 +342,7 @@
             </div>
             <div>
               <dt>CODING</dt>
-              <dd>None</dd>
+              <dd>Optional read-only agent check</dd>
             </div>
             <div>
               <dt>SUBMISSION</dt>

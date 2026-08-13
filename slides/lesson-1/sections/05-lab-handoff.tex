@@ -44,6 +44,23 @@ Rscript code/check_setup.R --codex-confirmed
   \end{itemize}
 \end{frame}
 
+\begin{frame}[fragile]{If your readiness gate is green}
+  Spend 8--10 minutes using Codex in read-only mode while the room continues
+  repairing setup:
+
+\begin{lstlisting}
+Read this project without changing files or running commands. Locate
+(1) the course start instructions, (2) the frozen WDI data, and
+(3) the indicator dictionary. Return each exact file path and one
+sentence about what the file contains. Separate statements you read
+from the files from inferences you made.
+\end{lstlisting}
+
+  \vfill
+  Verify every path manually in RStudio's Files pane. Then write one sentence:
+  \alert{What did the agent know from the files, and what did it infer?}
+\end{frame}
+
 \begin{frame}{Lab 1 route}
   \footnotesize
   \setlength{\tabcolsep}{0pt}
@@ -62,6 +79,7 @@ Rscript code/check_setup.R --codex-confirmed
     25--35 & Quarto & Install, restart RStudio, and rerun. \\
     35--50 & Data + Codex & Frozen file and project access. \\
     50--60 & Final gate & Green result or an owned repair plan. \\
+    After green & 8--10 min proof & Locate three files and verify every path. \\
     \bottomrule
   \end{tabular}
 \end{frame}

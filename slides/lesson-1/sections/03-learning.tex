@@ -1,7 +1,7 @@
 \section{Learning with an agent}
 \subsection{Understanding and cognitive debt}
 
-\begin{frame}{When generation becomes cheap}
+\begin{frame}{Abundant output consumes scarce attention}
   \begin{center}
   \begin{tikzpicture}[
     node distance=0.52cm,
@@ -20,8 +20,13 @@
   \end{center}
 
   \vspace{0.6em}
-  Faster production shifts more of our time toward choosing, checking,
-  explaining, and connecting the result to the question.
+  Faster production does not remove scarcity; it moves scarcity to the
+  attention required to choose, check, explain, and connect results to the
+  question.
+
+  \vfill
+  \fnote{Simon argued that information abundance creates a corresponding
+  scarcity of attention \citep{simon1971attention}.}
 \end{frame}
 
 \begin{frame}{Understanding is the new bottleneck}
@@ -69,6 +74,37 @@
   \fnote{Concept adapted from the discussion in \citet{litt2026}, which connects the term to Margaret-Anne Storey and Simon Willison.}
 \end{frame}
 
+\begin{frame}{External assistance is not practical judgment}
+  \begin{columns}[T,onlytextwidth]
+    \column{0.47\textwidth}
+      \begin{block}{Plato: reminder is not understanding}
+        In the \emph{Phaedrus}, writing is presented as an external aid that can
+        preserve words while giving a learner only the appearance of wisdom.
+
+        \vspace{0.45em}
+        \alert{Student test:} Can I question, explain, and reconstruct what the
+        agent produced?
+      \end{block}
+    \column{0.49\textwidth}
+      \begin{block}{Aristotle: technique is not judgment}
+        \emph{Techn\={e}} concerns making something well. \emph{Phron\={e}sis},
+        or practical wisdom, concerns deliberating well about situations that
+        could be otherwise.
+
+        \vspace{0.45em}
+        \alert{Policy test:} What should be done, for whom, and under which
+        uncertainty?
+      \end{block}
+  \end{columns}
+
+  \vfill
+  AI can extend memory and technique. Education still has to cultivate
+  understanding and practical judgment.
+
+  \fnote{Paraphrased from Plato, \emph{Phaedrus} 274c--275b, and Aristotle,
+  \emph{Nicomachean Ethics}, Book VI \citep{platoPhaedrus,aristotleEthics}.}
+\end{frame}
+
 \begin{frame}{Checkpoint 1: Is this understanding?}
   \alert{Block 2 · minutes 70--74}
 
@@ -90,22 +126,22 @@
   \end{center}
 \end{frame}
 
-\begin{frame}{Education has two products}
-  \begin{columns}[T,onlytextwidth]
-    \column{0.47\textwidth}
-      \begin{block}{The artifact}
-        A script, table, figure, or explanation that works for the current task.
-      \end{block}
-    \column{0.49\textwidth}
-      \begin{block}{The learner}
-        A person who can ask a new question, notice a mistake, and change the
-        work after the class ends.
-      \end{block}
-  \end{columns}
+\begin{frame}{Education produces an artifact and a future capability}
+  \begin{align*}
+    q_t &= q(h_t,a_t),\\
+    h_{t+1} &= h_t + \text{practice}
+      + \text{AI scaffolding} - \text{displaced practice}.
+  \end{align*}
+
+  \begin{itemize}
+    \item $q_t$: the quality of today's script, table, figure, or explanation.
+    \item $h_t$: the student's current ability to understand and change it.
+    \item $a_t$: the form and intensity of AI assistance.
+  \end{itemize}
 
   \vfill
-  Learning remains incomplete when a student keeps an agent-produced artifact
-  without being able to reconstruct its central decision.
+  Assistance can improve today's artifact while either building or weakening
+  tomorrow's capability. The learning design determines which effect dominates.
 \end{frame}
 
 \begin{frame}{What one coding experiment suggests}
@@ -130,20 +166,30 @@
   generalizing it to every learning setting.
 \end{frame}
 
-\begin{frame}{Experience still changes the result}
-  People with more task knowledge can usually:
-  \begin{itemize}
-    \item give the agent a better plan;
-    \item notice missing context;
-    \item request a more relevant check;
-    \item recover when a plausible answer is wrong.
-  \end{itemize}
+\begin{frame}{AI can transmit patterns without transmitting judgment}
+  \begin{columns}[T,onlytextwidth]
+    \column{0.47\textwidth}
+      \begin{block}{Polanyi: knowledge can be tacit}
+        Practice contains patterns, exceptions, and judgment that experts may
+        use without being able to state as a complete rule
+        \citep{polanyi1966tacit}.
+      \end{block}
+    \column{0.49\textwidth}
+      \begin{block}{Workplace evidence}
+        AI assistance raised customer-support productivity by 14\% on average
+        and by 34\% among novice and lower-skilled workers
+        \citep{brynjolfsson2023work}.
+      \end{block}
+  \end{columns}
+
+  \vspace{0.55em}
+  One interpretation is that the system helped distribute patterns previously
+  concentrated among experienced workers. The open question is whether users
+  also learn when those patterns do not apply.
 
   \vfill
-  Observational evidence from coding-agent sessions finds persistent returns to
-  expertise. The authors describe this association and leave its causal
-  interpretation open
-  \citep{hitzig2026}.
+  Coding-agent traces still show persistent returns to task expertise; that
+  evidence is observational rather than causal \citep{hitzig2026}.
 \end{frame}
 
 \subsection{A learning routine}

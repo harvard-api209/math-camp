@@ -1,17 +1,31 @@
 \section{Delegating a bounded task}
 \subsection{Risk and verifiability}
 
-\begin{frame}{More autonomy can accumulate more errors}
-  \begin{itemize}
-    \item A long task requires several decisions to be correct in sequence.
-    \item One local mistake can influence every later step.
-    \item Breaking the work into parts makes intermediate results observable.
-    \item Tests reduce risk only when they check something related to the real question.
-  \end{itemize}
+\begin{frame}{Capability, adoption, and impact are different claims}
+  \begin{columns}[T,onlytextwidth]
+    \column{0.31\textwidth}
+      \begin{block}{Capability}
+        Can the system complete a task under specified conditions?
+      \end{block}
+    \column{0.31\textwidth}
+      \begin{block}{Adoption}
+        Is it actually used inside a real workflow, by whom, and how often?
+      \end{block}
+    \column{0.31\textwidth}
+      \begin{block}{Impact}
+        Does its use change productivity, quality, learning, or decisions?
+      \end{block}
+  \end{columns}
+
+  \vspace{0.7em}
+  \begin{block}{90-second checkpoint}
+    A coding agent improves on a benchmark. What has been established?
+    \alert{Capability under those benchmark conditions---not adoption or impact.}
+  \end{block}
 
   \vfill
-  Coding agents have improved quickly on long-task benchmarks. Our project still
-  requires its own checks \citep{metr2025}.
+  A benchmark can guide a hypothesis about our workflow. It cannot replace
+  evidence from our workflow \citep{metr2025}.
 \end{frame}
 
 \begin{frame}{The frontier is irregular}
@@ -33,7 +47,8 @@
 
   \vfill
   Confidence gives us no information about where the task was on this ``jagged
-  frontier'' \citep{dellacqua2026}.
+  frontier'' \citep{dellacqua2026}. Longer tasks also chain more decisions, so
+  one local error can influence every later step.
 \end{frame}
 
 \begin{frame}{Match autonomy to risk and verifiability}
@@ -198,6 +213,10 @@ checks the class should complete before analysis.
   \vfill
   ``Reject'' and ``still unresolved'' are valid outcomes. Keep a result when the
   available evidence supports it.
+
+  \fnote{The loop echoes Wiener's account of control through communication and
+  feedback: a system can correct only what it can observe
+  \citep{wiener1948cybernetics}.}
 \end{frame}
 
 \begin{frame}[fragile]{Live demonstration: the assignment}

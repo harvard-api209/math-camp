@@ -28,27 +28,34 @@
   {\scriptsize Pedagogical framing inspired by a teaching slide shared by Luis Garicano.}
 \end{frame}
 
-\begin{frame}{AI changes the division of analytical work}
+\begin{frame}{Delegation has a full cost}
   \begin{center}
-  \begin{tikzpicture}[
-    node distance=0.42cm,
-    box/.style={draw=palegray,rounded corners=2pt,text width=2.45cm,
-      minimum height=1.22cm,align=center,font=\small},
-    arr/.style={-{Latex[length=1.8mm]},color=crimson,thick}
-  ]
-    \node[box] (person1) {\textbf{Person}\\question + standard};
-    \node[box,right=of person1] (agent) {\textbf{Agent}\\propose + execute};
-    \node[box,right=of agent] (software) {\textbf{R + tools}\\compute + record};
-    \node[box,right=of software] (person2) {\textbf{Person}\\verify + interpret};
-    \draw[arr] (person1)--node[above,font=\scriptsize]{work order}(agent);
-    \draw[arr] (agent)--node[above,font=\scriptsize]{tool calls}(software);
-    \draw[arr] (software)--node[above,font=\scriptsize]{evidence}(person2);
-  \end{tikzpicture}
+    \large
+    $\text{Net value of delegation}
+    \;=\;
+    \underbrace{\text{time saved}+\text{quality gain}}_{\text{benefit}}
+    \;-\;
+    \underbrace{\text{specification}+\text{verification}
+      +\text{expected error cost}}_{\text{full cost}}.$
   \end{center}
 
-  \vspace{0.7em}
-  The productivity gain depends on coordination. A useful workflow makes the
-  task, context, permissions, output, and acceptance check visible.
+  \vspace{0.65em}
+  \begin{columns}[T,onlytextwidth]
+    \column{0.48\textwidth}
+      \begin{block}{A narrow calculation}
+        The agent produces a WDI comparison in 20 minutes instead of 40.
+      \end{block}
+    \column{0.48\textwidth}
+      \begin{block}{The complete workflow}
+        Writing the request and checking definitions, years, revisions, and
+        arithmetic require another 30 minutes.
+      \end{block}
+  \end{columns}
+
+  \vfill
+  ``The agent can do it'' does not establish that delegation improves the
+  workflow. Count the handoff and review, not only production
+  \citep{coase1937firm}.
 \end{frame}
 
 \begin{frame}{Knowledge is divided too}
