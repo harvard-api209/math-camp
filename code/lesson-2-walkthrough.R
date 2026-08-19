@@ -4,6 +4,15 @@
 # section at a time with Command+Enter (macOS) or Ctrl+Enter (Windows). Use
 # Source only when you want to rebuild the complete walkthrough from the frozen
 # teaching file.
+#
+# The sections below follow the Lesson 2 deck in teaching order:
+#   0       working setup
+#   1-2     policy question, observation, key, and table plan
+#   3       R grammar and source inspection
+#   4-8     select, filter, mutate, arrange, group_by, and summarise
+#   9-10    reshape and join while protecting the unit
+#   11-12   save, record, and independently verify the table
+#   13      bounded agent review and the Lab 2 handoff
 
 # 0. Working setup ------------------------------------------------------------
 
@@ -34,10 +43,53 @@ interpretation_boundary <- paste(
   "The table cannot by itself establish that income causes mortality to change."
 )
 
+briefing_context
+policy_question
+interpretation_boundary
+
 # IN-CLASS PAUSE (2 minutes): Suppose Kenya-2022 appears in two rows of the
 # draft analysis table. Ask students what could produce two rows for the same
 # economy and period, and why that could change a table, plot, or conclusion.
 # Do not reveal the role of indicator or join keys until after the discussion.
+
+# 2. Define the observation, key, and table plan ------------------------------
+#
+# These two small objects reproduce the conceptual tables in the deck. We are
+# not transforming the source yet. First, compare what one row means and which
+# columns are required to identify it uniquely.
+
+kenya_2022_long_example <- tibble(
+  iso3c = c("KEN", "KEN"),
+  country = c("Kenya", "Kenya"),
+  year = c(2022L, 2022L),
+  indicator = c("GDP per capita, PPP", "Under-five mortality"),
+  value = c(5492, 40.5)
+)
+
+kenya_2022_wide_example <- tibble(
+  iso3c = "KEN",
+  country = "Kenya",
+  year = 2022L,
+  gdp_per_capita_ppp = 5492,
+  under5_mortality = 40.5
+)
+
+kenya_2022_long_example
+kenya_2022_wide_example
+
+stopifnot(
+  !anyDuplicated(
+    kenya_2022_long_example[c("iso3c", "year", "indicator")]
+  ),
+  !anyDuplicated(kenya_2022_wide_example[c("iso3c", "year")])
+)
+
+# RETURN TO THE OPENING QUESTION
+# Two Kenya-2022 rows could reflect a legitimate indicator dimension, another
+# unnamed dimension such as sex/unit/version, a nonunique join key, or a record
+# appended twice. If the intended unit is one economy-year, leaving both rows
+# can give Kenya excess weight, duplicate a plotted point, create conflicting
+# values, and change the apparent association. Diagnose before using distinct().
 
 table_plan <- tibble(
   field = c("Population", "Unit", "Key", "Period", "Outcome", "Comparison"),
@@ -51,62 +103,18 @@ table_plan <- tibble(
   )
 )
 
-briefing_context
-policy_question
-interpretation_boundary
 table_plan
 
 
-# 2. The same evidence can have different row meanings -----------------------
+# 3. Read R sentences and inspect the frozen source ---------------------------
+
+# DECK CUE: Read this sentence as object -> assignment -> pipe -> function ->
+# arguments. We run the full selection in Section 4, after inspecting the
+# source. Keeping the preview commented prevents us from changing the table
+# before we have described it.
 #
-# The frozen teaching file is already wide: one economy-year row contains many
-# indicators in separate columns. We temporarily reshape one real observation
-# to long form so the role of the key is visible.
-
-kenya_2022_wide <- wdi |>
-  filter(iso3c == "KEN", year == 2022L) |>
-  select(
-    iso3c,
-    country,
-    year,
-    gdp_per_capita_ppp,
-    under5_mortality
-  )
-
-kenya_2022_long <- kenya_2022_wide |>
-  pivot_longer(
-    cols = c(gdp_per_capita_ppp, under5_mortality),
-    names_to = "indicator",
-    values_to = "value"
-  )
-
-kenya_2022_long
-
-# Two Kenya-2022 rows are correct here. One row means an
-# economy-year-indicator, so indicator belongs in the key.
-kenya_2022_long |>
-  count(iso3c, year, name = "rows_per_economy_year")
-
-stopifnot(
-  !anyDuplicated(kenya_2022_long[c("iso3c", "year", "indicator")])
-)
-
-# For our analysis, the two indicators must be columns on one economy-year row.
-kenya_2022_rebuilt <- kenya_2022_long |>
-  pivot_wider(names_from = indicator, values_from = value)
-
-kenya_2022_rebuilt
-stopifnot(!anyDuplicated(kenya_2022_rebuilt[c("iso3c", "year")]))
-
-# RETURN TO THE OPENING QUESTION
-# Two Kenya-2022 rows could reflect a legitimate indicator dimension, another
-# unnamed dimension such as sex/unit/version, a nonunique join key, or a record
-# appended twice. If the intended unit is one economy-year, leaving both rows
-# can give Kenya excess weight, duplicate a plotted point, create conflicting
-# values, and change the apparent association. Diagnose before using distinct().
-
-
-# 3. Inspect the frozen source before transforming it -------------------------
+# health_selected <- wdi |>
+#   select(iso3c, year, gdp_per_capita_ppp, under5_mortality)
 
 glimpse(wdi)
 names(wdi)
@@ -170,6 +178,11 @@ filter_record
 
 # The filtered table is no longer evidence about every economy-year in the
 # source. Its population is the economy-years included by the table plan.
+#
+# CHECKPOINT 1 — NAME WHO LEFT
+# Discuss which population the filtered result represents, how to distinguish
+# missing years from missing indicators, and what sample sentence should
+# accompany a later table, plot, or model.
 
 
 # 6. mutate(): create a value with a stated meaning ---------------------------
@@ -227,9 +240,51 @@ stopifnot(!anyDuplicated(regional_year[c("region", "year")]))
 
 # One row now means a region-year. This is a new table for a new descriptive
 # purpose; it does not replace the economy-year analysis table.
+#
+# DECK CUE — PREDICT THE REGIONAL OUTPUT
+# With seven regions and 23 years, the largest possible result has 161 rows.
+# Ask why incomplete coverage could make the observed count smaller and why
+# the number of contributing economies matters alongside the mean.
 
 
-# 9. left_join(): protect the left table from row multiplication --------------
+# 9. Reshape only after naming the source and target units --------------------
+#
+# The frozen source is already wide. Here we temporarily reshape one real
+# Kenya-2022 observation to demonstrate the deck's long-to-wide logic with R.
+
+kenya_2022_wide <- wdi |>
+  filter(iso3c == "KEN", year == 2022L) |>
+  select(
+    iso3c,
+    country,
+    year,
+    gdp_per_capita_ppp,
+    under5_mortality
+  )
+
+kenya_2022_long <- kenya_2022_wide |>
+  pivot_longer(
+    cols = c(gdp_per_capita_ppp, under5_mortality),
+    names_to = "indicator",
+    values_to = "value"
+  )
+
+kenya_2022_long
+
+# Two Kenya-2022 rows are correct here because one row means an
+# economy-year-indicator. The indicator therefore belongs in the key.
+stopifnot(
+  !anyDuplicated(kenya_2022_long[c("iso3c", "year", "indicator")])
+)
+
+kenya_2022_rebuilt <- kenya_2022_long |>
+  pivot_wider(names_from = indicator, values_from = value)
+
+kenya_2022_rebuilt
+stopifnot(!anyDuplicated(kenya_2022_rebuilt[c("iso3c", "year")]))
+
+
+# 10. left_join(): protect the left table from row multiplication -------------
 
 country_metadata <- wdi |>
   distinct(iso3c, country, region, income_level_current)
@@ -282,8 +337,13 @@ tibble(
   distinct_economy_years = n_distinct(paste(bad_join$iso3c, bad_join$year))
 )
 
+# CHECKPOINT 2 — APPROVE OR STOP THE JOIN
+# The code can run without an R error while multiplying rows. Before accepting
+# a join, identify the broken assumption, inspect the right-side key, and state
+# the evidence required for the join to proceed.
 
-# 10. Save the checked analysis table and its build record --------------------
+
+# 11. Save the checked analysis table and its build record --------------------
 
 health_analysis <- health_joined |>
   select(
@@ -332,9 +392,60 @@ write_csv(
 build_record
 
 
-# 11. Independent completion check -------------------------------------------
+# 12. Independently verify the saved object ----------------------------------
 #
 # This reopens the saved output in a separate script and verifies it against
 # the frozen source. Run this section after the output files have been written.
 
 source("code/02-verify-analysis.R")
+
+
+# 13. Guided agent review and Lab 2 handoff ----------------------------------
+#
+# DEMONSTRATION GOAL
+# Strengthen one documented check for under5_mortality without changing the
+# table, sample, key, or transformation. The target evidence is that the data
+# dictionary identifies the variable as SH.DYN.MORT and states its unit per
+# 1,000 live births.
+#
+# STEP 1 — ESTABLISH THE BASELINE
+# Run these commands in the RStudio Terminal before opening the agent:
+#   Rscript code/02-build-analysis.R
+#   Rscript code/02-verify-analysis.R
+# Record the green result so the class knows what must remain true.
+#
+# STEP 2 — LOCATE THE GAP
+# The verifier checks observed and nonnegative mortality values, but it does not
+# yet connect the column to the documented indicator identity and unit.
+#
+# STEP 3 — REQUEST ONE READ-ONLY PROPOSAL
+
+bounded_agent_request <- paste(
+  "Goal: Propose the smallest change to code/02-verify-analysis.R that",
+  "confirms the under5_mortality dictionary entry has indicator code",
+  "SH.DYN.MORT and a unit stated per 1,000 live births.",
+  "Context: Read the verifier and data/documentation/indicator-dictionary.csv.",
+  "Permission: Read only. Show a proposed diff; do not edit yet.",
+  "Constraints: Do not change the table, sample, key, or variables.",
+  "Done when: Explain what the new check proves and name the command we",
+  "should rerun after reviewing it."
+)
+
+bounded_agent_request
+
+# STEP 4 — INSPECT BEFORE EDITING
+# Check that the proposal reads the dictionary, tests the code and unit, leaves
+# the analysis table unchanged, and has a predictable result.
+#
+# CHECKPOINT 3 — WHICH PROPOSAL SERVES THE GOAL?
+# Reject an invented upper bound of 100: mortality is measured per 1,000 live
+# births, not as a percentage. Prefer a definition-aware dictionary check.
+#
+# STEP 5 — APPLY ONE ACCEPTED CHANGE AND RERUN THE VERIFIER
+# The demonstration ends only if the new check and all existing checks pass,
+# the table is unchanged, and the class can explain the evidence produced.
+
+# LAB 2 HANDOFF
+# Students reopen the green project, complete code/lab-2-starter.R, build the
+# table, preserve a build record, request at most one bounded agent improvement,
+# and finish by running Rscript code/02-verify-analysis.R in the Terminal.

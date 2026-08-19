@@ -1,91 +1,129 @@
 \section{From Lesson 2 to Lab 2}
 \subsection{Bounded help}
 
-\begin{frame}{Live demonstration: builder, agent, verifier}
-  \begin{center}
-  \begin{tikzpicture}[
-    node distance=0.42cm,
-    box/.style={draw=palegray,rounded corners=2pt,text width=2.35cm,
-      minimum height=1.35cm,align=center,font=\small},
-    arr/.style={-{Latex[length=2mm]},color=crimson,thick}
-  ]
-    \node[box] (build) {\textbf{Build}\\run the readable R pipeline};
-    \node[box,right=of build] (delegate) {\textbf{Delegate}\\request one missing check};
-    \node[box,right=of delegate] (inspect) {\textbf{Inspect}\\read the proposal or diff};
-    \node[box,right=of inspect] (verify) {\textbf{Verify}\\rerun from saved files};
-    \draw[arr] (build)--(delegate);
-    \draw[arr] (delegate)--(inspect);
-    \draw[arr] (inspect)--(verify);
-  \end{tikzpicture}
-  \end{center}
+\begin{frame}{Goal for the live demonstration}
+  The health table is built and the current verifier is green. Before using the
+  table in a policy briefing, we want to strengthen \alert{one documented check}:
 
-  \vfill
-  Watch the file names, requested permissions, commands, diff, and final
-  evidence. The demonstration uses the same project and health table that you
-  will use tomorrow.
-\end{frame}
-
-\begin{frame}{Give the agent one task you can evaluate}
-  A broad request hides the important decisions:
-  \begin{block}{Too broad}
-    Clean this dataset and make it analysis-ready.
+  \vspace{0.6em}
+  \begin{block}{Our task}
+    Confirm that \texttt{under5\_mortality} refers to World Bank indicator
+    \texttt{SH.DYN.MORT} and is measured per 1,000 live births---without
+    changing the table, sample, or transformation.
   \end{block}
 
-  Ask for one improvement:
-  \begin{itemize}
-    \item add a key or range assertion;
-    \item diagnose unmatched join keys;
-    \item produce a compact build record.
-  \end{itemize}
-
   \vfill
-  First write a small pipeline that you can read. Then use the agent as a reviewer.
+  By the end, we should be able to explain why we used a builder, what we asked
+  the agent to review, and what the independent verifier established.
 \end{frame}
 
-\begin{frame}[fragile]{A bounded request for the health table}
+\begin{frame}[fragile]{Step 1: establish the baseline ourselves}
+  First rebuild the table and run the existing checks:
+
 \begin{lstlisting}
-Goal: Find one important requirement in the table plan that the
-builder or verifier does not yet test, then propose the smallest useful diff.
-Context: Read code/02-build-analysis.R,
-code/02-verify-analysis.R, and the indicator dictionary.
-Permission: Read only first. Do not edit frozen data or browse the web.
-Constraints: Preserve the country-year unit, sample, and lowercase names.
-Proof: Connect the proposed check to a documented definition, predict
-its result, and name the command that will verify it.
+Rscript code/02-build-analysis.R
+Rscript code/02-verify-analysis.R
+\end{lstlisting}
+
+  \begin{description}
+    \item[Builder] Creates the saved table and its build record from the frozen source.
+    \item[Verifier] Reopens the saved table and checks the requirements already encoded.
+  \end{description}
+
+  \vfill
+  Record the green result before asking for help. A later change should preserve
+  that baseline while adding evidence for our specific goal.
+\end{frame}
+
+\begin{frame}{Step 2: locate the missing evidence}
+  The current verifier establishes that mortality values are observed and
+  nonnegative. It does not yet connect the column to its documented identity
+  and unit.
+
+  \vspace{0.5em}
+  \begin{description}
+    \item[Table plan] Under-five mortality per 1,000 live births.
+    \item[Dictionary] \texttt{under5\_mortality}; \texttt{SH.DYN.MORT}; deaths
+      before age five per 1,000 live births.
+    \item[Missing check] Does the verifier confirm that the expected dictionary
+      entry is present before accepting the saved table?
+  \end{description}
+
+  \vfill
+  We choose the gap. The agent does not choose the policy question, unit, or
+  meaning of the variable for us.
+\end{frame}
+
+\begin{frame}[fragile]{Step 3: ask for one reviewable proposal}
+\begin{lstlisting}
+Goal: Propose the smallest change to code/02-verify-analysis.R
+that confirms the under5_mortality dictionary entry has indicator
+code SH.DYN.MORT and a unit stated per 1,000 live births.
+Context: Read the verifier and data/documentation/
+indicator-dictionary.csv.
+Permission: Read only. Show a proposed diff; do not edit yet.
+Constraints: Do not change the table, sample, key, or variables.
+Done when: Explain what the new check proves and name the command
+we should rerun after reviewing it.
 \end{lstlisting}
 \end{frame}
 
-\begin{frame}{Review the proposed diff}
-  For every added check, answer:
+\begin{frame}{Step 4: inspect before allowing an edit}
+  Read the proposal together. Ask:
   \begin{enumerate}
-    \item Which part of the table plan does it test?
-    \item What failure would it expose?
-    \item Can I explain the output?
-    \item Does the proposed change affect the population, transformation, or key?
+    \item Does it read the checked-in dictionary rather than invent a definition?
+    \item Does it test both the indicator code and the documented unit?
+    \item Does it leave the table, population, key, and transformation unchanged?
+    \item Can we predict what will pass or fail before running it?
   \end{enumerate}
 
   \vfill
-  A change to the population, transformation, or key is a substantive decision.
-  The analyst remains responsible even when the request is described as code cleanup.
+  Only after this review do we either reject the proposal, request a revision,
+  or permit the smallest acceptable edit.
 \end{frame}
 
-\begin{frame}{Checkpoint 3: would you accept the patch?}
-  The agent proposes checking that under-five mortality is no larger than 100,
-  because it assumes the column is a percentage. The dictionary says the unit
-  is deaths before age five per 1,000 live births.
+\begin{frame}{Checkpoint 3: which proposal serves the goal?}
+  Compare two possible checks:
+
+  \begin{description}
+    \item[Proposal A] Require every mortality value to be at most 100 because
+      the variable sounds like a percentage.
+    \item[Proposal B] Confirm that the dictionary entry is
+      \texttt{SH.DYN.MORT} and states a unit per 1,000 live births.
+  \end{description}
 
   \vspace{0.5em}
   Decide together:
   \begin{enumerate}
-    \item Is the proposed threshold justified?
-    \item Should we reject, revise, or accept the patch?
-    \item What evidence should appear after the revision?
+    \item Which proposal answers the goal we set?
+    \item Why is the other proposal unsupported?
+    \item What result should the revised verifier display?
   \end{enumerate}
 
   \vfill
   \centering
   \textbf{2 minutes discuss}\qquad$\longrightarrow$\qquad
   \textbf{2 minutes share}
+\end{frame}
+
+\begin{frame}[fragile]{Step 5: apply one change and rerun the evidence}
+  If the proposal survives review, allow the edit and rerun only the independent
+  verifier:
+
+\begin{lstlisting}
+Rscript code/02-verify-analysis.R
+\end{lstlisting}
+
+  We are finished only when:
+  \begin{itemize}
+    \item the new dictionary check is visible and passes;
+    \item all earlier checks still pass;
+    \item the table itself has not changed;
+    \item we can explain what the added check proves---and what it does not.
+  \end{itemize}
+
+  \vfill
+  The agent proposes code. The class decides whether the evidence is adequate.
 \end{frame}
 
 \begin{frame}{Decisions the analyst keeps}
