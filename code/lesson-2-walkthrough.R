@@ -12,7 +12,7 @@
 #   4-8     select, filter, mutate, arrange, group_by, and summarise
 #   9-10    reshape and join while protecting the unit
 #   11-12   save, record, and independently verify the table
-#   13      bounded agent review and the Lab 2 handoff
+#   13      bounded claim review and the Lab 2 handoff
 
 # 0. Working setup ------------------------------------------------------------
 
@@ -183,6 +183,10 @@ filter_record
 # Discuss which population the filtered result represents, how to distinguish
 # missing years from missing indicators, and what sample sentence should
 # accompany a later table, plot, or model.
+
+# BREAK — 10 MINUTES
+# Keep the RStudio project and this walkthrough open. After the break, continue
+# with Section 6 and transform the checked sample one verb at a time.
 
 
 # 6. mutate(): create a value with a stated meaning ---------------------------
@@ -400,52 +404,96 @@ build_record
 source("code/02-verify-analysis.R")
 
 
-# 13. Guided agent review and Lab 2 handoff ----------------------------------
+# 13. Guided claim review and Lab 2 handoff ----------------------------------
 #
 # DEMONSTRATION GOAL
-# Strengthen one documented check for under5_mortality without changing the
-# table, sample, key, or transformation. The target evidence is that the data
-# dictionary identifies the variable as SH.DYN.MORT and states its unit per
-# 1,000 live births.
+# We began with a policy question and built the economy-year table it requires.
+# We now audit a draft briefing sentence against the saved table, build record,
+# dictionary, builder, and verifier. The task is read-only. The agent does not
+# edit code or estimate the association that belongs in Lesson 3.
 #
-# STEP 1 — ESTABLISH THE BASELINE
+# STEP 1 — ESTABLISH THE EVIDENCE
 # Run these commands in the RStudio Terminal before opening the agent:
 #   Rscript code/02-build-analysis.R
 #   Rscript code/02-verify-analysis.R
-# Record the green result so the class knows what must remain true.
+# The first command creates the table and build record. The second reopens the
+# saved object and checks whether it meets the construction requirements.
 #
-# STEP 2 — LOCATE THE GAP
-# The verifier checks observed and nonnegative mortality values, but it does not
-# yet connect the column to the documented indicator identity and unit.
+# STEP 2 — NAME THE DECISION
+# Decide whether this draft is ready for a policy briefing:
+
+draft_briefing_statement <- paste(
+  "Across 217 economies from 2000 to 2022,",
+  "higher income reduced under-five mortality."
+)
+
+draft_briefing_statement
+
+# The statement mixes three evidentiary categories:
+#   1. facts already documented by the saved artifacts;
+#   2. an association that has not yet been calculated;
+#   3. a causal claim that this descriptive design cannot establish.
 #
-# STEP 3 — REQUEST ONE READ-ONLY PROPOSAL
+# STEP 3 — ASK FOR ONE BOUNDED, READ-ONLY REVIEW
 
 bounded_agent_request <- paste(
-  "Goal: Propose the smallest change to code/02-verify-analysis.R that",
-  "confirms the under5_mortality dictionary entry has indicator code",
-  "SH.DYN.MORT and a unit stated per 1,000 live births.",
-  "Context: Read the verifier and data/documentation/indicator-dictionary.csv.",
-  "Permission: Read only. Show a proposed diff; do not edit yet.",
-  "Constraints: Do not change the table, sample, key, or variables.",
-  "Done when: Explain what the new check proves and name the command we",
-  "should rerun after reviewing it."
+  c(
+    "We need to decide whether a draft sentence is ready for a policy briefing.",
+    "Review the sentence against the checked Lesson 2 artifacts.",
+    "",
+    paste0("Draft: \"", draft_briefing_statement, "\""),
+    "",
+    "Read:",
+    "- outputs/02-health-build-record.csv",
+    "- outputs/02-health-analysis.csv",
+    "- data/documentation/indicator-dictionary.csv",
+    "- code/02-build-analysis.R",
+    "- code/02-verify-analysis.R",
+    "",
+    "Work in read-only mode. Do not edit files, browse the web, or run a new",
+    "statistical model. For each part of the draft, classify it as:",
+    "(a) supported by an artifact, (b) not yet calculated, or",
+    "(c) not supported by this descriptive design.",
+    "",
+    "Cite the exact file and value used for every supported statement.",
+    "Then write a two-sentence handoff note that states what table we built",
+    "and what analysis must happen next. Separate facts found in files from",
+    "your inferences. If an item cannot be verified, say so."
+  ),
+  collapse = "\n"
 )
 
 bounded_agent_request
 
-# STEP 4 — INSPECT BEFORE EDITING
-# Check that the proposal reads the dictionary, tests the code and unit, leaves
-# the analysis table unchanged, and has a predictable result.
+# STEP 4 — INSPECT THE ANSWER AGAINST THE ARTIFACTS
+# Require these distinctions before accepting the agent's handoff:
+#   - 217 economies occur in the frozen source; 188 occur in the analysis table.
+#   - 4,296 rows remain after 695 source rows are excluded by the table plan.
+#   - the table spans 2000-2022, but this does not imply balanced coverage.
+#   - the income-mortality association has not yet been plotted or estimated.
+#   - this descriptive table cannot establish that income caused mortality.
 #
-# CHECKPOINT 3 — WHICH PROPOSAL SERVES THE GOAL?
-# Reject an invented upper bound of 100: mortality is measured per 1,000 live
-# births, not as a percentage. Prefer a definition-aware dictionary check.
-#
-# STEP 5 — APPLY ONE ACCEPTED CHANGE AND RERUN THE VERIFIER
-# The demonstration ends only if the new check and all existing checks pass,
-# the table is unchanged, and the class can explain the evidence produced.
+# FINAL SYNTHESIS — WRITE THE HANDOFF
+# A defensible answer says what object is ready and what remains to be learned:
+
+supported_handoff <- paste(
+  "We constructed a table of 4,296 economy-year observations from 188",
+  "economies between 2000 and 2022, retaining records with observed",
+  "under-five mortality and observed positive GDP per capita, PPP;",
+  "the table excludes 695 source rows and has a unique economy-year key."
+)
+
+next_step_handoff <- paste(
+  "The table is ready for a descriptive comparison of income and mortality,",
+  "but that association has not yet been estimated and this table alone",
+  "cannot establish that a change in income causes mortality to change."
+)
+
+supported_handoff
+next_step_handoff
 
 # LAB 2 HANDOFF
-# Students reopen the green project, complete code/lab-2-starter.R, build the
-# table, preserve a build record, request at most one bounded agent improvement,
-# and finish by running Rscript code/02-verify-analysis.R in the Terminal.
+# Students complete code/lab-2-starter.R, build the same table, preserve a build
+# record, review one claim against their artifacts, and finish by running
+# Rscript code/02-verify-analysis.R in the Terminal. Lesson 3 begins from this
+# checked object and examines the first substantive pattern.

@@ -46,7 +46,7 @@
         <li><a href="#verbs">R verbs and functions</a></li>
         <li><a href="#record">Build record</a></li>
         <li><a href="#build">Build together</a></li>
-        <li><a href="#agent">Bounded agent pass</a></li>
+        <li><a href="#agent">Claim audit</a></li>
         <li><a href="#slides">Slides</a></li>
       </ol>
     </nav>
@@ -67,7 +67,7 @@
           </p>
           <div class="article-actions">
             <a
-              href="https://github.com/harvard-api209/math-camp/releases/download/lab-2-v1.0.2/math-camp-2026-lab-2-v1.0.2.zip"
+              href="https://github.com/harvard-api209/math-camp/releases/download/lab-2-v1.0.3/math-camp-2026-lab-2-v1.0.3.zip"
               >DOWNLOAD LESSON 2 + LAB 2 PROJECT ↓</a
             ><a href="../../code/lesson-2-walkthrough.R"
               >OPEN FULL R WALKTHROUGH →</a
@@ -86,7 +86,7 @@
           ><a href="#question">From question to table</a
           ><a href="#verbs">R verbs and functions</a><a href="#record">Build record</a
           ><a href="#build">Build together</a
-          ><a href="#agent">Bounded agent pass</a><a href="#slides">Slides</a>
+          ><a href="#agent">Claim audit</a><a href="#slides">Slides</a>
         </aside>
         <article class="article">
           <section class="article-section reveal" id="question">
@@ -327,10 +327,10 @@
             <p class="section-kicker">LIVE CODING</p>
             <h2>Build, delegate, and verify one table together.</h2>
             <p class="article-lead">
-              Today is a rehearsal for tomorrow's lab. We begin from a green
-              project, build the table in readable steps, let the agent propose
-              one bounded improvement, and then verify the saved object in a
-              separate R process.
+              Today is a rehearsal for tomorrow's lab. We open the frozen
+              source, define the table, build it in readable steps, verify the
+              saved object in a separate R process, and then ask an agent to
+              audit one draft briefing claim against those artifacts.
             </p>
             <div class="callout">
               <span>FOLLOW THE SAME SCRIPT IN RSTUDIO</span>
@@ -346,7 +346,7 @@
             <div class="session-plan">
               <div>
                 <time>00–10</time><strong>Working setup</strong>
-                <p>Reach green and open the evidence inventory.</p>
+                <p>Open the project and confirm the 4,991-row source.</p>
               </div>
               <div>
                 <time>10–25</time><strong>Plan the table</strong>
@@ -361,31 +361,33 @@
                 <p>Ten minutes away from the screen.</p>
               </div>
               <div>
-                <time>60–82</time><strong>Mutate + summarise</strong>
+                <time>60–82</time><strong>Transform + summarise</strong>
                 <p>Track value changes and changes in the unit.</p>
               </div>
               <div>
-                <time>82–98</time><strong>Join</strong>
+                <time>82–100</time><strong>Reshape + join</strong>
                 <p>Diagnose a row-multiplying metadata join.</p>
               </div>
               <div>
-                <time>98–112</time><strong>Agent + verifier</strong>
-                <p>Inspect one proposal and require independent evidence.</p>
+                <time>100–112</time><strong>Build + verify</strong>
+                <p>Save the artifacts and require independent evidence.</p>
               </div>
               <div>
-                <time>112–120</time><strong>Lab handoff</strong>
-                <p>Locate the starter and rehearse tomorrow's first command.</p>
+                <time>112–120</time><strong>Evidence + handoff</strong>
+                <p>Audit one claim, then locate tomorrow's starter.</p>
               </div>
             </div>
             <div class="code-plate">
               <div class="code-plate-head">
-                <span>TERMINAL</span><span>WORKING-SESSION GATE</span>
+                <span>R</span><span>OPEN THE FROZEN SOURCE</span>
               </div>
-              <pre><code>Rscript code/check_setup.R --codex-confirmed
-Rscript code/01-inspect.R</code></pre>
+              <pre><code>source("code/00-setup.R")
+wdi &lt;- read_csv(data_file, show_col_types = FALSE)
+nrow(wdi)</code></pre>
               <p>
-                We continue when the checker reports <code>RESULT: GREEN</code>,
-                the inventory opens, and Codex sees the same project root.
+                We continue when the project opens, the source has 4,991 rows,
+                and everyone can run the first section of
+                <code>code/lesson-2-walkthrough.R</code>.
               </p>
             </div>
             <div class="code-plate">
@@ -427,42 +429,41 @@ stopifnot(!anyDuplicated(health_analysis[c("iso3c", "year")]))</code></pre>
           </section>
           <section class="article-section reveal" id="agent">
             <p class="section-kicker">BOUNDED ASSISTANCE</p>
-            <h2>Let the agent improve a step you can already evaluate.</h2>
+            <h2>Let the agent audit a claim you can already evaluate.</h2>
             <p>
-              Use the agent as a supervised cleaning assistant after you can
-              explain the pipeline. Delegate one bounded improvement such as
-              adding assertions, diagnosing an unmatched join, or producing a
-              compact build record.
+              Only after the table and its evidence exist, use the agent as a
+              supervised reviewer. The task is deliberately read-only: decide
+              which parts of a draft briefing sentence are supported now,
+              which require Lesson 3 calculations, and which exceed the design.
             </p>
             <div class="prompt-box">
               <span>LIVE REVIEW REQUEST</span>
               <pre>
-Goal: Find one important requirement in the table plan that the builder or verifier does not yet test, then propose the smallest useful diff.
-Context: Read code/02-build-analysis.R, code/02-verify-analysis.R, and the indicator dictionary.
-Permission: Read only first. Do not edit frozen data or browse the web.
-Constraints: Preserve the country-year unit, sample, and lowercase names.
-Proof: Connect the proposed check to a documented definition, predict its result, and name the command that will verify it.</pre>
+Goal: Decide whether this draft sentence is ready for a policy briefing: “Across 217 economies from 2000 to 2022, higher income reduced under-five mortality.”
+Context: Read outputs/02-health-analysis.csv, outputs/02-health-build-record.csv, data/documentation/indicator-dictionary.csv, code/02-build-analysis.R, and code/02-verify-analysis.R.
+Permission: Read only. Do not edit files or browse the web.
+Task: Classify each part as supported by the artifacts, not yet calculated, or unsupported by this descriptive design.
+Proof: Cite the exact file and value behind each factual statement and propose a cautious handoff sentence for Lesson 3.</pre>
             </div>
             <ul class="checklist">
               <li>
                 <span>□</span
                 ><strong
-                  >I predicted what the proposed code should report.</strong
+                  >I checked every factual citation against its source.</strong
                 >
               </li>
               <li>
                 <span>□</span
-                ><strong>I inspected the diff before running it.</strong>
+                ><strong>I separated coverage facts from an unestimated relationship.</strong>
               </li>
               <li>
                 <span>□</span
-                ><strong>I can explain every retained check.</strong>
+                ><strong>I rejected causal language that the design cannot support.</strong>
               </li>
               <li>
                 <span>□</span
                 ><strong
-                  >The record tests the table plan and reports the evidence
-                  from each check.</strong
+                  >The handoff says what is known now and what Lesson 3 must calculate.</strong
                 >
               </li>
             </ul>
@@ -480,7 +481,8 @@ Rscript code/02-verify-analysis.R</code></pre>
               <p>
                 The second script reopens the saved source and output, checks
                 columns, rows, key, period, values, and the logged measure, and
-                ends with a visible green completion signal.
+                ends with the explicit completion message
+                <code>RESULT: PASS</code>.
               </p>
             </div>
             <div class="callout">
@@ -532,7 +534,7 @@ Rscript code/02-verify-analysis.R</code></pre>
             </div>
             <div>
               <dt>AGENT ROLE</dt>
-              <dd>Cleaning assistant</dd>
+              <dd>Read-only claim auditor</dd>
             </div>
             <div>
               <dt>LAB</dt>

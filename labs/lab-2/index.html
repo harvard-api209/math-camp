@@ -43,8 +43,8 @@
       <ol>
         <li><a href="#purpose">Plan the table</a></li>
         <li><a href="#build">Build one table</a></li>
-        <li><a href="#agent">Agent pass</a></li>
-        <li><a href="#receipt">Check and explain</a></li>
+        <li><a href="#receipt">Independent check</a></li>
+        <li><a href="#agent">Claim review and handoff</a></li>
       </ol>
     </nav>
     <main>
@@ -64,7 +64,7 @@
           </p>
           <div class="article-actions">
             <a
-              href="https://github.com/harvard-api209/math-camp/releases/download/lab-2-v1.0.2/math-camp-2026-lab-2-v1.0.2.zip"
+              href="https://github.com/harvard-api209/math-camp/releases/download/lab-2-v1.0.3/math-camp-2026-lab-2-v1.0.3.zip"
               >DOWNLOAD LAB 2 PROJECT ↓</a
             ><a href="../../code/lab-2-starter.R">OPEN STARTER R SCRIPT →</a>
           </div>
@@ -76,8 +76,9 @@
       <div class="article-layout">
         <aside class="article-nav">
           <span>LAB GUIDE</span><a href="#purpose">Plan the table</a
-          ><a href="#build">Build one table</a><a href="#agent">Agent pass</a
-          ><a href="#receipt">Check and explain</a>
+          ><a href="#build">Build one table</a
+          ><a href="#receipt">Independent check</a
+          ><a href="#agent">Claim review and handoff</a>
         </aside>
         <article class="article">
           <section class="article-section reveal" id="purpose">
@@ -96,7 +97,7 @@
             </p>
             <div class="article-actions">
               <a
-                href="https://github.com/harvard-api209/math-camp/releases/download/lab-2-v1.0.2/math-camp-2026-lab-2-v1.0.2.zip"
+                href="https://github.com/harvard-api209/math-camp/releases/download/lab-2-v1.0.3/math-camp-2026-lab-2-v1.0.3.zip"
                 >DOWNLOAD THE COMPLETE LAB FILES ↓</a
               ><a href="../../code/02-verify-analysis.R"
                 >OPEN INDEPENDENT VERIFIER ↗</a
@@ -107,19 +108,23 @@
               <p>
                 Your script rebuilds the table from the frozen file, the
                 country-year key is unique, the build record reports the
-                expected structure, the independent verifier reports green,
-                and you can explain one important decision without the agent.
+                expected structure, every named independent check passes, and
+                you can distinguish a supported fact from a question that the
+                table does not yet answer.
               </p>
             </div>
             <div class="code-plate">
               <div class="code-plate-head">
-                <span>TERMINAL</span><span>00–05 / REOPEN GREEN</span>
+                <span>R</span><span>00–05 / REOPEN PROJECT</span>
               </div>
-              <pre><code>Rscript code/check_setup.R --codex-confirmed</code></pre>
+              <pre><code>source("code/00-setup.R")
+wdi &lt;- read_csv(data_file, show_col_types = FALSE)
+nrow(wdi)</code></pre>
               <p>
                 Open <code>math-camp-2026.Rproj</code> and
-                <code>code/lab-2-starter.R</code>. Do not build from an unnamed
-                console object or overwrite the frozen source.
+                <code>code/lab-2-starter.R</code>. Confirm that the frozen
+                source contains 4,991 rows. Do not build from an unnamed console
+                object or overwrite the frozen source.
               </p>
             </div>
           </section>
@@ -201,7 +206,7 @@ stopifnot(all(is.finite(health_analysis$log_income)))</code></pre>
                     <td>Missingness, range, and one hand check</td>
                   </tr>
                   <tr>
-                    <td>Before the agent pass</td>
+                    <td>Before the claim review</td>
                     <td>Does the table meet the requirements in its plan?</td>
                     <td>Key, rows, years, missingness, and ranges</td>
                   </tr>
@@ -209,36 +214,19 @@ stopifnot(all(is.finite(health_analysis$log_income)))</code></pre>
               </table>
             </div>
           </section>
-          <section class="article-section reveal" id="agent">
-            <p class="section-kicker">40–50 MINUTES</p>
-            <h2>Delegate one bounded improvement.</h2>
-            <div class="prompt-box">
-              <span>BOUNDED AGENT PASS</span>
-              <pre>
-Goal: Find one important requirement in my table plan that the builder or verifier does not yet test, then propose the smallest useful diff.
-Context: Read my script, code/02-verify-analysis.R, and the indicator dictionary.
-Permission: Read only first. Do not edit frozen data or browse the web.
-Constraints: Preserve the country-year unit, sample, and lowercase names.
-Proof: Connect the proposed check to a documented definition, predict its result, and name the command that will verify it.</pre>
-            </div>
-            <p>
-              Inspect the diff. Keep only checks you can explain. If the agent
-              proposes a different population, transformation, or key, treat
-              that as a substantive change requiring your decision.
-            </p>
-          </section>
           <section class="article-section reveal" id="receipt">
-            <p class="section-kicker">50–60 MINUTES</p>
-            <h2>Verify, then explain.</h2>
+            <p class="section-kicker">40–47 MINUTES</p>
+            <h2>Verify the saved table independently.</h2>
             <div class="code-plate">
               <div class="code-plate-head">
-                <span>TERMINAL</span><span>50–57 / INDEPENDENT CHECK</span>
+                <span>TERMINAL</span><span>INDEPENDENT CHECK</span>
               </div>
               <pre><code>Rscript code/02-verify-analysis.R</code></pre>
               <p>
-                If it is not green, read the named failed condition and repair
-                the builder. Do not edit the verifier merely to make red output
-                disappear.
+                If a check fails, read the named condition and repair the
+                builder. Do not edit the verifier merely to make a failure
+                disappear. Completion is the explicit <code>RESULT: PASS</code>
+                message.
               </p>
             </div>
             <ul class="checklist">
@@ -269,11 +257,31 @@ Proof: Connect the proposed check to a documented definition, predict its result
                 >
               </li>
             </ul>
+          </section>
+          <section class="article-section reveal" id="agent">
+            <p class="section-kicker">47–60 MINUTES</p>
+            <h2>Audit one claim, then write the handoff.</h2>
+            <div class="prompt-box">
+              <span>READ-ONLY CLAIM AUDIT</span>
+              <pre>
+Goal: Decide whether this draft sentence is ready for a policy briefing: “Across 217 economies from 2000 to 2022, higher income reduced under-five mortality.”
+Context: Read outputs/02-health-analysis.csv, outputs/02-health-build-record.csv, data/documentation/indicator-dictionary.csv, code/02-build-analysis.R, and code/02-verify-analysis.R.
+Permission: Read only. Do not edit files or browse the web.
+Task: Classify each part of the sentence as (a) supported by the current artifacts, (b) not yet calculated, or (c) unsupported by this descriptive design.
+Proof: Cite the exact file and value behind each factual statement, then propose a cautious handoff sentence for Lesson 3.</pre>
+            </div>
             <p>
-              During minutes 57–60, finish with four sentences: what one row
-              represents; which observations were excluded; what the logged
-              variable means; and which limitation remains for the policy
-              question.
+              Inspect the citations rather than accepting the prose. The build
+              record can establish coverage and exclusions. It cannot establish
+              an income-mortality association before that relationship is
+              calculated, and this descriptive design cannot establish that
+              income caused mortality to fall.
+            </p>
+            <p>
+              During minutes 57–60, record one fact supported by the artifacts
+              and one question that must wait for Lesson 3. Also be ready to
+              explain what one row represents, who was excluded, and what the
+              logged income variable means.
             </p>
             <div class="callout">
               <span>COMMON PATH FIRST</span>
@@ -322,7 +330,7 @@ Proof: Connect the proposed check to a documented definition, predict its result
             </div>
             <div>
               <dt>AGENT ROLE</dt>
-              <dd>Code reviewer</dd>
+              <dd>Claim auditor</dd>
             </div>
             <div>
               <dt>SUBMISSION</dt>

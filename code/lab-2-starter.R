@@ -22,15 +22,24 @@ health_analysis <- wdi
 
 # 4. arrange(): make the saved table easy to inspect by economy and year.
 
-# 5. verify(): add checks for columns, rows, the key, period, missingness,
-# ranges, and the relationship between income and log_income.
+# 5. save(): write the checked object to outputs/02-health-analysis.csv.
 
-# 6. save(): write the checked object to outputs/02-health-analysis.csv.
-
-# 7. record: create a one-row build record with source rows, output rows,
+# 6. record: create a one-row build record with source rows, output rows,
 # exclusions, economies, years, duplicate keys, missingness, and ranges.
+
+# 7. verify independently: in the RStudio Terminal, run:
+# Rscript code/02-verify-analysis.R
+
+# 8. agent review (read only): write one draft sentence about the saved table.
+# Ask Codex to classify each part as supported by the current artifacts, not yet
+# calculated, or unsupported by this descriptive design. Require exact file and
+# value citations. Do not ask it to edit the builder or verifier.
+
+# 9. handoff: record one fact the artifacts support and one question that must
+# wait for Lesson 3, when we will calculate and visualize the relationship.
 
 message(
   "Starter opened successfully. Replace the scaffold with your checked ",
-  "pipeline, then compare your result with code/02-verify-analysis.R."
+  "pipeline, save its evidence, run code/02-verify-analysis.R from the ",
+  "Terminal, and then review one claim."
 )

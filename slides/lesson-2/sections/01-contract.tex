@@ -74,32 +74,34 @@
     \cmidrule(r){1-2}\cmidrule(l){3-4}
     00--10 & Working setup      & 60--82  & Mutate + summarise \\
     10--25 & Question + table   & 82--100 & Reshape + join \\
-    25--50 & R grammar + verbs  & 100--114 & Build + verify \\
-    50--60 & Break               & 114--120 & Lab handoff \\
+    25--50 & R grammar + verbs  & 100--112 & Build + verify \\
+    50--60 & Break               & 112--120 & Evidence + handoff \\
     \bottomrule
   \end{tabular*}
 
   \vfill
-  Three short checkpoints ask students to explain the sample, diagnose a join,
-  and judge an agent proposal.
+  Three reasoning pauses ask students to explain the sample, diagnose a join,
+  and decide what the completed table can honestly support.
 \end{frame}
 
-\begin{frame}[fragile]{Working-session setup: reach green first}
-  Open \texttt{math-camp-2026.Rproj}. In the RStudio Terminal, run:
+\begin{frame}[fragile]{Working-session setup: open the shared project}
+  Open \texttt{math-camp-2026.Rproj}, then open
+  \texttt{code/lesson-2-walkthrough.R}. Run Section 0:
 
-\begin{lstlisting}
-Rscript code/check_setup.R --codex-confirmed
-Rscript code/01-inspect.R
+\begin{lstlisting}[language=R]
+source("code/00-setup.R")
+wdi <- read_csv(data_file, show_col_types = FALSE)
+nrow(wdi)
 \end{lstlisting}
 
   \begin{block}{We continue when}
-    The setup checker says \texttt{RESULT: GREEN}, the evidence inventory opens,
-    and Codex can see the same project folder.
+    R finds the project files and reports 4,991 rows in the frozen teaching
+    dataset. If it does not, stop here and repair the shared starting point.
   \end{block}
 
   \vfill
-  Then open \texttt{code/lesson-2-walkthrough.R}. Its section numbers follow the
-  lesson, so we can move between the deck and RStudio.
+  The walkthrough's section numbers follow the lesson, so we can move between
+  the deck and RStudio without reconstructing code from the slides.
 \end{frame}
 
 \begin{frame}{A question implies a data object}

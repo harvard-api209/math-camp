@@ -1,24 +1,24 @@
-\section{From Lesson 2 to Lab 2}
-\subsection{Bounded help}
+\section{From a checked table to a defensible handoff}
+\subsection{Review the claim, not just the code}
 
 \begin{frame}{Goal for the live demonstration}
-  The health table is built and the current verifier is green. Before using the
-  table in a policy briefing, we want to strengthen \alert{one documented check}:
+  We began with a policy question and built one economy--year table. The final
+  task is to decide what that completed object can support \alert{now}---before
+  anyone makes a plot or estimates a model.
 
   \vspace{0.6em}
-  \begin{block}{Our task}
-    Confirm that \texttt{under5\_mortality} refers to World Bank indicator
-    \texttt{SH.DYN.MORT} and is measured per 1,000 live births---without
-    changing the table, sample, or transformation.
+  \begin{block}{The draft statement we have been asked to review}
+    ``Across 217 economies from 2000 to 2022, higher income reduced under-five
+    mortality.''
   \end{block}
 
   \vfill
-  By the end, we should be able to explain why we used a builder, what we asked
-  the agent to review, and what the independent verifier established.
+  We will ask Codex to audit that sentence against the same files we created,
+  then decide whether its revision deserves to enter a briefing.
 \end{frame}
 
-\begin{frame}[fragile]{Step 1: establish the baseline ourselves}
-  First rebuild the table and run the existing checks:
+\begin{frame}[fragile]{Step 1: establish the evidence ourselves}
+  Rebuild the table and independently inspect the saved object:
 
 \begin{lstlisting}
 Rscript code/02-build-analysis.R
@@ -26,78 +26,104 @@ Rscript code/02-verify-analysis.R
 \end{lstlisting}
 
   \begin{description}
-    \item[Builder] Creates the saved table and its build record from the frozen source.
-    \item[Verifier] Reopens the saved table and checks the requirements already encoded.
+    \item[Analysis table] Economy--year records available for later plots and models.
+    \item[Build record] Included and excluded rows, economies, years,
+      missingness, ranges, and key status.
+    \item[Verifier] A separate process that checks the saved table against its
+      stated construction rules.
   \end{description}
 
   \vfill
-  Record the green result before asking for help. A later change should preserve
-  that baseline while adding evidence for our specific goal.
+  Passing checks establish a usable table. They do not establish the substantive
+  relationship in the opening policy question.
 \end{frame}
 
-\begin{frame}{Step 2: locate the missing evidence}
-  The current verifier establishes that mortality values are observed and
-  nonnegative. It does not yet connect the column to its documented identity
-  and unit.
+\begin{frame}{Step 2: separate three kinds of statements}
+  The draft sentence mixes claims that require different evidence:
 
-  \vspace{0.5em}
   \begin{description}
-    \item[Table plan] Under-five mortality per 1,000 live births.
-    \item[Dictionary] \texttt{under5\_mortality}; \texttt{SH.DYN.MORT}; deaths
-      before age five per 1,000 live births.
-    \item[Missing check] Does the verifier confirm that the expected dictionary
-      entry is present before accepting the saved table?
+    \item[Already documented] The analytical sample size, period, unit, key,
+      and variable definitions.
+    \item[Not yet calculated] The direction, size, and uncertainty of the
+      association between income and mortality.
+    \item[Not supported by this design] A causal claim that changing national
+      income reduced mortality.
   \end{description}
 
   \vfill
-  We choose the gap. The agent does not choose the policy question, unit, or
-  meaning of the variable for us.
+  The live demonstration asks the agent to keep these categories separate. We
+  are not asking it to alter the table or verifier.
 \end{frame}
 
-\begin{frame}[fragile]{Step 3: ask for one reviewable proposal}
-\begin{lstlisting}
-Goal: Propose the smallest change to code/02-verify-analysis.R
-that confirms the under5_mortality dictionary entry has indicator
-code SH.DYN.MORT and a unit stated per 1,000 live births.
-Context: Read the verifier and data/documentation/
-indicator-dictionary.csv.
-Permission: Read only. Show a proposed diff; do not edit yet.
-Constraints: Do not change the table, sample, key, or variables.
-Done when: Explain what the new check proves and name the command
-we should rerun after reviewing it.
+\begin{frame}[fragile]{Step 3: give Codex one bounded review task}
+  Begin with the decision, artifacts, and draft statement:
+
+\begin{lstlisting}[basicstyle=\ttfamily\scriptsize]
+We need to decide whether a draft sentence is ready for a policy
+briefing. Review the sentence against the checked Lesson 2 artifacts.
+
+Draft: "Across 217 economies from 2000 to 2022, higher income
+reduced under-five mortality."
+
+Read:
+- outputs/02-health-build-record.csv
+- outputs/02-health-analysis.csv
+- data/documentation/indicator-dictionary.csv
+- code/02-build-analysis.R
+- code/02-verify-analysis.R
 \end{lstlisting}
+
+  \vfill
+  The prompt points to the source of truth instead of asking for a general
+  opinion about whether the sentence sounds plausible.
 \end{frame}
 
-\begin{frame}{Step 4: inspect before allowing an edit}
-  Read the proposal together. Ask:
+\begin{frame}[fragile]{Step 3 continued: require an auditable answer}
+  Complete the same prompt with limits and a response contract:
+
+\begin{lstlisting}[basicstyle=\ttfamily\scriptsize]
+Work in read-only mode. Do not edit files, browse the web, or run a
+new statistical model. For each part of the draft, classify it as:
+(a) supported by an artifact, (b) not yet calculated, or
+(c) not supported by this descriptive design.
+
+Cite the exact file and value used for every supported statement.
+Then write a two-sentence handoff note that states what table we
+built and what analysis must happen next. Separate facts found in
+files from your inferences. If an item cannot be verified, say so.
+\end{lstlisting}
+
+  \vfill
+  In RStudio, print \texttt{bounded\_agent\_request} to copy the complete
+  prompt into Codex as one message.
+\end{frame}
+
+\begin{frame}{Step 4: inspect the answer against the artifacts}
+  Do not accept the prose because it is fluent. Check:
   \begin{enumerate}
-    \item Does it read the checked-in dictionary rather than invent a definition?
-    \item Does it test both the indicator code and the documented unit?
-    \item Does it leave the table, population, key, and transformation unchanged?
-    \item Can we predict what will pass or fail before running it?
+    \item Did it use 188 analytical-sample economies rather than 217 source economies?
+    \item Did it distinguish 4,296 retained rows from 695 excluded rows?
+    \item Did it avoid claiming that every economy is observed in every year?
+    \item Did it reserve the association for the next analytical step?
+    \item Did it reject causal language rather than merely soften the verb?
   \end{enumerate}
 
   \vfill
-  Only after this review do we either reject the proposal, request a revision,
-  or permit the smallest acceptable edit.
+  The class checks the agent's trace against the table plan and build record.
 \end{frame}
 
-\begin{frame}{Checkpoint 3: which proposal serves the goal?}
-  Compare two possible checks:
-
-  \begin{description}
-    \item[Proposal A] Require every mortality value to be at most 100 because
-      the variable sounds like a percentage.
-    \item[Proposal B] Confirm that the dictionary entry is
-      \texttt{SH.DYN.MORT} and states a unit per 1,000 live births.
-  \end{description}
+\begin{frame}{Final synthesis: write the handoff}
+  Classify each part of the draft as \textbf{supported},
+  \textbf{not yet calculated}, or \textbf{not supported by this design}. Then
+  write two sentences for the analyst who will make the first plot.
 
   \vspace{0.5em}
-  Decide together:
+  Your handoff must state:
   \begin{enumerate}
-    \item Which proposal answers the goal we set?
-    \item Why is the other proposal unsupported?
-    \item What result should the revised verifier display?
+    \item what one row represents and how large the analytical sample is;
+    \item which rows were excluded by the table plan;
+    \item what relationship still needs to be examined;
+    \item which causal conclusion remains outside the evidence.
   \end{enumerate}
 
   \vfill
@@ -106,24 +132,47 @@ we should rerun after reviewing it.
   \textbf{2 minutes share}
 \end{frame}
 
-\begin{frame}[fragile]{Step 5: apply one change and rerun the evidence}
-  If the proposal survives review, allow the edit and rerun only the independent
-  verifier:
+\begin{frame}{A defensible handoff at the end of Lesson 2}
+  \begin{block}{Supported by the checked artifacts}
+    We constructed a table of 4,296 economy--year observations from 188
+    economies between 2000 and 2022, retaining records with observed
+    under-five mortality and observed positive GDP per capita, PPP. The table
+    excludes 695 source rows and has one row per economy--year.
+  \end{block}
 
-\begin{lstlisting}
-Rscript code/02-verify-analysis.R
-\end{lstlisting}
-
-  We are finished only when:
-  \begin{itemize}
-    \item the new dictionary check is visible and passes;
-    \item all earlier checks still pass;
-    \item the table itself has not changed;
-    \item we can explain what the added check proves---and what it does not.
-  \end{itemize}
+  \begin{block}{What happens next}
+    The table is ready for a descriptive comparison of income and mortality.
+    We have not yet estimated that association, and this table alone cannot
+    establish that a change in income causes mortality to change.
+  \end{block}
 
   \vfill
-  The agent proposes code. The class decides whether the evidence is adequate.
+  This is the handoff from Lesson 2 to Lesson 3: from a checked object to a
+  carefully bounded analysis of patterns.
+\end{frame}
+
+\begin{frame}{The thread from question to handoff}
+  \centering
+  \begin{tikzpicture}[
+    node distance=0.40cm,
+    box/.style={draw=ink!35, rounded corners=2pt, align=center,
+      minimum height=1.35cm, text width=2.15cm, fill=white},
+    arr/.style={-{Latex[length=2.4mm]}, thick, draw=crimson}
+  ]
+    \node[box] (q) {Policy\\question};
+    \node[box, right=of q] (plan) {Unit, key,\\table plan};
+    \node[box, right=of plan] (verbs) {R verbs\\and checks};
+    \node[box, right=of verbs] (object) {Saved table\\and record};
+    \node[box, right=of object] (claim) {Defensible\\handoff};
+    \draw[arr] (q) -- (plan);
+    \draw[arr] (plan) -- (verbs);
+    \draw[arr] (verbs) -- (object);
+    \draw[arr] (object) -- (claim);
+  \end{tikzpicture}
+
+  \vspace{1.0em}
+  Each stage produces evidence needed by the next. No stage is equivalent to
+  ``the code ran,'' and no agent response substitutes for the final judgment.
 \end{frame}
 
 \begin{frame}{Decisions the analyst keeps}
@@ -133,10 +182,11 @@ Rscript code/02-verify-analysis.R
     \item Whether a transformation fits the policy question.
     \item Whether current metadata can be interpreted historically.
     \item Whether missing coverage weakens the comparison.
+    \item Whether a proposed sentence stays inside the available evidence.
   \end{itemize}
 
   \vfill
-  The analyst interprets the evidence that the agent exposes.
+  The agent can organize and challenge evidence. The analyst owns the claim.
 \end{frame}
 
 \begin{frame}{Updating public data is an extension}
@@ -145,11 +195,12 @@ Rscript code/02-verify-analysis.R
     \item an internet and API dependency;
     \item retrieval dates and version changes;
     \item possible revisions to earlier years;
-    \item new metadata questions.
+    \item new metadata and comparability questions.
   \end{itemize}
 
   \vfill
-  First build the frozen table correctly. Then extend it with a separate record.
+  First build and explain the frozen table. Then extend it as a separate,
+  documented investigation.
 \end{frame}
 
 \begin{frame}{What we learned in Lesson 2}
@@ -158,22 +209,23 @@ Rscript code/02-verify-analysis.R
     \item Every verb should have a reason and a check.
     \item A join must preserve the intended key and unit.
     \item The analysis table should rebuild from a protected source.
-    \item The agent improves one bounded part under analyst review.
-    \item A separate verifier must inspect the saved object and report evidence.
+    \item A separate verifier should inspect the saved object.
+    \item A bounded agent review can test whether prose follows from artifacts.
+    \item A checked table is the beginning of analysis, not its conclusion.
   \end{itemize}
 \end{frame}
 
 \begin{frame}{Tomorrow: Lab 2}
   \vfill
   \begin{center}
-    {\LARGE\color{crimson}Build one country--year table.}
+    {\LARGE\color{crimson}Build one economy--year table.}
 
     \vspace{0.75em}
     Thursday, August 20 \(\cdot\) 4:00--5:00 p.m.
 
     \vspace{0.55em}
-    Start from a scaffold, test the table's stated requirements, and explain
-    the decisions that produced it.
+    Start from a scaffold, test the table's stated requirements, and leave a
+    clear handoff for the person who will analyze the first pattern.
   \end{center}
   \vfill
 \end{frame}
@@ -185,32 +237,35 @@ Rscript code/02-verify-analysis.R
     \toprule
     Minutes & Work & Result \\
     \midrule
-    00--05 & Reopen green & Project, source, scaffold, and Codex agree. \\
+    00--05 & Reopen project & Project, source, and scaffold agree. \\
     05--12 & Table plan & Population, unit, key, period, and variables. \\
     12--30 & Build & Select, filter, mutate, arrange, and save. \\
     30--40 & Record & Rows, key, years, missingness, and ranges. \\
-    40--50 & Agent pass & One bounded, inspectable improvement. \\
-    50--57 & Verify & Independent checker reaches green. \\
-    57--60 & Explain & One decision and one remaining limitation. \\
+    40--47 & Verify & Every named independent check passes. \\
+    47--57 & Claim review & One read-only audit tied to the saved artifacts. \\
+    57--60 & Handoff & One supported fact and one remaining limitation. \\
     \bottomrule
   \end{tabular*}
 \end{frame}
 
 \begin{frame}[fragile]{Your Lab 2 launch sequence}
-  Open the project and the scaffold, then run the gate:
-
-\begin{lstlisting}
-Rscript code/check_setup.R --codex-confirmed
-\end{lstlisting}
+  Open \texttt{math-camp-2026.Rproj} and \texttt{code/lab-2-starter.R}.
 
   \begin{enumerate}
-    \item Open \texttt{code/lab-2-starter.R}; do not overwrite the frozen CSV.
+    \item Confirm that Section 0 loads the 4,991-row frozen source.
     \item Fill in the table plan before writing a data verb.
     \item Build and save \texttt{outputs/02-health-analysis.csv}.
     \item Compare your work with \texttt{code/02-build-analysis.R} only after
       making a genuine attempt.
-    \item Run \texttt{Rscript code/02-verify-analysis.R} from the Terminal.
+    \item Run the independent verifier from the RStudio Terminal:
   \end{enumerate}
+
+\begin{lstlisting}
+Rscript code/02-verify-analysis.R
+\end{lstlisting}
+
+  Then use the verified artifacts for the read-only claim review and write the
+  Lesson 3 handoff.
 \end{frame}
 
 \begin{frame}{The common path and the extensions}
@@ -219,12 +274,11 @@ Rscript code/check_setup.R --codex-confirmed
       \begin{block}{Required in 60 minutes}
         \begin{itemize}
           \item begin from \texttt{lab-2-starter.R};
-          \item select and filter;
-          \item create \texttt{log\_income};
-          \item test the country--year key;
+          \item select, filter, mutate, and arrange;
+          \item test the economy--year key;
           \item record coverage and ranges;
-          \item review one bounded agent proposal;
-          \item reach a green independent verification result.
+          \item review one claim against the artifacts;
+          \item complete independent verification.
         \end{itemize}
       \end{block}
     \end{column}
@@ -248,13 +302,14 @@ Rscript code/check_setup.R --codex-confirmed
 \begin{frame}{The lab is done when}
   \begin{itemize}
     \item The script rebuilds the table from the frozen file.
-    \item The country--year key is unique.
+    \item The economy--year key is unique.
     \item The build record includes rows, years, missingness, and ranges.
-    \item The independent verifier reports a green result.
-    \item You can explain one consequential decision without the agent.
+    \item Every named independent verification check passes.
+    \item You can state one supported fact and one unanswered question without
+      relying on the agent.
   \end{itemize}
 
   \vfill
-  The lab has no submission or grade. Keep the script because the next lesson
-  will use this table.
+  The lab has no submission or grade. Keep the script and build record because
+  Lesson 3 will use this table to examine the first pattern.
 \end{frame}
