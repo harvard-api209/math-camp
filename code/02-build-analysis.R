@@ -2,7 +2,7 @@ source("code/00-setup.R")
 
 wdi <- read_csv(data_file, show_col_types = FALSE)
 
-# TABLE CONTRACT
+# TABLE PLAN: define the finished table before writing data verbs.
 # Population: economies observed between 2000 and 2022 with positive GDP per
 # capita and observed under-five mortality.
 # Unit: one economy-year.

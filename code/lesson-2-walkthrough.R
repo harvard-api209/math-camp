@@ -39,7 +39,7 @@ interpretation_boundary <- paste(
 # economy and period, and why that could change a table, plot, or conclusion.
 # Do not reveal the role of indicator or join keys until after the discussion.
 
-table_contract <- tibble(
+table_plan <- tibble(
   field = c("Population", "Unit", "Key", "Period", "Outcome", "Comparison"),
   decision = c(
     "Economy-years with both measures observed and positive income",
@@ -54,7 +54,7 @@ table_contract <- tibble(
 briefing_context
 policy_question
 interpretation_boundary
-table_contract
+table_plan
 
 
 # 2. The same evidence can have different row meanings -----------------------
@@ -130,7 +130,7 @@ stopifnot(identical(source_years, c(2000, 2022)))
 stopifnot(source_duplicate_keys == 0)
 
 
-# 4. select(): retain the columns required by the contract -------------------
+# 4. select(): retain the columns required by the table plan -----------------
 
 health_selected <- wdi |>
   select(
@@ -169,7 +169,7 @@ filter_record <- tibble(
 filter_record
 
 # The filtered table is no longer evidence about every economy-year in the
-# source. Its population is the set of economy-years satisfying the contract.
+# source. Its population is the economy-years included by the table plan.
 
 
 # 6. mutate(): create a value with a stated meaning ---------------------------

@@ -67,7 +67,7 @@
           </p>
           <div class="article-actions">
             <a
-              href="https://github.com/harvard-api209/math-camp/releases/download/lab-2-v1.0.0/math-camp-2026-lab-2-v1.0.0.zip"
+              href="https://github.com/harvard-api209/math-camp/releases/download/lab-2-v1.0.1/math-camp-2026-lab-2-v1.0.1.zip"
               >DOWNLOAD LESSON 2 + LAB 2 PROJECT ↓</a
             ><a href="../../code/lesson-2-walkthrough.R"
               >OPEN FULL R WALKTHROUGH →</a
@@ -90,7 +90,7 @@
         </aside>
         <article class="article">
           <section class="article-section reveal" id="question">
-            <p class="section-kicker">START WITH THE TABLE CONTRACT</p>
+            <p class="section-kicker">FIRST DEFINE THE TABLE WE NEED</p>
             <h2>The policy question determines what one row must represent.</h2>
             <p class="article-lead">
               Imagine that a development-policy team is preparing a short
@@ -152,7 +152,7 @@
               <table>
                 <thead>
                   <tr>
-                    <th>Contract field</th>
+                    <th>Decision to make</th>
                     <th>Health example</th>
                     <th>Why it matters</th>
                   </tr>
@@ -195,18 +195,19 @@
               </table>
             </div>
             <p>
-              The contract gives the schema substantive meaning. If the unit
-              changes from country-year to region-year, the question and
+              Together, these decisions form our <strong>table plan</strong>.
+              The plan gives the columns and rows substantive meaning. If the
+              unit changes from country-year to region-year, the question and
               interpretation change with it.
             </p>
             <div class="callout">
-              <span>THE CONTRACT IS A MAP</span>
+              <span>THE TABLE PLAN IS A MAP</span>
               <p>
-                A useful map is selective. The table contract keeps the choices
+                A useful map is selective. The table plan records the choices
                 needed for this policy question: who appears, what one row
                 means, which period matters, and which relationship we plan to
-                describe. The build record shows whether the R pipeline followed
-                that map.
+                describe. The build record shows whether the R pipeline
+                followed that plan.
               </p>
             </div>
           </section>
@@ -348,7 +349,7 @@
                 <p>Reach green and open the evidence inventory.</p>
               </div>
               <div>
-                <time>10–25</time><strong>Contract + inspect</strong>
+                <time>10–25</time><strong>Plan the table</strong>
                 <p>State the object before changing the source.</p>
               </div>
               <div>
@@ -436,7 +437,7 @@ stopifnot(!anyDuplicated(health_analysis[c("iso3c", "year")]))</code></pre>
             <div class="prompt-box">
               <span>LIVE REVIEW REQUEST</span>
               <pre>
-Goal: Find one important contract condition that the builder or verifier does not yet test, then propose the smallest useful diff.
+Goal: Find one important requirement in the table plan that the builder or verifier does not yet test, then propose the smallest useful diff.
 Context: Read code/02-build-analysis.R, code/02-verify-analysis.R, and the indicator dictionary.
 Permission: Read only first. Do not edit frozen data or browse the web.
 Constraints: Preserve the country-year unit, sample, and lowercase names.
@@ -460,7 +461,7 @@ Proof: Connect the proposed check to a documented definition, predict its result
               <li>
                 <span>□</span
                 ><strong
-                  >The record tests the table contract and reports the evidence
+                  >The record tests the table plan and reports the evidence
                   from each check.</strong
                 >
               </li>
@@ -496,7 +497,7 @@ Rscript code/02-verify-analysis.R</code></pre>
             <h2>Lesson deck.</h2>
             <p>
               The slide deck is a 16:9 LaTeX Beamer PDF. It follows one table
-              from its contract through its build record and then moves into Lab
+              from its table plan through its build record and then moves into Lab
               2.
             </p>
             <figure class="slide-frame">

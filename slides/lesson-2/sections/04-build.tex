@@ -49,7 +49,7 @@ stopifnot(!anyDuplicated(health_analysis[c("iso3c", "year")]))
   \end{enumerate}
 
   \vfill
-  Each important line should correspond to a field in the table contract.
+  Each important line should correspond to one decision in the table plan.
 \end{frame}
 
 \begin{frame}{Use current metadata within its time meaning}
@@ -91,7 +91,7 @@ stopifnot(!anyDuplicated(health_analysis[c("iso3c", "year")]))
   \end{columns}
 
   \vfill
-  The record is useful when every check points back to the table contract.
+  The record is useful when every check points back to the table plan.
 \end{frame}
 
 \begin{frame}[fragile]{Run the saved workflow from a clean process}
@@ -105,7 +105,7 @@ Rscript code/02-build-analysis.R
   \begin{itemize}
     \item \texttt{outputs/02-health-analysis.csv}: the analysis table;
     \item \texttt{outputs/02-health-build-record.csv}: evidence about how the
-      table satisfies its contract.
+      table meets its stated requirements.
   \end{itemize}
 
   \vfill
@@ -125,7 +125,7 @@ Rscript code/02-verify-analysis.R
   original measure.
 
   \begin{block}{The visible completion signal}
-    \texttt{RESULT: GREEN. The saved health table meets its stated contract.}
+    \texttt{RESULT: GREEN. The saved health table meets its stated requirements.}
   \end{block}
 
   The verifier is separate so it does not merely trust objects left behind by
@@ -135,7 +135,7 @@ Rscript code/02-verify-analysis.R
 \begin{frame}{Four levels of verification}
   \begin{enumerate}
     \item \textbf{Execution:} Did the process finish and create the named files?
-    \item \textbf{Structure:} Do columns, rows, unit, key, and period match the contract?
+    \item \textbf{Structure:} Do columns, rows, unit, key, and period match the table plan?
     \item \textbf{Values:} Do missingness, ranges, and recomputed variables follow
       their documented definitions?
     \item \textbf{Interpretation:} Does the policy statement respect the sample

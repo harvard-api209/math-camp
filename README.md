@@ -72,7 +72,7 @@ cp main.pdf lesson-2.pdf
 
 The website embeds `lesson-1.pdf` and `lesson-2.pdf`. Edit their English LaTeX sections directly. After each change, compile the deck, scan the log, and inspect every rendered slide before replacing the public PDF.
 
-The current PDFs contain 63 pages for Lesson 1 and 73 pages for Lesson 2, including Lesson 2's progressive answer reveal and step-by-step source checks. Lesson 2 moves from a policy-briefing question to a table contract, introduces R grammar and data verbs in that context, demonstrates reshaping and join diagnostics, and ends with an independently verified build and the Lab 2 handoff. Later lesson materials remain internal drafts and are not part of the public release.
+The current PDFs contain 63 pages for Lesson 1 and 73 pages for Lesson 2, including Lesson 2's progressive answer reveal and step-by-step source checks. Lesson 2 moves from a policy-briefing question to a clear plan for the table students need, introduces R grammar and data verbs in that context, demonstrates reshaping and join diagnostics, and ends with an independently verified build and the Lab 2 handoff. Later lesson materials remain internal drafts and are not part of the public release.
 
 The Lab 1 handout is a standalone, single-file LaTeX article. Rebuild it with:
 

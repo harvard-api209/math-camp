@@ -72,4 +72,4 @@ if (!all(checks)) {
   )
 }
 
-cat("RESULT: GREEN. The saved health table meets its stated contract.\n")
+cat("RESULT: GREEN. The saved health table meets its stated requirements.\n")

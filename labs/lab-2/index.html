@@ -41,7 +41,7 @@
         <span>LAB 2</span><button type="button" data-close-menu>CLOSE</button>
       </div>
       <ol>
-        <li><a href="#purpose">The table contract</a></li>
+        <li><a href="#purpose">Plan the table</a></li>
         <li><a href="#build">Build one table</a></li>
         <li><a href="#agent">Agent pass</a></li>
         <li><a href="#receipt">Check and explain</a></li>
@@ -58,24 +58,24 @@
           <p>CODING LAB 2</p>
           <h1>Build-table sprint.</h1>
           <p class="article-deck">
-            Construct one country-year analysis table, test its contract, and
-            explain the decisions that turned a frozen source into usable
-            evidence.
+            Construct one country-year analysis table, test its stated
+            requirements, and explain the decisions that turned a frozen
+            source into usable evidence.
           </p>
           <div class="article-actions">
             <a
-              href="https://github.com/harvard-api209/math-camp/releases/download/lab-2-v1.0.0/math-camp-2026-lab-2-v1.0.0.zip"
+              href="https://github.com/harvard-api209/math-camp/releases/download/lab-2-v1.0.1/math-camp-2026-lab-2-v1.0.1.zip"
               >DOWNLOAD LAB 2 PROJECT ↓</a
             ><a href="../../code/lab-2-starter.R">OPEN STARTER R SCRIPT →</a>
           </div>
         </div>
         <aside class="article-hero-side">
-          <p>Contract<br />Transform<br />Check<br />Explain</p>
+          <p>Plan<br />Transform<br />Check<br />Explain</p>
         </aside>
       </section>
       <div class="article-layout">
         <aside class="article-nav">
-          <span>LAB GUIDE</span><a href="#purpose">The table contract</a
+          <span>LAB GUIDE</span><a href="#purpose">Plan the table</a
           ><a href="#build">Build one table</a><a href="#agent">Agent pass</a
           ><a href="#receipt">Check and explain</a>
         </aside>
@@ -96,7 +96,7 @@
             </p>
             <div class="article-actions">
               <a
-                href="https://github.com/harvard-api209/math-camp/releases/download/lab-2-v1.0.0/math-camp-2026-lab-2-v1.0.0.zip"
+                href="https://github.com/harvard-api209/math-camp/releases/download/lab-2-v1.0.1/math-camp-2026-lab-2-v1.0.1.zip"
                 >DOWNLOAD THE COMPLETE LAB FILES ↓</a
               ><a href="../../code/02-verify-analysis.R"
                 >OPEN INDEPENDENT VERIFIER ↗</a
@@ -125,10 +125,10 @@
           </section>
           <section class="article-section reveal" id="build">
             <p class="section-kicker">05–40 MINUTES</p>
-            <h2>Move from contract to table.</h2>
+            <h2>Move from a table plan to a finished table.</h2>
             <div class="session-plan">
               <div>
-                <time>05–12</time><strong>Contract</strong>
+                <time>05–12</time><strong>Table plan</strong>
                 <p>
                   Write population, unit, key, period, outcome, and comparison.
                 </p>
@@ -202,7 +202,7 @@ stopifnot(all(is.finite(health_analysis$log_income)))</code></pre>
                   </tr>
                   <tr>
                     <td>Before the agent pass</td>
-                    <td>Does the table meet its stated contract?</td>
+                    <td>Does the table meet the requirements in its plan?</td>
                     <td>Key, rows, years, missingness, and ranges</td>
                   </tr>
                 </tbody>
@@ -215,7 +215,7 @@ stopifnot(all(is.finite(health_analysis$log_income)))</code></pre>
             <div class="prompt-box">
               <span>BOUNDED AGENT PASS</span>
               <pre>
-Goal: Find one important contract condition that my builder or verifier does not yet test, then propose the smallest useful diff.
+Goal: Find one important requirement in my table plan that the builder or verifier does not yet test, then propose the smallest useful diff.
 Context: Read my script, code/02-verify-analysis.R, and the indicator dictionary.
 Permission: Read only first. Do not edit frozen data or browse the web.
 Constraints: Preserve the country-year unit, sample, and lowercase names.
@@ -252,7 +252,7 @@ Proof: Connect the proposed check to a documented definition, predict its result
               </li>
               <li>
                 <span>□</span
-                ><strong>The year range matches the contract.</strong>
+                ><strong>The year range matches the table plan.</strong>
               </li>
               <li>
                 <span>□</span
@@ -291,7 +291,7 @@ Proof: Connect the proposed check to a documented definition, predict its result
               </div>
               <div>
                 <span>KEEP</span><strong>One build record.</strong>
-                <p>The evidence that the table meets its contract.</p>
+                <p>The evidence that the table meets its stated requirements.</p>
               </div>
               <div>
                 <span>KEEP</span><strong>One decision.</strong>

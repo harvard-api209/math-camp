@@ -66,8 +66,8 @@ removes support:
 
 - **Lesson 1:** students receive the work order and the checks.
 - **Lesson 2:** students complete missing constraints and choose checks.
-- **Lesson 3:** students write the review contract and reject irrelevant advice.
-- **Lesson 4:** students design the audit contract, rank findings, and defend the
+- **Lesson 3:** students write the review plan and reject irrelevant advice.
+- **Lesson 4:** students design the audit plan, rank findings, and defend the
   repair they chose.
 
 This keeps the floor low for students new to code while creating a real ceiling
@@ -250,15 +250,18 @@ and installation triage.
 
 **Lesson time:** 120 minutes. **Lab time:** 60 minutes on the following day.
 
-The lesson turns a table contract into one analysis-ready object. Students learn
+The lesson turns a plain-language table plan into one analysis-ready object. Students learn
 `select()`, `filter()`, `mutate()`, `group_by()`, `summarise()`, and joins while
 tracking the population, unit, key, time period, variables, missingness, and
-provenance. The agent is a bounded cleaning assistant that may add checks or
+provenance. The table plan is simply the class's written description of the
+finished table: who appears, what one row means, what identifies it, which
+period is covered, and which variables answer the policy question. The agent
+is a bounded cleaning assistant that may add checks or
 diagnose one step only after students can evaluate the human-readable pipeline.
 
 Keep a **build record**: each transformation has a reason and a visible check,
-and the frozen source is never rewritten. Planned interactions: write the table
-contract, identify the key, predict what each verb changes, diagnose a
+and the frozen source is never rewritten. Planned interactions: define the
+table needed, identify the key, predict what each verb changes, diagnose a
 many-to-many join, inspect a proposed diff, and write the build record. Lab 2
 is a sixty-minute build-table sprint. Its common path uses `select()`,
 `filter()`, `mutate()`, a key test, and a short build record. Grouped summaries,
@@ -271,7 +274,7 @@ from the frozen file.
 | Minutes | Teaching move | Visible evidence |
 |---|---|---|
 | 00–10 | Reopen the shared project and run the setup gate plus evidence inventory. | `RESULT: GREEN`; frozen-file inventory opens; Codex sees the same project root. |
-| 10–25 | Write and inspect the health table contract. | Population, unit, key, period, outcome, and comparison are stated before code. |
+| 10–25 | Define and inspect the health table plan. | Population, unit, key, period, outcome, and comparison are stated before code. |
 | 25–50 | Live-code `select()` and `filter()` one step at a time. | Students predict the change; counts explain the move from 4,991 source rows to 4,296 complete health rows. |
 | 50–60 | Break. | Ten minutes away from the screen. |
 | 60–82 | Live-code `mutate()`, `group_by()`, and `summarise()`. | The logged measure is hand-checked; the class distinguishes country-year from region-year. |
@@ -287,7 +290,7 @@ proposed range check follows from the indicator's documented unit.
 The live demonstration should expose the whole agent loop rather than only its
 answer. Keep the file tree, requested permissions, command, proposed diff, and
 verification output visible. Use the bounded prompt printed in the deck. Do not
-accept a change until students connect it to one table-contract field and a
+accept a change until students connect it to one requirement in the table plan and a
 documented definition.
 
 ### Overnight handoff to Lab 2

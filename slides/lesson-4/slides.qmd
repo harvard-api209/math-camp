@@ -432,7 +432,7 @@ Exchange with a partner. Underline the verification evidence.
 
 Repair a broken key before addressing formatting.
 
-## Agent audit contract
+## Agent audit plan
 
 ```text
 Goal: Audit this project for handoff readiness.

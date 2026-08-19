@@ -166,8 +166,8 @@ Rscript code/01-inspect.R
   \end{block}
 
   \begin{block}{Wide analysis table}
-    Two country--year rows violate the contract when \texttt{iso3c + year} is
-    supposed to identify each observation once.
+    Two country--year rows violate the table plan when \texttt{iso3c + year}
+    is supposed to identify each observation once.
   \end{block}
 
   \vfill
@@ -183,7 +183,7 @@ Rscript code/01-inspect.R
     \item<1-> \textbf{Long source.} One row per indicator is legitimate when
       \texttt{indicator} belongs to the key; reshape before comparing the measures.
     \item<2-> \textbf{Unnamed dimension.} Sex, unit, or version may distinguish
-      observations that the draft contract has incorrectly combined.
+      observations that the draft table plan has incorrectly combined.
     \item<3-> \textbf{Nonunique join key.} A repeated Kenya record on the right
       can multiply every Kenya year and give those observations excess weight.
     \item<4-> \textbf{Repeated record.} Importing or appending the same evidence
@@ -196,7 +196,10 @@ Rscript code/01-inspect.R
   difference before using \texttt{distinct()}.}
 \end{frame}
 
-\begin{frame}{The table contract records the answer}
+\begin{frame}{Write down the table we need}
+  We will call this short list our \alert{table plan}:
+
+  \vspace{0.25em}
   \begin{description}
     \item[Population] Economy--years with both measures observed and positive income.
     \item[Unit] One economy--year.
@@ -207,7 +210,7 @@ Rscript code/01-inspect.R
   \end{description}
 \end{frame}
 
-\begin{frame}{The table contract guides the code}
+\begin{frame}{The table plan guides the code}
   \begin{center}
   \begin{tikzpicture}[
     node distance=0.40cm,
@@ -216,18 +219,18 @@ Rscript code/01-inspect.R
     arr/.style={-{Latex[length=1.8mm]},color=crimson,thick}
   ]
     \node[box] (question) {\textbf{Question}\\income and mortality};
-    \node[box,right=of question] (contract) {\textbf{Contract}\\unit + key + sample};
-    \node[box,right=of contract] (code) {\textbf{R verbs}\\construct the object};
+    \node[box,right=of question] (plan) {\textbf{Table plan}\\unit + key + sample};
+    \node[box,right=of plan] (code) {\textbf{R verbs}\\construct the object};
     \node[box,right=of code] (table) {\textbf{Evidence}\\checks + build record};
-    \draw[arr] (question)--(contract);
-    \draw[arr] (contract)--(code);
+    \draw[arr] (question)--(plan);
+    \draw[arr] (plan)--(code);
     \draw[arr] (code)--(table);
   \end{tikzpicture}
   \end{center}
 
   \vfill
-  Every consequential line of R should connect to a field in the contract or to
-  evidence that the constructed table satisfies it.
+  Every consequential line of R should connect to one decision in the table
+  plan or to evidence that the constructed table follows it.
 \end{frame}
 
 \begin{frame}[fragile]{Read the frozen file}

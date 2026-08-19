@@ -2,7 +2,7 @@ source("code/00-setup.R")
 
 wdi <- read_csv(data_file, show_col_types = FALSE)
 
-# LAB 2 TABLE CONTRACT
+# LAB 2 TABLE PLAN: define the finished table before writing data verbs.
 # Population:
 # Unit:
 # Key:
@@ -16,7 +16,7 @@ health_analysis <- wdi
 
 # 1. select(): retain the identifiers, metadata, and two health-track measures.
 
-# 2. filter(): apply the period and observed-value rules in your contract.
+# 2. filter(): apply the period and observed-value rules in your table plan.
 
 # 3. mutate(): create log_income only after checking that income is positive.
 

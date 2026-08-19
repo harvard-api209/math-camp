@@ -44,8 +44,8 @@
 
 \begin{frame}[fragile]{A bounded request for the health table}
 \begin{lstlisting}
-Goal: Find one important contract condition that the builder or
-verifier does not yet test, then propose the smallest useful diff.
+Goal: Find one important requirement in the table plan that the
+builder or verifier does not yet test, then propose the smallest useful diff.
 Context: Read code/02-build-analysis.R,
 code/02-verify-analysis.R, and the indicator dictionary.
 Permission: Read only first. Do not edit frozen data or browse the web.
@@ -58,7 +58,7 @@ its result, and name the command that will verify it.
 \begin{frame}{Review the proposed diff}
   For every added check, answer:
   \begin{enumerate}
-    \item Which table-contract field does it test?
+    \item Which part of the table plan does it test?
     \item What failure would it expose?
     \item Can I explain the output?
     \item Does the proposed change affect the population, transformation, or key?
@@ -116,7 +116,7 @@ its result, and name the command that will verify it.
 
 \begin{frame}{What we learned in Lesson 2}
   \begin{itemize}
-    \item The table contract comes before the data verbs.
+    \item Define the table we need before using data verbs.
     \item Every verb should have a reason and a check.
     \item A join must preserve the intended key and unit.
     \item The analysis table should rebuild from a protected source.
@@ -134,8 +134,8 @@ its result, and name the command that will verify it.
     Thursday, August 20 \(\cdot\) 4:00--5:00 p.m.
 
     \vspace{0.55em}
-    Start from a scaffold, test its contract, and explain the decisions that
-    produced it.
+    Start from a scaffold, test the table's stated requirements, and explain
+    the decisions that produced it.
   \end{center}
   \vfill
 \end{frame}
@@ -148,7 +148,7 @@ its result, and name the command that will verify it.
     Minutes & Work & Result \\
     \midrule
     00--05 & Reopen green & Project, source, scaffold, and Codex agree. \\
-    05--12 & Contract & Population, unit, key, period, and variables. \\
+    05--12 & Table plan & Population, unit, key, period, and variables. \\
     12--30 & Build & Select, filter, mutate, arrange, and save. \\
     30--40 & Record & Rows, key, years, missingness, and ranges. \\
     40--50 & Agent pass & One bounded, inspectable improvement. \\
@@ -167,7 +167,7 @@ Rscript code/check_setup.R --codex-confirmed
 
   \begin{enumerate}
     \item Open \texttt{code/lab-2-starter.R}; do not overwrite the frozen CSV.
-    \item Fill the table contract before writing a data verb.
+    \item Fill in the table plan before writing a data verb.
     \item Build and save \texttt{outputs/02-health-analysis.csv}.
     \item Compare your work with \texttt{code/02-build-analysis.R} only after
       making a genuine attempt.
