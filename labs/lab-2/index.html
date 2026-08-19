@@ -62,6 +62,12 @@
             explain the decisions that turned a frozen source into usable
             evidence.
           </p>
+          <div class="article-actions">
+            <a
+              href="https://github.com/harvard-api209/math-camp/releases/download/lab-2-v1.0.0/math-camp-2026-lab-2-v1.0.0.zip"
+              >DOWNLOAD LAB 2 PROJECT ↓</a
+            ><a href="../../code/lab-2-starter.R">OPEN STARTER R SCRIPT →</a>
+          </div>
         </div>
         <aside class="article-hero-side">
           <p>Contract<br />Transform<br />Check<br />Explain</p>
@@ -88,37 +94,52 @@
               passes. Work together to diagnose problems. Keep your own script
               and be able to explain it. The lab has no submission or grade.
             </p>
+            <div class="article-actions">
+              <a
+                href="https://github.com/harvard-api209/math-camp/releases/download/lab-2-v1.0.0/math-camp-2026-lab-2-v1.0.0.zip"
+                >DOWNLOAD THE COMPLETE LAB FILES ↓</a
+              ><a href="../../code/02-verify-analysis.R"
+                >OPEN INDEPENDENT VERIFIER ↗</a
+              >
+            </div>
             <div class="callout">
               <span>DONE WHEN</span>
               <p>
                 Your script rebuilds the table from the frozen file, the
                 country-year key is unique, the build record reports the
-                expected structure, and you can explain one important decision
-                without the agent.
+                expected structure, the independent verifier reports green,
+                and you can explain one important decision without the agent.
+              </p>
+            </div>
+            <div class="code-plate">
+              <div class="code-plate-head">
+                <span>TERMINAL</span><span>00–05 / REOPEN GREEN</span>
+              </div>
+              <pre><code>Rscript code/check_setup.R --codex-confirmed</code></pre>
+              <p>
+                Open <code>math-camp-2026.Rproj</code> and
+                <code>code/lab-2-starter.R</code>. Do not build from an unnamed
+                console object or overwrite the frozen source.
               </p>
             </div>
           </section>
           <section class="article-section reveal" id="build">
-            <p class="section-kicker">00–45 MINUTES</p>
+            <p class="section-kicker">05–40 MINUTES</p>
             <h2>Move from contract to table.</h2>
             <div class="session-plan">
               <div>
-                <time>00–08</time><strong>Contract</strong>
+                <time>05–12</time><strong>Contract</strong>
                 <p>
                   Write population, unit, key, period, outcome, and comparison.
                 </p>
               </div>
               <div>
-                <time>08–25</time><strong>Select + filter</strong>
-                <p>Keep required variables and define the time window.</p>
+                <time>12–30</time><strong>Build</strong>
+                <p>Select, filter, mutate, arrange, and save.</p>
               </div>
               <div>
-                <time>25–35</time><strong>Mutate</strong>
-                <p>Create one justified variable and complete a hand check.</p>
-              </div>
-              <div>
-                <time>35–43</time><strong>Structure checks</strong>
-                <p>Test the key, rows, years, missingness, and ranges.</p>
+                <time>30–40</time><strong>Build record</strong>
+                <p>Record rows, key, years, missingness, and ranges.</p>
               </div>
             </div>
             <div class="code-plate">
@@ -138,6 +159,7 @@ health_analysis &lt;- wdi |&gt;
     gdp_per_capita_ppp, under5_mortality
   ) |&gt;
   filter(
+    between(year, 2000L, 2022L),
     !is.na(gdp_per_capita_ppp),
     gdp_per_capita_ppp &gt; 0,
     !is.na(under5_mortality)
@@ -188,16 +210,16 @@ stopifnot(all(is.finite(health_analysis$log_income)))</code></pre>
             </div>
           </section>
           <section class="article-section reveal" id="agent">
-            <p class="section-kicker">43–53 MINUTES</p>
+            <p class="section-kicker">40–50 MINUTES</p>
             <h2>Delegate one bounded improvement.</h2>
             <div class="prompt-box">
               <span>BOUNDED AGENT PASS</span>
               <pre>
-Goal: Review my health-table pipeline and propose checks for its stated contract.
-Context: Read my script and the indicator dictionary. The unit must remain country-year.
-Permission: Read and propose a patch; do not run it or alter frozen data.
-Constraints: Keep object and column names in lowercase. Do not redesign the pipeline or make a policy claim.
-Proof: Explain which contract field each check tests and show the smallest proposed diff.</pre>
+Goal: Find one important contract condition that my builder or verifier does not yet test, then propose the smallest useful diff.
+Context: Read my script, code/02-verify-analysis.R, and the indicator dictionary.
+Permission: Read only first. Do not edit frozen data or browse the web.
+Constraints: Preserve the country-year unit, sample, and lowercase names.
+Proof: Connect the proposed check to a documented definition, predict its result, and name the command that will verify it.</pre>
             </div>
             <p>
               Inspect the diff. Keep only checks you can explain. If the agent
@@ -206,8 +228,19 @@ Proof: Explain which contract field each check tests and show the smallest propo
             </p>
           </section>
           <section class="article-section reveal" id="receipt">
-            <p class="section-kicker">53–60 MINUTES</p>
-            <h2>Keep a short build record.</h2>
+            <p class="section-kicker">50–60 MINUTES</p>
+            <h2>Verify, then explain.</h2>
+            <div class="code-plate">
+              <div class="code-plate-head">
+                <span>TERMINAL</span><span>50–57 / INDEPENDENT CHECK</span>
+              </div>
+              <pre><code>Rscript code/02-verify-analysis.R</code></pre>
+              <p>
+                If it is not green, read the named failed condition and repair
+                the builder. Do not edit the verifier merely to make red output
+                disappear.
+              </p>
+            </div>
             <ul class="checklist">
               <li>
                 <span>□</span
@@ -237,9 +270,10 @@ Proof: Explain which contract field each check tests and show the smallest propo
               </li>
             </ul>
             <p>
-              Finish with four sentences: what one row represents; which
-              observations were excluded; what the logged variable means; and
-              which limitation remains for the policy question.
+              During minutes 57–60, finish with four sentences: what one row
+              represents; which observations were excluded; what the logged
+              variable means; and which limitation remains for the policy
+              question.
             </p>
             <div class="callout">
               <span>COMMON PATH FIRST</span>

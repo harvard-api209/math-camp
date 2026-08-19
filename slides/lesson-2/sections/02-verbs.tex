@@ -1,21 +1,153 @@
-\section{Six data verbs}
+\section{R verbs and functions}
 \subsection{Predict, run, check, explain}
 
-\begin{frame}{Six verbs, six decisions}
-  \footnotesize
-  \renewcommand{\arraystretch}{1.18}
-  \begin{tabularx}{\textwidth}{@{}>{\bfseries}p{2.2cm}X@{}}
-    \toprule
-    Verb & Question before we run it \\
-    \midrule
-    \texttt{select()} & Which variables and identifiers remain? \\
-    \texttt{filter()} & Which observations leave the population? \\
-    \texttt{mutate()} & What new value is created, and in which unit? \\
-    \texttt{group\_by()} & Which observations belong together? \\
-    \texttt{summarise()} & What does one output row represent? \\
-    \texttt{left\_join()} & Which keys connect the tables? \\
-    \bottomrule
-  \end{tabularx}
+\begin{frame}[fragile]{Read one R sentence}
+\begin{lstlisting}[language=R]
+health_selected <- wdi |>
+  select(iso3c, year, gdp_per_capita_ppp,
+         under5_mortality)
+\end{lstlisting}
+
+  \begin{description}
+    \item[Object] \texttt{wdi} is the input table; \texttt{health\_selected} is the output.
+    \item[Assignment] \texttt{<-} gives the result a name.
+    \item[Pipe] \texttt{|>} passes the object on the left into the next function.
+    \item[Function] \texttt{select()} performs an action.
+    \item[Arguments] The names inside \texttt{select()} tell it which columns to keep.
+  \end{description}
+\end{frame}
+
+\begin{frame}{A function connects an input to an output}
+  \begin{center}
+  \begin{tikzpicture}[
+    node distance=0.65cm,
+    box/.style={draw=palegray,rounded corners=2pt,text width=3.0cm,
+      minimum height=1.35cm,align=center},
+    arr/.style={-{Latex[length=2mm]},color=crimson,thick}
+  ]
+    \node[box] (input) {\textbf{Input}\\an object + arguments};
+    \node[box,right=of input] (function) {\textbf{Function}\\a named operation};
+    \node[box,right=of function] (output) {\textbf{Output}\\a value or object};
+    \draw[arr] (input)--(function);
+    \draw[arr] (function)--(output);
+  \end{tikzpicture}
+  \end{center}
+
+  \vspace{0.8em}
+  R functions do not all change data. Some inspect, some construct, some test,
+  and some save. We choose a function because of the evidence we need next.
+\end{frame}
+
+\begin{frame}{Inspection functions help us ask before changing}
+  \begin{description}
+    \item[\texttt{glimpse()}] What columns and types are present?
+    \item[\texttt{names()}] Which variables are available?
+    \item[\texttt{count()}] How often does a proposed key or category occur?
+    \item[\texttt{n\_distinct()}] How many different economies or years appear?
+    \item[\texttt{anyDuplicated()}] Does the proposed key identify every row once?
+    \item[\texttt{stopifnot()}] Which expectation must be true before continuing?
+  \end{description}
+
+  \vfill
+  These functions turn ``the data look fine'' into visible evidence.
+\end{frame}
+
+\begin{frame}[fragile]{Source check 1: how many rows?}
+  Start with one question and one function:
+
+\begin{lstlisting}[language=R]
+nrow(wdi)
+\end{lstlisting}
+
+\begin{lstlisting}
+[1] 4991
+\end{lstlisting}
+
+  \begin{description}
+    \item[Input] The complete \texttt{wdi} table.
+    \item[Function] \texttt{nrow()} counts its rows.
+    \item[Evidence] The frozen source contains 4,991 economy--year records.
+  \end{description}
+\end{frame}
+
+\begin{frame}[fragile]{Source check 2: how many economies?}
+  Now select one column with \texttt{\$} and count its distinct values:
+
+\begin{lstlisting}[language=R]
+n_distinct(wdi$iso3c)
+\end{lstlisting}
+
+\begin{lstlisting}
+[1] 217
+\end{lstlisting}
+
+  \begin{description}
+    \item[Input] \texttt{wdi\$iso3c}, the economy-code column.
+    \item[Function] \texttt{n\_distinct()} counts different codes.
+    \item[Evidence] The source contains 217 economies or reporting entities.
+  \end{description}
+\end{frame}
+
+\begin{frame}[fragile]{Source check 3: which years are covered?}
+  Apply \texttt{range()} to the year column:
+
+\begin{lstlisting}[language=R]
+range(wdi$year)
+\end{lstlisting}
+
+\begin{lstlisting}
+[1] 2000 2022
+\end{lstlisting}
+
+  \begin{description}
+    \item[Input] \texttt{wdi\$year}, the year column.
+    \item[Function] \texttt{range()} returns its minimum and maximum.
+    \item[Evidence] The frozen teaching period is 2000--2022.
+  \end{description}
+\end{frame}
+
+\begin{frame}[fragile]{Source check 4: is the proposed key unique?}
+  Select the two key columns and test them together:
+
+\begin{lstlisting}[language=R]
+anyDuplicated(wdi[c("iso3c", "year")])
+\end{lstlisting}
+
+\begin{lstlisting}
+[1] 0
+\end{lstlisting}
+
+  \begin{description}
+    \item[Input] A two-column table containing the proposed key.
+    \item[Function] \texttt{anyDuplicated()} returns zero when no key repeats.
+    \item[Evidence] Each economy--year appears once in the frozen source.
+  \end{description}
+\end{frame}
+
+\begin{frame}{Four verbs change the current table directly}
+  \begin{description}
+    \item[\texttt{select()}] Keep the columns required by the question and key.
+    \item[\texttt{filter()}] Keep the observations belonging to the stated population.
+    \item[\texttt{mutate()}] Create or transform a variable while keeping the rows.
+    \item[\texttt{arrange()}] Change the display order without changing the unit.
+  \end{description}
+
+  \vfill
+  Before each verb, predict whether rows, columns, values, order, or the unit
+  should change.
+\end{frame}
+
+\begin{frame}{Other verbs can change the unit or combine tables}
+  \begin{description}
+    \item[\texttt{group\_by()}] Declare which observations belong together.
+    \item[\texttt{summarise()}] Return one row per group and therefore define a new unit.
+    \item[\texttt{pivot\_wider()}] Move indicator names from rows into columns.
+    \item[\texttt{left\_join()}] Add columns by matching keys while preserving left rows.
+  \end{description}
+
+  \vfill
+  These operations deserve an explicit unit and key check because the output
+  table may represent a different object.
 \end{frame}
 
 \begin{frame}{Use one recurring move}
@@ -37,117 +169,150 @@
   \end{center}
 
   \vfill
-  Predict rows, columns, values, order, or unit before running the step.
+  This loop is more important than memorizing every function name.
 \end{frame}
 
-\begin{frame}[fragile]{\texttt{select()} defines the scope}
+\begin{frame}[fragile]{\texttt{select()} defines the analytical scope}
 \begin{lstlisting}[language=R]
-health <- wdi |>
+health_selected <- wdi |>
   select(
-    iso3c,
-    country,
-    year,
-    income_level_current,
-    gdp_per_capita_ppp,
-    under5_mortality
+    iso3c, country, region, income_level_current,
+    year, gdp_per_capita_ppp, under5_mortality
   )
 \end{lstlisting}
 
-  \textbf{Predict:} Which columns will leave? Which identifiers need to stay?
-\end{frame}
+  \textbf{Predict:} Columns leave; rows and the economy--year unit do not.
 
-\begin{frame}[fragile]{Check after \texttt{select()}}
 \begin{lstlisting}[language=R]
-names(health)
-glimpse(health)
-
-stopifnot(all(
-  c("iso3c", "year") %in% names(health)
-))
+names(health_selected)
+stopifnot(all(c("iso3c", "year") %in%
+              names(health_selected)))
 \end{lstlisting}
-
-  Run the key check after confirming that the contract identifiers are still
-  present.
 \end{frame}
 
 \begin{frame}[fragile]{\texttt{filter()} changes the population}
 \begin{lstlisting}[language=R]
-health <- health |>
-  filter(year >= 2000)
-\end{lstlisting}
-
-  Before running:
-  \begin{itemize}
-    \item How many years should remain?
-    \item Could a country disappear completely?
-    \item Are we removing missing indicators on purpose or by accident?
-  \end{itemize}
-\end{frame}
-
-\begin{frame}[fragile]{Check after \texttt{filter()}}
-\begin{lstlisting}[language=R]
-health |>
-  summarise(
-    rows = n(),
-    countries = n_distinct(iso3c),
-    first_year = min(year),
-    last_year = max(year)
+health_filtered <- health_selected |>
+  filter(
+    between(year, 2000L, 2022L),
+    !is.na(gdp_per_capita_ppp),
+    gdp_per_capita_ppp > 0,
+    !is.na(under5_mortality)
   )
 \end{lstlisting}
 
-  Compare country and year coverage to identify which observations left the
-  sample.
+  \textbf{Predict:} Rows and possibly whole economies leave; columns and the
+  meaning of one remaining row do not change.
 \end{frame}
 
-\begin{frame}[fragile]{\texttt{mutate()} makes a claim about meaning}
+\begin{frame}[fragile]{Check what the filter excluded}
 \begin{lstlisting}[language=R]
-health <- health |>
+tibble(
+  stage = c("source", "health sample"),
+  rows = c(nrow(wdi), nrow(health_filtered)),
+  economies = c(
+    n_distinct(wdi$iso3c),
+    n_distinct(health_filtered$iso3c)
+  )
+)
+\end{lstlisting}
+
+  The common sample contains \textbf{4,296 rows} from \textbf{188 economies}.
+  The 695 excluded rows and 29 economies are part of the result, not housekeeping.
+\end{frame}
+
+\begin{frame}{Checkpoint 1: name who left}
+  The analysis table requires both income and mortality to be observed. The
+  filtered table is smaller than the frozen source.
+
+  \vspace{0.5em}
+  Decide together:
+  \begin{enumerate}
+    \item Does the result still represent ``all economies''?
+    \item What evidence would distinguish missing years from missing indicators?
+    \item What sample sentence should accompany a later figure or model?
+  \end{enumerate}
+
+  \vfill
+  \centering
+  \textbf{2 minutes discuss}\qquad$\longrightarrow$\qquad
+  \textbf{2 minutes share}
+\end{frame}
+
+\begin{frame}[fragile]{\texttt{mutate()} creates a value and an interpretation}
+\begin{lstlisting}[language=R]
+health_mutated <- health_filtered |>
   mutate(
     log_income = log(gdp_per_capita_ppp)
   )
 \end{lstlisting}
 
-  The logarithm compresses the upper tail. It also changes how we interpret a
-  later coefficient. The new column carries a substantive decision about scale.
+  \textbf{Predict:} One column is added; rows and the economy--year unit remain.
+
+  \vspace{0.5em}
+  The logarithm compresses the upper tail and changes the interpretation of a
+  later coefficient. It is an analytical choice, not merely new syntax.
 \end{frame}
 
-\begin{frame}[fragile]{Check after \texttt{mutate()}}
+\begin{frame}[fragile]{Check the transformed value}
 \begin{lstlisting}[language=R]
-health |>
+health_mutated |>
   summarise(
-    missing_income = sum(is.na(gdp_per_capita_ppp)),
+    min_income = min(gdp_per_capita_ppp),
     missing_log = sum(is.na(log_income)),
-    min_income = min(gdp_per_capita_ppp, na.rm = TRUE),
-    max_income = max(gdp_per_capita_ppp, na.rm = TRUE)
+    all_finite = all(is.finite(log_income)),
+    recomputes = isTRUE(all.equal(
+      log_income, log(gdp_per_capita_ppp)
+    ))
   )
 \end{lstlisting}
 
-  What would happen if income were zero or negative?
+  The positive-income condition makes the logarithm defined. The recomputation
+  check ties the derived value to its stated formula.
 \end{frame}
 
-\begin{frame}[fragile]{Grouping changes the unit}
+\begin{frame}[fragile]{\texttt{arrange()} makes inspection easier}
 \begin{lstlisting}[language=R]
-regional_year <- health |>
+health_analysis <- health_mutated |>
+  arrange(iso3c, year)
+\end{lstlisting}
+
+  \textbf{Predict:} Order changes; rows, columns, values, unit, and key do not.
+
+\begin{lstlisting}[language=R]
+stopifnot(nrow(health_analysis) ==
+          nrow(health_mutated))
+\end{lstlisting}
+
+  An orderly table is easier to inspect, but sorting does not make a key unique.
+\end{frame}
+
+\begin{frame}[fragile]{Grouping and summarising create a new unit}
+\begin{lstlisting}[language=R]
+regional_year <- health_analysis |>
   group_by(region, year) |>
   summarise(
-    mean_mortality = mean(under5_mortality, na.rm = TRUE),
-    countries = n_distinct(iso3c),
+    mean_mortality = mean(under5_mortality),
+    economies = n_distinct(iso3c),
     .groups = "drop"
   )
 \end{lstlisting}
 
-  Grouping produces one region--year row in this summary.
+  One output row now represents a \alert{region--year}, not an economy--year.
+  This summary serves a new descriptive purpose; it does not replace the
+  analysis table required by the original question.
 \end{frame}
 
-\begin{frame}{Predict the output}
-  Suppose the table has seven regions and 23 years.
+\begin{frame}{Predict the regional output}
+  Suppose the common table contains seven regions and 23 years.
 
   \begin{enumerate}
-    \item What is the largest possible row count after the summary?
-    \item Why might the actual count be smaller?
-    \item Does \texttt{na.rm = TRUE} solve missing coverage?
+    \item What is the largest possible number of region--year rows?
+    \item Why might the observed count be smaller?
+    \item What does the \texttt{economies} column reveal that the mean cannot?
   \end{enumerate}
 
   \vfill
-  Take three minutes. Write the answers before we run the code.
+  The maximum is 161 rows. Uneven country coverage can make a regional mean
+  comparable in syntax but different in composition.
 \end{frame}

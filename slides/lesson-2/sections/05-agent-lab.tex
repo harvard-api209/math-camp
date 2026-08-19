@@ -1,6 +1,30 @@
 \section{From Lesson 2 to Lab 2}
 \subsection{Bounded help}
 
+\begin{frame}{Live demonstration: builder, agent, verifier}
+  \begin{center}
+  \begin{tikzpicture}[
+    node distance=0.42cm,
+    box/.style={draw=palegray,rounded corners=2pt,text width=2.35cm,
+      minimum height=1.35cm,align=center,font=\small},
+    arr/.style={-{Latex[length=2mm]},color=crimson,thick}
+  ]
+    \node[box] (build) {\textbf{Build}\\run the readable R pipeline};
+    \node[box,right=of build] (delegate) {\textbf{Delegate}\\request one missing check};
+    \node[box,right=of delegate] (inspect) {\textbf{Inspect}\\read the proposal or diff};
+    \node[box,right=of inspect] (verify) {\textbf{Verify}\\rerun from saved files};
+    \draw[arr] (build)--(delegate);
+    \draw[arr] (delegate)--(inspect);
+    \draw[arr] (inspect)--(verify);
+  \end{tikzpicture}
+  \end{center}
+
+  \vfill
+  Watch the file names, requested permissions, commands, diff, and final
+  evidence. The demonstration uses the same project and health table that you
+  will use tomorrow.
+\end{frame}
+
 \begin{frame}{Give the agent one task you can evaluate}
   A broad request hides the important decisions:
   \begin{block}{Too broad}
@@ -20,12 +44,14 @@
 
 \begin{frame}[fragile]{A bounded request for the health table}
 \begin{lstlisting}
-Goal: Add a build record for the health analysis table.
-Context: Read code/02-build-analysis.R and the indicator dictionary.
-Permission: Propose a diff. Do not run it or change frozen data.
-Constraints: Keep the country-year unit and lowercase names.
-Proof: Report rows, unique keys, years, missingness, ranges,
-and every failed condition.
+Goal: Find one important contract condition that the builder or
+verifier does not yet test, then propose the smallest useful diff.
+Context: Read code/02-build-analysis.R,
+code/02-verify-analysis.R, and the indicator dictionary.
+Permission: Read only first. Do not edit frozen data or browse the web.
+Constraints: Preserve the country-year unit, sample, and lowercase names.
+Proof: Connect the proposed check to a documented definition, predict
+its result, and name the command that will verify it.
 \end{lstlisting}
 \end{frame}
 
@@ -41,6 +67,25 @@ and every failed condition.
   \vfill
   A change to the population, transformation, or key is a substantive decision.
   The analyst remains responsible even when the request is described as code cleanup.
+\end{frame}
+
+\begin{frame}{Checkpoint 3: would you accept the patch?}
+  The agent proposes checking that under-five mortality is no larger than 100,
+  because it assumes the column is a percentage. The dictionary says the unit
+  is deaths before age five per 1,000 live births.
+
+  \vspace{0.5em}
+  Decide together:
+  \begin{enumerate}
+    \item Is the proposed threshold justified?
+    \item Should we reject, revise, or accept the patch?
+    \item What evidence should appear after the revision?
+  \end{enumerate}
+
+  \vfill
+  \centering
+  \textbf{2 minutes discuss}\qquad$\longrightarrow$\qquad
+  \textbf{2 minutes share}
 \end{frame}
 
 \begin{frame}{Decisions the analyst keeps}
@@ -76,34 +121,58 @@ and every failed condition.
     \item A join must preserve the intended key and unit.
     \item The analysis table should rebuild from a protected source.
     \item The agent improves one bounded part under analyst review.
+    \item A separate verifier must inspect the saved object and report evidence.
   \end{itemize}
 \end{frame}
 
-\begin{frame}{Lab 2}
+\begin{frame}{Tomorrow: Lab 2}
   \vfill
   \begin{center}
     {\LARGE\color{crimson}Build one country--year table.}
 
     \vspace{0.75em}
-    Test its contract and explain the decisions that produced it.
+    Thursday, August 20 \(\cdot\) 4:00--5:00 p.m.
+
+    \vspace{0.55em}
+    Start from a scaffold, test its contract, and explain the decisions that
+    produced it.
   \end{center}
   \vfill
 \end{frame}
 
 \begin{frame}{Lab 2 route}
   \small
-  \begin{tabularx}{\textwidth}{@{}>{\color{crimson}\bfseries}p{1.6cm}>{\bfseries}p{3.2cm}X@{}}
+  \renewcommand{\arraystretch}{1.30}
+  \begin{tabular*}{\textwidth}{@{\extracolsep{\fill}}>{\color{crimson}\bfseries}l >{\bfseries}l l@{}}
     \toprule
     Minutes & Work & Result \\
     \midrule
-    00--08 & Contract & Population, unit, key, period, and variables. \\
-    08--25 & Select + filter & Required columns and sample. \\
-    25--35 & Mutate & One justified variable and a hand check. \\
-    35--43 & Structure checks & Unique key, rows, years, missingness, and ranges. \\
-    43--53 & Agent pass & One reviewable improvement. \\
-    53--60 & Build record & Checks and a four-sentence explanation. \\
+    00--05 & Reopen green & Project, source, scaffold, and Codex agree. \\
+    05--12 & Contract & Population, unit, key, period, and variables. \\
+    12--30 & Build & Select, filter, mutate, arrange, and save. \\
+    30--40 & Record & Rows, key, years, missingness, and ranges. \\
+    40--50 & Agent pass & One bounded, inspectable improvement. \\
+    50--57 & Verify & Independent checker reaches green. \\
+    57--60 & Explain & One decision and one remaining limitation. \\
     \bottomrule
-  \end{tabularx}
+  \end{tabular*}
+\end{frame}
+
+\begin{frame}[fragile]{Your Lab 2 launch sequence}
+  Open the project and the scaffold, then run the gate:
+
+\begin{lstlisting}
+Rscript code/check_setup.R --codex-confirmed
+\end{lstlisting}
+
+  \begin{enumerate}
+    \item Open \texttt{code/lab-2-starter.R}; do not overwrite the frozen CSV.
+    \item Fill the table contract before writing a data verb.
+    \item Build and save \texttt{outputs/02-health-analysis.csv}.
+    \item Compare your work with \texttt{code/02-build-analysis.R} only after
+      making a genuine attempt.
+    \item Run \texttt{Rscript code/02-verify-analysis.R} from the Terminal.
+  \end{enumerate}
 \end{frame}
 
 \begin{frame}{The common path and the extensions}
@@ -111,11 +180,13 @@ and every failed condition.
     \begin{column}{0.48\textwidth}
       \begin{block}{Required in 60 minutes}
         \begin{itemize}
+          \item begin from \texttt{lab-2-starter.R};
           \item select and filter;
           \item create \texttt{log\_income};
           \item test the country--year key;
           \item record coverage and ranges;
-          \item review one bounded agent proposal.
+          \item review one bounded agent proposal;
+          \item reach a green independent verification result.
         \end{itemize}
       \end{block}
     \end{column}
@@ -140,7 +211,8 @@ and every failed condition.
   \begin{itemize}
     \item The script rebuilds the table from the frozen file.
     \item The country--year key is unique.
-    \item The build record includes rows, years, missingness, ranges, and matches.
+    \item The build record includes rows, years, missingness, and ranges.
+    \item The independent verifier reports a green result.
     \item You can explain one consequential decision without the agent.
   \end{itemize}
 

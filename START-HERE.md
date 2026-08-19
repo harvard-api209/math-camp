@@ -19,11 +19,20 @@ This folder is the runnable companion to the Math Camp teaching book. Open
    ```sh
    Rscript code/01-inspect.R
    Rscript code/02-build-analysis.R
+   Rscript code/02-verify-analysis.R
    Rscript code/03-compare.R
    ```
 
 Each script starts from saved files. None depends on objects created manually in
 the R console.
+
+For Lab 2, begin with `code/lab-2-starter.R`. The completed
+`code/02-build-analysis.R` is a reference after you have made a genuine attempt;
+`code/02-verify-analysis.R` independently checks the table you saved.
+
+During Lesson 2, open `code/lesson-2-walkthrough.R` in RStudio. Its numbered
+sections follow the lesson deck and can be run one at a time or sourced as one
+complete, checked workflow.
 
 ## The four policy paths
 

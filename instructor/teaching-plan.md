@@ -266,6 +266,40 @@ metadata joins, another policy track, and a public-data update are optional
 extensions. This scope gives every student time to finish one checked table
 from the frozen file.
 
+### Lesson 2 run of show
+
+| Minutes | Teaching move | Visible evidence |
+|---|---|---|
+| 00–10 | Reopen the shared project and run the setup gate plus evidence inventory. | `RESULT: GREEN`; frozen-file inventory opens; Codex sees the same project root. |
+| 10–25 | Write and inspect the health table contract. | Population, unit, key, period, outcome, and comparison are stated before code. |
+| 25–50 | Live-code `select()` and `filter()` one step at a time. | Students predict the change; counts explain the move from 4,991 source rows to 4,296 complete health rows. |
+| 50–60 | Break. | Ten minutes away from the screen. |
+| 60–82 | Live-code `mutate()`, `group_by()`, and `summarise()`. | The logged measure is hand-checked; the class distinguishes country-year from region-year. |
+| 82–98 | Diagnose and repair a deliberately broken metadata join. | Right-side key, row count, output key, and unmatched keys are checked. |
+| 98–112 | Run the builder, ask Codex for one bounded missing check, inspect the proposal, and run the independent verifier. | Saved analysis table, build record, reviewed diff, and green verifier output. |
+| 112–120 | Rehearse the next-day Lab 2 launch. | Students can locate the starter, name the first command, and explain the completion signal. |
+
+Use four four-minute checkpoints, each with two minutes of pair discussion and
+two minutes of whole-room sharing: identify the unit and key; explain who leaves
+the complete-case sample; diagnose a row-multiplying join; and decide whether a
+proposed range check follows from the indicator's documented unit.
+
+The live demonstration should expose the whole agent loop rather than only its
+answer. Keep the file tree, requested permissions, command, proposed diff, and
+verification output visible. Use the bounded prompt printed in the deck. Do not
+accept a change until students connect it to one table-contract field and a
+documented definition.
+
+### Overnight handoff to Lab 2
+
+Students do not need to submit homework. They should leave Lesson 2 knowing how
+to reopen the project, reach a green setup result, and find
+`code/lab-2-starter.R`. In the next-day lab they build from that scaffold, may
+consult `code/02-build-analysis.R` after a genuine attempt, and finish by running
+`Rscript code/02-verify-analysis.R`. A green verifier is evidence about the
+saved table; students must still explain one sample or transformation decision
+and one limitation of the resulting policy comparison.
+
 ## Lesson 3: Discover patterns
 
 **Lesson time:** 120 minutes. **Lab time:** 60 minutes.

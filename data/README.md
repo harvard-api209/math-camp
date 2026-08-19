@@ -38,7 +38,11 @@ build creates:
 - `documentation/indicator-dictionary.csv`: track, indicator name, unit,
   definition, source organization, periodicity, source URL, and retrieval date.
 
-The 2000-2022 end date is intentional. It makes the class copy stable. Lab 2 asks students to use an agent and the World Bank API to update the file to the latest available observations, then audit what changed. The latest available year will differ across indicators.
+The 2000-2022 end date is intentional. It makes the class copy stable. Lab 2
+uses that frozen file to build and independently verify one country-year table.
+Retrieving the latest available observations with an agent and the World Bank
+API is an optional extension after the common lab path; the latest available
+year will differ across indicators.
 
 The data contain no individual records or personally identifiable information.
 

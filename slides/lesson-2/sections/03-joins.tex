@@ -1,5 +1,41 @@
-\section{Joining tables}
+\section{Reshaping and joining tables}
 \subsection{Protect the unit}
+
+\begin{frame}[fragile]{Long and wide can both be correct}
+  Start from the real Kenya--2022 row and temporarily place its two indicators
+  underneath one another:
+
+\begin{lstlisting}[language=R]
+kenya_2022_long <- kenya_2022_wide |>
+  pivot_longer(
+    cols = c(gdp_per_capita_ppp,
+             under5_mortality),
+    names_to = "indicator",
+    values_to = "value"
+  )
+\end{lstlisting}
+
+  Long data use \texttt{iso3c + year + indicator} as the key. The repeated
+  country--year is informative because the indicator differs.
+\end{frame}
+
+\begin{frame}[fragile]{\texttt{pivot\_wider()} changes the row meaning}
+\begin{lstlisting}[language=R]
+kenya_2022_rebuilt <- kenya_2022_long |>
+  pivot_wider(
+    names_from = indicator,
+    values_from = value
+  )
+
+stopifnot(!anyDuplicated(
+  kenya_2022_rebuilt[c("iso3c", "year")]
+))
+\end{lstlisting}
+
+  The two indicator rows become two columns on one economy--year row. Reshaping
+  is correct because it moves from the source unit to the unit required by our
+  policy question.
+\end{frame}
 
 \begin{frame}{A join can multiply rows quietly}
   \begin{center}
@@ -17,53 +53,91 @@
   \end{center}
 
   \vspace{0.65em}
-  Every value can look real while Kenya receives twice the weight. Inspect the
-  join structure because the values alone will hide this problem.
+  Every value can look plausible while each Kenya--year receives twice the
+  weight. The structure of the right-side key determines the result.
 \end{frame}
 
-\begin{frame}[fragile]{Test the right-side key first}
+\begin{frame}[fragile]{Build and test the right-side table first}
 \begin{lstlisting}[language=R]
-stopifnot(
-  !anyDuplicated(metadata["iso3c"])
-)
+country_metadata <- wdi |>
+  distinct(
+    iso3c, country, region, income_level_current
+  )
 
-joined <- left_join(
-  health,
-  metadata,
-  by = "iso3c"
+stopifnot(
+  !anyDuplicated(country_metadata["iso3c"])
 )
 \end{lstlisting}
 
-  The key on the right table determines whether rows on the left can multiply.
+  Here one metadata row should represent one economy. If \texttt{iso3c} is not
+  unique, a country--year row on the left can match several rows on the right.
+\end{frame}
+
+\begin{frame}[fragile]{Join only after the relationship is understood}
+\begin{lstlisting}[language=R]
+health_core <- health_analysis |>
+  select(-country, -region, -income_level_current)
+
+health_joined <- health_core |>
+  left_join(
+    country_metadata,
+    by = "iso3c"
+  )
+\end{lstlisting}
+
+  \textbf{Predict:} Metadata columns return; the number and meaning of the left
+  rows should not change.
 \end{frame}
 
 \begin{frame}[fragile]{Leave a join record}
 \begin{lstlisting}[language=R]
-stopifnot(nrow(joined) == nrow(health))
-stopifnot(!anyDuplicated(joined[c("iso3c", "year")]))
+stopifnot(nrow(health_joined) == nrow(health_core))
+stopifnot(!anyDuplicated(
+  health_joined[c("iso3c", "year")]
+))
 
 unmatched <- anti_join(
-  health,
-  metadata,
-  by = "iso3c"
+  health_core, country_metadata, by = "iso3c"
 )
+
+stopifnot(nrow(unmatched) == 0)
 \end{lstlisting}
 
-  Successful syntax still requires row-count and key checks to confirm that the
-  join preserved the object described by the table contract.
+  Successful syntax is not the completion criterion. The evidence must show
+  that the join preserved the left-side object described by the contract.
 \end{frame}
 
-\begin{frame}{Diagnose the broken join}
+\begin{frame}{Diagnose before repairing}
   The row count increased after \texttt{left\_join()}.
 
-  Which check should come first?
+  Which action should come first?
   \begin{enumerate}
     \item Delete duplicated rows in the output.
-    \item Test the right-side key for duplicates.
+    \item Test the right-side key for repeated values.
     \item Change to \texttt{inner\_join()}.
     \item Ask an agent to rewrite the complete pipeline.
   \end{enumerate}
 
   \vfill
-  The first useful check is number 2. The other options can hide the reason.
+  Begin with number 2. The other actions can hide the mechanism that changed the
+  analytical weight of the observations.
+\end{frame}
+
+\begin{frame}{Checkpoint 2: approve or stop the join}
+  A join runs without an error. Output rows rise from 4,296 to 4,319, while the
+  number of distinct economy--year keys remains 4,296.
+
+  \vspace{0.5em}
+  Decide together:
+  \begin{enumerate}
+    \item What is the likely relationship between the left and right keys?
+    \item Which table should we inspect first?
+    \item What could happen to a later mean or regression if we continue?
+    \item Why would \texttt{distinct()} be an inadequate diagnosis?
+  \end{enumerate}
+
+  \vfill
+  \centering
+  \textbf{2 minutes discuss}\qquad$\longrightarrow$\qquad
+  \textbf{2 minutes share}
 \end{frame}

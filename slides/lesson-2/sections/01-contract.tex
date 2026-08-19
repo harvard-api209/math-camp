@@ -1,17 +1,24 @@
 \section{From a question to a table}
 \subsection{Define the object}
 
-\begin{frame}{Before we begin}
-  If the analysis needs one row for each country and year, what could produce two
-  rows for the same country and year?
+\begin{frame}{Begin with the policy question}
+  Imagine that a development-policy team is preparing a short briefing on
+  economic resources and child survival. It wants to know where higher income
+  coincides with lower mortality---and which economies do not follow the broad
+  pattern. To represent every economy--year once, the briefing table should
+  contain one row for each economy and year.
 
-  \vspace{0.7em}
-  \begin{block}{Write for two minutes}
-    Give one possible cause and one check that could expose it.
+  \vspace{0.8em}
+  \begin{center}
+    {\Large\color{crimson}How is national income associated with under-five
+    mortality across economies from 2000 to 2022?}
+  \end{center}
+
+  \begin{block}{Two minutes with someone near you}
+    Suppose Kenya--2022 appears in two rows of the draft analysis table. What
+    could have produced two rows for the same economy and period? Why could
+    that change the briefing's table, plot, or conclusion?
   \end{block}
-
-  \vfill
-  We will return to these answers when we discuss joins.
 \end{frame}
 
 \begin{frame}{The goal for Lesson 2}
@@ -26,50 +33,181 @@
   \vfill
 \end{frame}
 
+\begin{frame}{One investigation across two days}
+  \begin{columns}[T,onlytextwidth]
+    \begin{column}{0.47\textwidth}
+      \begin{block}{Today: learn the workflow}
+        Translate the policy question into a table, construct it with readable R
+        verbs, and inspect the evidence after each step.
+      \end{block}
+    \end{column}
+    \begin{column}{0.47\textwidth}
+      \begin{block}{Tomorrow: perform the workflow}
+        Build the same common table from a scaffold, keep a build record, and
+        explain which decisions remain yours.
+      \end{block}
+    \end{column}
+  \end{columns}
+
+  \vfill
+  Today is a guided construction. Lab 2 is the supervised practice.
+\end{frame}
+
 \begin{frame}{What I want you to do by the end}
   \begin{enumerate}
-    \item Translate a table contract into readable R.
-    \item Use six data verbs for a stated reason.
-    \item Predict whether rows, columns, values, or the unit should change.
-    \item Test a country--year key before and after a join.
-    \item Record how the table was built and checked.
-    \item Ask an agent for one improvement that you can evaluate.
+    \item Explain what one row represents before writing a pipeline.
+    \item Distinguish a legitimate repeated country--year from a broken key.
+    \item Read an R sentence: object, assignment, pipe, function, and arguments.
+    \item Use data verbs for stated structural reasons.
+    \item Test the unit and key before and after a reshape or join.
+    \item Rebuild and independently verify a saved analysis table.
   \end{enumerate}
 \end{frame}
 
 \begin{frame}{Route for the lesson}
   \small
-  \begin{tabularx}{\textwidth}{@{}>{\color{crimson}\bfseries}p{1.6cm}>{\bfseries}p{3.2cm}X@{}}
+  \renewcommand{\arraystretch}{1.35}
+  \begin{tabular*}{\textwidth}{@{\extracolsep{\fill}}>{\color{crimson}\bfseries}l >{\bfseries}l >{\color{crimson}\bfseries}l >{\bfseries}l@{}}
     \toprule
-    Minutes & Work & Main question \\
-    \midrule
-    00--25 & Contract + inspect & What table do we need? \\
-    25--60 & Select + filter & Which variables and observations remain? \\
-    60--85 & Mutate + group & What value or unit did we create? \\
-    85--103 & Join & Did any row multiply or fail to match? \\
-    103--113 & Agent pass & Which bounded check can it improve? \\
-    113--120 & Build record & Can another person inspect our table? \\
+    \multicolumn{2}{@{}l}{\textbf{Block 1 \(\cdot\) 00--60}} &
+    \multicolumn{2}{l@{}}{\textbf{Block 2 \(\cdot\) 60--120}} \\
+    \cmidrule(r){1-2}\cmidrule(l){3-4}
+    00--10 & Working setup      & 60--82  & Mutate + summarise \\
+    10--25 & Question + table   & 82--100 & Reshape + join \\
+    25--50 & R grammar + verbs  & 100--114 & Build + verify \\
+    50--60 & Break               & 114--120 & Lab handoff \\
     \bottomrule
-  \end{tabularx}
-\end{frame}
-
-\begin{frame}{The question comes before the verbs}
-  Before we touch R, write:
-  \begin{itemize}
-    \item the population;
-    \item the unit of observation;
-    \item the key;
-    \item the time period;
-    \item the outcome;
-    \item the comparison and grouping variables.
-  \end{itemize}
+  \end{tabular*}
 
   \vfill
-  We call this the \alert{table contract}. It describes the object that the code
-  should produce.
+  Three short checkpoints ask students to explain the sample, diagnose a join,
+  and judge an agent proposal.
 \end{frame}
 
-\begin{frame}{The table contract is a map of the question}
+\begin{frame}[fragile]{Working-session setup: reach green first}
+  Open \texttt{math-camp-2026.Rproj}. In the RStudio Terminal, run:
+
+\begin{lstlisting}
+Rscript code/check_setup.R --codex-confirmed
+Rscript code/01-inspect.R
+\end{lstlisting}
+
+  \begin{block}{We continue when}
+    The setup checker says \texttt{RESULT: GREEN}, the evidence inventory opens,
+    and Codex can see the same project folder.
+  \end{block}
+
+  \vfill
+  Then open \texttt{code/lesson-2-walkthrough.R}. Its section numbers follow the
+  lesson, so we can move between the deck and RStudio.
+\end{frame}
+
+\begin{frame}{A question implies a data object}
+  Our question relates two measurements observed for the same economy and year:
+  \begin{itemize}
+    \item GDP per capita, PPP;
+    \item under-five mortality per 1,000 live births.
+  \end{itemize}
+
+  \vspace{0.5em}
+  To compare them directly, both values must be attached to the same
+  \alert{economy--year observation}.
+
+  \vfill
+  One row is not a formatting preference. It is a claim about what counts as one
+  observation in the analysis.
+\end{frame}
+
+\begin{frame}{The source can legitimately have two Kenya--2022 rows}
+  \small
+  \renewcommand{\arraystretch}{1.32}
+  \begin{tabular*}{\textwidth}{@{\extracolsep{\fill}}llll@{}}
+    \toprule
+    Country & Year & Indicator & Value \\
+    \midrule
+    Kenya & 2022 & GDP per capita, PPP & 5,492 \\
+    Kenya & 2022 & Under-five mortality & 40.5 \\
+    \bottomrule
+  \end{tabular*}
+
+  \vspace{0.8em}
+  Here one row means an \alert{economy--year--indicator}. The complete key is:
+  \begin{center}
+    \texttt{iso3c + year + indicator}
+  \end{center}
+
+  Two Kenya--2022 rows are expected because the indicator distinguishes them.
+\end{frame}
+
+\begin{frame}{The analysis table needs one Kenya--2022 row}
+  \small
+  \renewcommand{\arraystretch}{1.32}
+  \begin{tabular*}{\textwidth}{@{\extracolsep{\fill}}llll@{}}
+    \toprule
+    Country & Year & GDP per capita, PPP & Under-five mortality \\
+    \midrule
+    Kenya & 2022 & 5,492 & 40.5 \\
+    \bottomrule
+  \end{tabular*}
+
+  \vspace{0.8em}
+  Here one row means an \alert{economy--year}. The complete key is:
+  \begin{center}
+    \texttt{iso3c + year}
+  \end{center}
+
+  The same evidence is now arranged for the comparison in our policy question.
+\end{frame}
+
+\begin{frame}{A duplicate is defined relative to a key}
+  \begin{block}{Long source table}
+    Two country--year rows can be correct when \texttt{indicator} is part of the
+    unit and key.
+  \end{block}
+
+  \begin{block}{Wide analysis table}
+    Two country--year rows violate the contract when \texttt{iso3c + year} is
+    supposed to identify each observation once.
+  \end{block}
+
+  \vfill
+  The useful question is not simply ``Are there duplicate rows?'' It is ``Does
+  the proposed key uniquely identify the unit we intend to analyze?''
+\end{frame}
+
+\begin{frame}{Return to the opening question}
+  What could produce two Kenya--2022 rows, and why could the briefing change?
+
+  \vspace{0.4em}
+  \begin{enumerate}
+    \item<1-> \textbf{Long source.} One row per indicator is legitimate when
+      \texttt{indicator} belongs to the key; reshape before comparing the measures.
+    \item<2-> \textbf{Unnamed dimension.} Sex, unit, or version may distinguish
+      observations that the draft contract has incorrectly combined.
+    \item<3-> \textbf{Nonunique join key.} A repeated Kenya record on the right
+      can multiply every Kenya year and give those observations excess weight.
+    \item<4-> \textbf{Repeated record.} Importing or appending the same evidence
+      twice can duplicate a point and alter a summary, plot, or model.
+  \end{enumerate}
+
+  \vfill
+  \uncover<5->{Two rows are not inherently wrong. They are wrong when they
+  violate the unit and key required by the policy question. Diagnose the
+  difference before using \texttt{distinct()}.}
+\end{frame}
+
+\begin{frame}{The table contract records the answer}
+  \begin{description}
+    \item[Population] Economy--years with both measures observed and positive income.
+    \item[Unit] One economy--year.
+    \item[Key] \texttt{iso3c + year}.
+    \item[Period] 2000--2022.
+    \item[Outcome] Under-five mortality per 1,000 live births.
+    \item[Comparison] GDP per capita, PPP.
+  \end{description}
+\end{frame}
+
+\begin{frame}{The table contract guides the code}
   \begin{center}
   \begin{tikzpicture}[
     node distance=0.40cm,
@@ -77,85 +215,34 @@
       minimum height=1.08cm,align=center,font=\small},
     arr/.style={-{Latex[length=1.8mm]},color=crimson,thick}
   ]
-    \node[box] (question) {\textbf{Policy question}\\income and mortality};
-    \node[box,right=of question] (contract) {\textbf{Table contract}\\population + unit + key};
-    \node[box,right=of contract] (code) {\textbf{R pipeline}\\select + filter + mutate};
-    \node[box,right=of code] (table) {\textbf{Checked table}\\one country--year row};
+    \node[box] (question) {\textbf{Question}\\income and mortality};
+    \node[box,right=of question] (contract) {\textbf{Contract}\\unit + key + sample};
+    \node[box,right=of contract] (code) {\textbf{R verbs}\\construct the object};
+    \node[box,right=of code] (table) {\textbf{Evidence}\\checks + build record};
     \draw[arr] (question)--(contract);
     \draw[arr] (contract)--(code);
     \draw[arr] (code)--(table);
   \end{tikzpicture}
   \end{center}
 
-  \vspace{0.7em}
-  A map is selective. The contract records the choices needed to connect the
-  source data to this question, and the build record shows whether the code
-  followed that map.
-\end{frame}
-
-\begin{frame}{The health table contract}
-  \footnotesize
-  \renewcommand{\arraystretch}{1.16}
-  \begin{tabularx}{\textwidth}{@{}>{\bfseries}p{2.4cm}p{5.2cm}X@{}}
-    \toprule
-    Field & Decision & Why it matters \\
-    \midrule
-    Population & Countries and economies with observed indicators & Defines who can appear. \\
-    Unit & Country--year & Defines what one row means. \\
-    Key & \texttt{iso3c + year} & Must identify every row once. \\
-    Period & 2000--2022 & Defines the comparison window. \\
-    Outcome & Under-five mortality & Names the quantity to describe. \\
-    Comparison & GDP per capita, PPP & Names the relationship of interest. \\
-    \bottomrule
-  \end{tabularx}
-
   \vfill
-  This is a descriptive exercise with World Development Indicators
-  \citep{worldbankwdi}.
+  Every consequential line of R should connect to a field in the contract or to
+  evidence that the constructed table satisfies it.
 \end{frame}
 
 \begin{frame}[fragile]{Read the frozen file}
 \begin{lstlisting}[language=R]
-library(tidyverse)
+source("code/00-setup.R")
 
 wdi <- read_csv(
-  "data/derived/math-camp-wdi-2000-2022.csv",
+  data_file,
   show_col_types = FALSE
 )
 
 glimpse(wdi)
 \end{lstlisting}
 
-  Keep the frozen file unchanged and build forward with code that can be run
-  again \citep{wickham2023r4ds}.
-\end{frame}
-
-\begin{frame}{Look before you transform}
-  Four small questions:
-  \begin{enumerate}
-    \item What does one row represent?
-    \item Which columns identify that row?
-    \item Are the identifiers unique?
-    \item Which years and countries are present?
-  \end{enumerate}
-
-  \vfill
-  \texttt{glimpse()}, \texttt{names()}, \texttt{count()}, and a short
-  \texttt{summarise()} can answer these structural questions compactly.
-\end{frame}
-
-\begin{frame}[fragile]{Record the source structure}
-\begin{lstlisting}[language=R]
-wdi |>
-  summarise(
-    rows = n(),
-    countries = n_distinct(iso3c),
-    first_year = min(year),
-    last_year = max(year),
-    duplicate_keys = anyDuplicated(data.frame(iso3c, year))
-  )
-\end{lstlisting}
-
-  A structure check tells us whether the source has the rows, variables, and
-  keys that we expected.
+  The checked-in teaching file is already wide: one row is one economy--year,
+  with indicators stored in separate columns. Keep it unchanged and build
+  forward with code that can be rerun \citep{wickham2023r4ds}.
 \end{frame}

@@ -1,24 +1,48 @@
 \section{Build and record the table}
 \subsection{One common path}
 
+\begin{frame}[fragile]{One R script follows the entire lesson}
+  Open \texttt{code/lesson-2-walkthrough.R} in RStudio.
+
+  \begin{description}
+    \item[Move with the deck] Each numbered section matches the teaching sequence.
+    \item[Run one step] Select a section and use Command+Enter on macOS or
+      Ctrl+Enter on Windows.
+    \item[Inspect objects] Use the Console and Environment panes after each verb.
+    \item[Rebuild everything] Use Source to run the complete script from the
+      protected input through independent verification.
+  \end{description}
+
+\begin{lstlisting}
+Rscript code/lesson-2-walkthrough.R
+\end{lstlisting}
+
+  The script uses the same names, examples, checks, and output paths as the deck.
+\end{frame}
+
 \begin{frame}[fragile]{One complete health pipeline}
 \begin{lstlisting}[language=R]
-health <- wdi |>
+health_analysis <- wdi |>
   select(
-    iso3c, country, year, income_level_current,
+    iso3c, country, region, income_level_current, year,
     gdp_per_capita_ppp, under5_mortality
   ) |>
-  filter(year >= 2000) |>
-  mutate(log_income = log(gdp_per_capita_ppp))
+  filter(
+    between(year, 2000L, 2022L),
+    !is.na(gdp_per_capita_ppp),
+    gdp_per_capita_ppp > 0,
+    !is.na(under5_mortality)
+  ) |>
+  mutate(log_income = log(gdp_per_capita_ppp)) |>
+  arrange(iso3c, year)
 
-stopifnot(!anyDuplicated(health[c("iso3c", "year")]))
-stopifnot(all(health$year >= 2000))
+stopifnot(!anyDuplicated(health_analysis[c("iso3c", "year")]))
 \end{lstlisting}
 \end{frame}
 
 \begin{frame}{Read the pipeline as decisions}
   \begin{enumerate}
-    \item \textbf{Population:} rows before 2000 leave the sample.
+    \item \textbf{Population:} economy--years without both measures leave the sample.
     \item \textbf{Scope:} selected columns define the health question.
     \item \textbf{Transformation:} logged income stays beside the original measure.
     \item \textbf{Structure:} the country--year key is tested in code.
@@ -68,4 +92,57 @@ stopifnot(all(health$year >= 2000))
 
   \vfill
   The record is useful when every check points back to the table contract.
+\end{frame}
+
+\begin{frame}[fragile]{Run the saved workflow from a clean process}
+  In the RStudio Terminal, not from a console full of objects:
+
+\begin{lstlisting}
+Rscript code/02-build-analysis.R
+\end{lstlisting}
+
+  It creates two separate artifacts:
+  \begin{itemize}
+    \item \texttt{outputs/02-health-analysis.csv}: the analysis table;
+    \item \texttt{outputs/02-health-build-record.csv}: evidence about how the
+      table satisfies its contract.
+  \end{itemize}
+
+  \vfill
+  Successful execution is necessary, but it is not yet independent evidence
+  that the saved object is correct.
+\end{frame}
+
+\begin{frame}[fragile]{Verify the saved object independently}
+  Run a second script that reads the frozen source and the saved table afresh:
+
+\begin{lstlisting}
+Rscript code/02-verify-analysis.R
+\end{lstlisting}
+
+  The verifier checks columns, expected rows, key uniqueness, period, observed
+  values, plausible signs, and whether \texttt{log\_income} recomputes from the
+  original measure.
+
+  \begin{block}{The visible completion signal}
+    \texttt{RESULT: GREEN. The saved health table meets its stated contract.}
+  \end{block}
+
+  The verifier is separate so it does not merely trust objects left behind by
+  the builder.
+\end{frame}
+
+\begin{frame}{Four levels of verification}
+  \begin{enumerate}
+    \item \textbf{Execution:} Did the process finish and create the named files?
+    \item \textbf{Structure:} Do columns, rows, unit, key, and period match the contract?
+    \item \textbf{Values:} Do missingness, ranges, and recomputed variables follow
+      their documented definitions?
+    \item \textbf{Interpretation:} Does the policy statement respect the sample
+      limits and the associational design?
+  \end{enumerate}
+
+  \vfill
+  An agent can help at every level; it cannot collapse all four into ``the code
+  ran.''
 \end{frame}

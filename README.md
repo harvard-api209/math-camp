@@ -33,9 +33,10 @@ Rscript code/check_setup.R --codex-confirmed
 ```
 
 The project includes a complete common path (`code/01-inspect.R` through
-`code/03-compare.R`), a safe public-data update script, four optional policy
-track recipes, and a deliberately broken handoff clinic. Every analysis script
-starts from a saved file; none requires an object left in an R console.
+`code/03-compare.R`), an instructor-led Lesson 2 script at
+`code/lesson-2-walkthrough.R`, a safe public-data update script, four optional
+policy-track recipes, and a deliberately broken handoff clinic. Every analysis
+script starts from a saved file; none requires an object left in an R console.
 
 ## Book architecture
 
@@ -71,7 +72,7 @@ cp main.pdf lesson-2.pdf
 
 The website embeds `lesson-1.pdf` and `lesson-2.pdf`. Edit their English LaTeX sections directly. After each change, compile the deck, scan the log, and inspect every rendered slide before replacing the public PDF.
 
-The current PDFs contain 63 pages for Lesson 1 and 45 pages for Lesson 2, including title pages, section maps, the Lesson 1 break, five discussion checkpoints, the live online policy-briefing demonstration, the timing route, and references. Later lesson materials remain internal drafts and are not part of the public release.
+The current PDFs contain 63 pages for Lesson 1 and 73 pages for Lesson 2, including Lesson 2's progressive answer reveal and step-by-step source checks. Lesson 2 moves from a policy-briefing question to a table contract, introduces R grammar and data verbs in that context, demonstrates reshaping and join diagnostics, and ends with an independently verified build and the Lab 2 handoff. Later lesson materials remain internal drafts and are not part of the public release.
 
 The Lab 1 handout is a standalone, single-file LaTeX article. Rebuild it with:
 
