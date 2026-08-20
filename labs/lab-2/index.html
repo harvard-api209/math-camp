@@ -5,11 +5,11 @@
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta
       name="description"
-      content="Math Camp 2026 Lab 2: commission and audit a country-year analysis pipeline with R and Codex."
+      content="Math Camp 2026 Lab 2: build and audit an income-and-health policy briefing with R and Codex."
     />
-    <title>Lab 2: Build an analysis dataset | Math Camp 2026</title>
+    <title>Lab 2: From draft file to policy briefing | Math Camp 2026</title>
     <link rel="icon" href="data:," />
-    <link rel="stylesheet" href="../../styles.css?v=book-20260811a" />
+    <link rel="stylesheet" href="../../styles.css?v=book-20260820b" />
     <script>document.documentElement.classList.add("js");</script>
   </head>
   <body id="top" class="article-page">
@@ -17,7 +17,7 @@
     <header class="site-header">
       <a class="brand" href="../../"><span>API 209</span><strong>MATH CAMP 2026</strong></a>
       <div class="header-chapter">
-        <span>LAB 2</span><strong>/ BUILD THE ANALYSIS DATASET</strong>
+        <span>LAB 2</span><strong>/ FROM DRAFT FILE TO POLICY BRIEFING</strong>
       </div>
       <nav class="chapter-nav">
         <a href="../../">HOME</a><a href="../../lessons/lesson-2/">LESSON 2</a
@@ -28,11 +28,10 @@
     <nav class="mobile-outline" id="mobile-outline">
       <div class="mobile-outline-head"><span>LAB 2</span><button type="button" data-close-menu>CLOSE</button></div>
       <ol>
-        <li><a href="#purpose">The assignment</a></li>
-        <li><a href="#verify-agent">Codex verifies</a></li>
-        <li><a href="#operate">Codex operates</a></li>
-        <li><a href="#audit">Audit and decide</a></li>
-        <li><a href="#briefing">Build the briefing table</a></li>
+        <li><a href="#assignment">The assignment</a></li>
+        <li><a href="#draft">Trust the draft?</a></li>
+        <li><a href="#dataset">Trust the dataset?</a></li>
+        <li><a href="#briefing">Trust the briefing?</a></li>
       </ol>
     </nav>
     <main>
@@ -40,187 +39,151 @@
         <div class="article-hero-meta">
           <div><span>DATE</span><strong>THU AUG 20</strong></div>
           <div><span>TIME</span><strong>4–5 PM</strong></div>
-          <div><span>MODE</span><strong>ANALYTICAL COMMISSION</strong></div>
+          <div><span>MODE</span><strong>POLICY BRIEFING LAB</strong></div>
         </div>
         <div class="article-hero-copy">
           <p>CODING LAB 2</p>
-          <h1>Build an analysis dataset you can defend.</h1>
+          <h1>Build evidence you would send to a policy director.</h1>
           <p class="article-deck">
-            Start with a policy question, commission two different forms of
-            agent work, and decide whether the resulting country–year dataset
-            deserves to enter a policy briefing.
+            Review a draft, commission a construction pipeline, create a
+            grouped briefing table, and decide what the evidence can support.
           </p>
           <div class="article-actions">
-            <a href="https://github.com/harvard-api209/math-camp/releases/download/lab-2-v1.0.7/math-camp-2026-lab-2-v1.0.7.zip">DOWNLOAD LAB 2 PROJECT ↓</a
+            <a href="https://github.com/harvard-api209/math-camp/releases/download/lab-2-v1.0.8/math-camp-2026-lab-2-v1.0.8.zip">DOWNLOAD LAB 2 PROJECT ↓</a
             ><a href="handout/lab-2-handout.pdf">OPEN LAB HANDOUT →</a>
           </div>
         </div>
-        <aside class="article-hero-side"><p>Commission<br />Verify<br />Audit<br />Decide</p></aside>
+        <aside class="article-hero-side"><p>Question<br />Draft<br />Dataset<br />Briefing</p></aside>
       </section>
 
       <div class="article-layout">
         <aside class="article-nav">
-          <span>LAB GUIDE</span><a href="#purpose">The assignment</a
-          ><a href="#verify-agent">Codex verifies</a
-          ><a href="#operate">Codex operates</a><a href="#audit">Audit and decide</a
-          ><a href="#briefing">Build the briefing table</a>
+          <span>LAB GUIDE</span><a href="#assignment">The assignment</a
+          ><a href="#draft">Trust the draft?</a><a href="#dataset">Trust the dataset?</a
+          ><a href="#briefing">Trust the briefing?</a>
         </aside>
         <article class="article">
-          <section class="article-section reveal" id="purpose">
+          <section class="article-section reveal" id="assignment">
             <p class="section-kicker">THE ASSIGNMENT</p>
-            <h2>Income, health, and the observations behind a claim.</h2>
+            <h2>One hour. One policy director. Four working products.</h2>
             <p class="article-lead">
-              You are preparing background evidence for a policy briefing:
-              How is national income associated with under-five mortality
-              across economies between 2000 and 2022?
+              Construct a defensible dataset and report how income and
+              under-five mortality differed across World Bank income groups in
+              2022. Decide what evidence is trustworthy, document any material
+              data problem, and state what the results do—and do not—show.
             </p>
             <p>
-              Before making a table, plot, or regression, you need a dataset
-              that represents the question correctly. One row should represent
-              one economy in one year. The analysis needs economy identifiers,
-              region, current income classification, GDP per capita (PPP),
-              under-five mortality, and a logged-income measure. Observations
-              without usable income or mortality information should not enter
-              this first descriptive analysis.
-            </p>
-            <p>
-              Your task is to set the analytical standard, commission the
-              work, and decide whether the resulting evidence is defensible.
-              Codex will first act as a verifier and then as the operator of a
-              complete construction pipeline. Neither role makes the release
-              decision for you.
+              The project supplies both a draft briefing file and documented
+              course data. Those files may not agree. Codex has two roles:
+              first, it reviews the draft without changing it; later, it
+              constructs and runs a bounded pipeline. In both roles, you decide
+              which claims and outputs survive.
             </p>
             <div class="article-actions">
               <a href="handout/lab-2-handout.pdf">DOWNLOAD THE LAB HANDOUT ↓</a
-              ><a href="https://github.com/harvard-api209/math-camp/releases/download/lab-2-v1.0.7/math-camp-2026-lab-2-v1.0.7.zip">DOWNLOAD THE COMPLETE LAB FILES ↓</a>
-            </div>
-            <div class="callout">
-              <span>DONE WHEN</span>
-              <p>
-                You can defend or reject consequential claims from the review,
-                inspect the generated pipeline and its source choice, separate
-                structural validity from source fidelity, construct a grouped
-                briefing table, and make a reasoned release decision.
-              </p>
+              ><a href="https://github.com/harvard-api209/math-camp/releases/download/lab-2-v1.0.8/math-camp-2026-lab-2-v1.0.8.zip">DOWNLOAD THE COMPLETE LAB FILES ↓</a>
             </div>
             <div class="code-plate">
-              <div class="code-plate-head"><span>WORKING MATERIALS</span><span>ONE POLICY BRIEF</span></div>
-              <pre><code>LAB-2-HANDOUT.pdf
-code/lab-2-starter.R
-the Math Camp RStudio project</code></pre>
-              <p>The starter is an evidence-and-audit instrument. Codex creates the candidate construction pipeline during the lab.</p>
+              <div class="code-plate-head"><span>FOUR PRODUCTS</span><span>ONE BRIEFING</span></div>
+              <pre><code>code/02-health-agent-pipeline.R
+outputs/02-health-analysis.csv
+outputs/02-health-briefing-by-income.csv
+BRIEFING.md</code></pre>
+              <p>Codex may help produce and check the analysis. The release decision and policy language remain yours.</p>
+            </div>
+            <div class="table-scroll">
+              <table>
+                <thead><tr><th>Minutes</th><th>Decision</th></tr></thead>
+                <tbody>
+                  <tr><td>00–08</td><td>Specify the unit, key, and a briefing-changing failure.</td></tr>
+                  <tr><td>08–18</td><td>Review the draft and reproduce one consequential claim.</td></tr>
+                  <tr><td>18–40</td><td>Commission, observe, and inspect the construction pipeline.</td></tr>
+                  <tr><td>40–48</td><td>Accept, revise, or reject the constructed dataset.</td></tr>
+                  <tr><td>48–60</td><td>Build the grouped table and decide what to tell the director.</td></tr>
+                </tbody>
+              </table>
             </div>
           </section>
 
-          <section class="article-section reveal" id="verify-agent">
-            <p class="section-kicker">ROUND I</p>
-            <h2>Use Codex as a verifier.</h2>
+          <section class="article-section reveal" id="draft">
+            <p class="section-kicker">DECISION GATES 1 + 2</p>
+            <h2>Can we trust the draft?</h2>
             <p>
-              State the unit, key, sample, and downstream analytical risks
-              before reviewing the records. Then ask Codex for a skeptical,
-              read-only assessment. Its report is not the answer: select its
-              most consequential claim, reproduce the underlying evidence in
-              R, and accept, revise, or reject the claim.
+              Define the intended economy–year observation before inspecting
+              the records. Then ask Codex for a read-only review. Select the
+              claim most likely to change a count, median, plot, or conclusion
+              and reproduce it in R. A persuasive explanation is not a finding
+              until the underlying file evidence survives that check.
             </p>
             <div class="protocol-grid">
-              <div><span>STANDARD</span><strong>Specify the evidence.</strong><p>What must be true for the file to represent the policy question?</p></div>
-              <div><span>VERIFIER</span><strong>Make claims.</strong><p>Codex cites files, variables, records, and calculated values.</p></div>
-              <div><span>REPRODUCE</span><strong>Test a claim.</strong><p>Use the starter audit to confront the report with observed evidence.</p></div>
-              <div><span>ADJUDICATE</span><strong>Challenge certainty.</strong><p>Separate what the files establish from the agent’s explanation.</p></div>
+              <div><span>PREDICT</span><strong>Name the failure.</strong><p>What record problem could change the director’s briefing?</p></div>
+              <div><span>REVIEW</span><strong>Let Codex make claims.</strong><p>Require files, variables, economy–years, and observed values.</p></div>
+              <div><span>REPRODUCE</span><strong>Test the strongest claim.</strong><p>Use R to confront the report with the records.</p></div>
+              <div><span>ADJUDICATE</span><strong>Separate fact from inference.</strong><p>Accept, revise, or reject the agent’s claim.</p></div>
             </div>
-            <div class="prompt-box">
-              <span>VERIFICATION COMMISSION</span>
-              <pre>Act as a skeptical data reviewer. Work read-only. Assess whether the available draft is fit for the stated income-and-mortality analysis. Cite the file, variable, economy-year when relevant, and observed value behind every conclusion. Distinguish what the files establish from your explanation of how a problem may have arisen. End with a recommendation, the two claims that matter most, and reproducible R checks.</pre>
-            </div>
-          </section>
-
-          <section class="article-section reveal" id="operate">
-            <p class="section-kicker">ROUND II</p>
-            <h2>Use Codex to run the complete pipeline.</h2>
-            <p>
-              Commission the result, not a single verb. Codex must inspect the
-              project, choose and justify an authoritative input, write and run
-              <code>code/02-health-agent-pipeline.R</code>, and save the analysis
-              file and build record. The complete prompt is in the handout.
-            </p>
-            <ul class="checklist">
-              <li><span>1</span><strong>Which input did the agent choose, and on what evidence?</strong></li>
-              <li><span>2</span><strong>How did it resolve multiple or conflicting records?</strong></li>
-              <li><span>3</span><strong>Did it run the file it wrote and inspect the saved output?</strong></li>
-              <li><span>4</span><strong>Which analytical decision remains contestable?</strong></li>
-            </ul>
             <div class="callout">
-              <span>THE CENTRAL RISK</span>
+              <span>SOURCE AUTHORITY</span>
               <p>
-                A pipeline can execute successfully and satisfy a structural
-                specification while relying on an arbitrary source or record
-                rule. Correct output by accident is not a defensible method.
+                A confident agent, a recent modification date, or a promising
+                filename does not make a file authoritative. Ask which project
+                documentation and provenance support the choice.
               </p>
             </div>
           </section>
 
-          <section class="article-section reveal" id="audit">
-            <p class="section-kicker">AUDIT + RELEASE DECISION</p>
-            <h2>Test code, structure, and source fidelity separately.</h2>
+          <section class="article-section reveal" id="dataset">
+            <p class="section-kicker">DECISION GATE 3</p>
+            <h2>Can we trust the constructed dataset?</h2>
             <p>
-              Run the candidate-output audit after Codex finishes. Structural
-              checks ask whether the file has the required columns, unique
-              keys, period, observed values, and transformation. Source
-              concordance asks whether keys and values agree with documented
-              project data. Code review asks whether the method would remain
-              defensible if row order or input contents changed.
+              Commission Codex to choose and justify the input, create
+              <code>code/02-health-agent-pipeline.R</code>, run it, and save
+              <code>outputs/02-health-analysis.csv</code>. Observe the work:
+              which files were read, which actions required permission, which
+              source was selected, and which code actually ran?
             </p>
             <div class="table-scroll">
               <table>
-                <thead><tr><th>Layer</th><th>Question</th><th>Possible failure</th></tr></thead>
+                <thead><tr><th>Judgment</th><th>Question</th><th>What it does not prove</th></tr></thead>
                 <tbody>
-                  <tr><td>Generated code</td><td>Are source and record rules defensible?</td><td>A keep-last rule happens to retain the right row.</td></tr>
-                  <tr><td>File structure</td><td>Does the output satisfy its explicit specification?</td><td>A plausible wrong value passes a range check.</td></tr>
-                  <tr><td>Source concordance</td><td>Do keys and values match documented evidence?</td><td>A clean-looking file contains unsupported values.</td></tr>
-                  <tr><td>Interpretation</td><td>What has the construction established?</td><td>A checked dataset is treated as a causal result.</td></tr>
+                  <tr><td>Execution</td><td>Did the script run and save the requested file?</td><td>That the file represents the intended evidence.</td></tr>
+                  <tr><td>Output evidence</td><td>Does the file have the required shape and match documented records?</td><td>That the rule used to produce it was defensible.</td></tr>
+                  <tr><td>Method</td><td>Would the result survive a change in row order or unsupported source?</td><td>That the policy interpretation follows.</td></tr>
                 </tbody>
               </table>
             </div>
             <p>
-              Finish with an actual decision: accept, revise, or reject. If the
-              pipeline survives every test, identify the strongest failure you
-              attempted to falsify and the evidence that ruled it out.
+              Run the independent audit from
+              <code>code/lab-2-starter.R</code>, inspect the generated script,
+              and make an explicit accept, revise, or reject decision. Correct
+              output by accident is not a defensible method.
             </p>
-            <div class="callout">
-              <span>SIX CHECKPOINTS</span>
-              <p>
-                The checkpoints demand a failure chain, adjudication of a
-                verifier claim, review of the pipeline commission, a release
-                decision from independent audits, a grouped briefing result,
-                and a comparison of the two agent roles.
-              </p>
-            </div>
           </section>
 
           <section class="article-section reveal" id="briefing">
-            <p class="section-kicker">FROM DATASET TO REPORT</p>
-            <h2>Use <code>group_by()</code> to produce briefing evidence.</h2>
+            <p class="section-kicker">DECISION GATE 4</p>
+            <h2>Can we trust the briefing?</h2>
             <p>
-              Once the candidate survives review, restrict it to 2022 and
-              create one row per current income group. Report the number of
+              Add the grouped calculation to the accepted pipeline. For 2022,
+              compare <code>n()</code> with
+              <code>n_distinct(iso3c)</code>, explain why those quantities can
+              differ, and decide which belongs in the policy briefing. Then
+              report one row per current income group with the number of
               economies, median GDP per capita (PPP), and median under-five
-              mortality. Arrange the groups from lowest to highest mortality
-              and save the result as
-              <code>outputs/02-health-briefing-by-income.csv</code>.
+              mortality.
             </p>
             <div class="protocol-grid">
-              <div><span>UNIT</span><strong>Name the new observation.</strong><p>One row now represents a current income group in 2022.</p></div>
-              <div><span>GROUP</span><strong>Summarise economies.</strong><p>Use unweighted counts and medians; each observed economy contributes once.</p></div>
-              <div><span>INTERPRET</span><strong>Write with numbers.</strong><p>State one comparison supported by the grouped table.</p></div>
-              <div><span>VERIFY</span><strong>Challenge the report.</strong><p>Codex independently recomputes the table and flags prose that exceeds the evidence.</p></div>
+              <div><span>UNIT</span><strong>Name the new observation.</strong><p>One row represents a current income group in 2022.</p></div>
+              <div><span>GROUP</span><strong>Build the table.</strong><p>Use unweighted counts and medians after the dataset survives review.</p></div>
+              <div><span>VERIFY</span><strong>Recompute independently.</strong><p>Codex checks the saved table without rewriting your code.</p></div>
+              <div><span>BRIEF</span><strong>Decide what can be said.</strong><p>Give one numerical conclusion and refuse one unsupported claim.</p></div>
             </div>
             <div class="callout">
-              <span>REPORTING BOUNDARY</span>
+              <span>FINAL QUESTION</span>
               <p>
-                This is an unweighted descriptive comparison. The snapshot’s
-                current income classifications are not historical
-                country–year classifications, and the table does not establish
-                that income causes mortality to change.
+                Would you send this briefing to the policy director? Identify
+                the strongest evidence supporting your decision, one failure
+                you ruled out, one numerical conclusion the table supports,
+                and one statement you would refuse to make.
               </p>
             </div>
           </section>
@@ -228,11 +191,11 @@ the Math Camp RStudio project</code></pre>
 
         <aside class="article-margin">
           <dl>
-            <div><dt>QUESTION</dt><dd>Income and under-five mortality</dd></div>
-            <div><dt>UNIT</dt><dd>Economy–year</dd></div>
-            <div><dt>OUTPUT</dt><dd>Checked dataset + grouped briefing table</dd></div>
-            <div><dt>AGENT ROLE</dt><dd>Verifier + pipeline operator</dd></div>
-            <div><dt>SUBMISSION</dt><dd>None</dd></div>
+            <div><dt>CLIENT</dt><dd>Policy director</dd></div>
+            <div><dt>QUESTION</dt><dd>Income groups and under-five mortality</dd></div>
+            <div><dt>UNIT</dt><dd>Economy–year, then 2022 income group</dd></div>
+            <div><dt>AGENT ROLE</dt><dd>Reviewer + pipeline operator</dd></div>
+            <div><dt>ANALYST ROLE</dt><dd>Reproduce + decide + brief</dd></div>
           </dl>
         </aside>
       </div>
@@ -243,9 +206,9 @@ the Math Camp RStudio project</code></pre>
     </main>
     <footer class="site-footer">
       <div><span>API 209</span><strong>MATH CAMP 2026</strong></div>
-      <p>Lab 2 · From policy question to checked dataset and briefing table.</p>
+      <p>Lab 2 · From draft file to defensible policy briefing.</p>
       <a href="#top">RETURN TO TOP ↑</a>
     </footer>
-    <script src="../../script.js?v=book-20260811a"></script>
+    <script src="../../script.js?v=book-20260820b"></script>
   </body>
 </html>
