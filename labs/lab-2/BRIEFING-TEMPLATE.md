@@ -8,7 +8,7 @@ Would you send this briefing to the policy director? State **release**,
 ## Strongest evidence
 
 Identify the evidence that carries the most weight in your decision. Name the
-file, calculation, or reproduced agent claim.
+file, calculation, or agent finding you independently verified in R.
 
 ## Failure ruled out
 

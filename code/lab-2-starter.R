@@ -34,14 +34,15 @@ records_to_investigate <- draft |>
 print(draft_summary, width = Inf)
 print(records_to_investigate, n = Inf, width = Inf)
 
-# GATE 2. WHICH AGENT CLAIM SURVIVES REPRODUCTION? ------------------------
+# GATE 2. CAN YOU VERIFY THE AGENT'S MOST IMPORTANT FINDING? -------------
 #
-# After Codex reports its two most consequential claims, use filter(),
-# select(), count(), or anti_join() below to reproduce the one that matters
-# most. Keep your code: the handout asks you to distinguish observed evidence
-# from the agent's explanation.
+# After Codex reports its two most important findings, select the one most
+# likely to change the briefing. Use filter(), select(), count(), or
+# anti_join() below to confirm it directly from the project files. Keep your
+# code: the handout asks you to distinguish observed evidence from the agent's
+# explanation.
 
-# Example workspace (replace with your own consequential claim):
+# Example workspace (replace with the finding you choose to verify):
 # draft |>
 #   filter(iso3c == "...", year == ...) |>
 #   select(iso3c, country, year, everything())

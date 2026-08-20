@@ -89,8 +89,8 @@ Minutes & Work \\
 \midrule
 00--08 & Read the request; specify the unit, key, and one failure that could
 change the briefing. \\
-08--18 & Ask Codex to review the draft, then reproduce one consequential claim
-in R. \\
+08--18 & Ask Codex to review the draft, then independently verify one important
+finding in R. \\
 18--28 & Decide which source is authoritative and commission the construction. \\
 28--40 & Observe the run; inspect the generated script and saved analysis file. \\
 40--48 & Audit the candidate and make an accept, revise, or reject decision. \\
@@ -133,23 +133,24 @@ claim, identify the source file, variable, economy-year when relevant, and
 observed value. Separate what the files establish from your explanation of how
 a problem might have arisen.
 
-End with (1) a release recommendation, (2) the two claims that matter most for
-the policy briefing, and (3) reproducible R checks for those claims. Do not edit,
-deduplicate, or rebuild any file.
+End with (1) a release recommendation, (2) the two findings that matter most for
+the policy briefing, and (3) R commands that independently verify those
+findings. Do not edit, deduplicate, or rebuild any file.
 \end{lstlisting}
 
-\gate{2}{Which agent claim survives reproduction?}
+\gate{2}{Can you verify the agent's most important finding?}
 
-Choose the claim most likely to change the briefing. Reproduce the relevant
-records or calculation in R. Record what the files establish, what Codex
-inferred, and whether you accept, revise, or reject the claim.
+Choose the Codex finding most likely to change the briefing. Write and run a
+small R check that tests it directly against the project files. Record whether
+the evidence confirms, contradicts, or only partly supports the finding. Then
+separate what the files establish from Codex's explanation of why it happened.
 
 \noindent\begin{tabularx}{\textwidth}{@{}p{0.25\textwidth}Y@{}}
 \toprule
-Claim & \rule{0pt}{1.8em} \\
-Reproduced evidence & \rule{0pt}{1.8em} \\
-Inference beyond the files & \rule{0pt}{1.8em} \\
-Verdict and briefing consequence & \rule{0pt}{1.8em} \\
+Codex finding & \rule{0pt}{1.8em} \\
+R check and result & \rule{0pt}{1.8em} \\
+Unsupported explanation & \rule{0pt}{1.8em} \\
+Briefing verdict & \rule{0pt}{1.8em} \\
 \bottomrule
 \end{tabularx}
 
