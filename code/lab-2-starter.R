@@ -1,45 +1,57 @@
 source("code/00-setup.R")
 
-wdi <- read_csv(data_file, show_col_types = FALSE)
+# LAB 2: EVIDENCE AND PIPELINE AUDIT -----------------------------------------
+#
+# This script does not build the final dataset. It gives you independent
+# evidence for judging Codex first as a verifier and then as pipeline operator.
 
-# LAB 2 TABLE PLAN: define the finished table before writing data verbs.
-# Population:
-# Unit:
-# Key:
-# Period:
-# Outcome:
-# Comparison:
+draft <- read_csv(lab2_draft_file, show_col_types = FALSE)
+documented <- read_csv(data_file, show_col_types = FALSE)
 
-# Build the common health table one verb at a time. After every verb, predict
-# what should change, run the smallest useful check, and record what happened.
-health_analysis <- wdi
+# ROUND I. EVIDENCE FOR THE VERIFICATION REPORT ------------------------------
 
-# 1. select(): retain the identifiers, metadata, and two health-track measures.
+key_counts <- draft |>
+  count(iso3c, year, name = "records")
 
-# 2. filter(): apply the period and observed-value rules in your table plan.
-
-# 3. mutate(): create log_income only after checking that income is positive.
-
-# 4. arrange(): make the saved table easy to inspect by economy and year.
-
-# 5. save(): write the checked object to outputs/02-health-analysis.csv.
-
-# 6. record: create a one-row build record with source rows, output rows,
-# exclusions, economies, years, duplicate keys, missingness, and ranges.
-
-# 7. verify independently: in the RStudio Terminal, run:
-# Rscript code/02-verify-analysis.R
-
-# 8. agent review (read only): write one draft sentence about the saved table.
-# Ask Codex to classify each part as supported by the current artifacts, not yet
-# calculated, or unsupported by this descriptive design. Require exact file and
-# value citations. Do not ask it to edit the builder or verifier.
-
-# 9. handoff: record one fact the artifacts support and one question that must
-# wait for Lesson 3, when we will calculate and visualize the relationship.
-
-message(
-  "Starter opened successfully. Replace the scaffold with your checked ",
-  "pipeline, save its evidence, run code/02-verify-analysis.R from the ",
-  "Terminal, and then review one claim."
+draft_audit <- tibble(
+  rows = nrow(draft),
+  economy_years = nrow(key_counts),
+  repeated_keys = sum(key_counts$records > 1),
+  first_year = min(draft$year, na.rm = TRUE),
+  last_year = max(draft$year, na.rm = TRUE),
+  missing_income = sum(is.na(draft$gdp_per_capita_ppp)),
+  missing_mortality = sum(is.na(draft$under5_mortality))
 )
+
+records_for_review <- draft |>
+  semi_join(filter(key_counts, records > 1), by = c("iso3c", "year")) |>
+  arrange(iso3c, year, record_source)
+
+documented_comparison <- documented |>
+  semi_join(records_for_review, by = c("iso3c", "year")) |>
+  select(
+    iso3c,
+    country,
+    income_level_current,
+    year,
+    gdp_per_capita_ppp,
+    under5_mortality
+  ) |>
+  arrange(iso3c, year)
+
+print(draft_audit, width = Inf)
+print(records_for_review, n = Inf, width = Inf)
+print(documented_comparison, n = Inf, width = Inf)
+
+# ROUND II. AUDIT THE CODEX-BUILT PIPELINE ----------------------------------
+
+candidate_file <- file.path(outputs_dir, "02-health-analysis.csv")
+
+if (file.exists(candidate_file)) {
+  source("code/02-verify-analysis.R")
+} else {
+  message(
+    "No candidate output yet. Commission the Codex pipeline, then rerun this ",
+    "script to audit its result."
+  )
+}

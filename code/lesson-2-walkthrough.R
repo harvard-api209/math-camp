@@ -413,11 +413,10 @@ source("code/02-verify-analysis.R")
 # edit code or estimate the association that belongs in Lesson 3.
 #
 # STEP 1 — ESTABLISH THE EVIDENCE
-# Run these commands in the RStudio Terminal before opening the agent:
-#   Rscript code/02-build-analysis.R
-#   Rscript code/02-verify-analysis.R
-# The first command creates the table and build record. The second reopens the
-# saved object and checks whether it meets the construction requirements.
+# Source code/02-build-analysis.R in RStudio. Then open
+# code/02-verify-analysis.R and click Source. The first script creates the table
+# and build record. The second reopens the saved object and checks whether it
+# meets the construction requirements. No Terminal command is required.
 #
 # STEP 2 — NAME THE DECISION
 # Decide whether this draft is ready for a policy briefing:
@@ -493,7 +492,8 @@ supported_handoff
 next_step_handoff
 
 # LAB 2 HANDOFF
-# Students complete code/lab-2-starter.R, build the same table, preserve a build
-# record, review one claim against their artifacts, and finish by running
-# Rscript code/02-verify-analysis.R in the Terminal. Lesson 3 begins from this
-# checked object and examines the first substantive pattern.
+# Students use LAB-2-HANDOUT.pdf and code/lab-2-starter.R to diagnose a flawed
+# draft, reconstruct the same table from the protected source, preserve a build
+# record, and review one claim against their artifacts. They finish by opening
+# code/02-verify-analysis.R in RStudio and clicking Source. Lesson 3 begins from
+# this checked object and examines the first substantive pattern.

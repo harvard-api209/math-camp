@@ -1,0 +1,298 @@
+\documentclass[11pt]{article}
+
+\usepackage[letterpaper,margin=0.85in]{geometry}
+\usepackage{mathpazo}
+\usepackage[T1]{fontenc}
+\usepackage[utf8]{inputenc}
+\usepackage{microtype}
+\usepackage{enumitem}
+\usepackage{booktabs}
+\usepackage{tabularx}
+\usepackage{array}
+\usepackage{fancyhdr}
+\usepackage{hyperref}
+\usepackage{listings}
+\usepackage{xurl}
+
+\hypersetup{hidelinks}
+\setlength{\parindent}{1.25em}
+\setlength{\parskip}{0.2em}
+\setlist{nosep,leftmargin=1.4em}
+\renewcommand{\arraystretch}{1.2}
+\newcolumntype{Y}{>{\raggedright\arraybackslash}X}
+\pagestyle{fancy}
+\fancyhf{}
+\lhead{API 209 Math Camp 2026}
+\rhead{Lab 2: Build the analysis dataset}
+\cfoot{\thepage}
+\setlength{\headheight}{14pt}
+
+\lstset{
+  basicstyle=\ttfamily\footnotesize,
+  breaklines=true,
+  breakatwhitespace=true,
+  columns=fullflexible,
+  frame=single,
+  framerule=0.4pt,
+  xleftmargin=0.4em,
+  xrightmargin=0.4em,
+  aboveskip=0.5em,
+  belowskip=0.5em,
+  showstringspaces=false
+}
+
+\newcommand{\checkpoint}[2]{\medskip\noindent\textbf{Checkpoint #1. #2}\par}
+\newcommand{\file}[1]{\nolinkurl{#1}}
+\newcommand{\answerline}{\par\vspace{0.45em}\noindent\rule{\linewidth}{0.35pt}\par}
+
+\begin{document}
+
+\begin{center}
+  {\small THURSDAY, AUGUST 20 \quad 4:00--5:00 P.M.}\par
+  \vspace{0.6em}
+  {\LARGE\textbf{Lab 2: From a draft file to an analysis dataset}}\par
+  \vspace{0.45em}
+  {\large Commission the work, interrogate the evidence, and decide what survives}
+\end{center}
+
+\section*{The policy brief}
+
+You are preparing evidence for this question:
+
+\begin{quote}
+\textbf{How is national income associated with under-five mortality across
+economies between 2000 and 2022?}
+\end{quote}
+
+The finished dataset must contain one observation per economy--year, GDP per
+capita (PPP), under-five mortality, a natural-log measure of income, and the
+economy information needed for interpretation. Observations without usable
+income or mortality measures do not enter this first analysis.
+
+Work from the RStudio project, this handout, and
+\file{code/lab-2-starter.R}. The script is an audit instrument: it exposes
+evidence and evaluates a candidate output, but it does not build the final
+pipeline for you.
+
+\subsection*{Two uses of Codex}
+
+\noindent\begin{tabularx}{\textwidth}{@{}p{0.22\textwidth}Y Y@{}}
+\toprule
+ & \textbf{Codex as verifier} & \textbf{Codex as pipeline operator} \\
+\midrule
+Assignment & Examine the available files and make evidence-backed claims. &
+Choose, implement, and run a complete construction strategy. \\
+Risk & A correct calculation can support an unjustified explanation. & A
+pipeline can run, save, and pass structural checks while embodying a bad
+decision. \\
+Your responsibility & Reproduce consequential claims and challenge unsupported
+inferences. & Inspect the source choice, code, output, and tests before accepting
+the result. \\
+\bottomrule
+\end{tabularx}
+
+Codex output is a candidate contribution to the analysis. Fluency, successful
+execution, and a passing test are evidence of different things; none settles
+the substantive judgment by itself.
+
+\newpage
+\section*{Round I: Codex as verifier}
+
+Before inspecting either file, specify the standard by which you will judge a
+candidate dataset. At minimum, state the unit of observation, identifying
+variables, period, required measures, exclusions, and one downstream result
+that a record-level error could change.
+
+\checkpoint{1}{State the analytical risk before seeing the records}
+
+Describe one plausible data problem and trace its consequences through a
+briefing product:
+
+\begin{quote}
+record-level problem $\longrightarrow$ changed table, plot, or estimate
+$\longrightarrow$ changed policy interpretation.
+\end{quote}
+
+\answerline\answerline
+
+Run the \textbf{evidence audit} in \file{code/lab-2-starter.R}. Use its output
+to decide which observations deserve investigation and which comparisons are
+needed to resolve them.
+
+Then give Codex this verification assignment:
+
+\begin{lstlisting}
+Act as a skeptical data reviewer for a policy briefing on national income and
+under-five mortality across economies from 2000 to 2022.
+
+Read the handout, data/lab-2/health-briefing-draft.csv,
+data/derived/math-camp-wdi-2000-2022.csv, and
+data/documentation/indicator-dictionary.csv. Work read-only.
+
+Assess whether the draft is fit for the stated analysis. Examine its unit of
+observation, economy-year key, coverage, required variables, missingness,
+ranges, and disagreements with the documented project data. For every
+conclusion, report the file, variable, economy-year when relevant, and observed
+value. Distinguish what the files establish from your explanation of how a
+problem may have arisen. End with: (1) your recommendation, (2) the two claims
+that matter most for the briefing, and (3) reproducible R checks for them.
+
+Do not edit, deduplicate, or rebuild any file.
+\end{lstlisting}
+
+\checkpoint{2}{Adjudicate the verification report}
+
+Select the most consequential claim in the response. Reproduce its evidence
+with R, then record a verdict: \emph{accept}, \emph{revise}, or \emph{reject}.
+
+\noindent\begin{tabularx}{\textwidth}{@{}p{0.25\textwidth}Y@{}}
+\toprule
+Claim & \rule{0pt}{2.0em} \\
+Observed evidence & \rule{0pt}{2.0em} \\
+What the agent inferred & \rule{0pt}{2.0em} \\
+Verdict and consequence for the briefing & \rule{0pt}{2.0em} \\
+\bottomrule
+\end{tabularx}
+
+Identify one sentence in the response that is more certain than its evidence.
+If you find none, write the strongest counterargument to the recommendation.
+
+\answerline
+
+\newpage
+\section*{Round II: Codex as pipeline operator}
+
+Now commission the complete construction. The assignment deliberately states
+the analytical requirements without prescribing every implementation choice.
+The agent must make those choices visible so that you can judge them.
+
+\begin{lstlisting}
+Build and run the analysis-data pipeline for this policy question:
+How is national income associated with under-five mortality across economies
+between 2000 and 2022?
+
+Read the project documentation and relevant data files. Decide which input is
+authoritative and justify that decision from project evidence.
+
+Create code/02-health-agent-pipeline.R. It must save:
+  outputs/02-health-analysis.csv
+  outputs/02-health-build-record.csv
+
+Requirements for the analysis file:
+- one row per iso3c + year;
+- years 2000 through 2022;
+- iso3c, country, region, current income classification, year, GDP per capita
+  (PPP), under-five mortality, and log income;
+- exclude missing or nonpositive income and missing mortality;
+- calculate log income as the natural logarithm of GDP per capita (PPP).
+
+You may create or edit only code/02-health-agent-pipeline.R and the two named
+outputs. Do not modify source data, setup files, the starter audit, or the
+independent verifier. Run the pipeline. Report the input chosen, exclusions,
+files changed, checks performed, and any analytical decision that remains
+contestable.
+\end{lstlisting}
+
+\checkpoint{3}{Review the commission before accepting execution}
+
+What has been delegated? What decision remains yours? Name one way the agent
+could satisfy the file specification yet produce a substantively indefensible
+dataset.
+
+\answerline\answerline
+
+Inspect the new script and the agent's report. Do not evaluate the final output
+only from the prose summary. Look for the chosen input, any rule that resolves
+multiple records, sample restrictions, transformation, and actual files
+written.
+
+\newpage
+\section*{Audit the pipeline, not merely its exit status}
+
+Run the \textbf{candidate-output audit} in
+\file{code/lab-2-starter.R}. It reports two distinct forms of evidence:
+
+\begin{enumerate}
+  \item \textbf{structural evidence}: required columns, unique keys, period,
+  missingness, ranges, and recomputation of logged income; and
+  \item \textbf{source concordance}: missing or unexpected keys and values that
+  disagree with the documented project data.
+\end{enumerate}
+
+\checkpoint{4}{Find the strongest reason to accept or reject the pipeline}
+
+\noindent\begin{tabularx}{\textwidth}{@{}p{0.31\textwidth}Y@{}}
+\toprule
+Does the script implement the stated unit and sample? & \rule{0pt}{2.2em} \\
+Does the output pass structural checks? & \rule{0pt}{2.2em} \\
+Does the output agree with documented source records? & \rule{0pt}{2.2em} \\
+Is every conflict-resolution rule defensible without relying on row order? & \rule{0pt}{2.2em} \\
+Decision: accept, revise, or reject & \rule{0pt}{2.2em} \\
+\bottomrule
+\end{tabularx}
+
+A pipeline can pass one set of checks and fail another. If everything passes,
+identify a consequential question that the current audit still cannot answer.
+
+\newpage
+\section*{From checked data to a briefing table}
+
+Use the candidate only after you have accepted it or revised the pipeline. A
+policy colleague now asks:
+
+\begin{quote}
+\textbf{In 2022, how did typical income and under-five mortality differ across
+current World Bank income groups?}
+\end{quote}
+
+Write an R pipeline that starts from
+\file{outputs/02-health-analysis.csv}, restricts the data to 2022, groups by
+\texttt{income\_level\_current}, and creates one row per income group with:
+
+\begin{itemize}
+  \item the number of economies;
+  \item median GDP per capita (PPP); and
+  \item median under-five mortality.
+\end{itemize}
+
+Arrange the table from lowest to highest median mortality and save it as
+\file{outputs/02-health-briefing-by-income.csv}. This is an unweighted
+descriptive comparison: each economy contributes once to its group's 2022
+summary.
+
+\checkpoint{5}{Defend the grouped briefing result}
+
+Before computing, state how the unit changes from the analysis file to the
+briefing table and how a repeated economy--year could alter a group median or
+count. After computing, confirm that the group counts sum to the number of
+distinct economies observed in 2022.
+
+Write two briefing sentences: one numerical comparison supported by the table
+and one limitation that prevents a causal or historical-classification claim.
+
+\answerline\answerline\answerline
+
+Ask Codex to verify the grouped result without rewriting it: independently
+recompute the counts and medians from the accepted analysis file, compare them
+with the saved briefing table, and identify any sentence that goes beyond the
+evidence.
+
+\checkpoint{6}{Distinguish the two agent roles}
+
+In no more than four sentences, explain:
+
+\begin{enumerate}
+  \item what Codex contributed as a verifier;
+  \item what it contributed as a pipeline operator;
+  \item one mistake or overclaim you caught---or the most credible failure you
+  attempted to falsify; and
+  \item whether you would release the dataset and briefing table, and why.
+\end{enumerate}
+
+\answerline\answerline\answerline
+
+Keep the prompt, generated pipeline, audit evidence, and your decision. The
+reusable skill is not following a prescribed sequence. It is commissioning
+analytical work precisely and knowing what evidence would make you reject it.
+
+\end{document}

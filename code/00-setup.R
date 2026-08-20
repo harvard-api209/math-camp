@@ -45,6 +45,12 @@ dictionary_file <- file.path(
   "documentation",
   "indicator-dictionary.csv"
 )
+lab2_draft_file <- file.path(
+  math_camp_root,
+  "data",
+  "lab-2",
+  "health-briefing-draft.csv"
+)
 outputs_dir <- file.path(math_camp_root, "outputs")
 
 if (!file.exists(data_file)) {
@@ -52,6 +58,13 @@ if (!file.exists(data_file)) {
 }
 if (!file.exists(dictionary_file)) {
   stop("The indicator dictionary is missing: ", dictionary_file)
+}
+if (!file.exists(lab2_draft_file)) {
+  warning(
+    "The Lab 2 briefing draft is not present. This is expected outside the ",
+    "Lab 2 release: ",
+    lab2_draft_file
+  )
 }
 
 dir.create(outputs_dir, recursive = TRUE, showWarnings = FALSE)

@@ -33,3 +33,20 @@ labs/*/handout/main.fls
 labs/*/handout/main.log
 labs/*/handout/main.out
 labs/*/handout/main.pdf
+labs/*/handout/*.aux
+labs/*/handout/*.fdb_latexmk
+labs/*/handout/*.fls
+labs/*/handout/*.log
+labs/*/handout/*.out
+
+# Lab-specific instructor materials remain local so the public repository and
+# student release cannot expose answers or the construction of teaching data.
+instructor/data/
+instructor/lab-2-*/
+instructor/lab-2-*.md
+instructor/prepare-lab-2-*.R
+instructor/release-audit-lab-2-v1.0.*.md
+
+# Local packaging workspaces; published ZIPs are attached to GitHub releases.
+release-candidates/
+.Rproj.user

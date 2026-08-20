@@ -5,46 +5,34 @@
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta
       name="description"
-      content="Math Camp 2026 Lab 2: build a checked analysis table in R."
+      content="Math Camp 2026 Lab 2: commission and audit a country-year analysis pipeline with R and Codex."
     />
-    <title>Lab 2: Build-table sprint | Math Camp 2026</title>
+    <title>Lab 2: Build an analysis dataset | Math Camp 2026</title>
     <link rel="icon" href="data:," />
     <link rel="stylesheet" href="../../styles.css?v=book-20260811a" />
-    <script>
-      document.documentElement.classList.add("js");
-    </script>
+    <script>document.documentElement.classList.add("js");</script>
   </head>
   <body id="top" class="article-page">
     <div class="page-progress" aria-hidden="true"><span></span></div>
     <header class="site-header">
-      <a class="brand" href="../../"
-        ><span>API 209</span><strong>MATH CAMP 2026</strong></a
-      >
+      <a class="brand" href="../../"><span>API 209</span><strong>MATH CAMP 2026</strong></a>
       <div class="header-chapter">
-        <span>LAB 2</span><strong>/ BUILD-TABLE SPRINT</strong>
+        <span>LAB 2</span><strong>/ BUILD THE ANALYSIS DATASET</strong>
       </div>
       <nav class="chapter-nav">
         <a href="../../">HOME</a><a href="../../lessons/lesson-2/">LESSON 2</a
         ><a href="../../datasets/">DATA GUIDE</a>
       </nav>
-      <button
-        class="menu-button"
-        type="button"
-        aria-expanded="false"
-        aria-controls="mobile-outline"
-      >
-        CONTENTS
-      </button>
+      <button class="menu-button" type="button" aria-expanded="false" aria-controls="mobile-outline">CONTENTS</button>
     </header>
     <nav class="mobile-outline" id="mobile-outline">
-      <div class="mobile-outline-head">
-        <span>LAB 2</span><button type="button" data-close-menu>CLOSE</button>
-      </div>
+      <div class="mobile-outline-head"><span>LAB 2</span><button type="button" data-close-menu>CLOSE</button></div>
       <ol>
-        <li><a href="#purpose">Plan the table</a></li>
-        <li><a href="#build">Build one table</a></li>
-        <li><a href="#receipt">Independent check</a></li>
-        <li><a href="#agent">Claim review and handoff</a></li>
+        <li><a href="#purpose">The assignment</a></li>
+        <li><a href="#verify-agent">Codex verifies</a></li>
+        <li><a href="#operate">Codex operates</a></li>
+        <li><a href="#audit">Audit and decide</a></li>
+        <li><a href="#briefing">Build the briefing table</a></li>
       </ol>
     </nav>
     <main>
@@ -52,304 +40,210 @@
         <div class="article-hero-meta">
           <div><span>DATE</span><strong>THU AUG 20</strong></div>
           <div><span>TIME</span><strong>4–5 PM</strong></div>
-          <div><span>MODE</span><strong>INDIVIDUAL SCRIPT</strong></div>
+          <div><span>MODE</span><strong>ANALYTICAL COMMISSION</strong></div>
         </div>
         <div class="article-hero-copy">
           <p>CODING LAB 2</p>
-          <h1>Build-table sprint.</h1>
+          <h1>Build an analysis dataset you can defend.</h1>
           <p class="article-deck">
-            Construct one country-year analysis table, test its stated
-            requirements, and explain the decisions that turned a frozen
-            source into usable evidence.
+            Start with a policy question, commission two different forms of
+            agent work, and decide whether the resulting country–year dataset
+            deserves to enter a policy briefing.
           </p>
           <div class="article-actions">
-            <a
-              href="https://github.com/harvard-api209/math-camp/releases/download/lab-2-v1.0.3/math-camp-2026-lab-2-v1.0.3.zip"
-              >DOWNLOAD LAB 2 PROJECT ↓</a
-            ><a href="../../code/lab-2-starter.R">OPEN STARTER R SCRIPT →</a>
+            <a href="https://github.com/harvard-api209/math-camp/releases/download/lab-2-v1.0.7/math-camp-2026-lab-2-v1.0.7.zip">DOWNLOAD LAB 2 PROJECT ↓</a
+            ><a href="handout/lab-2-handout.pdf">OPEN LAB HANDOUT →</a>
           </div>
         </div>
-        <aside class="article-hero-side">
-          <p>Plan<br />Transform<br />Check<br />Explain</p>
-        </aside>
+        <aside class="article-hero-side"><p>Commission<br />Verify<br />Audit<br />Decide</p></aside>
       </section>
+
       <div class="article-layout">
         <aside class="article-nav">
-          <span>LAB GUIDE</span><a href="#purpose">Plan the table</a
-          ><a href="#build">Build one table</a
-          ><a href="#receipt">Independent check</a
-          ><a href="#agent">Claim review and handoff</a>
+          <span>LAB GUIDE</span><a href="#purpose">The assignment</a
+          ><a href="#verify-agent">Codex verifies</a
+          ><a href="#operate">Codex operates</a><a href="#audit">Audit and decide</a
+          ><a href="#briefing">Build the briefing table</a>
         </aside>
         <article class="article">
           <section class="article-section reveal" id="purpose">
-            <p class="section-kicker">WHY THIS LAB</p>
-            <h2>Build one table that you can explain.</h2>
+            <p class="section-kicker">THE ASSIGNMENT</p>
+            <h2>Income, health, and the observations behind a claim.</h2>
             <p class="article-lead">
-              A useful analysis begins with a table whose unit, variables,
-              sample, and transformations are understood. The goal is one
-              checked object with a pipeline that you can explain.
+              You are preparing background evidence for a policy briefing:
+              How is national income associated with under-five mortality
+              across economies between 2000 and 2022?
             </p>
             <p>
-              Everyone begins with the health example and a supplied scaffold.
-              You may adapt another policy track only after the common table
-              passes. Work together to diagnose problems. Keep your own script
-              and be able to explain it. The lab has no submission or grade.
+              Before making a table, plot, or regression, you need a dataset
+              that represents the question correctly. One row should represent
+              one economy in one year. The analysis needs economy identifiers,
+              region, current income classification, GDP per capita (PPP),
+              under-five mortality, and a logged-income measure. Observations
+              without usable income or mortality information should not enter
+              this first descriptive analysis.
+            </p>
+            <p>
+              Your task is to set the analytical standard, commission the
+              work, and decide whether the resulting evidence is defensible.
+              Codex will first act as a verifier and then as the operator of a
+              complete construction pipeline. Neither role makes the release
+              decision for you.
             </p>
             <div class="article-actions">
-              <a
-                href="https://github.com/harvard-api209/math-camp/releases/download/lab-2-v1.0.3/math-camp-2026-lab-2-v1.0.3.zip"
-                >DOWNLOAD THE COMPLETE LAB FILES ↓</a
-              ><a href="../../code/02-verify-analysis.R"
-                >OPEN INDEPENDENT VERIFIER ↗</a
-              >
+              <a href="handout/lab-2-handout.pdf">DOWNLOAD THE LAB HANDOUT ↓</a
+              ><a href="https://github.com/harvard-api209/math-camp/releases/download/lab-2-v1.0.7/math-camp-2026-lab-2-v1.0.7.zip">DOWNLOAD THE COMPLETE LAB FILES ↓</a>
             </div>
             <div class="callout">
               <span>DONE WHEN</span>
               <p>
-                Your script rebuilds the table from the frozen file, the
-                country-year key is unique, the build record reports the
-                expected structure, every named independent check passes, and
-                you can distinguish a supported fact from a question that the
-                table does not yet answer.
+                You can defend or reject consequential claims from the review,
+                inspect the generated pipeline and its source choice, separate
+                structural validity from source fidelity, construct a grouped
+                briefing table, and make a reasoned release decision.
               </p>
             </div>
             <div class="code-plate">
-              <div class="code-plate-head">
-                <span>R</span><span>00–05 / REOPEN PROJECT</span>
-              </div>
-              <pre><code>source("code/00-setup.R")
-wdi &lt;- read_csv(data_file, show_col_types = FALSE)
-nrow(wdi)</code></pre>
+              <div class="code-plate-head"><span>WORKING MATERIALS</span><span>ONE POLICY BRIEF</span></div>
+              <pre><code>LAB-2-HANDOUT.pdf
+code/lab-2-starter.R
+the Math Camp RStudio project</code></pre>
+              <p>The starter is an evidence-and-audit instrument. Codex creates the candidate construction pipeline during the lab.</p>
+            </div>
+          </section>
+
+          <section class="article-section reveal" id="verify-agent">
+            <p class="section-kicker">ROUND I</p>
+            <h2>Use Codex as a verifier.</h2>
+            <p>
+              State the unit, key, sample, and downstream analytical risks
+              before reviewing the records. Then ask Codex for a skeptical,
+              read-only assessment. Its report is not the answer: select its
+              most consequential claim, reproduce the underlying evidence in
+              R, and accept, revise, or reject the claim.
+            </p>
+            <div class="protocol-grid">
+              <div><span>STANDARD</span><strong>Specify the evidence.</strong><p>What must be true for the file to represent the policy question?</p></div>
+              <div><span>VERIFIER</span><strong>Make claims.</strong><p>Codex cites files, variables, records, and calculated values.</p></div>
+              <div><span>REPRODUCE</span><strong>Test a claim.</strong><p>Use the starter audit to confront the report with observed evidence.</p></div>
+              <div><span>ADJUDICATE</span><strong>Challenge certainty.</strong><p>Separate what the files establish from the agent’s explanation.</p></div>
+            </div>
+            <div class="prompt-box">
+              <span>VERIFICATION COMMISSION</span>
+              <pre>Act as a skeptical data reviewer. Work read-only. Assess whether the available draft is fit for the stated income-and-mortality analysis. Cite the file, variable, economy-year when relevant, and observed value behind every conclusion. Distinguish what the files establish from your explanation of how a problem may have arisen. End with a recommendation, the two claims that matter most, and reproducible R checks.</pre>
+            </div>
+          </section>
+
+          <section class="article-section reveal" id="operate">
+            <p class="section-kicker">ROUND II</p>
+            <h2>Use Codex to run the complete pipeline.</h2>
+            <p>
+              Commission the result, not a single verb. Codex must inspect the
+              project, choose and justify an authoritative input, write and run
+              <code>code/02-health-agent-pipeline.R</code>, and save the analysis
+              file and build record. The complete prompt is in the handout.
+            </p>
+            <ul class="checklist">
+              <li><span>1</span><strong>Which input did the agent choose, and on what evidence?</strong></li>
+              <li><span>2</span><strong>How did it resolve multiple or conflicting records?</strong></li>
+              <li><span>3</span><strong>Did it run the file it wrote and inspect the saved output?</strong></li>
+              <li><span>4</span><strong>Which analytical decision remains contestable?</strong></li>
+            </ul>
+            <div class="callout">
+              <span>THE CENTRAL RISK</span>
               <p>
-                Open <code>math-camp-2026.Rproj</code> and
-                <code>code/lab-2-starter.R</code>. Confirm that the frozen
-                source contains 4,991 rows. Do not build from an unnamed console
-                object or overwrite the frozen source.
+                A pipeline can execute successfully and satisfy a structural
+                specification while relying on an arbitrary source or record
+                rule. Correct output by accident is not a defensible method.
               </p>
             </div>
           </section>
-          <section class="article-section reveal" id="build">
-            <p class="section-kicker">05–40 MINUTES</p>
-            <h2>Move from a table plan to a finished table.</h2>
-            <div class="session-plan">
-              <div>
-                <time>05–12</time><strong>Table plan</strong>
-                <p>
-                  Write population, unit, key, period, outcome, and comparison.
-                </p>
-              </div>
-              <div>
-                <time>12–30</time><strong>Build</strong>
-                <p>Select, filter, mutate, arrange, and save.</p>
-              </div>
-              <div>
-                <time>30–40</time><strong>Build record</strong>
-                <p>Record rows, key, years, missingness, and ranges.</p>
-              </div>
-            </div>
-            <div class="code-plate">
-              <div class="code-plate-head">
-                <span>R</span><span>COMMON PATH</span>
-              </div>
-              <pre><code>library(tidyverse)
 
-wdi &lt;- read_csv(
-  "data/derived/math-camp-wdi-2000-2022.csv",
-  show_col_types = FALSE
-)
-
-health_analysis &lt;- wdi |&gt;
-  select(
-    iso3c, country, region, income_level_current, year,
-    gdp_per_capita_ppp, under5_mortality
-  ) |&gt;
-  filter(
-    between(year, 2000L, 2022L),
-    !is.na(gdp_per_capita_ppp),
-    gdp_per_capita_ppp &gt; 0,
-    !is.na(under5_mortality)
-  ) |&gt;
-  mutate(log_income = log(gdp_per_capita_ppp)) |&gt;
-  arrange(iso3c, year)
-
-stopifnot(!anyDuplicated(health_analysis[c("iso3c", "year")]))
-stopifnot(all(is.finite(health_analysis$log_income)))</code></pre>
-              <p>
-                Run one verb at a time. Before each run, mark whether rows,
-                columns, values, ordering, or the unit should change. After the
-                run, produce evidence that the expected change occurred.
-              </p>
-            </div>
+          <section class="article-section reveal" id="audit">
+            <p class="section-kicker">AUDIT + RELEASE DECISION</p>
+            <h2>Test code, structure, and source fidelity separately.</h2>
+            <p>
+              Run the candidate-output audit after Codex finishes. Structural
+              checks ask whether the file has the required columns, unique
+              keys, period, observed values, and transformation. Source
+              concordance asks whether keys and values agree with documented
+              project data. Code review asks whether the method would remain
+              defensible if row order or input contents changed.
+            </p>
             <div class="table-scroll">
               <table>
-                <thead>
-                  <tr>
-                    <th>Checkpoint</th>
-                    <th>Question</th>
-                    <th>Visible check</th>
-                  </tr>
-                </thead>
+                <thead><tr><th>Layer</th><th>Question</th><th>Possible failure</th></tr></thead>
                 <tbody>
-                  <tr>
-                    <td>After <code>select()</code></td>
-                    <td>Did the key survive?</td>
-                    <td><code>names()</code> and <code>glimpse()</code></td>
-                  </tr>
-                  <tr>
-                    <td>After <code>filter()</code></td>
-                    <td>Who left the sample?</td>
-                    <td>Rows, countries, and year range before/after</td>
-                  </tr>
-                  <tr>
-                    <td>After <code>mutate()</code></td>
-                    <td>Is the new variable defined for valid inputs?</td>
-                    <td>Missingness, range, and one hand check</td>
-                  </tr>
-                  <tr>
-                    <td>Before the claim review</td>
-                    <td>Does the table meet the requirements in its plan?</td>
-                    <td>Key, rows, years, missingness, and ranges</td>
-                  </tr>
+                  <tr><td>Generated code</td><td>Are source and record rules defensible?</td><td>A keep-last rule happens to retain the right row.</td></tr>
+                  <tr><td>File structure</td><td>Does the output satisfy its explicit specification?</td><td>A plausible wrong value passes a range check.</td></tr>
+                  <tr><td>Source concordance</td><td>Do keys and values match documented evidence?</td><td>A clean-looking file contains unsupported values.</td></tr>
+                  <tr><td>Interpretation</td><td>What has the construction established?</td><td>A checked dataset is treated as a causal result.</td></tr>
                 </tbody>
               </table>
             </div>
-          </section>
-          <section class="article-section reveal" id="receipt">
-            <p class="section-kicker">40–47 MINUTES</p>
-            <h2>Verify the saved table independently.</h2>
-            <div class="code-plate">
-              <div class="code-plate-head">
-                <span>TERMINAL</span><span>INDEPENDENT CHECK</span>
-              </div>
-              <pre><code>Rscript code/02-verify-analysis.R</code></pre>
-              <p>
-                If a check fails, read the named condition and repair the
-                builder. Do not edit the verifier merely to make a failure
-                disappear. Completion is the explicit <code>RESULT: PASS</code>
-                message.
-              </p>
-            </div>
-            <ul class="checklist">
-              <li>
-                <span>□</span
-                ><strong>Input and output row counts are recorded.</strong>
-              </li>
-              <li>
-                <span>□</span
-                ><strong><code>iso3c + year</code> is unique.</strong>
-              </li>
-              <li>
-                <span>□</span
-                ><strong>The year range matches the table plan.</strong>
-              </li>
-              <li>
-                <span>□</span
-                ><strong
-                  >Missingness and plausible ranges are visible for both
-                  indicators.</strong
-                >
-              </li>
-              <li>
-                <span>□</span
-                ><strong
-                  >The script starts from a saved file and runs without objects
-                  left in the console.</strong
-                >
-              </li>
-            </ul>
-          </section>
-          <section class="article-section reveal" id="agent">
-            <p class="section-kicker">47–60 MINUTES</p>
-            <h2>Audit one claim, then write the handoff.</h2>
-            <div class="prompt-box">
-              <span>READ-ONLY CLAIM AUDIT</span>
-              <pre>
-Goal: Decide whether this draft sentence is ready for a policy briefing: “Across 217 economies from 2000 to 2022, higher income reduced under-five mortality.”
-Context: Read outputs/02-health-analysis.csv, outputs/02-health-build-record.csv, data/documentation/indicator-dictionary.csv, code/02-build-analysis.R, and code/02-verify-analysis.R.
-Permission: Read only. Do not edit files or browse the web.
-Task: Classify each part of the sentence as (a) supported by the current artifacts, (b) not yet calculated, or (c) unsupported by this descriptive design.
-Proof: Cite the exact file and value behind each factual statement, then propose a cautious handoff sentence for Lesson 3.</pre>
-            </div>
             <p>
-              Inspect the citations rather than accepting the prose. The build
-              record can establish coverage and exclusions. It cannot establish
-              an income-mortality association before that relationship is
-              calculated, and this descriptive design cannot establish that
-              income caused mortality to fall.
-            </p>
-            <p>
-              During minutes 57–60, record one fact supported by the artifacts
-              and one question that must wait for Lesson 3. Also be ready to
-              explain what one row represents, who was excluded, and what the
-              logged income variable means.
+              Finish with an actual decision: accept, revise, or reject. If the
+              pipeline survives every test, identify the strongest failure you
+              attempted to falsify and the evidence that ruled it out.
             </p>
             <div class="callout">
-              <span>COMMON PATH FIRST</span>
+              <span>SIX CHECKPOINTS</span>
               <p>
-                The required lab ends with one checked health table. Regional
-                summaries, metadata joins, other policy tracks, reusable
-                functions, and newer public data are extensions for students who
-                finish the common path.
+                The checkpoints demand a failure chain, adjudication of a
+                verifier claim, review of the pipeline commission, a release
+                decision from independent audits, a grouped briefing result,
+                and a comparison of the two agent roles.
               </p>
             </div>
-            <div class="protocol-grid">
-              <div>
-                <span>KEEP</span><strong>One script.</strong>
-                <p>The complete path from frozen file to table.</p>
-              </div>
-              <div>
-                <span>KEEP</span><strong>One build record.</strong>
-                <p>The evidence that the table meets its stated requirements.</p>
-              </div>
-              <div>
-                <span>KEEP</span><strong>One decision.</strong>
-                <p>A transformation or filter and why it remains.</p>
-              </div>
-              <div>
-                <span>KEEP</span><strong>One uncertainty.</strong>
-                <p>A question the table cannot settle.</p>
-              </div>
-            </div>
+          </section>
+
+          <section class="article-section reveal" id="briefing">
+            <p class="section-kicker">FROM DATASET TO REPORT</p>
+            <h2>Use <code>group_by()</code> to produce briefing evidence.</h2>
             <p>
-              <strong>Optional extension.</strong> Summarize by region, diagnose
-              a metadata join, adapt another policy track, or write a reusable
-              checking function. Updating the public data beyond 2022 is a
-              separate optional extension.
+              Once the candidate survives review, restrict it to 2022 and
+              create one row per current income group. Report the number of
+              economies, median GDP per capita (PPP), and median under-five
+              mortality. Arrange the groups from lowest to highest mortality
+              and save the result as
+              <code>outputs/02-health-briefing-by-income.csv</code>.
             </p>
+            <div class="protocol-grid">
+              <div><span>UNIT</span><strong>Name the new observation.</strong><p>One row now represents a current income group in 2022.</p></div>
+              <div><span>GROUP</span><strong>Summarise economies.</strong><p>Use unweighted counts and medians; each observed economy contributes once.</p></div>
+              <div><span>INTERPRET</span><strong>Write with numbers.</strong><p>State one comparison supported by the grouped table.</p></div>
+              <div><span>VERIFY</span><strong>Challenge the report.</strong><p>Codex independently recomputes the table and flags prose that exceeds the evidence.</p></div>
+            </div>
+            <div class="callout">
+              <span>REPORTING BOUNDARY</span>
+              <p>
+                This is an unweighted descriptive comparison. The snapshot’s
+                current income classifications are not historical
+                country–year classifications, and the table does not establish
+                that income causes mortality to change.
+              </p>
+            </div>
           </section>
         </article>
+
         <aside class="article-margin">
           <dl>
-            <div>
-              <dt>INPUT</dt>
-              <dd>Frozen WDI file</dd>
-            </div>
-            <div>
-              <dt>OUTPUT</dt>
-              <dd>Checked analysis table</dd>
-            </div>
-            <div>
-              <dt>AGENT ROLE</dt>
-              <dd>Claim auditor</dd>
-            </div>
-            <div>
-              <dt>SUBMISSION</dt>
-              <dd>None</dd>
-            </div>
+            <div><dt>QUESTION</dt><dd>Income and under-five mortality</dd></div>
+            <div><dt>UNIT</dt><dd>Economy–year</dd></div>
+            <div><dt>OUTPUT</dt><dd>Checked dataset + grouped briefing table</dd></div>
+            <div><dt>AGENT ROLE</dt><dd>Verifier + pipeline operator</dd></div>
+            <div><dt>SUBMISSION</dt><dd>None</dd></div>
           </dl>
         </aside>
       </div>
       <nav class="page-turn">
-        <a href="../../lessons/lesson-2/"
-          ><span>PREVIOUS</span><strong>Lesson 2: Build the dataset</strong></a
-        ><a href="../../"
-          ><span>RETURN</span><strong>Current Math Camp release</strong></a
-        >
+        <a href="../../lessons/lesson-2/"><span>PREVIOUS</span><strong>Lesson 2: Build the dataset</strong></a
+        ><a href="../../"><span>RETURN</span><strong>Current Math Camp release</strong></a>
       </nav>
     </main>
     <footer class="site-footer">
       <div><span>API 209</span><strong>MATH CAMP 2026</strong></div>
-      <p>Current release · Lab 2.</p>
+      <p>Lab 2 · From policy question to checked dataset and briefing table.</p>
       <a href="#top">RETURN TO TOP ↑</a>
     </footer>
     <script src="../../script.js?v=book-20260811a"></script>
