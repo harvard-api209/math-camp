@@ -65,7 +65,7 @@ regional_description <- ""
 # EXERCISE 2: CONSTRUCT TWO BRIEFING TABLES --------------------------------
 # 14-28 minutes
 
-briefing_years <- c(2000L, 2010L, 2022L)
+briefing_years <- c(2000, 2010, 2022)
 
 # The all-countries table establishes the comparison. It reports the number of
 # contributing economies and the median value of each outcome in three years.
