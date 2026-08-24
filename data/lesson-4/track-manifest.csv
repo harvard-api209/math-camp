@@ -1,0 +1,5 @@
+track,file,question,unit,period,rows
+Health,health-2022.csv,"How is national income associated with under-five mortality, and does the pattern differ by income group?",economy in 2022,2022,188
+Gender,gender-2022.csv,"Where is girls' secondary enrollment associated with lower adolescent fertility, and where does the relationship depart from the overall pattern?",economy in 2022,2022,140
+Access,access-2000-2022.csv,"Does electricity access travel with internet access, and which countries closed the combined access gap fastest?",economy with observed 2000 and 2022 endpoints,2000 and 2022,174
+Climate,climate-2000-2021.csv,Can renewable electricity expand while carbon intensity falls and income continues to grow?,"economy with observed 2000 and 2021 renewable, carbon, and income endpoints",2000--2021,172

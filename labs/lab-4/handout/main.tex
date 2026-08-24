@@ -1,0 +1,132 @@
+\documentclass[11pt]{article}
+\usepackage[letterpaper,margin=0.85in]{geometry}
+\usepackage{mathpazo}
+\usepackage[T1]{fontenc}
+\usepackage[utf8]{inputenc}
+\usepackage{microtype}
+\usepackage{enumitem}
+\usepackage{booktabs}
+\usepackage{tabularx}
+\usepackage{array}
+\usepackage{fancyhdr}
+\usepackage[hidelinks]{hyperref}
+\usepackage{xurl}
+\setlength{\parindent}{1.25em}
+\setlength{\parskip}{0.2em}
+\setlist{nosep,leftmargin=1.5em}
+\renewcommand{\arraystretch}{1.18}
+\newcolumntype{Y}{>{\raggedright\arraybackslash}X}
+\pagestyle{fancy}
+\fancyhf{}
+\lhead{API 209 Math Camp 2026}
+\rhead{Lab 4: Quarto policy brief}
+\cfoot{\thepage}
+\setlength{\headheight}{14pt}
+\newcommand{\file}[1]{\nolinkurl{#1}}
+\begin{document}
+
+\begin{center}
+{\small WEDNESDAY, AUGUST 26 \quad 4:00--5:00 P.M.}\par
+\vspace{0.6em}
+{\LARGE\textbf{Lab 4: From a policy question to a Quarto brief}}\par
+\vspace{0.4em}
+{\large One table, one figure, one finding, and one limitation}
+\end{center}
+
+\section*{Purpose}
+
+Choose one of four international-development questions and complete its
+Quarto starter. Your brief should let a reader identify the sample, inspect
+the calculation, and distinguish a descriptive result from an unsupported
+claim. You will write the first interpretation before asking Codex to review
+the work.
+
+\section*{Choose one track}
+
+\begin{tabularx}{\textwidth}{@{}p{0.15\textwidth}Y p{0.22\textwidth}@{}}
+\toprule
+Track & Question & Starter \\
+\midrule
+Health & How is income associated with under-five mortality in 2022, and how
+does the pattern differ by income group? & \file{materials/lab-4/health-brief.qmd} \\
+Gender & Where is girls' secondary enrollment associated with lower
+adolescent fertility? & \file{materials/lab-4/gender-brief.qmd} \\
+Access & Which economies closed the combined electricity and internet access
+gap fastest from 2000 to 2022? & \file{materials/lab-4/access-brief.qmd} \\
+Climate & Which economies expanded renewables, reduced carbon intensity, and
+ended with higher real income from 2000 to 2021? & \file{materials/lab-4/climate-brief.qmd} \\
+\bottomrule
+\end{tabularx}
+
+\section*{Required brief}
+
+Your rendered HTML should contain:
+\begin{enumerate}
+\item the question and a statement of the unit, sample, period, and source;
+\item one table produced from the supplied CSV;
+\item one labeled figure produced from the same analytical comparison;
+\item one numerical finding written in your own words;
+\item one limitation or inference the evidence does not support; and
+\item an AI-use note describing the statement checked, independent R
+evidence, and whether you accepted, revised, or rejected it.
+\end{enumerate}
+
+\section*{Route through the hour}
+
+\begin{tabularx}{\textwidth}{@{}p{0.14\textwidth}p{0.24\textwidth}Y@{}}
+\toprule
+Minutes & Work & Result \\
+\midrule
+00--07 & Choose and plan & State the unit, variables, and function sequence. \\
+07--20 & Construct table & One traceable briefing table. \\
+20--33 & Construct figure & One labeled policy comparison. \\
+33--40 & Interpret & One finding and one limitation in your words. \\
+40--50 & Agent review & Codex reproduces the table and challenges one claim. \\
+50--56 & Independent check & Test one material agent statement in R; decide
+accept, revise, or reject. \\
+56--60 & Render & A standalone HTML brief. \\
+\bottomrule
+\end{tabularx}
+
+\section*{Before coding}
+
+Write down the unit and period, the variables needed, the sequence of R
+functions for the table, the figure mappings, one claim the evidence could
+support, and one claim it could not support. The comments in the starter name
+the relevant functions without completing the analysis.
+
+\section*{Codex review}
+
+Use Codex only after saving your table, figure, finding, and limitation. Replace
+the bracketed filename in this request:
+
+\begin{quote}\small
+Read my saved [QMD filename] and the CSV it imports. Work read-only. Reproduce
+my table from the stated sample; inspect the variables, units, and mappings in
+my figure; then select the most consequential numerical or interpretive
+statement in my Finding or Limitation. Cite the exact object and values
+supporting your judgment. End with accept, revise, or reject and at most one
+proposed revision. Do not edit files, fit a model, or make a causal claim.
+\end{quote}
+
+Choose one material statement from the response and test it with a small,
+independent R calculation. In the Quarto file, record the agent's statement,
+your check and result, and your final decision.
+
+\section*{Interpretation reminders}
+
+All four exercises are descriptive. The health and gender files are 2022
+cross-sections. The access and climate files compare common endpoints. A
+change between endpoints does not establish what happened in every
+intervening year, and an observed association does not identify a policy
+effect. Gross enrollment can exceed 100 by definition. The access index gives
+equal weight to electricity and internet changes.
+
+\section*{Completion}
+
+Click \textbf{Render} in RStudio. Confirm that the HTML opens, includes the
+table and figure, and contains no stale sentence that disagrees with the
+output. There is no graded submission; keep the source QMD and rendered HTML as
+a reusable record of your work.
+
+\end{document}

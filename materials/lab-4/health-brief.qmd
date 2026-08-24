@@ -1,0 +1,47 @@
+---
+title: "Health policy brief"
+format: {html: {toc: true, embed-resources: true}}
+execute: {echo: true, warning: false, message: false}
+---
+
+## Question
+
+How is national income associated with under-five mortality in 2022, and how does the pattern differ by current income group?
+
+## Data, unit, and plan
+
+One row represents one economy in 2022. Before coding, write the variables and the function sequence you will use.
+
+```{r}
+library(tidyverse)
+health <- read_csv("../../data/lesson-4/health-2022.csv", show_col_types = FALSE)
+glimpse(health)
+```
+
+## Briefing table
+
+Construct one row per current income group. Report the number of economies, median GDP per capita (PPP), and median under-five mortality. Arrange the result by median mortality.
+
+```{r}
+# Begin with health |>, then use group_by(), summarise(), and arrange().
+```
+
+## Figure
+
+Plot GDP per capita against under-five mortality. Map current income group to color and use a logarithmic x-axis.
+
+```{r}
+# Begin with ggplot(). Add geom_point(), scale_x_log10(), and labs().
+```
+
+## Finding
+
+Write one numerical finding that names the year, sample, and units.
+
+## Limitation
+
+State one inference this cross-section does not support.
+
+## AI use and verification
+
+After saving your independent work, use the prompt in the handout. Record the claim you checked, your independent R evidence, and your decision: accept, revise, or reject.

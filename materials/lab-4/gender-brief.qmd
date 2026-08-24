@@ -1,0 +1,47 @@
+---
+title: "Gender policy brief"
+format: {html: {toc: true, embed-resources: true}}
+execute: {echo: true, warning: false, message: false}
+---
+
+## Question
+
+Where is girls' secondary enrollment associated with lower adolescent fertility in 2022, and where does the pattern depart from the overall comparison?
+
+## Data, unit, and plan
+
+One row represents one economy in 2022. Gross enrollment can exceed 100 by definition. Before coding, write the variables and function sequence you will use.
+
+```{r}
+library(tidyverse)
+gender <- read_csv("../../data/lesson-4/gender-2022.csv", show_col_types = FALSE)
+glimpse(gender)
+```
+
+## Briefing table
+
+Construct one row per region. Report the number of economies and the median of each measure. Arrange by median adolescent fertility.
+
+```{r}
+# Use group_by(), summarise(), and arrange().
+```
+
+## Figure
+
+Plot female secondary enrollment against adolescent fertility. Map region to color and label both measures with their documented units.
+
+```{r}
+# Build the plot with ggplot(), aes(), geom_point(), and labs().
+```
+
+## Finding
+
+Write one numerical finding that distinguishes the overall pattern from regional variation.
+
+## Limitation
+
+State one limitation arising from coverage, measurement, or interpretation.
+
+## AI use and verification
+
+After saving your independent work, use the prompt in the handout. Record the claim you checked, your independent R evidence, and your decision: accept, revise, or reject.

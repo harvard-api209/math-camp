@@ -1,0 +1,153 @@
+\section{The R vocabulary}
+
+\begin{frame}{A compact map of the functions}
+\small
+\begin{tabularx}{\textwidth}{p{2.3cm} X X}
+\toprule
+Task & Core functions & Question answered \\
+\midrule
+Start & \texttt{library()}, \texttt{read\_csv()} & What object did we load? \\
+Inspect & \texttt{glimpse()}, \texttt{names()}, \texttt{count()} & What does a row represent? \\
+Choose rows/columns & \texttt{filter()}, \texttt{select()} & Which observations and variables belong? \\
+Construct & \texttt{mutate()}, \texttt{arrange()} & What new measure or ordering is useful? \\
+Aggregate & \texttt{group\_by()}, \texttt{summarise()} & What statistic belongs to each group? \\
+Visualize & \texttt{ggplot()}, \texttt{aes()}, \texttt{geom\_*()}, \texttt{labs()} & What comparison should the reader see? \\
+\bottomrule
+\end{tabularx}
+\end{frame}
+
+\begin{frame}[fragile]{Install once; attach each session}
+\begin{lstlisting}[language=R]
+# Run only if tidyverse is absent.
+install.packages("tidyverse")
+
+# Run at the start of each session that uses it.
+library(tidyverse)
+\end{lstlisting}
+\vspace{0.35cm}
+Installation puts a package on the computer. \texttt{library()} makes its functions available in the current R session.
+\end{frame}
+
+\begin{frame}[fragile]{The file format determines the reader}
+\begin{lstlisting}[language=R]
+health <- read_csv("data/lesson-4/health-2022.csv")
+
+# Related readers:
+# readxl::read_excel("file.xlsx")
+# object <- readRDS("object.rds")
+\end{lstlisting}
+\begin{itemize}
+\item CSV: rectangular text data.
+\item Excel: one or more worksheets.
+\item RDS: one R object saved with its classes and attributes.
+\end{itemize}
+\end{frame}
+
+\begin{frame}[fragile]{Inspect before transforming}
+\begin{lstlisting}[language=R]
+glimpse(health)
+names(health)
+count(health, income_level_current)
+summary(select(health, gdp_per_capita_ppp,
+                       under5_mortality))
+n_distinct(health$iso3c)
+\end{lstlisting}
+The first reading should establish the row unit, the key, the variables, their types, and missing coverage.
+\end{frame}
+
+\begin{frame}[fragile]{Select columns and filter rows}
+\begin{lstlisting}[language=R]
+health_focus <- health |>
+  select(country, region, income_level_current,
+         gdp_per_capita_ppp, under5_mortality) |>
+  filter(gdp_per_capita_ppp > 0)
+\end{lstlisting}
+\small \texttt{select()} changes columns; \texttt{filter()} changes rows. Neither computes a group statistic.
+\end{frame}
+
+\begin{frame}[fragile]{Construct and order variables}
+\begin{lstlisting}[language=R]
+health_focus <- health_focus |>
+  mutate(log_income = log(gdp_per_capita_ppp)) |>
+  arrange(desc(under5_mortality))
+\end{lstlisting}
+\texttt{mutate()} preserves the row unit while adding or changing columns. \texttt{arrange()} changes display order; it does not change the sample.
+\end{frame}
+
+\begin{frame}[fragile]{Summarise within groups}
+\begin{lstlisting}[language=R]
+health_table <- health_focus |>
+  group_by(income_level_current) |>
+  summarise(
+    economies = n(),
+    median_income = median(gdp_per_capita_ppp),
+    median_mortality = median(under5_mortality),
+    .groups = "drop"
+  )
+\end{lstlisting}
+The input has one row per economy. The output has one row per income group.
+\end{frame}
+
+\begin{frame}[fragile]{Map variables to a figure}
+\begin{lstlisting}[language=R]
+ggplot(health_focus,
+       aes(x = gdp_per_capita_ppp,
+           y = under5_mortality,
+           color = income_level_current)) +
+  geom_point(alpha = 0.75) +
+  scale_x_log10() +
+  labs(x = "GDP per capita, PPP (log scale)",
+       y = "Deaths per 1,000 live births",
+       color = "Current income group") +
+  theme_minimal()
+\end{lstlisting}
+\end{frame}
+
+\begin{frame}{Checkpoint 1: choose the sequence}
+You need the three economies in each income group with the highest under-five mortality in 2022.
+\vspace{0.3cm}
+\begin{enumerate}
+\item What should one row of the final object represent?
+\item Which functions would you use, and in what order?
+\item What information would disappear if you summarised too early?
+\end{enumerate}
+\vfill
+\centering\textbf{2 minutes discuss \(\longrightarrow\) 2 minutes share}
+\end{frame}
+
+\begin{frame}{Checkpoint 1: resolution}
+One defensible sequence is:
+\vspace{0.3cm}
+\begin{center}
+\texttt{filter(year == 2022)} \(\rightarrow\)
+\texttt{group\_by(income group)} \(\rightarrow\)
+\texttt{slice\_max(mortality, n = 3)}
+\end{center}
+\vspace{0.4cm}
+The resulting row remains an economy. A group-level \texttt{summarise()} would remove economy names and prevent the requested ranking.
+\end{frame}
+
+\begin{frame}{Cross-section or endpoint comparison?}
+\small
+\begin{tabularx}{\textwidth}{p{2.6cm} X X}
+\toprule
+Design & Unit & Appropriate question \\
+\midrule
+2022 cross-section & economy in 2022 & How do economies differ at one date? \\
+Fixed endpoints & economy with the same two years observed & How much did each economy's measure change between two dates? \\
+Country-year panel & economy-year & How do levels and changes evolve over time? \\
+\bottomrule
+\end{tabularx}
+\vspace{0.35cm}
+The health and gender files are cross-sections. The access and climate files use fixed endpoints.
+\end{frame}
+
+\begin{frame}{Break}
+\centering
+\vfill
+{\Huge\color{crimson}10 minutes}
+\vspace{0.5cm}
+
+When we return, we will place the health analysis in a Quarto document and render it from a clean session.
+\vfill
+\end{frame}

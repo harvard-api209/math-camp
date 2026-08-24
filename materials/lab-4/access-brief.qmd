@@ -1,0 +1,47 @@
+---
+title: "Access policy brief"
+format: {html: {toc: true, embed-resources: true}}
+execute: {echo: true, warning: false, message: false}
+---
+
+## Question
+
+Which economies closed the combined electricity and internet access gap fastest between 2000 and 2022?
+
+## Data, unit, and plan
+
+One row represents one economy with observed endpoints in 2000 and 2022. Changes are percentage-point differences. The combined measure gives equal weight to electricity and internet access.
+
+```{r}
+library(tidyverse)
+access <- read_csv("../../data/lesson-4/access-2000-2022.csv", show_col_types = FALSE)
+glimpse(access)
+```
+
+## Briefing table
+
+Show the ten economies with the largest combined gap closure. Retain the separate electricity and internet changes so the index remains interpretable.
+
+```{r}
+# Use arrange() and slice_head(). Select the columns a reader needs.
+```
+
+## Figure
+
+Plot the electricity change against the internet-use change. Map region to color and add horizontal and vertical reference lines at zero.
+
+```{r}
+# Use ggplot(), geom_point(), geom_hline(), geom_vline(), and labs().
+```
+
+## Finding
+
+Write one numerical finding about the joint change and its two components.
+
+## Limitation
+
+Explain one consequence of the equal-weight index or endpoint comparison.
+
+## AI use and verification
+
+After saving your independent work, use the prompt in the handout. Record the claim you checked, your independent R evidence, and your decision: accept, revise, or reject.

@@ -78,8 +78,8 @@ removes support:
 - **Lesson 1:** students receive the work order and the checks.
 - **Lesson 2:** students complete missing constraints and choose checks.
 - **Lesson 3:** students write the review plan and reject irrelevant advice.
-- **Lesson 4:** students design the audit plan, rank findings, and defend the
-  repair they chose.
+- **Lesson 4:** students choose a policy track, build a rendered brief, and
+  verify one consequential agent statement.
 
 This keeps the floor low for students new to code while creating a real ceiling
 for experienced programmers. High-ceiling extensions should deepen
@@ -390,17 +390,22 @@ uses the checked Lesson 2 table to compare all countries with one region in
 `code/lab-3-starter.R`. Students complete and save four descriptive exercises
 before Codex reads that same file and produces the bounded model comparison.
 
-## Lesson 4: Audit the handoff
+## Lesson 4: From policy question to reproducible brief
 
 **Lesson time:** 120 minutes. **Lab time:** 60 minutes on the following day.
 
-The lesson explains reproducibility, clean sessions, Quarto as a field notebook, README and provenance requirements, AI-use disclosure, and the four-part handoff audit. The course website uses a separate framework. Students prepare for an exchange in which another person runs the project cold.
+The lesson synthesizes the first three lessons, reviews the core R vocabulary,
+and introduces Quarto as the place where the question, sample, code, table,
+figure, finding, and limitation remain connected. The live demonstration uses
+the health track and renders from a clean session. Three short checkpoints ask
+students to choose a function sequence, repair a broken evidence chain, and
+plan one of four policy tracks.
 
-Use the analogy of **a recipe tested in someone else's kitchen**: the author
-cannot silently provide ingredients, objects, or remembered steps. Planned
-interactions: hidden-state demonstration, order-the-workflow task, clean-render
-prediction, README critique, AI-use-note rewrite, severity ranking, handoff
-rehearsal, and final confidence map.
+Lab 4 uses four prepared economy-level datasets and four separate Quarto
+starters. Students produce one table, one figure, one supported finding, one
+limitation, and one AI-verification note. Codex enters only after the student
+has saved an independent interpretation. No model, project exchange, Slido,
+or terminal workflow is required.
 
 ## Facilitation rules
 

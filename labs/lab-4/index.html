@@ -2,15 +2,14 @@
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="viewport" content="width=device-width,initial-scale=1" />
     <meta
       name="description"
-      content="Math Camp 2026 Lab 4: a complete mini hackathon and handoff audit."
+      content="API 209 Math Camp Lab 4: create a Quarto policy brief."
     />
-    <meta name="robots" content="noindex,nofollow" />
-    <title>Lab 4: Mini hackathon | Math Camp 2026</title>
+    <title>Lab 4: Quarto policy brief | Math Camp 2026</title>
     <link rel="icon" href="data:," />
-    <link rel="stylesheet" href="../../styles.css?v=book-20260718p" />
+    <link rel="stylesheet" href="../../styles.css?v=lesson4-20260824" />
     <script>
       document.documentElement.classList.add("js");
     </script>
@@ -22,444 +21,148 @@
         ><span>API 209</span><strong>MATH CAMP 2026</strong></a
       >
       <div class="header-chapter">
-        <span>LAB 4</span><strong>/ MINI HACKATHON</strong>
+        <span>LAB 4</span><strong>/ QUARTO POLICY BRIEF</strong>
       </div>
       <nav class="chapter-nav">
         <a href="../../">HOME</a><a href="../../lessons/lesson-4/">LESSON 4</a
-        ><a href="../../ai-guide/">AI GUIDE</a>
+        ><a href="handout/lab-4-handout.pdf">HANDOUT</a>
       </nav>
-      <button
-        class="menu-button"
-        type="button"
-        aria-expanded="false"
-        aria-controls="mobile-outline"
-      >
-        CONTENTS
-      </button>
     </header>
-    <nav class="mobile-outline" id="mobile-outline">
-      <div class="mobile-outline-head">
-        <span>LAB 4</span><button type="button" data-close-menu>CLOSE</button>
-      </div>
-      <ol>
-        <li><a href="#purpose">Why a cold run</a></li>
-        <li><a href="#exchange">Run the handoff</a></li>
-        <li><a href="#audit">Human and agent audit</a></li>
-        <li><a href="#show">Show and tell</a></li>
-      </ol>
-    </nav>
     <main>
       <section class="article-hero">
         <div class="article-hero-meta">
           <div><span>DATE</span><strong>WED AUG 26</strong></div>
-          <div><span>TIME</span><strong>4-5 PM</strong></div>
-          <div><span>MODE</span><strong>MINI HACKATHON</strong></div>
+          <div><span>TIME</span><strong>4–5 PM</strong></div>
+          <div><span>OUTPUT</span><strong>ONE HTML BRIEF</strong></div>
         </div>
         <div class="article-hero-copy">
           <p>CODING LAB 4</p>
-          <h1>Mini hackathon.</h1>
+          <h1>Answer one question in a rendered brief.</h1>
           <p class="article-deck">
-            Exchange small projects and run each handoff without help from the
-            author. Compare the human and agent audits, then repair the issue
-            with the largest consequence.
+            Choose one prepared policy track, construct a table and figure,
+            write the first interpretation yourself, then ask Codex to reproduce
+            and challenge one material claim.
           </p>
+          <div class="article-actions">
+            <a href="handout/lab-4-handout.pdf">OPEN HANDOUT ↗</a
+            ><a
+              href="https://github.com/harvard-api209/math-camp/releases/download/lesson-4-lab-4-v1.0.0/math-camp-2026-lesson-4-lab-4-v1.0.0.zip"
+              >DOWNLOAD LESSON 4 + LAB 4 ↓</a
+            ><a href="../../lessons/lesson-4/">REVIEW LESSON 4 →</a>
+          </div>
         </div>
         <aside class="article-hero-side">
-          <p>Run the handoff<br />Run<br />Repair</p>
+          <p>
+            Plan<br />Table<br />Figure<br />Interpret<br />Verify<br />Render
+          </p>
         </aside>
       </section>
       <div class="article-layout">
         <aside class="article-nav">
-          <span>LAB GUIDE</span><a href="#purpose">Why a cold run</a
-          ><a href="#exchange">Run the handoff</a
-          ><a href="#audit">Human and agent audit</a
-          ><a href="#show">Show and tell</a>
+          <span>LAB GUIDE</span><a href="#output">Output</a
+          ><a href="#tracks">Four tracks</a><a href="#route">Route</a
+          ><a href="#agent">Codex review</a>
         </aside>
         <article class="article">
-          <section class="article-section reveal" id="purpose">
-            <p class="section-kicker">WHY THIS LAB</p>
-            <h2>Test whether another person can follow the work.</h2>
+          <section class="article-section reveal" id="output">
+            <p class="section-kicker">THE ARTIFACT</p>
+            <h2>One table, one figure, one finding, one limitation.</h2>
             <p class="article-lead">
-              Another person tests handoff readiness by recovering the
-              question, inputs, code path, evidence, and limitations. In this
-              mini hackathon, confusion and failure become information about the
-              project.
+              The rendered HTML also states the question, source, unit, sample,
+              and period. The AI-use note identifies the agent statement
+              checked, the independent R evidence, and the analyst's decision.
             </p>
-            <h3>Goals</h3>
+          </section>
+          <section class="article-section reveal" id="tracks">
+            <p class="section-kicker">CHOOSE ONE</p>
+            <h2>Four prepared comparisons.</h2>
             <ol class="learning-list">
               <li>
                 <span>01</span
                 ><strong
-                  >Run another student's project without a verbal tour.</strong
+                  >Health: income and under-five mortality across 188 economies
+                  in 2022.</strong
                 >
               </li>
               <li>
                 <span>02</span
                 ><strong
-                  >Identify the first reproducibility, provenance,
-                  interpretation, or communication blocker.</strong
+                  >Gender: girls' secondary enrollment and adolescent fertility
+                  across 140 economies in 2022.</strong
                 >
               </li>
               <li>
                 <span>03</span
                 ><strong
-                  >Compare a human audit with a bounded agent audit.</strong
-                >
-              </li>
-              <li>
-                <span>04</span><strong>Rank findings by consequence.</strong>
-              </li>
-              <li>
-                <span>05</span
-                ><strong>Repair and verify one high-value issue.</strong>
-              </li>
-            </ol>
-            <h3>Why the author stays quiet</h3>
-            <p>
-              Authors often provide missing context without noticing when they
-              demonstrate their own work. They remember which script runs first,
-              which object was created in the console, and what an abbreviated
-              variable name means. A cold handoff removes that support. The
-              reviewer's first confusion identifies where the project needs
-              clearer documentation.
-            </p>
-            <div class="callout">
-              <span>THE FLIGHT RECORDER</span>
-              <p>
-                The README, source files, console output, diff, prompt, and
-                verification record work as the project's flight recorder. They
-                allow another person to
-                reconstruct what happened without depending on the author's
-                memory.
-              </p>
-            </div>
-            <p>
-              The final repair is intentionally small. One working entry point,
-              one corrected unit, or one qualified claim can improve trust more
-              than a broad cosmetic cleanup. Ranking findings by consequence
-              also shows students that good computational work can contain
-              failures. What matters is whether another person can find,
-              explain, and repair the important failure.
-            </p>
-            <p>
-              <strong>A useful failure gives us evidence.</strong> A missing
-              package, unclear entry point, broken path, untraceable indicator,
-              or overstated claim is useful evidence from the handoff test.
-            </p>
-          </section>
-
-          <section class="article-section reveal" id="exchange">
-            <p class="section-kicker">0-15 MINUTES</p>
-            <h2>Run the handoff cold.</h2>
-            <div class="session-plan">
-              <div>
-                <time>00-02</time><strong>Run the handoff</strong>
-                <p>
-                  Share the project folder or screen without explaining its
-                  structure.
-                </p>
-              </div>
-              <div>
-                <time>02-05</time><strong>Orient</strong>
-                <p>
-                  Find the question, entry point, data source, and expected
-                  output.
-                </p>
-              </div>
-              <div>
-                <time>05-11</time><strong>Run</strong>
-                <p>Restart R and follow only the written instructions.</p>
-              </div>
-              <div>
-                <time>11-15</time><strong>Record</strong>
-                <p>
-                  Note the first blocker, first ambiguity, and first strong
-                  design choice.
-                </p>
-              </div>
-            </div>
-            <p>
-              <strong>Author rule.</strong> The author observes silently during
-              the first ten minutes. Let the reviewer follow the written trail.
-              Every question the reviewer needs to ask shows where the project may need
-              clearer documentation.
-            </p>
-            <h3>Cold-run record</h3>
-            <div class="table-scroll">
-              <table>
-                <thead>
-                  <tr>
-                    <th>Moment</th>
-                    <th>Record</th>
-                  </tr>
-                </thead>
-                <tbody>
-                  <tr>
-                    <td>First expectation</td>
-                    <td>What did you think would happen?</td>
-                  </tr>
-                  <tr>
-                    <td>First blocker</td>
-                    <td>Exact file, command, error, or missing instruction.</td>
-                  </tr>
-                  <tr>
-                    <td>First ambiguity</td>
-                    <td>Decision you could not infer from the project.</td>
-                  </tr>
-                  <tr>
-                    <td>First strength</td>
-                    <td>Choice that made the work easier to understand.</td>
-                  </tr>
-                </tbody>
-              </table>
-            </div>
-          </section>
-          <section class="article-section reveal" id="audit">
-            <p class="section-kicker">15-32 MINUTES</p>
-            <h2>Human audit first, agent audit second.</h2>
-            <p>
-              Spend six minutes on the human audit. Rank no more than four
-              findings. Then give the agent a narrow audit plan and compare
-              priorities.
-            </p>
-            <div class="protocol-grid">
-              <div>
-                <span>REPRODUCIBILITY</span><strong>Does it run clean?</strong>
-                <p>
-                  Entry point, packages, paths, order, and generated output.
-                </p>
-              </div>
-              <div>
-                <span>PROVENANCE</span><strong>Can I trace the data?</strong>
-                <p>
-                  Publisher, codes, units, years, retrieval, and
-                  transformations.
-                </p>
-              </div>
-              <div>
-                <span>INTERPRETATION</span><strong>Does the claim fit?</strong>
-                <p>Sample, units, diagnostics, causality, and limitations.</p>
-              </div>
-              <div>
-                <span>COMMUNICATION</span><strong>Can I follow it?</strong>
-                <p>
-                  Question, names, labels, captions, README, and disclosure.
-                </p>
-              </div>
-            </div>
-            <div class="prompt-box">
-              <span>Agent audit plan</span>
-              <pre>
-Goal: Audit this Math Camp project for handoff readiness.
-Context: Read the README or opening note, data documentation, R or Quarto source, generated output, and AI-use note.
-Review separately: reproducibility, provenance, statistical interpretation, and communication.
-Constraints: Do not edit files. Rank findings by consequence. Cite the exact file and evidence for every concern. State uncertainty. Do not recommend a more complex model unless needed to explain a current claim failure.
-Done when: Produce no more than six prioritized findings, each with a human-run check that can confirm or reject it.</pre
-              >
-            </div>
-            <h3>Compare the reviewers</h3>
-            <div class="table-scroll">
-              <table>
-                <thead>
-                  <tr>
-                    <th>Question</th>
-                    <th>Record</th>
-                  </tr>
-                </thead>
-                <tbody>
-                  <tr>
-                    <td>Agreement</td>
-                    <td>
-                      Which consequential issue did both reviewers identify?
-                    </td>
-                  </tr>
-                  <tr>
-                    <td>Human-only</td>
-                    <td>What did the person notice that the agent missed?</td>
-                  </tr>
-                  <tr>
-                    <td>Agent-only</td>
-                    <td>
-                      Which generated concern is traceable and worth testing?
-                    </td>
-                  </tr>
-                  <tr>
-                    <td>Rejected</td>
-                    <td>
-                      Which concern lacked evidence or misunderstood the design?
-                    </td>
-                  </tr>
-                </tbody>
-              </table>
-            </div>
-          </section>
-          <section class="article-section reveal" id="repair">
-            <p class="section-kicker">32-47 MINUTES</p>
-            <h2>Repair one issue that affects trust.</h2>
-            <p>
-              Choose the finding with the largest consequence that you can
-              address in 12 minutes. Repair the entry point or claim before
-              changing visual details.
-            </p>
-            <div class="table-scroll">
-              <table>
-                <thead>
-                  <tr>
-                    <th>Priority</th>
-                    <th>Examples</th>
-                  </tr>
-                </thead>
-                <tbody>
-                  <tr>
-                    <td>Stop</td>
-                    <td>
-                      Code cannot run, source is missing, key duplicates, result
-                      is materially misleading.
-                    </td>
-                  </tr>
-                  <tr>
-                    <td>High</td>
-                    <td>
-                      Sample is hidden, units are wrong, claim exceeds the
-                      design, historical revisions are unreported.
-                    </td>
-                  </tr>
-                  <tr>
-                    <td>Medium</td>
-                    <td>
-                      Run order is ambiguous, labels are incomplete, disclosure
-                      is vague.
-                    </td>
-                  </tr>
-                  <tr>
-                    <td>Low</td>
-                    <td>Formatting, convenience, or optional extension.</td>
-                  </tr>
-                </tbody>
-              </table>
-            </div>
-            <ol class="learning-list">
-              <li>
-                <span>01</span><strong>State the finding and evidence.</strong>
-              </li>
-              <li>
-                <span>02</span
-                ><strong>Predict what the repair should change.</strong>
-              </li>
-              <li>
-                <span>03</span
-                ><strong
-                  >Edit the source and recreate the rendered output.</strong
+                  >Access: electricity and internet changes for 174 economies,
+                  2000–2022.</strong
                 >
               </li>
               <li>
                 <span>04</span
-                ><strong>Restart or rerun the relevant path.</strong>
-              </li>
-              <li>
-                <span>05</span
-                ><strong>Record whether the check now passes.</strong>
+                ><strong
+                  >Climate: renewable, carbon-intensity, and income changes for
+                  172 economies, 2000–2021.</strong
+                >
               </li>
             </ol>
-            <p>
-              <strong>Repair record.</strong> Write one sentence: “We changed
-              [source] because [evidence]. We expected [observable difference].
-              We verified the repair by [specific check], which [passed, failed,
-              or remains unresolved].”
-            </p>
           </section>
-          <section class="article-section reveal" id="show">
-            <p class="section-kicker">47-60 MINUTES</p>
-            <h2>Use three sentences in ninety seconds.</h2>
+          <section class="article-section reveal" id="route">
+            <p class="section-kicker">60 MINUTES</p>
+            <h2>Complete the analysis before requesting review.</h2>
+            <div class="session-plan">
+              <div>
+                <time>00–07</time><strong>Choose and plan</strong>
+                <p>State the unit, variables, and function sequence.</p>
+              </div>
+              <div>
+                <time>07–20</time><strong>Construct table</strong>
+                <p>Produce one traceable briefing table.</p>
+              </div>
+              <div>
+                <time>20–33</time><strong>Construct figure</strong>
+                <p>Show one labeled policy comparison.</p>
+              </div>
+              <div>
+                <time>33–40</time><strong>Interpret</strong>
+                <p>Write one finding and one limitation in your words.</p>
+              </div>
+              <div>
+                <time>40–50</time><strong>Agent review</strong>
+                <p>Ask Codex to reproduce the table and challenge one claim.</p>
+              </div>
+              <div>
+                <time>50–56</time><strong>Independent check</strong>
+                <p>Accept, revise, or reject one material statement.</p>
+              </div>
+              <div>
+                <time>56–60</time><strong>Render</strong>
+                <p>Create a standalone HTML brief.</p>
+              </div>
+            </div>
+          </section>
+          <section class="article-section reveal" id="agent">
+            <p class="section-kicker">READ-ONLY REVIEW</p>
+            <h2>Ask for evidence, then test it.</h2>
             <div class="prompt-box">
-              <span>Show and tell</span>
+              <span>CODEX REQUEST</span>
               <pre>
-Our policy question was...
-The most important pattern or handoff failure was...
-    The next check we would run is...</pre
-              >
+Read my saved QMD and the CSV it imports. Work read-only. Reproduce my table from the stated sample; inspect the variables, units, and mappings in my figure; then select the most consequential numerical or interpretive statement in my Finding or Limitation. Cite the exact object and values supporting your judgment. End with accept, revise, or reject and at most one proposed revision. Do not edit files, fit a model, or make a causal claim.</pre>
             </div>
             <p>
-              Show the figure, error, audit finding, or repaired output that
-              makes the story concrete. Summarize the consequential steps.
-            </p>
-            <h3>Final reflection</h3>
-            <ul class="checklist">
-              <li>
-                <span>□</span
-                ><strong
-                  >I can identify the starting point of a small R
-                  project.</strong
-                >
-              </li>
-              <li>
-                <span>□</span
-                ><strong>I can supervise one bounded coding-agent task.</strong>
-              </li>
-              <li>
-                <span>□</span
-                ><strong>I can verify a generated data or code claim.</strong>
-              </li>
-              <li>
-                <span>□</span
-                ><strong>I can distinguish association from causation.</strong>
-              </li>
-              <li>
-                <span>□</span
-                ><strong
-                  >I can document a project so another person can inspect
-                  it.</strong
-                >
-              </li>
-            </ul>
-            <h3>Optional extension</h3>
-            <p>
-              Package the project as a small reproducibility bundle with one
-              entry script, a dependency note, an output map, and a clean-render
-              check. Ask a second reviewer who is unfamiliar with Math Camp to
-              run it without assistance. Compare that person's first blocker
-              with the one found in the lab review.
-            </p>
-            <p>
-              <strong>What to keep.</strong> The artifact, audit record, and
-              repaired issue remain yours. The lab has no submission or grade. Keep
-              using the same workflow: question, evidence, code, agent,
-              verification, and handoff.
+              Independently test one material statement with a small R
+              calculation. Record the statement, result, and decision in the QMD
+              before rendering.
             </p>
           </section>
         </article>
-        <aside class="article-margin">
-          <dl>
-            <div>
-              <dt>PAIRING</dt>
-              <dd>Across tracks</dd>
-            </div>
-            <div>
-              <dt>OUTPUT</dt>
-              <dd>One verified repair</dd>
-            </div>
-            <div>
-              <dt>AGENT ROLE</dt>
-              <dd>Second reviewer</dd>
-            </div>
-            <div>
-              <dt>SUBMISSION</dt>
-              <dd>None</dd>
-            </div>
-          </dl>
-        </aside>
       </div>
-      <nav class="page-turn">
-        <a href="../../lessons/lesson-4/"
-          ><span>PREVIOUS</span><strong>Lesson 4: Audit the handoff</strong></a
-        ><a href="../../"><span>RETURN</span><strong>Math Camp home</strong></a>
-      </nav>
     </main>
     <footer class="site-footer">
-      <div><span>API 209</span><strong>MATH CAMP 2026</strong></div>
-      <p>Lab 4 of 4.</p>
+      <div><span>API 209</span><strong>LAB 4</strong></div>
+      <p>Math Camp 2026.</p>
       <a href="#top">RETURN TO TOP ↑</a>
     </footer>
-    <script src="../../script.js?v=book-20260718o"></script>
+    <script src="../../script.js?v=lesson4-20260824"></script>
   </body>
 </html>

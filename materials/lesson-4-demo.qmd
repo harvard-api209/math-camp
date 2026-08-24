@@ -1,0 +1,81 @@
+---
+title: "Income and under-five mortality"
+subtitle: "Lesson 4 demonstration brief"
+format:
+  html:
+    toc: true
+    embed-resources: true
+execute:
+  echo: true
+  warning: false
+  message: false
+---
+
+## Question
+
+How is national income associated with under-five mortality in 2022, and how does the pattern differ across current income groups?
+
+## Data and sample
+
+The file contains one row per economy in 2022. The analytical sample includes 188 economies with observed GDP per capita (PPP) and under-five mortality.
+
+```{r}
+library(tidyverse)
+
+health <- read_csv(
+  "../data/lesson-4/health-2022.csv",
+  show_col_types = FALSE
+)
+
+glimpse(health)
+```
+
+## Briefing table
+
+```{r}
+health_table <- health |>
+  group_by(income_level_current) |>
+  summarise(
+    economies = n(),
+    median_income = median(gdp_per_capita_ppp),
+    median_mortality = median(under5_mortality),
+    .groups = "drop"
+  ) |>
+  arrange(median_mortality)
+
+health_table
+```
+
+## Figure
+
+```{r}
+ggplot(
+  health,
+  aes(
+    x = gdp_per_capita_ppp,
+    y = under5_mortality,
+    color = income_level_current
+  )
+) +
+  geom_point(alpha = 0.75) +
+  scale_x_log10(labels = scales::label_number()) +
+  labs(
+    x = "GDP per capita, PPP (log scale)",
+    y = "Under-five deaths per 1,000 live births",
+    color = "Current income group",
+    caption = "Source: World Bank, World Development Indicators."
+  ) +
+  theme_minimal()
+```
+
+## Finding
+
+Median under-five mortality is lower in higher-income groups. The figure also shows substantial variation within income groups. This is a descriptive cross-sectional association.
+
+## Limitation
+
+The sample excludes economies missing either measure, the income classification is current metadata, and the comparison does not identify a causal effect of income.
+
+## AI use and verification
+
+After writing the table, figure, finding, and limitation, an agent may reproduce the table and challenge one statement. Record the statement checked, the independent R evidence, and whether you accepted, revised, or rejected the suggestion.

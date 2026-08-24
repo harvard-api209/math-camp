@@ -1,0 +1,47 @@
+---
+title: "Climate policy brief"
+format: {html: {toc: true, embed-resources: true}}
+execute: {echo: true, warning: false, message: false}
+---
+
+## Question
+
+Which economies expanded renewable electricity, reduced carbon intensity, and ended with higher real income between 2000 and 2021?
+
+## Data, unit, and plan
+
+One row represents one economy with all six endpoint measures observed. The income result compares endpoints; it does not mean income rose in every intervening year.
+
+```{r}
+library(tidyverse)
+climate <- read_csv("../../data/lesson-4/climate-2000-2021.csv", show_col_types = FALSE)
+glimpse(climate)
+```
+
+## Briefing table
+
+Count qualifying economies by region, then list the qualifying economies with the largest renewable-electricity gains.
+
+```{r}
+# Filter transition == TRUE. Then group_by()/summarise() or arrange().
+```
+
+## Figure
+
+Plot renewable-electricity change against carbon-intensity percent change. Map income percent change to color and add reference lines at zero.
+
+```{r}
+# Build the quadrant figure with ggplot(), geom_point(), reference lines, and labs().
+```
+
+## Finding
+
+Write one numerical finding about the endpoint rule.
+
+## Limitation
+
+Explain why coexistence of the three changes does not identify a policy cause or continuous growth path.
+
+## AI use and verification
+
+After saving your independent work, use the prompt in the handout. Record the claim you checked, your independent R evidence, and your decision: accept, revise, or reject.

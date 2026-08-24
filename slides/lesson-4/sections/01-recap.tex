@@ -1,0 +1,66 @@
+\section{The investigation so far}
+
+\begin{frame}{The Math Camp workflow}
+\centering
+\begin{tikzpicture}[node distance=0.55cm, every node/.style={font=\small}]
+\node[draw,rounded corners,minimum width=2.25cm,minimum height=1.0cm] (q) {Policy question};
+\node[draw,rounded corners,right=of q,minimum width=2.25cm,minimum height=1.0cm] (d) {Data object};
+\node[draw,rounded corners,right=of d,minimum width=2.25cm,minimum height=1.0cm] (r) {R operations};
+\node[draw,rounded corners,right=of r,minimum width=2.25cm,minimum height=1.0cm] (e) {Evidence};
+\node[draw,rounded corners,right=of e,minimum width=2.25cm,minimum height=1.0cm] (b) {Brief};
+\draw[-{Latex[length=2mm]},crimson,thick] (q)--(d);
+\draw[-{Latex[length=2mm]},crimson,thick] (d)--(r);
+\draw[-{Latex[length=2mm]},crimson,thick] (r)--(e);
+\draw[-{Latex[length=2mm]},crimson,thick] (e)--(b);
+\end{tikzpicture}
+\vspace{0.65cm}
+\begin{itemize}
+\item Lesson 1 established the division of work between analyst, R, and agent.
+\item Lesson 2 constructed a documented analysis table.
+\item Lesson 3 moved from observations to plots and descriptive claims.
+\item Lesson 4 combines the work in a report another reader can render.
+\end{itemize}
+\end{frame}
+
+\begin{frame}{Four questions remain available}
+\small
+\begin{enumerate}
+\item \textbf{Health.} How is income associated with under-five mortality in 2022, and how does the pattern differ by income group?
+\item \textbf{Gender.} Where is girls' secondary enrollment associated with lower adolescent fertility, and where does the pattern depart from the overall comparison?
+\item \textbf{Access.} Which economies closed the combined electricity and internet access gap fastest from 2000 to 2022?
+\item \textbf{Climate.} Which economies expanded renewable electricity, reduced carbon intensity, and ended with higher real income from 2000 to 2021?
+\end{enumerate}
+\end{frame}
+
+\begin{frame}{The final student artifact}
+One rendered Quarto brief contains:
+\vspace{0.25cm}
+\begin{enumerate}
+\item the policy question;
+\item source, unit, sample, and period;
+\item one table;
+\item one figure;
+\item one supported finding;
+\item one limitation; and
+\item one AI-use and verification note.
+\end{enumerate}
+\vspace{0.25cm}
+The artifact is optional and ungraded. Its value is that every result remains connected to code and evidence.
+\end{frame}
+
+\begin{frame}{Two hours before Lab 4}
+\small
+\begin{tabularx}{\textwidth}{>{\color{crimson}\bfseries}p{1.5cm} p{2.4cm} X}
+\toprule
+Minutes & Part & What we will accomplish \\
+\midrule
+00--45 & Function recap & Read, inspect, transform, summarise, and plot. \\
+45--51 & Checkpoint 1 & Choose a defensible function sequence. \\
+51--61 & Data design & Distinguish cross-sections from endpoint comparisons. \\
+61--71 & Break & Ten minutes away from the screen. \\
+71--104 & Quarto & Build and render one complete brief. \\
+104--116 & Checkpoints 2--3 & Diagnose a broken evidence chain and plan a track. \\
+116--120 & Lab handoff & Open the four starter files and choose one. \\
+\bottomrule
+\end{tabularx}
+\end{frame}

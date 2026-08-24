@@ -2,6 +2,7 @@
 .Rhistory
 .RData
 .Ruserdata
+Rplots.pdf
 .Rproj.user/
 .quarto/
 *_cache/
@@ -47,10 +48,17 @@ instructor/lab-2-*.md
 instructor/prepare-lab-2-*.R
 instructor/release-audit-lab-2-v1.0.*.md
 instructor/lab-3-*
+instructor/lab-4-*
+instructor/lesson-4-*
 
 # Lesson 3's complete teaching walkthrough is distributed through the versioned
 # Lesson 3 + Lab 3 release, but is not published as a loose website source file.
 code/lesson-3-walkthrough.R
+
+# Quarto render checks for Lesson 4. Student releases contain source QMDs;
+# rendered starter HTML files are intentionally excluded.
+materials/lab-4/*.html
+materials/lesson-4-demo.html
 
 # Local packaging workspaces; published ZIPs are attached to GitHub releases.
 release-candidates/
