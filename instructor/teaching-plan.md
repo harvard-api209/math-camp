@@ -2,6 +2,17 @@
 
 This plan uses the four lesson decks as the spine of facilitated class meetings. Slides provide the public teaching sequence; speaker notes provide timing, prompts, demonstrations, and transitions. Lab pages provide complete student-facing instructions.
 
+## Voice for quantitative lessons
+
+- State the population, unit, comparison, estimate, and limitation directly.
+- Avoid slogans, anthropomorphism, and manufactured contrasts such as “not X,
+  but Y.”
+- Use technical negation when it marks a genuine inferential boundary: the
+  specification does not identify a causal effect, a residual does not justify
+  deletion, or a saved result does not reproduce a different model.
+- Prefer the language an economist would use while presenting the analysis:
+  sample, variation, specification, estimate, evidence, and interpretation.
+
 ## Recurring lesson rhythm
 
 Each two-hour lesson uses the same rhythm so students know what to expect:
@@ -196,8 +207,8 @@ In Block 2, place cognitive debt in a longer philosophical conversation. Plato's
 Aristotle's \*Nicomachean Ethics\*, Book VI, distinguishes technical making from
 practical judgment about situations that could be otherwise. Keep the teaching
 application concrete: students should be able to question and reconstruct an
-agent-produced artifact, and they should identify which policy choice remains a
-matter of judgment rather than technique.
+agent-produced artifact. They should also identify the policy choices that
+require practical judgment.
 
 Open Block 2 with Herbert Simon's attention argument. More generated output
 does not abolish scarcity; it consumes the scarce attention needed to select,
@@ -287,8 +298,8 @@ two minutes of whole-room sharing: identify the unit and key; explain who leaves
 the complete-case sample; diagnose a row-multiplying join; and decide whether a
 proposed range check follows from the indicator's documented unit.
 
-The live demonstration should expose the whole agent loop rather than only its
-answer. Keep the file tree, requested permissions, command, proposed diff, and
+The live demonstration should show the entire agent loop. Keep the file tree,
+requested permissions, command, proposed diff, and
 verification output visible. Use the bounded prompt printed in the deck. Do not
 accept a change until students connect it to one requirement in the table plan and a
 documented definition.
@@ -303,18 +314,81 @@ consult `code/02-build-analysis.R` after a genuine attempt, and finish by runnin
 saved table; students must still explain one sample or transformation decision
 and one limitation of the resulting policy comparison.
 
-## Lesson 3: Discover patterns
+## Lesson 3: From rows to claims
 
 **Lesson time:** 120 minutes. **Lab time:** 60 minutes.
 
-The lesson builds a comparison from question to sample, plot, simple regression, residual check, and qualified claim. It restores the visual critique and progressive `ggplot2` construction used in earlier Math Camps while connecting each design choice to a policy interpretation.
+The lesson uses the full 2000--2022 economy--year panel to answer one briefing
+question: how did national income and under-five mortality move together across
+economies and within economies? The labor-market opening names five capabilities
+used in the analysis. The same capabilities then appear in the empirical work:
+define the comparison, verify the panel, inspect the code, interpret the
+estimates, and check one agent-produced claim.
 
-Use the analogy of **compression and lenses**: a plot and a model compress many
-rows into a smaller object; a specification is a lens that emphasizes some
-features and hides others. Planned interactions: critique a bad plot, map
-variables to aesthetics, predict a logarithmic transformation, interpret a
-coefficient in units, inspect a surprising observation, climb the claim ladder,
-and run separate code and statistical agent reviews.
+Five Slido interactions record an opening ranking, a pooled-plot prediction, a
+pooled-interpretation choice, a fixed-effects prediction, and a closing ranking
+using the same opening scenario. The instructor moves from slides to Slido to
+RStudio only when the next tool answers a stated question. In the lesson, Codex
+enters once near the end to check one mixed claim against `model_comparison` and
+`sensitivity_record`. Before that claim check, Equatorial Guinea is introduced
+directly as a substantive country case; students compare its documented
+mortality path with the pooled prediction and then run a one-observation
+sensitivity check. Lab 3 then compares the all-countries evidence with one
+student-selected region. Students describe the regional sample, construct two
+parallel briefing tables, recreate the full-panel figure and its regional
+counterpart, and write their interpretations independently. Only after saving
+that work do they ask Codex to read the same file, fit one pooled model for each
+sample, and draft claims for verification. Residual ranking is not part of the
+lesson or lab.
+
+The central econometric result concerns the source of variation behind each
+coefficient. Pooled OLS combines cross-economy and within-economy variation. Year
+fixed effects absorb common year movements and leave the estimate nearly
+unchanged. Adding economy fixed effects removes persistent cross-economy
+differences and reduces the estimated 10% comparison from about -7.8% to about
+-3.4%. Other time-varying determinants remain, so the specifications estimate
+descriptive associations. Students must state the comparison used by a
+coefficient before interpreting it.
+
+### Lesson 3 run of show
+
+| Minutes | Teaching move | Visible evidence |
+|---|---|---|
+| 00–20 | Present the labor-market evidence, run the opening ranking, state the policy question, retrieve the Lesson 2 unit and key, and verify the panel in RStudio. | Opening ranking; 4,296 economy--years; 188 economies; 23 years; unique `iso3c + year` key; pooled and within-economy comparisons stated. |
+| 20–47 | Record the pooled-plot prediction, build the full-panel log--log figure, inspect selected trajectories, and complete Checkpoint 1. | Direction, dispersion, proportional scales, repeated observations, and a response to the director's causal sentence. |
+| 47–57 | Break. | Ten minutes away from the screen; walkthrough open at Section 4. |
+| 57–87 | Fit and translate pooled OLS, choose the correct pooled interpretation, predict the fixed-effects comparison, fit all three specifications, and complete Checkpoint 2. | Estimates of about -7.8%, -7.7%, and -3.4%; each coefficient linked to its source of variation; exact three-sentence briefing. |
+| 87–101 | Introduce Equatorial Guinea directly as a country case, compare observed and pooled-model mortality, inspect the 2008 source values, and refit pooled OLS without that observation. | Equatorial Guinea--2008: 118 observed versus about 7.4 predicted; negligible pooled-estimate change after deletion; named R evidence. |
+| 101–117 | Ask Codex to check one mixed claim and complete Checkpoint 3. | Supported 3.4% association, pooled-versus-fixed-effects specification mismatch, unsupported causal inference, and revised sentence. |
+| 116–120 | Repeat the same-scenario ranking and carry the five required briefing components into Lab 3. | Opening and closing distributions; question, sample, figure, specification, and sentence linked to the same comparison. |
+
+### Lesson 3 checkpoints and closing statements
+
+Each checkpoint lasts four minutes: two minutes of pair discussion and two
+minutes of whole-room sharing. End the sharing period with the stated conclusion
+and continue.
+
+1. **Checkpoint 1, minutes 40--44:** respond to the director's claim that the
+   pooled plot shows that economic growth reduces mortality. Require a supported
+   association, the identification problem, and the next comparison. Close with:
+   **State the comparison before interpreting the graph.**
+2. **Checkpoint 2, minutes 81--85:** draft three sentences covering pooled OLS,
+   the economy and year fixed-effects comparison, and the research-design
+   limitation. Close with: **A coefficient has meaning after its identifying
+   variation is stated.**
+3. **Checkpoint 3, minutes 109--113:** evaluate an agent statement that joins the
+   3.4% fixed-effects estimate, a pooled-OLS deletion check, and a causal
+   conclusion. Close with: **The deletion check refits pooled OLS; it does not
+   test the 3.4% fixed-effects estimate or identify a causal effect.**
+
+At minute 119, close the lesson with: **The question, sample, figure,
+specification, and sentence must refer to the same comparison.**
+
+The exact Slido prompts and answers live in `instructor/lesson-3-slido-plan.md`.
+The instructor R sequence is `code/lesson-3-walkthrough.R`. The Lab 3 starter
+uses the checked Lesson 2 table to compare all countries with one region in
+`code/lab-3-starter.R`. Students complete and save four descriptive exercises
+before Codex reads that same file and produces the bounded model comparison.
 
 ## Lesson 4: Audit the handoff
 

@@ -1,0 +1,69 @@
+\section{From lesson to lab}
+\subsection{Carry the same analysis forward}
+
+\begin{frame}{Re-rank the five capabilities}
+  \begin{columns}[T,onlytextwidth]
+    \column{0.76\textwidth}
+      \textbf{Slido ranking}
+
+      A coding agent produced a figure and paragraph for a ministerial briefing
+      due in 30 minutes. Rank the same five capabilities again:
+      \begin{enumerate}
+        \item Frame a policy question with a decision at stake.
+        \item Exercise statistical judgment.
+        \item Steward data and provenance.
+        \item Read, modify, and explain code.
+        \item Supervise and verify an agent.
+      \end{enumerate}
+
+      \vspace{0.35em}
+      Compare this ranking with your opening response. Which analytical move
+      changed your ordering?
+    \column{0.20\textwidth}
+      \input{slido-join}
+  \end{columns}
+\end{frame}
+
+\begin{frame}{Lab 3 has four exercises before Codex}
+  During the next hour, each student will:
+  \begin{enumerate}
+    \item select and describe one documented region;
+    \item construct parallel all-countries and regional briefing tables;
+    \item construct comparable all-countries and regional figures;
+    \item write an interpretation and save the R file.
+  \end{enumerate}
+
+  \vfill
+  After Exercise 4, Codex reads the same saved file, fits one pooled model for
+  each sample, and proposes claims. You verify one material statement before
+  deciding whether to accept, revise, or reject it.
+\end{frame}
+
+\begin{frame}{A policy briefing has five required components}
+  \begin{center}
+  \begin{tikzpicture}[
+    node distance=0.20cm,
+    box/.style={draw=palegray,rounded corners=2pt,text width=2.45cm,
+      minimum height=1.15cm,align=center},
+    arr/.style={-{Latex[length=2mm]},color=crimson,thick}
+  ]
+    \node[box] (q) {\textbf{Question}\\Audience and task};
+    \node[box,right=of q] (s) {\textbf{Sample}\\Unit, key, period};
+    \node[box,right=of s] (f) {\textbf{Figure}\\Pattern and dispersion};
+    \node[box,right=of f] (m) {\textbf{Model}\\Comparison used};
+    \node[box,right=of m] (c) {\textbf{Sentence}\\Estimate and limitation};
+    \draw[arr] (q)--(s);
+    \draw[arr] (s)--(f);
+    \draw[arr] (f)--(m);
+    \draw[arr] (m)--(c);
+  \end{tikzpicture}
+  \end{center}
+
+  \vfill
+  Open \texttt{code/lab-3-starter.R}. Keep the selected region consistent across
+  the briefing table, figure, model request, and final sentence.
+
+  \vspace{0.5em}
+  A policy claim is ready for use when the question, sample, figure,
+  specification, and sentence refer to the same comparison.
+\end{frame}

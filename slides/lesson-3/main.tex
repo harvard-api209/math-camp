@@ -1,0 +1,48 @@
+\documentclass[t,aspectratio=169,11pt]{beamer}
+
+\input{metadata}
+\input{../beamer_preamble}
+
+% Avoid automatic word breaks on projected slides.
+\hyphenpenalty=10000
+\exhyphenpenalty=10000
+
+% Keep prose and columns ragged-right for projection.
+\makeatletter
+\AtBeginEnvironment{beamer@frameslide}{\RaggedRight}
+\expandafter\patchcmd\csname beamerx@\string\beamer@columnenv\endcsname
+  {\leavevmode\justifying}{\leavevmode\RaggedRight}{}{}
+\expandafter\patchcmd\csname beamerx@\string\beamer@columncom\endcsname
+  {\leavevmode\justifying}{\leavevmode\RaggedRight}{}{}
+\makeatother
+\AtBeginEnvironment{itemize}{\RaggedRight}
+\AtBeginEnvironment{enumerate}{\RaggedRight}
+\AtBeginEnvironment{description}{\RaggedRight}
+\addtobeamertemplate{block begin}{}{\RaggedRight}
+\renewcommand\fnote[1]{%
+  \par\vspace{0.12em}%
+  {\footnotesize\RaggedRight\color{muted}#1\par}%
+}
+
+\begin{document}
+
+\begin{frame}[plain,noframenumbering]
+  \titlepage
+\end{frame}
+
+\input{sections/01-question}
+\input{sections/02-plot}
+\input{sections/03-model}
+\input{sections/04-agents}
+\input{sections/05-handoff}
+
+\sectionoutlinesfalse
+{
+  \setbeamertemplate{footline}{}
+  \begin{frame}[plain,noframenumbering]{References}
+    \bibliographystyle{aer}
+    \bibliography{../references}
+  \end{frame}
+}
+
+\end{document}

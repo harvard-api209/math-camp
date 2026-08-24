@@ -1,0 +1,226 @@
+\section{Capabilities for a changing labor market}
+\subsection{Define the policy task}
+
+\begin{frame}{Capabilities for policy analysis in a changing labor market}
+  Employers expect roughly \alert{39\% of workers' core skills} to change by
+  2030. Analytical thinking remains the most frequently reported core skill,
+  while AI, big data, and digital skills are among the fastest-growing areas.
+
+  \vspace{0.6em}
+  OECD vacancy evidence also shows strong demand in AI-exposed occupations for:
+  \begin{itemize}
+    \item management and business-process skills;
+    \item cognitive, social, and communication skills;
+    \item digital fluency across changing tools.
+  \end{itemize}
+
+  \vfill
+  Coding agents draft code, inspect files, and run checks. Analysts remain
+  responsible for the policy question, empirical design, and recommendation
+  \citep{wef2025futurejobs,green2024skills,oecd2026skills}.
+\end{frame}
+
+\begin{frame}{Five capabilities used in the policy briefing}
+  \begin{center}
+  \begin{tikzpicture}[
+    node distance=0.55cm and 0.75cm,
+    box/.style={draw=palegray,rounded corners=2pt,text width=3.25cm,
+      minimum height=1.18cm,align=center},
+    core/.style={draw=crimson,very thick,rounded corners=2pt,text width=3.25cm,
+      minimum height=1.18cm,align=center},
+    arr/.style={-{Latex[length=2mm]},color=crimson}
+  ]
+    \node[core] (judgment) {\textbf{Policy judgment}\\What decision and for whom?};
+    \node[box,left=of judgment] (evidence) {\textbf{Evidence design}\\What evidence supports it?};
+    \node[box,right=of judgment] (communication) {\textbf{Communication}\\What can the audience use?};
+    \node[box,below left=of judgment] (code) {\textbf{Computational fluency}\\Can I inspect and change the work?};
+    \node[box,below right=of judgment] (agents) {\textbf{Agent supervision}\\Can I delegate and verify?};
+    \draw[arr] (evidence)--(judgment);
+    \draw[arr] (communication)--(judgment);
+    \draw[arr] (code)--(judgment);
+    \draw[arr] (agents)--(judgment);
+  \end{tikzpicture}
+  \end{center}
+
+  \vfill
+  The Lesson 3 briefing uses all five capabilities.
+\end{frame}
+
+\begin{frame}{Four terms for the agent workflow}
+  \begin{columns}[T,onlytextwidth]
+    \column{0.48\textwidth}
+      \textbf{Model}\par
+      Parameters that receive context and generate tokens. Model choice affects
+      capability, speed, and cost.
+
+      \vspace{0.9em}
+      \textbf{Reasoning}\par
+      Additional model computation before an answer or tool request. Higher
+      effort can help with difficult comparisons and consumes more output tokens.
+    \column{0.48\textwidth}
+      \textbf{Agent}\par
+      A model operating through a harness with context, tools, permissions, and
+      a continuing session. Codex is an agent.
+
+      \vspace{0.9em}
+      \textbf{Skill}\par
+      Reusable task instructions and resources loaded when relevant. A skill
+      supplies a procedure and checks; model parameters remain unchanged.
+  \end{columns}
+
+  \vfill
+  \fnote{Adapted from Pocock's AI Coding Dictionary entries on models, agents,
+  harnesses, tools, effort, and skills \citep{pocock2026dictionary}.}
+\end{frame}
+
+\begin{frame}{One agent turn can contain several model requests}
+  \begin{center}
+  \begin{tikzpicture}[
+    node distance=0.55cm and 0.62cm,
+    box/.style={draw=palegray,rounded corners=2pt,text width=2.7cm,
+      minimum height=1.08cm,align=center},
+    model/.style={draw=crimson,very thick,rounded corners=2pt,text width=2.7cm,
+      minimum height=1.08cm,align=center},
+    arr/.style={-{Latex[length=2mm]},color=crimson},
+    back/.style={-{Latex[length=2mm]},color=black!55}
+  ]
+    \node[box] (goal) {\textbf{Analyst}\\goal and acceptance check};
+    \node[box,right=of goal] (harness) {\textbf{Harness}\\context, permissions, tools};
+    \node[model,right=of harness] (model) {\textbf{Model}\\reason and propose};
+    \node[box,right=of model] (environment) {\textbf{Environment}\\files, R, web, output};
+    \draw[arr] (goal)--(harness);
+    \draw[arr] (harness)-- node[above,font=\scriptsize]{request} (model);
+    \draw[arr] (model)-- node[above,font=\scriptsize]{tool call} (environment);
+    \draw[back] (environment.south) to[bend left=24]
+      node[below,font=\scriptsize]{tool result enters context} (harness.south);
+    \node[box,below=0.75cm of harness,text width=3.25cm] (skill)
+      {\textbf{Relevant skill}\\procedure, references, checks};
+    \draw[arr] (skill)--(harness);
+  \end{tikzpicture}
+  \end{center}
+
+  \vfill
+  The model proposes tool calls. The harness executes them and returns the
+  results. The analyst reviews the evidence and decides whether the task is
+  complete.
+
+  \fnote{Adapted from Pocock's descriptions of model-provider requests, tools,
+  tool results, harnesses, and skills \citep{pocock2026dictionary}.}
+\end{frame}
+
+\begin{frame}{Analogy}
+
+\textbf{A useful analogy}:
+
+\begin{itemize}
+  \item Model = which person you hire.
+  \item Reasoning ability = how capable that person is.
+  \item Effort = how long and carefully they work.
+  \item Speed = how soon you receive the result.
+\end{itemize}
+
+\end{frame}
+
+\begin{frame}{Rank the capabilities for a cabinet briefing}
+  \begin{columns}[T,onlytextwidth]
+    \column{0.76\textwidth}
+      \textbf{Slido ranking}
+
+      A coding agent produced a figure and paragraph for a ministerial briefing
+      due in 30 minutes. Rank all five capabilities. Place the two that most
+      constrain whether you can use the work first.
+      \begin{enumerate}
+        \item Frame a policy question with a decision at stake.
+        \item Exercise statistical judgment.
+        \item Steward data and provenance.
+        \item Read, modify, and explain code.
+        \item Supervise and verify an agent.
+      \end{enumerate}
+
+    \column{0.20\textwidth}
+      \input{slido-join}
+  \end{columns}
+\end{frame}
+
+
+\begin{frame}{Route for the lesson}
+  \footnotesize
+  \renewcommand{\arraystretch}{1.32}
+  \begin{tabularx}{
+    \textwidth}{@{}>{\RaggedRight\arraybackslash}p{1.55cm}>{\RaggedRight\arraybackslash}p{2.55cm}>{\RaggedRight\arraybackslash}X@{}}
+    \toprule
+    \textbf{Minutes} & \textbf{Phase} & \textbf{Evidence} \\
+    \midrule
+    00--20 & Question + panel & Agent workflow, rank, unit, key, period, and row count \\
+    20--47 & Figures & Pooled plot, trajectories, and Checkpoint 1 \\
+    47--57 & Break  & Ten minutes away from the screen \\
+    57--91 & Models & Three specifications and Checkpoint 2 \\
+    91--116 & Claim check  & One briefing sentence checked against the model results \\
+    116--120 & Lab handoff  & Closing rank and analysis sequence \\
+    \bottomrule
+  \end{tabularx}
+\end{frame}
+
+\begin{frame}{The policy director's question}
+  \begin{block}{Briefing request}
+    Across 2000--2022, how did national income and under-five mortality move
+    together across economies and within economies? Which associations does
+    this evidence support in a briefing to a policy director?
+  \end{block}
+
+  \vspace{0.5em}
+  The analysis must distinguish:
+  \begin{itemize}
+    \item an \textbf{economy--year} from an economy;
+    \item differences \textbf{between economies} from changes \textbf{within economies};
+    \item a descriptive association from an intervention effect;
+    \item a pooled association from a within-economy association.
+  \end{itemize}
+
+  \vfill
+  The policy question determines the relevant comparison.
+\end{frame}
+
+\begin{frame}{Recall the Lesson 2 analysis table}
+  Before seeing any output, write three answers:
+  \begin{enumerate}
+    \item What does one row represent?
+    \item Which columns form the unique key?
+    \item Which two checks must pass before we draw a figure?
+  \end{enumerate}
+
+\end{frame}
+
+\begin{frame}[fragile]{Verify the panel in RStudio}
+  Before the code runs, predict whether the duplicate-key result should equal
+  zero. State what a nonzero result would mean for the analysis.
+
+\begin{lstlisting}[language=R]
+panel_record <- health_panel |>
+  summarise(
+    rows = n(),
+    economies = n_distinct(iso3c),
+    years = n_distinct(year),
+    duplicate_economy_years =
+      anyDuplicated(data.frame(iso3c, year))
+  )
+\end{lstlisting}
+
+  Record the unit, the key, the period, and the duplicate-key result.
+\end{frame}
+
+\begin{frame}{The verified panel}
+  \begin{center}
+    {\LARGE\color{crimson}\textbf{4,296 economy--years}}\\[0.6em]
+    {\Large 188 economies \(\cdot\) 23 years \(\cdot\) 2000--2022}
+  \end{center}
+
+  \vspace{0.9em}
+  The key \texttt{iso3c + year} is unique. Coverage ranges from 185 to 188
+  economies per year. Every retained row has both income and mortality
+  observed.
+
+  \vfill
+  The panel supports cross-economy comparisons within a year and changes
+  within the same economy over time.
+\end{frame}

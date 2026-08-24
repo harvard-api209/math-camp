@@ -1,0 +1,73 @@
+\section{Check one briefing sentence with Codex}
+\subsection{Specify, reproduce, decide}
+
+\begin{frame}{Specify the claim check}
+  \begin{center}
+  \renewcommand{\arraystretch}{1.4}
+  \begin{tabularx}{0.94\textwidth}{@{}>{\RaggedRight\arraybackslash}p{2.25cm}>{\RaggedRight\arraybackslash}X@{}}
+    \toprule
+    \textbf{Element} & \textbf{Lesson 3 claim check} \\
+    \midrule
+    Task & Check one reported sentence against the saved model results. \\
+    Files & \texttt{model-comparison.csv}, the checked analysis table, and the R code. \\
+    Permission & Read files and run checks; do not edit project files. \\
+    Verification standard & Match the number to its specification and independently recompute one result. \\
+    \bottomrule
+  \end{tabularx}
+  \end{center}
+
+  \vfill
+  The task, files, permissions, and verification standard are fixed before the
+  agent starts.
+\end{frame}
+\begin{frame}{The audit checks four components of the empirical analysis}
+  The project skill \texttt{policy-claim-audit} asks the agent to:
+  \begin{enumerate}
+    \item match the policy question to the unit, sample, and period;
+    \item verify the figure's variables, scales, source, and observations;
+    \item match each coefficient to its specification and identifying variation;
+    \item separate supported claims, empirical concerns, and hypotheses.
+  \end{enumerate}
+
+  \vfill
+  The response must cite named files or R objects and report an independent check.
+\end{frame}
+
+\begin{frame}[fragile]{Ask Codex to check the briefing sentence}
+\begin{lstlisting}
+Use $policy-claim-audit to check this sentence:
+"After economy and year fixed effects are included, 10%
+higher income is associated with about 3.4% lower mortality
+within economies. Excluding Equatorial Guinea-2008 barely
+changes this estimate. This shows that raising income reduces
+under-five mortality."
+
+Read code/lesson-3-walkthrough.R,
+outputs/lesson-3/model-comparison.csv, and
+outputs/lesson-3/sensitivity-record.csv. Do not edit files or
+browse the web. Recompute both reported comparisons. Identify
+the specification behind each one. Assess the causal language,
+cite the relevant file or R object, and propose corrected text.
+\end{lstlisting}
+\end{frame}
+
+
+\begin{frame}{Checkpoint 3: evaluate the agent's claim}
+  The agent reports:
+
+  \begin{quote}\RaggedRight
+    ``After economy and year fixed effects are included, 10\% higher income is
+    associated with about 3.4\% lower mortality within economies. Excluding
+    Equatorial Guinea--2008 barely changes this estimate. This proves that
+    income growth lowers mortality.''
+  \end{quote}
+
+
+  \begin{enumerate}
+    \item underline the supported empirical statement;
+    \item identify the specification behind each numerical statement;
+    \item identify the specification mismatch and unsupported inference;
+    \item rewrite the briefing sentence.
+  \end{enumerate}
+
+\end{frame}

@@ -3,498 +3,85 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <meta
-      name="description"
-      content="Math Camp 2026 Lab 3: a complete comparison studio."
-    />
+    <meta name="description" content="Math Camp 2026 Lab 3: from figure to policy claim." />
     <meta name="robots" content="noindex,nofollow" />
-    <title>Lab 3: Comparison studio | Math Camp 2026</title>
+    <title>Lab 3: From figure to policy claim | Math Camp 2026</title>
     <link rel="icon" href="data:," />
-    <link rel="stylesheet" href="../../styles.css?v=book-20260718p" />
-    <script>
-      document.documentElement.classList.add("js");
-    </script>
+    <link rel="stylesheet" href="../../styles.css?v=book-20260823l3b" />
+    <script>document.documentElement.classList.add("js");</script>
   </head>
   <body id="top" class="article-page">
     <div class="page-progress" aria-hidden="true"><span></span></div>
     <header class="site-header">
-      <a class="brand" href="../../"
-        ><span>API 209</span><strong>MATH CAMP 2026</strong></a
-      >
-      <div class="header-chapter">
-        <span>LAB 3</span><strong>/ COMPARISON STUDIO</strong>
-      </div>
-      <nav class="chapter-nav">
-        <a href="../../">HOME</a><a href="../../lessons/lesson-3/">LESSON 3</a
-        ><a href="../../ai-guide/">AI GUIDE</a>
-      </nav>
-      <button
-        class="menu-button"
-        type="button"
-        aria-expanded="false"
-        aria-controls="mobile-outline"
-      >
-        CONTENTS
-      </button>
+      <a class="brand" href="../../"><span>API 209</span><strong>MATH CAMP 2026</strong></a>
+      <div class="header-chapter"><span>LAB 3</span><strong>/ FROM FIGURE TO POLICY CLAIM</strong></div>
+      <nav class="chapter-nav"><a href="../../">HOME</a><a href="../../lessons/lesson-3/">LESSON 3</a><a href="../../ai-guide/">AI GUIDE</a></nav>
+      <button class="menu-button" type="button" aria-expanded="false" aria-controls="mobile-outline">CONTENTS</button>
     </header>
     <nav class="mobile-outline" id="mobile-outline">
-      <div class="mobile-outline-head">
-        <span>LAB 3</span><button type="button" data-close-menu>CLOSE</button>
-      </div>
-      <ol>
-        <li><a href="#purpose">Why compare</a></li>
-        <li><a href="#figure">Figure and model</a></li>
-        <li><a href="#critic">Skeptical review</a></li>
-        <li><a href="#debrief">Debrief</a></li>
-      </ol>
+      <div class="mobile-outline-head"><span>LAB 3</span><button type="button" data-close-menu>CLOSE</button></div>
+      <ol><li><a href="#setup">Setup</a></li><li><a href="#region">Describe</a></li><li><a href="#tables">Briefings</a></li><li><a href="#figures">Figures</a></li><li><a href="#interpretation">Interpret</a></li><li><a href="#codex">Codex</a></li><li><a href="#debrief">Debrief</a></li></ol>
     </nav>
     <main>
       <section class="article-hero">
-        <div class="article-hero-meta">
-          <div><span>DATE</span><strong>MON AUG 24</strong></div>
-          <div><span>WINDOW</span><strong>3-4 PM</strong></div>
-          <div><span>MODE</span><strong>COMPARISON STUDIO</strong></div>
-        </div>
+        <div class="article-hero-meta"><div><span>DATE</span><strong>MON AUG 24</strong></div><div><span>WINDOW</span><strong>3–4 PM</strong></div><div><span>MODE</span><strong>APPLIED ANALYSIS</strong></div></div>
         <div class="article-hero-copy">
-          <p>CODING LAB 3</p>
-          <h1>Comparison studio.</h1>
-          <p class="article-deck">
-            Build one figure and one simple model. Inspect a surprising
-            observation, then write a claim that stays within the evidence.
-          </p>
+          <p>CODING LAB 3</p><h1>From figure to policy claim.</h1>
+          <p class="article-deck">Compare the all-countries evidence with one region, write your interpretation, and then test it with a bounded Codex analysis.</p>
+          <div class="article-actions"><a href="https://github.com/harvard-api209/math-camp/releases/download/lab-3-v1.0.0/math-camp-2026-lab-3-v1.0.0.zip">DOWNLOAD LAB 3 PROJECT ↓</a><a href="../../code/lab-3-starter.R">OPEN STARTER R ↗</a><a href="../../slides/lesson-3/lesson-3.pdf">OPEN LESSON 3 PDF ↗</a></div>
         </div>
-        <aside class="article-hero-side">
-          <p>One figure<br />One model<br />One limitation</p>
-        </aside>
+        <aside class="article-hero-side"><p>Checked data<br />Two briefings<br />Two figures<br />One agent check</p></aside>
       </section>
       <div class="article-layout">
-        <aside class="article-nav">
-          <span>LAB GUIDE</span><a href="#purpose">Why compare</a
-          ><a href="#figure">Figure and model</a
-          ><a href="#critic">Skeptical review</a><a href="#debrief">Debrief</a>
-        </aside>
+        <aside class="article-nav"><span>LAB GUIDE</span><a href="#setup">Setup</a><a href="#region">Describe</a><a href="#tables">Briefings</a><a href="#figures">Figures</a><a href="#interpretation">Interpret</a><a href="#codex">Codex</a><a href="#debrief">Debrief</a></aside>
         <article class="article">
-          <section class="article-section reveal" id="purpose">
-            <p class="section-kicker">WHY THIS LAB</p>
-            <h2>Connect a visible pattern to a careful sentence.</h2>
-            <p class="article-lead">
-              Plots and models reduce thousands of observations to smaller
-              objects. This can clarify a relationship while hiding changes in
-              the sample, missing values, unusual cases, and unsupported causal
-              stories. The lab creates a small
-              evidence bundle whose parts can be checked against each other.
-            </p>
-            <h3>Goals</h3>
+          <section class="article-section reveal" id="setup">
+            <p class="section-kicker">00–05 MINUTES</p><h2>Open the checked Lesson 2 data.</h2>
+            <p class="article-lead">The policy question is: how do the income and under-five mortality patterns for one region compare with the complete all-countries sample during 2000–2022?</p>
+            <div class="callout"><span>STUDENT SCAFFOLD</span><p>Open the complete Math Camp project in RStudio and work through <code>code/lab-3-starter.R</code>. It reads the checked Lesson 2 table from <code>outputs/02-health-analysis.csv</code>. Keep all of your code and written answers in this one file.</p></div>
+            <p>Complete and save Exercises 1–4 before opening Codex. The agent will read the same file containing your selected region, tables, figures, and initial interpretation.</p>
+            <h3>Four outputs</h3>
             <ol class="learning-list">
-              <li>
-                <span>01</span
-                ><strong>Define and describe the exact analysis sample.</strong>
-              </li>
-              <li>
-                <span>02</span
-                ><strong
-                  >Create a legible figure with intentional encodings and
-                  units.</strong
-                >
-              </li>
-              <li>
-                <span>03</span
-                ><strong>Fit and interpret one simple regression.</strong>
-              </li>
-              <li>
-                <span>04</span
-                ><strong
-                  >Inspect residuals or one surprising observation.</strong
-                >
-              </li>
-              <li>
-                <span>05</span
-                ><strong
-                  >Use an agent as a skeptical reviewer and verify its
-                  criticism.</strong
-                >
-              </li>
+              <li><span>01</span><strong>A description of the selected regional sample.</strong></li>
+              <li><span>02</span><strong>Comparable all-countries and regional briefing tables.</strong></li>
+              <li><span>03</span><strong>Comparable all-countries and regional figures.</strong></li>
+              <li><span>04</span><strong>An independently written interpretation checked after saving.</strong></li>
             </ol>
-            <h3>Why the evidence bundle has several parts</h3>
-            <p>
-              A convincing graph can hide a fragile sample. A regression table
-              can hide a functional form that does not fit the data. Keep the
-              question, sample summary, figure, model, diagnostic, claim, and
-              limitation together. Then a reviewer can point to the exact part
-              of the analysis that needs attention.
-            </p>
-            <div class="callout">
-              <span>THE MAP TEST</span>
-              <p>
-                The figure and model are two maps of the same observations. Ask
-                what each map keeps, what it leaves out, and whether it can
-                support the policy question. A polished map can still be the
-                wrong one.
-              </p>
-            </div>
-            <p>
-              Students write their own concern before they open the agent. This
-              order prevents the review from becoming a search for criticism
-              that only sounds authoritative. Compare the generated concern with
-              the code, output, and documentation. Then decide whether to verify
-              it, reject it, or leave it unresolved.
-            </p>
-            <p>
-              <strong>Done when.</strong> Your evidence bundle includes one
-              question, named sample, labeled figure, simple model, diagnostic
-              check, supported claim, limitation, and reviewed agent concern.
-            </p>
           </section>
-
-          <section class="article-section reveal" id="figure">
-            <p class="section-kicker">10-27 MINUTES</p>
-            <h2>Build the figure progressively.</h2>
-            <p>
-              Begin from a clean R session. This block creates every object used
-              below from saved inputs.
-            </p>
-            <div class="code-plate">
-              <div class="code-plate-head">
-                <span>R</span><span>CLEAN START</span>
-              </div>
-              <pre><code>library(tidyverse)
-
-wdi &lt;- read_csv(
-  "data/derived/math-camp-wdi-2000-2022.csv",
-  show_col_types = FALSE
-)
-
-health_analysis &lt;- wdi |&gt;
-  select(
-    iso3c, country, year,
-    income_level_current,
-    gdp_per_capita_ppp,
-    under5_mortality
-  ) |&gt;
-  filter(
-    !is.na(gdp_per_capita_ppp),
-    gdp_per_capita_ppp &gt; 0,
-    !is.na(under5_mortality)
-  ) |&gt;
-  mutate(log_income = log(gdp_per_capita_ppp))
-
-stopifnot(
-  !anyDuplicated(health_analysis[c("iso3c", "year")])
-)</code></pre>
-              <p>
-                If the file path fails, open
-                <code>math-camp-2026.Rproj</code> and rerun the block. Do not
-                repair it with an absolute path to Downloads.
-              </p>
-            </div>
-            <div class="session-plan">
-              <div>
-                <time>10-14</time><strong>Base</strong>
-                <p>Map the outcome and comparison variable to position.</p>
-              </div>
-              <div>
-                <time>14-18</time><strong>Encode</strong>
-                <p>Add at most one grouped encoding such as color or facet.</p>
-              </div>
-              <div>
-                <time>18-22</time><strong>Label</strong>
-                <p>State units, years, sample, and a factual title.</p>
-              </div>
-              <div>
-                <time>22-27</time><strong>Challenge</strong>
-                <p>
-                  Compare a raw and transformed scale or inspect overplotting.
-                </p>
-              </div>
-            </div>
-            <div class="code-plate">
-              <div class="code-plate-head">
-                <span>R</span><span>Progressive plot</span>
-              </div>
-              <pre><code>health_plot &lt;- ggplot(
-  health_analysis,
-  aes(log_income, under5_mortality)
-) +
-  geom_point(
-    aes(color = income_level_current),
-    alpha = 0.45,
-    size = 1.8
-  ) +
-  geom_smooth(
-    method = "lm",
-    formula = y ~ x,
-    se = FALSE,
-    color = "#151515"
-  ) +
-  labs(
-    title = "Income and under-five mortality",
-    subtitle = "Observed country-years, 2000-2022",
-    x = "Log GDP per capita, PPP",
-    y = "Deaths per 1,000 live births",
-    color = "Income level",
-    caption = "Source: World Bank WDI teaching snapshot. Association is not causation."
-  ) +
-  theme_minimal()
-
-health_plot</code></pre>
-              <p>
-                For another policy track, run the complete recipe in
-                <code>code/tracks/</code>; each track defines a different unit,
-                sample, and comparison. The caption should name a limitation
-                specific to the plotted evidence.
-              </p>
-            </div>
-            <h3>Figure audit</h3>
-            <ul class="checklist">
-              <li>
-                <span>□</span
-                ><strong>The title states a factual comparison.</strong>
-              </li>
-              <li>
-                <span>□</span
-                ><strong>Both axes include meaningful units.</strong>
-              </li>
-              <li>
-                <span>□</span
-                ><strong>Color or facets carry information.</strong>
-              </li>
-              <li>
-                <span>□</span
-                ><strong>The sample and period are visible.</strong>
-              </li>
-              <li>
-                <span>□</span
-                ><strong
-                  >The fitted line is described as a sample summary.</strong
-                >
-              </li>
-            </ul>
+          <section class="article-section reveal" id="region">
+            <p class="section-kicker">05–14 MINUTES</p><h2>Exercise 1: describe one region.</h2>
+            <p>Inspect the documented region names and choose one. Filter <code>health_panel</code> once and keep that selection unchanged. Record the number of rows, economies, years, period, and missing values in <code>regional_record</code>.</p>
+            <div class="callout"><span>CHECKPOINT 1</span><p>Explain what one row represents, whether every economy contributes the same number of years, and one coverage issue that could affect the regional comparison.</p></div>
           </section>
-          <section class="article-section reveal" id="model">
-            <p class="section-kicker">27-42 MINUTES</p>
-            <h2>Fit, interpret, and inspect a surprise.</h2>
-            <div class="code-plate">
-              <div class="code-plate-head">
-                <span>R</span><span>Simple model</span>
-              </div>
-              <pre><code>fit &lt;- lm(
-  under5_mortality ~ log_income + income_level_current,
-  data = health_analysis
-)
-
-summary(fit)
-
-health_model &lt;- health_analysis |&gt;
-  mutate(
-    fitted = predict(fit),
-    residual = resid(fit)
-  )
-
-health_model |&gt;
-  arrange(desc(abs(residual))) |&gt;
-  select(
-    country, year, under5_mortality,
-    fitted, residual
-  ) |&gt;
-  slice_head(n = 8)</code></pre>
-              <p>
-                The coefficient on <code>log_income</code> is not a one-percent
-                effect. Translate it before writing:
-              </p>
-              <pre><code>beta &lt;- unname(coef(fit)[["log_income"]])
-beta * log(1.10)  # change associated with 10% higher income
-beta * log(2)     # change associated with doubled income</code></pre>
-              <p>
-                Report each result in under-five deaths per 1,000 live births
-                and as a pooled association among observations in the same
-                included current income-level category. Then choose one large
-                residual and inspect the source values, year, dictionary, and
-                missingness before telling a story.
-              </p>
-            </div>
-            <div class="table-scroll">
-              <table>
-                <thead>
-                  <tr>
-                    <th>Component</th>
-                    <th>Required sentence</th>
-                  </tr>
-                </thead>
-                <tbody>
-                  <tr>
-                    <td>Coefficient</td>
-                    <td>
-                      “A 10% increase in [predictor] is associated with an
-                      estimated [change and outcome unit], comparing
-                      observations in the same included current income-level
-                      category.”
-                    </td>
-                  </tr>
-                  <tr>
-                    <td>Residual</td>
-                    <td>
-                      “For [country-year], observed [outcome] is [amount] above
-                      or below the fitted value.”
-                    </td>
-                  </tr>
-                  <tr>
-                    <td>Limitation</td>
-                    <td>
-                      “This model does not establish [specific causal or
-                      measurement claim] because [specific reason].”
-                    </td>
-                  </tr>
-                </tbody>
-              </table>
-            </div>
-            <p>
-              <strong>Investigate surprises before changing the sample.</strong> A large
-              residual may reflect a data error, unusual policy context, omitted
-              variable, or an overly simple model. Diagnose the observation
-              before deciding what it means.
-            </p>
+          <section class="article-section reveal" id="tables">
+            <p class="section-kicker">14–28 MINUTES</p><h2>Exercise 2: construct two briefing tables.</h2>
+            <p>The supplied all-countries table reports the number of contributing economies, median income, and median under-five mortality in 2000, 2010, and 2022. Adapt the same pipeline to <code>regional_panel</code> so that <code>regional_briefing</code> has the identical structure.</p>
+            <div class="callout"><span>CHECKPOINT 2</span><p>Record one all-countries change, one regional change, and one reason the contributing economy counts matter for the comparison.</p></div>
           </section>
-          <section class="article-section reveal" id="critic">
-            <p class="section-kicker">42-53 MINUTES</p>
-            <h2>Ask the agent to challenge the claim.</h2>
-            <p>
-              Complete the human review first. Write one concern about the code
-              and another about the interpretation before you open the agent.
-              Then compare your first reading, the agent's criticism, and the
-              observable evidence. Use traceable checks to decide which reading
-              is supported.
-            </p>
-            <div class="prompt-box">
-              <span>Skeptical review plan</span>
-              <pre>
-Goal: Critique this small policy-data comparison in two separate passes.
-Context: Read the policy question, dictionary, analysis script, sample summary, figure, model output, and written claim.
-Pass 1: Check code behavior, sample construction, missing values, transformation, labels, key, and reproducibility.
-Pass 2: Check coefficient units, residual interpretation, claim strength, and limitations.
-Constraints: Do not edit files or propose a more complex model. Do not use causal language. Cite the exact file, code, or output behind every concern. State uncertainty.
-Done when: Concerns are ranked and each includes an R or source check that can confirm or reject it.</pre
-              >
-            </div>
-            <h3>Verification record</h3>
-            <div class="table-scroll">
-              <table>
-                <thead>
-                  <tr>
-                    <th>Agent concern</th>
-                    <th>Your check</th>
-                    <th>Result</th>
-                    <th>Change made</th>
-                  </tr>
-                </thead>
-                <tbody>
-                  <tr>
-                    <td>Record the exact concern.</td>
-                    <td>Name code, output, or source evidence.</td>
-                    <td>Verified, rejected, or unresolved.</td>
-                    <td>Revise code, claim, limitation, or nothing.</td>
-                  </tr>
-                </tbody>
-              </table>
-            </div>
-            <p>
-              Accept no criticism you cannot trace. If the agent recommends
-              causal language or invents a variable, record and reject it
-              explicitly.
-            </p>
-            <h3>Counterexample hunt</h3>
-            <p>
-              Use the last two minutes to find one country-year, subgroup,
-              period, or alternative scale that complicates the headline. Write
-              whether it overturns the claim, narrows it, or simply identifies
-              the next question. The goal is statistical curiosity guided by
-              evidence.
-            </p>
+          <section class="article-section reveal" id="figures">
+            <p class="section-kicker">28–42 MINUTES</p><h2>Exercise 3: visualize both patterns.</h2>
+            <p>Recreate the Lesson 3 all-countries point cloud and then construct the same figure for <code>regional_panel</code>. Keep the variables, units, logarithmic scales, geometry, and visual treatment constant so that the sample is the central difference.</p>
+            <div class="callout"><span>CHECKPOINT 3</span><p>Name one feature shared by the figures, one meaningful difference, and one conclusion neither figure can establish.</p></div>
+          </section>
+          <section class="article-section reveal" id="interpretation">
+            <p class="section-kicker">42–48 MINUTES</p><h2>Exercise 4: write before opening Codex.</h2>
+            <p>Work independently. Complete <code>all_countries_claim</code>, <code>regional_claim</code>, and <code>comparison_note</code> using your two tables and two figures. Name the sample, period, direction of the association, and at least one limitation.</p>
+            <p>Save the script. Codex cannot inspect changes that remain only in the RStudio editor.</p>
+          </section>
+          <section class="article-section reveal" id="codex">
+            <p class="section-kicker">48–57 MINUTES</p><h2>Give the completed file to Codex.</h2>
+            <p>Use the fixed prompt printed after Exercise 4. Codex reads the saved file, checks the sample and objects, fits one pooled log–log model for all countries and one for the selected region, and proposes two claims.</p>
+            <p>Select one material agent statement. Record the R object or calculation used to check it, then accept, revise, or reject the statement. Numerical reproduction and interpretation are separate checks.</p>
           </section>
           <section class="article-section reveal" id="debrief">
-            <p class="section-kicker">53-60 MINUTES</p>
-            <h2>Explain what changed your mind.</h2>
-            <p>Prepare a 60-second comparison story:</p>
-            <ol class="learning-list">
-              <li>
-                <span>01</span
-                ><strong>Question and sample: who, what, and when.</strong>
-              </li>
-              <li>
-                <span>02</span
-                ><strong>Pattern: what the figure and model summarize.</strong>
-              </li>
-              <li>
-                <span>03</span
-                ><strong
-                  >Surprise: one observation or diagnostic that deserves
-                  attention.</strong
-                >
-              </li>
-              <li>
-                <span>04</span
-                ><strong
-                  >Revision: how human or agent review changed the
-                  claim.</strong
-                >
-              </li>
-              <li>
-                <span>05</span
-                ><strong
-                  >Limitation: boundary of the available evidence.</strong
-                >
-              </li>
-            </ol>
-            <h3>Optional extension</h3>
-            <p>
-              Compare two defensible specifications or samples, such as raw
-              versus logged income, all years versus the latest common year, or
-              pooled data versus facets by income level. Produce a compact table
-              that shows how the sample size and focal coefficient change.
-              Explain why the comparison is informative and choose the
-              specification from the question and design.
-            </p>
-            <p>
-              <strong>What to keep.</strong> Save the question, sample summary,
-              figure, model code, diagnostic output, two-sentence claim,
-              limitation, and verification record. These become the input for
-              Lesson 4's handoff audit.
-            </p>
+            <p class="section-kicker">57–60 MINUTES</p><h2>Report the comparison and verification.</h2>
+            <p>Share the main difference between the all-countries and regional briefings, one claim supported by the regional figure, and one Codex statement you checked.</p>
+            <ul class="checklist"><li><span>□</span><strong>The same selected region appears in the data, table, figure, model, and sentence.</strong></li><li><span>□</span><strong>The all-countries and regional briefings use comparable definitions.</strong></li><li><span>□</span><strong>The final claims distinguish association from causation.</strong></li></ul>
           </section>
         </article>
-        <aside class="article-margin">
-          <dl>
-            <div>
-              <dt>OUTPUT</dt>
-              <dd>Evidence bundle</dd>
-            </div>
-            <div>
-              <dt>CLAIM</dt>
-              <dd>Associational</dd>
-            </div>
-            <div>
-              <dt>AGENT ROLE</dt>
-              <dd>Skeptical reviewer</dd>
-            </div>
-            <div>
-              <dt>SUBMISSION</dt>
-              <dd>None</dd>
-            </div>
-          </dl>
-        </aside>
       </div>
-      <nav class="page-turn">
-        <a href="../../lessons/lesson-3/"
-          ><span>PREVIOUS</span><strong>Lesson 3: Discover patterns</strong></a
-        ><a href="../../lessons/lesson-4/"
-          ><span>NEXT</span><strong>Lesson 4: Audit the handoff</strong></a
-        >
-      </nav>
     </main>
-    <footer class="site-footer">
-      <div><span>API 209</span><strong>MATH CAMP 2026</strong></div>
-      <p>Lab 3 of 4.</p>
-      <a href="#top">RETURN TO TOP ↑</a>
-    </footer>
-    <script src="../../script.js?v=book-20260718o"></script>
+    <footer class="site-footer"><div><span>API 209</span><strong>LAB 3</strong></div><p>Math Camp 2026.</p><a href="#top">RETURN TO TOP ↑</a></footer>
+    <script src="../../script.js?v=book-20260823l3b"></script>
   </body>
 </html>

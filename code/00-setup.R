@@ -20,7 +20,7 @@ find_math_camp_root <- function(start = getwd()) {
   }
 }
 
-required_packages <- c("dplyr", "ggplot2", "readr", "tidyr")
+required_packages <- c("dplyr", "ggplot2", "readr", "tidyr", "broom")
 missing_packages <- required_packages[
   !vapply(required_packages, requireNamespace, logical(1), quietly = TRUE)
 ]
@@ -60,11 +60,7 @@ if (!file.exists(dictionary_file)) {
   stop("The indicator dictionary is missing: ", dictionary_file)
 }
 if (!file.exists(lab2_draft_file)) {
-  warning(
-    "The Lab 2 briefing draft is not present. This is expected outside the ",
-    "Lab 2 release: ",
-    lab2_draft_file
-  )
+  lab2_draft_file <- NA_character_
 }
 
 dir.create(outputs_dir, recursive = TRUE, showWarnings = FALSE)
@@ -74,4 +70,5 @@ suppressPackageStartupMessages({
   library(ggplot2)
   library(readr)
   library(tidyr)
+  library(broom)
 })

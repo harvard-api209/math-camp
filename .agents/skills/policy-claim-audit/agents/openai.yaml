@@ -1,0 +1,4 @@
+interface:
+  display_name: "Policy Claim Audit"
+  short_description: "Check whether a quantitative policy claim matches its evidence."
+  default_prompt: "Audit this policy-data claim against the question, sample, code, figure, model output, and source notes."
