@@ -48,8 +48,8 @@ instructor/prepare-lab-2-*.R
 instructor/release-audit-lab-2-v1.0.*.md
 instructor/lab-3-*
 
-# Lesson 3's complete teaching walkthrough stays local until the instructor
-# chooses to publish it after the lab. Students receive the incomplete scaffold.
+# Lesson 3's complete teaching walkthrough is distributed through the versioned
+# Lesson 3 + Lab 3 release, but is not published as a loose website source file.
 code/lesson-3-walkthrough.R
 
 # Local packaging workspaces; published ZIPs are attached to GitHub releases.
