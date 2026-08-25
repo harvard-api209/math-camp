@@ -31,7 +31,7 @@ health_focus <- health |>
     gdp_per_capita_ppp,
     under5_mortality
   ) |>
-  filter(gdp_per_capita_ppp > 0) |>
+  filter(gdp_per_capita_ppp > 10000) |>
   mutate(log_income = log(gdp_per_capita_ppp)) |>
   arrange(desc(under5_mortality))
 

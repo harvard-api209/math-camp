@@ -55,14 +55,14 @@ n_distinct(health$iso3c)
 The first reading should establish the row unit, the key, the variables, their types, and missing coverage.
 \end{frame}
 
-\begin{frame}[fragile]{Select columns and filter rows}
+\begin{frame}[fragile]{Focus on economies above \$10,000 per person}
 \begin{lstlisting}[language=R]
 health_focus <- health |>
   select(country, region, income_level_current,
          gdp_per_capita_ppp, under5_mortality) |>
-  filter(gdp_per_capita_ppp > 0)
+  filter(gdp_per_capita_ppp > 10000)
 \end{lstlisting}
-\small \texttt{select()} changes columns; \texttt{filter()} changes rows. Neither computes a group statistic.
+\small \texttt{select()} retains the variables needed for the comparison. \texttt{filter()} defines the analytical sample: the tables and figures that follow describe economies with GDP per capita, PPP, above \$10,000 in 2022.
 \end{frame}
 
 \begin{frame}[fragile]{Construct and order variables}
