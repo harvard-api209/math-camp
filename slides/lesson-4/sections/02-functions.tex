@@ -80,12 +80,14 @@ health_table <- health_focus |>
   group_by(income_level_current) |>
   summarise(
     economies = n(),
-    median_income = median(gdp_per_capita_ppp),
+    min_mortality = min(under5_mortality),
+    average_mortality = mean(under5_mortality),
     median_mortality = median(under5_mortality),
+    max_mortality = max(under5_mortality),
     .groups = "drop"
   )
 \end{lstlisting}
-The input has one row per economy. The output has one row per income group.
+The output has one row per income group. The count and range describe the sample; the mean and median describe its center.
 \end{frame}
 
 \begin{frame}[fragile]{Map variables to a figure}

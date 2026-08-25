@@ -17,7 +17,7 @@ How is national income associated with under-five mortality in 2022, and how doe
 
 ## Data and sample
 
-The file contains one row per economy in 2022. The analytical sample includes 188 economies with observed GDP per capita (PPP) and under-five mortality.
+The file contains one row per economy in 2022. The analytical sample includes the 120 economies with GDP per capita, PPP, above $10,000 and observed under-five mortality.
 
 ```{r}
 library(tidyverse)
@@ -27,18 +27,23 @@ health <- read_csv(
   show_col_types = FALSE
 )
 
-glimpse(health)
+health_focus <- health |>
+  filter(gdp_per_capita_ppp > 10000)
+
+glimpse(health_focus)
 ```
 
 ## Briefing table
 
 ```{r}
-health_table <- health |>
+health_table <- health_focus |>
   group_by(income_level_current) |>
   summarise(
     economies = n(),
-    median_income = median(gdp_per_capita_ppp),
+    min_mortality = min(under5_mortality),
+    average_mortality = mean(under5_mortality),
     median_mortality = median(under5_mortality),
+    max_mortality = max(under5_mortality),
     .groups = "drop"
   ) |>
   arrange(median_mortality)
@@ -50,7 +55,7 @@ health_table
 
 ```{r}
 ggplot(
-  health,
+  health_focus,
   aes(
     x = gdp_per_capita_ppp,
     y = under5_mortality,

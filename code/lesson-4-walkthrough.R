@@ -43,8 +43,10 @@ health_table <- health_focus |>
   group_by(income_level_current) |>
   summarise(
     economies = n(),
-    median_income = median(gdp_per_capita_ppp),
+    min_mortality = min(under5_mortality),
+    average_mortality = mean(under5_mortality),
     median_mortality = median(under5_mortality),
+    max_mortality = max(under5_mortality),
     .groups = "drop"
   ) |>
   arrange(median_mortality)
