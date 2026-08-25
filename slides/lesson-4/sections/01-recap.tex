@@ -50,17 +50,24 @@ The artifact is optional and ungraded. Its value is that every result remains co
 
 \begin{frame}{Two hours before Lab 4}
 \small
-\begin{tabularx}{\textwidth}{>{\color{crimson}\bfseries}p{1.5cm} p{2.4cm} X}
+\begingroup
+\renewcommand{\arraystretch}{1.18}
+\begin{tabularx}{\textwidth}{@{}
+  >{\RaggedRight\arraybackslash}p{1.6cm}
+  >{\RaggedRight\arraybackslash}p{2.6cm}
+  >{\RaggedRight\arraybackslash}X
+@{}}
 \toprule
-Minutes & Part & What we will accomplish \\
+\textbf{Minutes} & \textbf{Part} & \textbf{What we will accomplish} \\
 \midrule
-00--45 & Function recap & Read, inspect, transform, summarise, and plot. \\
-45--51 & Checkpoint 1 & Choose a defensible function sequence. \\
-51--61 & Data design & Distinguish cross-sections from endpoint comparisons. \\
-61--71 & Break & Ten minutes away from the screen. \\
-71--104 & Quarto & Build and render one complete brief. \\
-104--116 & Checkpoints 2--3 & Diagnose a broken evidence chain and plan a track. \\
-116--120 & Lab handoff & Open the four starter files and choose one. \\
+\textcolor{crimson}{\textbf{00--45}} & Function recap & Read, inspect, transform, summarise, and plot. \\
+\textcolor{crimson}{\textbf{45--51}} & Checkpoint 1 & Choose a defensible function sequence. \\
+\textcolor{crimson}{\textbf{51--61}} & Data design & Distinguish cross-sections from endpoint comparisons. \\
+\textcolor{crimson}{\textbf{61--71}} & Break & Ten minutes away from the screen. \\
+\textcolor{crimson}{\textbf{71--104}} & Quarto & Build and render one complete brief. \\
+\textcolor{crimson}{\textbf{104--116}} & Checkpoints 2--3 & Diagnose a broken evidence chain and plan a track. \\
+\textcolor{crimson}{\textbf{116--120}} & Lab handoff & Open the four starter files and choose one. \\
 \bottomrule
 \end{tabularx}
+\endgroup
 \end{frame}
