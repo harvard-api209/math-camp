@@ -73,7 +73,7 @@ When you click Render, Quarto starts a fresh R session and executes the chunks i
 \end{itemize}
 \end{frame}
 
-\begin{frame}{Checkpoint 2: repair the evidence chain}
+\begin{frame}{A draft brief mixes two comparisons}
 A draft brief contains:
 \begin{itemize}
 \item a table restricted to 2022;
@@ -81,30 +81,35 @@ A draft brief contains:
 \item the sentence, ``Higher income reduces under-five mortality.''
 \end{itemize}
 \vspace{0.25cm}
-Identify two problems and propose the smallest defensible revision to the table, figure, or sentence.
-\vfill
-\centering\textbf{2 minutes discuss \(\longrightarrow\) 2 minutes share}
+\textbf{The evidence chain breaks in two places:}
+\begin{enumerate}
+\item The table and figure describe different periods and samples.
+\item The sentence turns a descriptive association into a causal claim.
+\end{enumerate}
 \end{frame}
 
-\begin{frame}{Checkpoint 2: resolution}
+\begin{frame}{The smallest defensible repair}
 \begin{enumerate}
-\item The table and figure use different periods and samples. A reader cannot treat them as evidence for the same comparison without explanation.
-\item The sentence is causal. The cross-sectional comparison supports an association, not the effect of an income intervention.
+\item Restrict both the table and figure to the same 2022 sample.
+\item Describe the relationship as an association and report its variation.
 \end{enumerate}
 \vspace{0.3cm}
-Smallest revision: align both outputs to 2022 and describe the observed association and its variation.
+\textbf{Revised finding:}
+\vspace{0.15cm}
+
+``Among economies in 2022, higher GDP per capita is associated with lower under-five mortality. Mortality still varies substantially among economies at similar income levels.''
 \end{frame}
 
-\begin{frame}{The agent enters after the first interpretation}
-Save the table, figure, finding, and limitation before opening Codex.
-\vspace{0.3cm}
-\textbf{The read-only request asks Codex to:}
-\begin{enumerate}
-\item reproduce the table from the stated sample;
-\item inspect the variables, units, and figure mappings;
-\item challenge one consequential statement with exact evidence; and
-\item end with accept, revise, or reject and at most one revision.
-\end{enumerate}
-\vspace{0.2cm}
-The complete prompt is in the Lab 4 handout. Independently verify one material statement in R.
+\begin{frame}{A good prompt specifies the analysis}
+\small
+\textbf{Example prompt for the health brief}
+\vspace{0.15cm}
+
+\begin{quote}
+Read \texttt{health-brief.qmd} and the 2022 health CSV it imports. Complete the brief for this question: How is GDP per capita associated with under-five mortality, and how does the pattern differ by current income group?
+
+Use one row per economy. Create an income-group table reporting the number of economies and the minimum, mean, median, and maximum under-five mortality. Then create a scatterplot with GDP per capita (PPP) on the x-axis, under-five mortality on the y-axis, and income group mapped to color. Use \texttt{geom\_point(alpha = 0.75)}, a log-scaled x-axis, informative axis labels with units, a readable legend, and \texttt{theme\_minimal()}.
+
+Do not fit a model or make a causal claim. Render the HTML brief and report the sample size, aesthetic mappings, and any warnings. Stop if a required variable is absent.
+\end{quote}
 \end{frame}

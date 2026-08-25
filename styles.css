@@ -3179,6 +3179,26 @@ blockquote p {
   line-height: inherit;
 }
 
+.article-page .track-list li {
+  margin-bottom: 24px;
+}
+
+.article-page .track-list strong {
+  font-weight: 700;
+}
+
+.article-page .track-list p {
+  margin: 5px 0 0;
+  color: var(--book-ink);
+  font-family: Georgia, "Times New Roman", serif;
+  font-size: 15px;
+  line-height: 1.55;
+}
+
+.article-page .track-list p b {
+  font-weight: 700;
+}
+
 .article-page .checklist {
   list-style: "—  ";
 }

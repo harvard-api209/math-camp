@@ -1,23 +1,47 @@
 \section{Prepare the lab}
 
-\begin{frame}{Four prepared files}
+\begin{frame}{Choose one question for Lab 4}
 \small
-\begin{tabularx}{\textwidth}{p{1.8cm} p{2.2cm} p{1.25cm} X}
-\toprule
-Track & Unit & Rows & Main comparison \\
-\midrule
-Health & economy, 2022 & 188 & income and under-five mortality \\
-Gender & economy, 2022 & 140 & girls' enrollment and adolescent fertility \\
-Access & economy, 2000--22 & 174 & electricity and internet percentage-point changes \\
-Climate & economy, 2000--21 & 172 & renewable, carbon-intensity, and income endpoint changes \\
-\bottomrule
-\end{tabularx}
-\vspace{0.35cm}
-The prepared files hold the unit and comparison fixed so the lab can focus on analysis and communication.
+\begin{enumerate}
+\item \textbf{Health.} How is income associated with under-five mortality in 2022, and how does the pattern differ by income group?
+\item \textbf{Gender.} Where is girls' secondary enrollment associated with lower adolescent fertility in 2022, and where does the pattern depart from the overall comparison?
+\item \textbf{Access.} Which economies closed the combined electricity and internet access gap fastest from 2000 to 2022?
+\item \textbf{Climate.} Which economies expanded renewable electricity, reduced carbon intensity, and ended with higher real income from 2000 to 2021?
+\end{enumerate}
 \end{frame}
 
-\begin{frame}{Checkpoint 3: plan one track}
-Choose a question. Before writing code, state:
+\begin{frame}{Hints for the 2022 cross-sections}
+\textbf{Health}
+\begin{itemize}
+\item \textbf{Table:} summarise income and mortality within current income groups.
+\item \textbf{Figure:} plot GDP per capita against mortality; map income group to color and consider a logarithmic income scale.
+\end{itemize}
+\vspace{0.3cm}
+\textbf{Gender}
+\begin{itemize}
+\item \textbf{Table:} compare median enrollment and fertility across regions.
+\item \textbf{Figure:} plot girls' enrollment against adolescent fertility and map region to color.
+\end{itemize}
+\vspace{0.25cm}
+In both cases, one row is one economy observed in 2022.
+\end{frame}
+
+\begin{frame}{Hints for the endpoint comparisons}
+\textbf{Access}
+\begin{itemize}
+\item \textbf{Table:} rank economies by combined electricity and internet gap closure while retaining both components.
+\item \textbf{Figure:} plot the two percentage-point changes against one another; add zero reference lines and map region to color.
+\end{itemize}
+\vspace{0.3cm}
+\textbf{Climate}
+\begin{itemize}
+\item \textbf{Table:} identify economies satisfying all three endpoint conditions and summarise them by region.
+\item \textbf{Figure:} plot renewable-electricity change against carbon-intensity change; map income change to color and add zero reference lines.
+\end{itemize}
+\end{frame}
+
+\begin{frame}{Prepare one track for Lab 4}
+Choose one question before the lab. Record:
 \begin{enumerate}
 \item the row unit and period;
 \item the variables required;
@@ -26,25 +50,30 @@ Choose a question. Before writing code, state:
 \item one claim the evidence could support; and
 \item one claim it could not support.
 \end{enumerate}
-\vfill
-\centering\textbf{2 minutes discuss \(\longrightarrow\) 2 minutes share}
 \end{frame}
 
 \begin{frame}{Lab 4 route}
 \small
-\begin{tabularx}{\textwidth}{>{\color{crimson}\bfseries}p{1.45cm} p{2.4cm} X}
+\begingroup
+\renewcommand{\arraystretch}{1.18}
+\begin{tabularx}{\textwidth}{@{}
+  >{\RaggedRight\arraybackslash}p{1.55cm}
+  >{\RaggedRight\arraybackslash}p{2.55cm}
+  >{\RaggedRight\arraybackslash}X
+@{}}
 \toprule
-Minutes & Work & Result \\
+\textbf{Minutes} & \textbf{Work} & \textbf{Result} \\
 \midrule
-00--07 & Choose and plan & Unit, variables, and function sequence. \\
-07--20 & Construct table & One traceable briefing table. \\
-20--33 & Construct figure & One labeled policy comparison. \\
-33--40 & Interpret & One finding and one limitation in your words. \\
-40--50 & Agent review & Read-only reproduction and claim challenge. \\
-50--56 & Independent check & Accept, revise, or reject one agent statement. \\
-56--60 & Render & Standalone HTML brief. \\
+\textcolor{crimson}{\textbf{00--07}} & Choose and plan & Unit, variables, and function sequence. \\
+\textcolor{crimson}{\textbf{07--20}} & Construct table & One traceable briefing table. \\
+\textcolor{crimson}{\textbf{20--33}} & Construct figure & One labeled policy comparison. \\
+\textcolor{crimson}{\textbf{33--40}} & Interpret & One finding and one limitation in your words. \\
+\textcolor{crimson}{\textbf{40--50}} & Agent review & Read-only reproduction and claim challenge. \\
+\textcolor{crimson}{\textbf{50--56}} & Independent check & Accept, revise, or reject one agent statement. \\
+\textcolor{crimson}{\textbf{56--60}} & Render & Standalone HTML brief. \\
 \bottomrule
 \end{tabularx}
+\endgroup
 \end{frame}
 
 \begin{frame}{Where the materials are}
